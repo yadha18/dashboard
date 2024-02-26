@@ -20,10 +20,8 @@
 
         <!-- SidebarSearch Form -->
         <x-sidebar-search />
-
         <!-- Sidebar Menu -->
         <x-sidebar-menu />
-        <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
 </aside>

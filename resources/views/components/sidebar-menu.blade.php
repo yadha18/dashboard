@@ -20,12 +20,6 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('revenue') }}" class="nav-link {{ request()->is('revenue') ? 'active' : '' }}">
-                        <i class="far {{ request()->is('revenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
-                        <p>Revenue</p>
-                    </a>
-                </li>
-                <li class="nav-item">
                     <a href="{{ route('kanal-bayar') }}"
                         class="nav-link {{ request()->is('kanal-bayar') ? 'active' : '' }}">
                         <i class="far {{ request()->is('kanal-bayar') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
@@ -39,6 +33,49 @@
                             class="far {{ request()->is('pelanggan-deaktivasi') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                         <p>Pelanggan Deaktivasi</p>
                     </a>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-chart-line"></i>
+                        <p>
+                            Revenue
+                            <i class="right fas fa-angle-left"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('revenue') }}"
+                                class="nav-link {{ request()->is('revenue') ? 'active' : '' }}">
+                                <i
+                                    class="far {{ request()->is('revenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                                <p>All Revenue</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../index.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Revenue Based on Rekon</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../index2.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Revenue Based on Daily</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Revenue per Account Executive (AE)</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="../index3.html" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Revenue per Product</p>
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             </ul>
         </li>

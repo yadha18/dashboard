@@ -15,7 +15,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if (request()->is('revenue'))
-                <x-breadcrumb page="Revenue" />
+                <x-breadcrumb page="All Revenue" />
             @else
                 <x-breadcrumb page="Dashboard" />
             @endif
