@@ -4,9 +4,7 @@
     <div class="wrapper">
 
         <!-- Preloader -->
-        <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
-        </div>
+        <x-preloader />
 
         <!-- Navbar -->
         <x-navbar />
@@ -19,18 +17,7 @@
             <x-breadcrumb page="Dashboard" />
             <!-- Main content -->
             <section class="content">
-                <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="info" />
-                        <x-card title="Revenue" icon="stats-bars" type="success" />
-                        <x-card title="Passive Customer" icon="person" type="warning" :totalCount="intval($total)" />
-                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="danger" />
-                    </div>
-                    <!-- /.row -->
-                    <!-- Main row -->
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                <x-card-container :total="intval($total)" />
             </section>
             <section class="content">
                 <div class="container-fluid">
