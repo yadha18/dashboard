@@ -1,0 +1,147 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use App\Models\Baddebt;
+use App\Models\User;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+
+class UserController extends Controller
+{
+    public function __construct()
+    {
+        $this->middleware('guest')->except(['logout', 'dashboard', 'passivecustomer', 'revenue', 'kanalbayar', 'pelanggandeaktivasi']);
+    }
+
+    public function login()
+    {
+        return view('auth.login');
+    }
+
+    public function register()
+    {
+        return view('auth.register');
+    }
+
+    public function store(Request $request)
+    {
+        $validateData = $request->validate([
+            'name' => 'required|string|max:250',
+            'username' => 'required|string|max:250|unique:users',
+            'password' => 'required|min:8|confirmed'
+        ]);
+
+        $user = User::create([
+            'name' => $validateData['name'],
+            'username' => $validateData['username'],
+            'password' => Hash::make($validateData['password']),
+        ]);
+
+        Auth::login($user);
+
+        return redirect()->route('dashboard');
+    }
+
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->validate([
+            'username' => 'required',
+            'password' => 'required'
+        ]);
+
+        if (Auth::attempt($credentials)) {
+            $request->session()->regenerate();
+
+            return redirect()->route('dashboard');
+        }
+
+        return back()->withErrors([
+            'username' => 'username atau password salah'
+        ])->withInput(['username']);
+    }
+
+    public function dashboard()
+    {
+        $data = Baddebt::all();
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.dashboard', compact('data', 'total', 'user'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    public function passivecustomer()
+    {
+        $data = Baddebt::all();
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.passive-customer', compact('data', 'total', 'user'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    public function revenue()
+    {
+        $data = Baddebt::all();
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.revenue', compact('data', 'total', 'user'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    public function kanalbayar()
+    {
+        $data = Baddebt::all();
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.kanal-bayar', compact('data', 'total', 'user'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    public function pelanggandeaktivasi()
+    {
+        $data = Baddebt::all();
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.pelanggan-deaktivasi', compact('data', 'total', 'user'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    public function logout(Request $request)
+    {
+        Auth::logout();
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+        return redirect()->route('login');
+    }
+}
