@@ -19,14 +19,16 @@ Route::get('/', function () {
 });
 
 Route::controller(UserController::class)->group(function () {
-    Route::get('/register', 'register')->name('register');
+    Route::get('/dashboard/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
-    Route::get('/login', 'login')->name('login');
+    Route::get('/dashboard/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/passive-customer', 'passivecustomer')->name('passive-customer');
-    Route::get('/revenue', 'revenue')->name('revenue');
-    Route::get('/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
-    Route::get('/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
+    Route::get('/dashboard/revenue', 'revenue')->name('revenue');
+    Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
+    Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
     Route::post('/logout', 'logout')->name('logout');
 });
+
+Route::get('/chart-data', 'App\Http\Controllers\ChartController@getChartData');

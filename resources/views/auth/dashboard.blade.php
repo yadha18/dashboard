@@ -24,7 +24,7 @@
                     <div class="row">
                         <!-- Left col -->
                         <section class="col-12">
-
+                            <x-chart />
                         </section>
                     </div>
                 </div>
