@@ -46,7 +46,7 @@
                             </div>
                             <button type="submit" name="kirim" class="btn btn-primary">Login</button>
                         </form>
-                        <p>Don't have an account? <a href="/register">Register here</a></p>
+                        <p>Don't have an account? <a href="/dashboard/register">Register here</a></p>
                     </div>
                 </div>
             </div>

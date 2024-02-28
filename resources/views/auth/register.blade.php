@@ -52,7 +52,7 @@
                             <button type="submit" class="btn btn-primary">Register</button>
                         </form>
 
-                        <p>Already have an account? <a href="/login">Login here</a></p>
+                        <p>Already have an account? <a href="/dashboard/login">Login here</a></p>
                     </div>
                 </div>
             </div>
