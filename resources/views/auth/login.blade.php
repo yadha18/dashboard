@@ -27,11 +27,6 @@
                         Login
                     </div>
                     <div class="card-body">
-                        <?php if (isset($error)) : ?>
-                        <div class="alert alert-danger" role="alert">
-                            <?php echo $error; ?>
-                        </div>
-                        <?php endif; ?>
                         <form method="post" action="{{ route('authenticate') }}">
                             @csrf
                             <div class="form-group">
@@ -44,7 +39,7 @@
                                 <input type="password" class="form-control" id="password" name="password"
                                     placeholder="Enter your password" value="{{ old('password') }}" required>
                             </div>
-                            <button type="submit" name="kirim" class="btn btn-primary">Login</button>
+                            <button type="submit" class="btn btn-primary">Login</button>
                         </form>
                         <p>Don't have an account? <a href="/dashboard/register">Register here</a></p>
                     </div>
