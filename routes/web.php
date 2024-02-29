@@ -28,7 +28,7 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
     Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
     Route::post('/logout', 'logout')->name('logout');
+    Route::get('/dashboard/revenue', 'revenue')->name('revenue');
 });
 
-Route::get('/dashboard/revenue', 'App\Http\Controllers\UserController@revenue')->name('revenue');
 Route::get('/chart-data', 'App\Http\Controllers\ChartController@getChartData');
