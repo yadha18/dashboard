@@ -14,15 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth.dashboard');
-});
-
 Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/register', 'register')->name('register');
     Route::post('/store', 'store')->name('store');
     Route::get('/dashboard/login', 'login')->name('login');
     Route::post('/authenticate', 'authenticate')->name('authenticate');
+    Route::get('/', 'dashboard')->name('dashboard');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
     Route::get('/passive-customer', 'passivecustomer')->name('passive-customer');
     Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
