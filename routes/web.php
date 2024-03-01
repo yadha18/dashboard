@@ -21,7 +21,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/', 'dashboard')->name('dashboard');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
-    Route::get('/passive-customer', 'passivecustomer')->name('passive-customer');
+    Route::get('/dashboard/passive-customer', 'passivecustomer')->name('passive-customer');
     Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
     Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
     Route::post('/logout', 'logout')->name('logout');
