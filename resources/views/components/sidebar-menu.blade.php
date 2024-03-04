@@ -1,3 +1,6 @@
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
 <nav class="mt-2">
     <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         <!-- Add icons to the links using the .nav-icon class
@@ -13,24 +16,24 @@
             <ul class="nav nav-treeview">
                 <li class="nav-item">
                     <a href="{{ route('passive-customer') }}"
-                        class="nav-link {{ request()->is('passive-customer') ? 'active' : '' }}">
+                        class="nav-link {{ Route::currentRouteNamed('passive-customer') ? 'active' : '' }}">
                         <i
-                            class="far {{ request()->is('passive-customer') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                            class="far {{ Route::currentRouteNamed('passive-customer') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                         <p>Passive Customer</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('kanal-bayar') }}"
-                        class="nav-link {{ request()->is('kanal-bayar') ? 'active' : '' }}">
-                        <i class="far {{ request()->is('kanal-bayar') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                        class="nav-link {{ Route::currentRouteNamed('kanal-bayar') ? 'active' : '' }}">
+                        <i class="far {{ Route::currentRouteNamed('kanal-bayar') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                         <p>Kanal Bayar</p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('pelanggan-deaktivasi') }}"
-                        class="nav-link {{ request()->is('pelanggan-deaktivasi') ? 'active' : '' }}">
+                        class="nav-link {{ Route::currentRouteNamed('pelanggan-deaktivasi') ? 'active' : '' }}">
                         <i
-                            class="far {{ request()->is('pelanggan-deaktivasi') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                            class="far {{ Route::currentRouteNamed('pelanggan-deaktivasi') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                         <p>Pelanggan Deaktivasi</p>
                     </a>
                 </li>
@@ -45,9 +48,9 @@
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
                             <a href="{{ route('revenue') }}"
-                                class="nav-link {{ request()->is('revenue') ? 'active' : '' }}">
+                                class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
                                 <i
-                                    class="far {{ request()->is('revenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                                    class="far {{ Route::currentRouteNamed('revenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                                 <p>All Revenue</p>
                             </a>
                         </li>

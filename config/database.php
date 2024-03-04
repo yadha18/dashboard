@@ -91,7 +91,6 @@ return [
             'prefix_indexes' => true,
             'schema'=>'Dashboard_Retail',
             'datasource' => 'Database/Sqlserver',
-            'encoding' => PDO::SQLSRV_ENCODING_UTF8,
             // 'encrypt' => env('DB_ENCRYPT', 'yes'),
             // 'trust_server_certificate' => env('DB_TRUST_SERVER_CERTIFICATE', 'false'),
         ],

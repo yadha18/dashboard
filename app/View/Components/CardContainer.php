@@ -11,7 +11,7 @@ class CardContainer extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct(public int $total = 0)
+    public function __construct(public int $total = 0, public int $total_kanal = 0)
     {
         //
     }

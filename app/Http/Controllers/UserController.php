@@ -4,9 +4,11 @@ namespace App\Http\Controllers;
 
 use App\Models\Baddebt;
 use App\Models\User;
+use App\Models\KanalBayar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Route;
 
 class UserController extends Controller
 {
@@ -66,10 +68,11 @@ class UserController extends Controller
     {
         $data = Baddebt::all();
         $total = Baddebt::count();
+        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('data', 'total', 'user'));
+            return view('auth.dashboard', compact('data', 'total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -81,10 +84,11 @@ class UserController extends Controller
     {
         $data = Baddebt::all();
         $total = Baddebt::count();
+        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.passive-customer', compact('data', 'total', 'user'));
+            return view('auth.passive-customer', compact('data', 'total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -96,10 +100,11 @@ class UserController extends Controller
     {
         $data = Baddebt::all();
         $total = Baddebt::count();
+        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.revenue', compact('data', 'total', 'user'));
+            return view('auth.revenue', compact('data', 'total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -111,10 +116,11 @@ class UserController extends Controller
     {
         $data = Baddebt::all();
         $total = Baddebt::count();
+        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('data', 'total', 'user'));
+            return view('auth.kanal-bayar', compact('data', 'total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -126,10 +132,11 @@ class UserController extends Controller
     {
         $data = Baddebt::all();
         $total = Baddebt::count();
+        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.pelanggan-deaktivasi', compact('data', 'total', 'user'));
+            return view('auth.pelanggan-deaktivasi', compact('data', 'total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
