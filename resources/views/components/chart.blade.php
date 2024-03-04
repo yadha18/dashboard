@@ -8,7 +8,7 @@
         <div class="card-body">
             <div class="d-flex">
                 <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">{{ $total }}</span>
+                    <span class="text-bold text-lg">{{ str_replace(',', '.', number_format($total)) }}</span>
                     <span>{{ $name }}</span>
                 </p>
                 <p class="ml-auto d-flex flex-column text-right">
