@@ -53,35 +53,22 @@
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
+                                                <th>ID Tagihan</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Tagihan (- PPN)</th>
+                                                <th>Pembayaran Via</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($data as $kb)
+                                                <tr>
+                                                    <td>{{ $kb->idPelanggan }}</td>
+                                                    <td>{{ $kb->idTagihan }}</td>
+                                                    <td>{{ $kb->tanggalBayar }}</td>
+                                                    <td>Rp. {{ $kb->rpTagihanMinusPPN }}</td>
+                                                    <td>{{ $kb->pembayaranVia }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

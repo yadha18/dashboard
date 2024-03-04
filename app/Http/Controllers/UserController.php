@@ -66,13 +66,12 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $data = Baddebt::all();
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('data', 'total', 'user', 'total_kanal'));
+            return view('auth.dashboard', compact('total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -82,7 +81,7 @@ class UserController extends Controller
 
     public function passivecustomer()
     {
-        $data = Baddebt::all();
+        $data = Baddebt::paginate(100);
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
@@ -98,13 +97,12 @@ class UserController extends Controller
 
     public function revenue()
     {
-        $data = Baddebt::all();
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.revenue', compact('data', 'total', 'user', 'total_kanal'));
+            return view('auth.revenue', compact('total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -114,7 +112,7 @@ class UserController extends Controller
 
     public function kanalbayar()
     {
-        $data = Baddebt::all();
+        $data = KanalBayar::paginate(100);
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
@@ -130,13 +128,12 @@ class UserController extends Controller
 
     public function pelanggandeaktivasi()
     {
-        $data = Baddebt::all();
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.pelanggan-deaktivasi', compact('data', 'total', 'user', 'total_kanal'));
+            return view('auth.pelanggan-deaktivasi', compact('total', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
