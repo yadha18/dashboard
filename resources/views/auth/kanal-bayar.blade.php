@@ -26,7 +26,7 @@
                     <div class="row">
                         <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
                             route="{{ route('kanal-bayar') }}" />
-                        <x-card title="Revenue" icon="stats-bars" type="light" totalCount="23.4%"
+                        <x-card title="Revenue" icon="stats-bars" type="light" totalCount=35
                             route="{{ route('revenue') }}" />
                         <x-card title="Passive Customer" icon="person" type="light" totalCount="{{ intval($total) }}"
                             route="{{ route('passive-customer') }}" />
