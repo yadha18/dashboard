@@ -24,12 +24,13 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="info" totalCount="{{ intval($total_kanal) }}"
+                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
                             route="{{ route('kanal-bayar') }}" />
-                        <x-card title="Revenue" icon="stats-bars" type="success" route="{{ route('revenue') }}" />
-                        <x-card title="Passive Customer" icon="person" type="warning" totalCount="{{ intval($total) }}"
+                        <x-card title="Revenue" icon="stats-bars" type="light" totalCount="23.4%"
+                            route="{{ route('revenue') }}" />
+                        <x-card title="Passive Customer" icon="person" type="light" totalCount="{{ intval($total) }}"
                             route="{{ route('passive-customer') }}" />
-                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="danger"
+                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
@@ -111,150 +112,6 @@
                                                     <td>{{ $baddebt->status }}</td>
                                                 </tr>
                                             @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </section>
-                        <section class="col-12">
-                            <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Revenue</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </section>
-                        <section class="col-12">
-                            <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Kanal Bayar</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </section>
-                        <section class="col-12">
-                            <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Pelanggan Deaktivasi</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-
                                         </tbody>
                                     </table>
                                 </div>

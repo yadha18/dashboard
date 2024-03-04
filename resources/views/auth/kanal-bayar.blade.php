@@ -24,12 +24,13 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="info" totalCount="{{ intval($total_kanal) }}"
+                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
                             route="{{ route('kanal-bayar') }}" />
-                        <x-card title="Revenue" icon="stats-bars" type="success" route="{{ route('revenue') }}" />
-                        <x-card title="Passive Customer" icon="person" type="warning" totalCount="{{ intval($total) }}"
+                        <x-card title="Revenue" icon="stats-bars" type="light" totalCount="23.4%"
+                            route="{{ route('revenue') }}" />
+                        <x-card title="Passive Customer" icon="person" type="light" totalCount="{{ intval($total) }}"
                             route="{{ route('passive-customer') }}" />
-                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="danger"
+                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
