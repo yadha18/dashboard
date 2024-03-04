@@ -2,7 +2,7 @@
     <!-- small box -->
     <div class="small-box bg-{{ $type }}">
         <div class="inner">
-            <h3>{{ $totalCount }}</h3>
+            <h3>{{ str_replace(',', '.', number_format($totalCount)) }}</h3>
             <p>{{ $title }}</p>
         </div>
         <div class="icon">
