@@ -38,7 +38,8 @@
                     <div class="row">
                         <!-- Left col -->
                         <section class="col-12">
-                            <x-chart />
+                            <x-chart name="Passive Customer" total="{{ intval($total) }}" />
+                            <x-chart name="Kanal Bayar" total="{{ intval($total_kanal) }}" />
                         </section>
                     </div>
                 </div>

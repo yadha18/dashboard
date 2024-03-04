@@ -2,14 +2,14 @@
     <div class="card">
         <div class="card-header border-0">
             <div class="d-flex justify-content-between">
-                <h3 class="card-title">Passive Customer per Tahun</h3>
+                <h3 class="card-title">{{ $name }} per Tahun</h3>
             </div>
         </div>
         <div class="card-body">
             <div class="d-flex">
                 <p class="d-flex flex-column">
-                    <span class="text-bold text-lg">310,437</span>
-                    <span>Passive Customer</span>
+                    <span class="text-bold text-lg">{{ $total }}</span>
+                    <span>{{ $name }}</span>
                 </p>
                 <p class="ml-auto d-flex flex-column text-right">
                     <span class="text-success">
@@ -26,7 +26,7 @@
 
             <div class="d-flex flex-row justify-content-end">
                 <span class="mr-2">
-                    <i class="fas fa-square text-primary"></i> Passive Customer
+                    <i class="fas fa-square text-primary"></i> {{ $name }}
                 </span>
             </div>
         </div>

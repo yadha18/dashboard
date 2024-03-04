@@ -89,7 +89,6 @@ $(function () {
         type: "GET",
         success: function (data) {
             var $visitorsChart = $("#visitors-chart");
-            // Initialize the chart with fetched data
             var visitorsChart = new Chart($visitorsChart, {
                 type: "line",
                 data: {
