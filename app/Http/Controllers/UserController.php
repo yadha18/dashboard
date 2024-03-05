@@ -117,10 +117,12 @@ class UserController extends Controller
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
-        $bill_ovo = KanalBayar::where('pembayaranVia', $e_wallet[0])->sum('rpTagihanMinusPPN');
-        $total_ovo = KanalBayar::where('pembayaranVia', $e_wallet[0])->count();
-        $bill_e_commerce = KanalBayar::where('pembayaranVia', 'ALTERRA')->sum('rpTagihanMinusPPN');
-        $total_e_commerce = KanalBayar::where('pembayaranVia', 'ALTERRA')->count();
+
+        $bill_ovo = $this->sumBill($e_wallet[0]);
+        $total_ovo = $this->countBill($e_wallet[0]);
+
+        $bill_e_commerce = $this->sumBill('ALTERRA');
+        $total_e_commerce = $this->countBill('ALTERRA');
 
         if (Auth::check()) {
             return view('auth.kanal-bayar', compact('data', 'total', 'user', 'total_kanal', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo'));
@@ -129,6 +131,16 @@ class UserController extends Controller
         return redirect()->route('login')->withErrors([
             'username' => 'silakan login terlebih dahulu'
         ])->withInput(['username']);
+    }
+
+    private function sumBill($paymentMethod)
+    {
+        return KanalBayar::where('pembayaranVia', $paymentMethod)->sum('rpTagihanMinusPPN');
+    }
+
+    private function countBill($paymentMethod)
+    {
+        return KanalBayar::where('pembayaranVia', $paymentMethod)->count();
     }
 
     public function pelanggandeaktivasi()
