@@ -49,12 +49,31 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}"
-                                    money="{{ intval($bill_ovo) }}" />
-                                <x-kanal-card name="LINK AJA" bill="{{ intval($total_linkaja) }}"
-                                    money="{{ intval($bill_linkaja) }}" />
-                                <x-kanal-card name="GOPAY" bill="{{ intval($total_gopay) }}"
-                                    money="{{ intval($bill_gopay) }}" />
+                                <form action="" method="get">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <label for="start_date">Start Date:</label>
+                                            <input type="date" name="start_date" id="start_date" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label for="end_date">End Date:</label>
+                                            <input type="date" name="end_date" id="end_date" class="form-control">
+                                        </div>
+                                        <div class="col-md-3">
+                                            <label>&nbsp;</label>
+                                            <button type="submit" class="btn btn-primary">Filter</button>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="row mt-4">
+                                    <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}"
+                                        money="{{ intval($bill_ovo) }}" />
+                                    <x-kanal-card name="LINK AJA" bill="{{ intval($total_linkaja) }}"
+                                        money="{{ intval($bill_linkaja) }}" />
+                                    <x-kanal-card name="GOPAY" bill="{{ intval($total_gopay) }}"
+                                        money="{{ intval($bill_gopay) }}" />
+                                </div>
                             </div>
                             <!-- /.card-body -->
                         </div>
