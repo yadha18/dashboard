@@ -49,7 +49,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <form action="" method="get">
+                                <form action="{{ route('kanal-bayar') }}" method="get">
                                     @csrf
                                     <div class="row">
                                         <div class="col-md-3">
