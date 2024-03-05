@@ -117,8 +117,8 @@ class UserController extends Controller
         $bank = ['BRI-VA', 'BNI-VA', 'BCA-VA', 'MANDIRI', 'BANK LAINNYA'];
         $user = User::select('name')->first();
 
-        $startDate = $request->input('start_date');
-        $endDate = $request->input('end_date');
+        $startDate = $request->input('start_date', null);
+        $endDate = $request->input('end_date', null);
 
         $bill_bri = $this->sumBill($bank[0], $startDate, $endDate);
         $total_bri = $this->countBill($bank[0], $startDate, $endDate);
