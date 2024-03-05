@@ -113,7 +113,7 @@ class UserController extends Controller
     public function kanalbayar()
     {
         $e_wallet = ['OVO', 'LINKAJA', 'LINKAJA-VA', 'GOPAY'];
-        $modern_market = ['INDOMART', 'ALFAMART'];
+        $modern_market = ['INDOMART', 'ALFA'];
         $user = User::select('name')->first();
 
         $bill_indo = $this->sumBill($modern_market[0]);
