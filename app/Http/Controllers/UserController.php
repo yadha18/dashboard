@@ -154,7 +154,7 @@ class UserController extends Controller
         $total_e_commerce = $this->countBill('ALTERRA', $startDate, $endDate);
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('user', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay', 'startDate', 'endDate'));
+            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay', 'bill_indo', 'total_indo', 'bill_alfa', 'total_alfa', 'bill_bri', 'total_bri', 'bill_bni', 'total_bni', 'bill_bca', 'total_bca', 'bill_mandiri', 'total_mandiri', 'bill_otherbank', 'total_otherbank'));
         }
 
         return redirect()->route('login')->withErrors([
