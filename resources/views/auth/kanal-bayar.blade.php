@@ -43,7 +43,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card />
+                                <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}" money="{{ intval($bill_ovo) }}" />
                                 <x-kanal-card />
                                 <x-kanal-card />
                                 <x-kanal-card />
