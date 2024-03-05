@@ -65,6 +65,7 @@
                                             <button type="submit" class="btn btn-primary">Filter</button>
                                         </div>
                                     </div>
+                                    <p>Filtering results from {{ $startDate }} to {{ $endDate }}</p>
                                 </form>
                                 <div class="row mt-4">
                                     <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}"
