@@ -30,10 +30,16 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card />
-                                <x-kanal-card />
-                                <x-kanal-card />
-                                <x-kanal-card />
+                                <x-kanal-card name="BRI" bill="{{ intval($total_bri) }}"
+                                    money="{{ intval($bill_bri) }}" />
+                                <x-kanal-card name="BNI" bill="{{ intval($total_bni) }}"
+                                    money="{{ intval($bill_bni) }}" />
+                                <x-kanal-card name="BCA" bill="{{ intval($total_bca) }}"
+                                    money="{{ intval($bill_bca) }}" />
+                                <x-kanal-card name="MANDIRI" bill="{{ intval($total_mandiri) }}"
+                                    money="{{ intval($bill_mandiri) }}" />
+                                <x-kanal-card name="BANK LAINNYA" bill="{{ intval($total_otherbank) }}"
+                                    money="{{ intval($bill_otherbank) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>

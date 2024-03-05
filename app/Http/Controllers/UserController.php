@@ -114,7 +114,23 @@ class UserController extends Controller
     {
         $e_wallet = ['OVO', 'LINKAJA', 'LINKAJA-VA', 'GOPAY'];
         $modern_market = ['INDOMART', 'ALFA'];
+        $bank = ['BRI-VA', 'BNI-VA', 'BCA-VA', 'MANDIRI', 'BANK LAINNYA'];
         $user = User::select('name')->first();
+
+        $bill_bri = $this->sumBill($bank[0]);
+        $total_bri = $this->countBill($bank[0]);
+
+        $bill_bni = $this->sumBill($bank[1]);
+        $total_bni = $this->countBill($bank[1]);
+
+        $bill_bca = $this->sumBill($bank[2]);
+        $total_bca = $this->countBill($bank[2]);
+
+        $bill_mandiri = $this->sumBill($bank[3]);
+        $total_mandiri = $this->countBill($bank[3]);
+
+        $bill_otherbank = $this->sumBill($bank[4]);
+        $total_otherbank = $this->countBill($bank[4]);
 
         $bill_indo = $this->sumBill($modern_market[0]);
         $total_indo = $this->countBill($modern_market[0]);
@@ -135,7 +151,7 @@ class UserController extends Controller
         $total_e_commerce = $this->countBill('ALTERRA');
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay', 'bill_indo', 'total_indo', 'bill_alfa', 'total_alfa'));
+            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay', 'bill_indo', 'total_indo', 'bill_alfa', 'total_alfa', 'bill_bri', 'total_bri', 'bill_bni', 'total_bni', 'bill_bca', 'total_bca', 'bill_mandiri', 'total_mandiri', 'bill_otherbank', 'total_otherbank'));
         }
 
         return redirect()->route('login')->withErrors([
