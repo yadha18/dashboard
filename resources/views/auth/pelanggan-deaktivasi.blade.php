@@ -24,14 +24,12 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
-                            route="{{ route('kanal-bayar') }}" />
                         <x-card title="Revenue" icon="stats-bars" type="light" totalCount=35
                             route="{{ route('revenue') }}" />
                         <x-card title="Passive Customer" icon="person" type="light" totalCount="{{ intval($total) }}"
                             route="{{ route('passive-customer') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            route="{{ route('pelanggan-deaktivasi') }}" />
+                            totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
@@ -55,34 +53,41 @@
                                             <tr>
                                                 <th>ID Pelanggan</th>
                                                 <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
                                                 <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
                                                 <th>Nama Layanan</th>
                                                 <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
                                                 <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($data as $pd)
+                                                <tr>
+                                                    <td>{{ $pd->idPelanggan }}</td>
+                                                    <td>{{ $pd->idPelangganProduk }}</td>
+                                                    <td>{{ $pd->idLayanan }}</td>
+                                                    <td>{{ $pd->idLayananProduk }}</td>
+                                                    <td>{{ $pd->nama }}</td>
+                                                    <td>{{ $pd->namaLayanan }}</td>
+                                                    <td>{{ $pd->namaLayananProduk }}</td>
+                                                    <td>{{ $pd->tipeBilling }}</td>
+                                                    <td>{{ $pd->nomorVA }}</td>
+                                                    <td>{{ $pd->billingAlamat }}</td>
+                                                    <td>{{ $pd->terminatingAlamat }}</td>
+                                                    <td>{{ $pd->tanggalAktivasi }}</td>
+                                                    <td>{{ $pd->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $pd->tanggalStartBilling }}</td>
+                                                    <td>{{ $pd->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

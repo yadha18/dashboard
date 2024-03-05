@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Baddebt;
 use App\Models\User;
 use App\Models\KanalBayar;
+use App\Models\PelangganDeaktivasi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -176,10 +177,12 @@ class UserController extends Controller
     {
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
+        $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
+        $data = PelangganDeaktivasi::paginate(100);
 
         if (Auth::check()) {
-            return view('auth.pelanggan-deaktivasi', compact('total', 'user', 'total_kanal'));
+            return view('auth.pelanggan-deaktivasi', compact('total', 'user', 'total_pd', 'data'));
         }
 
         return redirect()->route('login')->withErrors([
