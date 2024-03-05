@@ -39,12 +39,34 @@
                         </div>
                         <div class="card col-12">
                             <div class="card-header">
-                                <h3 class="card-title">Via Bank</h3>
+                                <h3 class="card-title">Via E-Wallet</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
                                 <x-kanal-card />
                                 <x-kanal-card />
+                                <x-kanal-card />
+                                <x-kanal-card />
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div class="card col-12">
+                            <div class="card-header">
+                                <h3 class="card-title">Via Modern Market</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body row">
+                                <x-kanal-card />
+                                <x-kanal-card />
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+                        <div class="card col-12">
+                            <div class="card-header">
+                                <h3 class="card-title">Via E-Commerce</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body row">
                                 <x-kanal-card />
                                 <x-kanal-card />
                             </div>
