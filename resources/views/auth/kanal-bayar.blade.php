@@ -24,7 +24,26 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        {{-- <div class="card col-12">
+                        <form action="{{ route('kanal-bayar') }}" method="get">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-3">
+                                    <label for="start_date">Start Date:</label>
+                                    <input type="date" name="start_date" id="start_date" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="end_date">End Date:</label>
+                                    <input type="date" name="end_date" id="end_date" class="form-control">
+                                </div>
+                                <div class="col-md-3">
+                                    <label>&nbsp;</label>
+                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                </div>
+                            </div>
+                            <p>Filtering results from <strong>{{ $startDate }}</strong> to
+                                <strong>{{ $endDate }}</strong></p>
+                        </form>
+                        <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Bank</h3>
                             </div>
@@ -42,31 +61,13 @@
                                     money="{{ intval($bill_otherbank) }}" />
                             </div>
                             <!-- /.card-body -->
-                        </div> --}}
+                        </div>
                         <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via E-Wallet</h3>
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                <form action="{{ route('kanal-bayar') }}" method="get">
-                                    @csrf
-                                    <div class="row">
-                                        <div class="col-md-3">
-                                            <label for="start_date">Start Date:</label>
-                                            <input type="date" name="start_date" id="start_date" class="form-control">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label for="end_date">End Date:</label>
-                                            <input type="date" name="end_date" id="end_date" class="form-control">
-                                        </div>
-                                        <div class="col-md-3">
-                                            <label>&nbsp;</label>
-                                            <button type="submit" class="btn btn-primary">Filter</button>
-                                        </div>
-                                    </div>
-                                    <p>Filtering results from {{ $startDate }} to {{ $endDate }}</p>
-                                </form>
                                 <div class="row mt-4">
                                     <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}"
                                         money="{{ intval($bill_ovo) }}" />
@@ -78,7 +79,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        {{-- <div class="card col-12">
+                        <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Modern Market</h3>
                             </div>
@@ -101,7 +102,7 @@
                                     money="{{ intval($bill_e_commerce) }}" />
                             </div>
                             <!-- /.card-body -->
-                        </div> --}}
+                        </div>
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
