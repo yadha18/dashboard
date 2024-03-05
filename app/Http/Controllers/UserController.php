@@ -113,19 +113,22 @@ class UserController extends Controller
     public function kanalbayar()
     {
         $e_wallet = ['OVO', 'LINKAJA', 'LINKAJA-VA', 'GOPAY'];
-        $data = KanalBayar::paginate(100);
-        $total = Baddebt::count();
-        $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
 
         $bill_ovo = $this->sumBill($e_wallet[0]);
         $total_ovo = $this->countBill($e_wallet[0]);
 
+        $bill_linkaja = $this->sumBill($e_wallet[1]);
+        $total_linkaja = $this->countBill($e_wallet[1]);
+
+        $bill_gopay = $this->sumBill($e_wallet[2]);
+        $total_gopay = $this->countBill($e_wallet[2]);
+
         $bill_e_commerce = $this->sumBill('ALTERRA');
         $total_e_commerce = $this->countBill('ALTERRA');
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('data', 'total', 'user', 'total_kanal', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo'));
+            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay'));
         }
 
         return redirect()->route('login')->withErrors([

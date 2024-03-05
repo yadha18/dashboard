@@ -43,10 +43,12 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}" money="{{ intval($bill_ovo) }}" />
-                                <x-kanal-card />
-                                <x-kanal-card />
-                                <x-kanal-card />
+                                <x-kanal-card name="OVO" bill="{{ intval($total_ovo) }}"
+                                    money="{{ intval($bill_ovo) }}" />
+                                <x-kanal-card name="LINK AJA" bill="{{ intval($total_linkaja) }}"
+                                    money="{{ intval($bill_linkaja) }}" />
+                                <x-kanal-card name="GOPAY" bill="{{ intval($total_gopay) }}"
+                                    money="{{ intval($bill_gopay) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -67,7 +69,8 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card name="ALTERRA" bill="{{ intval($total_e_commerce) }}" money="{{ intval($bill_e_commerce) }}" />
+                                <x-kanal-card name="ALTERRA" bill="{{ intval($total_e_commerce) }}"
+                                    money="{{ intval($bill_e_commerce) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>
