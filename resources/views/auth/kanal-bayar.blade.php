@@ -30,7 +30,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card />
+                                <x-kanal-card bill="{{ intval($total_e_commerce) }}" />
                                 <x-kanal-card />
                                 <x-kanal-card />
                                 <x-kanal-card />
