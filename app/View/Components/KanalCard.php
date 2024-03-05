@@ -11,7 +11,7 @@ class KanalCard extends Component
     /**
      * Create a new component instance.
      */
-    public function __construct()
+    public function __construct(public string $name = '', public int $bill = 0, public int $money = 0)
     {
         //
     }
