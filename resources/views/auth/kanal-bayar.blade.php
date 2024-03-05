@@ -58,8 +58,10 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card />
-                                <x-kanal-card />
+                                <x-kanal-card name="INDOMART" bill="{{ intval($total_indo) }}"
+                                    money="{{ intval($bill_indo) }}" />
+                                <x-kanal-card name="ALFAMART" bill="{{ intval($total_alfa) }}"
+                                    money="{{ intval($bill_alfa) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>

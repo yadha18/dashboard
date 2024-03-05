@@ -113,7 +113,14 @@ class UserController extends Controller
     public function kanalbayar()
     {
         $e_wallet = ['OVO', 'LINKAJA', 'LINKAJA-VA', 'GOPAY'];
+        $modern_market = ['INDOMART', 'ALFAMART'];
         $user = User::select('name')->first();
+
+        $bill_indo = $this->sumBill($modern_market[0]);
+        $total_indo = $this->countBill($modern_market[0]);
+
+        $bill_alfa = $this->sumBill($modern_market[1]);
+        $total_alfa = $this->countBill($modern_market[1]);
 
         $bill_ovo = $this->sumBill($e_wallet[0]);
         $total_ovo = $this->countBill($e_wallet[0]);
@@ -128,7 +135,7 @@ class UserController extends Controller
         $total_e_commerce = $this->countBill('ALTERRA');
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay'));
+            return view('auth.kanal-bayar', compact('user', 'total_e_commerce', 'bill_e_commerce', 'bill_ovo', 'total_ovo', 'bill_linkaja', 'total_linkaja', 'bill_gopay', 'total_gopay', 'bill_indo', 'total_indo', 'bill_alfa', 'total_alfa'));
         }
 
         return redirect()->route('login')->withErrors([
