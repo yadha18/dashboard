@@ -27,11 +27,11 @@
                         <form action="{{ route('kanal-bayar') }}" method="get">
                             @csrf
                             <div class="row">
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <label for="start_date">Start Date:</label>
                                     <input type="date" name="start_date" id="start_date" class="form-control">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-5">
                                     <label for="end_date">End Date:</label>
                                     <input type="date" name="end_date" id="end_date" class="form-control">
                                 </div>
