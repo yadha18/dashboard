@@ -48,7 +48,7 @@
                                 <h3 class="card-title">Via E-Wallet</h3>
                             </div>
                             <!-- /.card-header -->
-                            <div class="card-body row">
+                            <div class="card-body">
                                 <form action="" method="get">
                                     @csrf
                                     <div class="row">
