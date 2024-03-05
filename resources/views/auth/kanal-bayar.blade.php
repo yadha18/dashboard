@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <div class="card col-12">
+                        {{-- <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Bank</h3>
                             </div>
@@ -42,7 +42,7 @@
                                     money="{{ intval($bill_otherbank) }}" />
                             </div>
                             <!-- /.card-body -->
-                        </div>
+                        </div> --}}
                         <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via E-Wallet</h3>
@@ -77,7 +77,7 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
-                        <div class="card col-12">
+                        {{-- <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Modern Market</h3>
                             </div>
@@ -100,7 +100,7 @@
                                     money="{{ intval($bill_e_commerce) }}" />
                             </div>
                             <!-- /.card-body -->
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
