@@ -116,10 +116,11 @@ class UserController extends Controller
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $user = User::select('name')->first();
+        $bill_e_commerce = KanalBayar::where('pembayaranVia', 'ALTERRA')->sum('rpTagihanMinusPPN');
         $total_e_commerce = KanalBayar::where('pembayaranVia', 'ALTERRA')->count();
 
         if (Auth::check()) {
-            return view('auth.kanal-bayar', compact('data', 'total', 'user', 'total_kanal', 'total_e_commerce'));
+            return view('auth.kanal-bayar', compact('data', 'total', 'user', 'total_kanal', 'total_e_commerce', 'bill_e_commerce'));
         }
 
         return redirect()->route('login')->withErrors([

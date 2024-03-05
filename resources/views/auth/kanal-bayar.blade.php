@@ -30,7 +30,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card bill="{{ intval($total_e_commerce) }}" />
+                                <x-kanal-card />
                                 <x-kanal-card />
                                 <x-kanal-card />
                                 <x-kanal-card />
@@ -67,8 +67,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card />
-                                <x-kanal-card />
+                                <x-kanal-card name="ALTERRA" bill="{{ intval($total_e_commerce) }}" money="{{ intval($bill_e_commerce) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>
