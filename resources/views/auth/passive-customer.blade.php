@@ -14,7 +14,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('passive-customer'))
+            @if (Route::currentRouteNamed('passive-customer'))
                 <x-breadcrumb page="Passive Customer" />
             @else
                 <x-breadcrumb page="Dashboard" />

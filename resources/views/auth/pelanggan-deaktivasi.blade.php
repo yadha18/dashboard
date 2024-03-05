@@ -14,7 +14,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('pelanggan-deaktivasi'))
+            @if (Route::currentRouteNamed('pelanggan-deaktivasi'))
                 <x-breadcrumb page="Pelanggan Deaktivasi" />
             @else
                 <x-breadcrumb page="Dashboard" />

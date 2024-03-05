@@ -14,7 +14,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('kanal-bayar'))
+            @if (Route::currentRouteNamed('kanal-bayar'))
                 <x-breadcrumb page="Kanal Bayar" />
             @else
                 <x-breadcrumb page="Dashboard" />
@@ -24,9 +24,9 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <form action="{{ route('kanal-bayar') }}" method="get">
+                        <form action="{{ route('kanal-bayar') }}" method="get" class="mb-3">
                             @csrf
-                            <div class="row">
+                            <div class="row align-items-end">
                                 <div class="col-md-5">
                                     <label for="start_date">Start Date:</label>
                                     <input type="date" name="start_date" id="start_date" class="form-control">
@@ -35,13 +35,11 @@
                                     <label for="end_date">End Date:</label>
                                     <input type="date" name="end_date" id="end_date" class="form-control">
                                 </div>
-                                <div class="col-md-3">
+                                <div class="col-md-2">
                                     <label>&nbsp;</label>
-                                    <button type="submit" class="btn btn-primary">Filter</button>
+                                    <button type="submit" class="btn btn-primary btn-block">Filter</button>
                                 </div>
                             </div>
-                            <p>Filtering results from <strong>{{ $startDate }}</strong> to
-                                <strong>{{ $endDate }}</strong></p>
                         </form>
                         <div class="card col-12">
                             <div class="card-header">

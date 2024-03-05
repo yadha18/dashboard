@@ -14,7 +14,7 @@
 
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
-            @if (request()->is('revenue'))
+            @if (Route::currentRouteNamed('revenue'))
                 <x-breadcrumb page="All Revenue" />
             @else
                 <x-breadcrumb page="Dashboard" />
