@@ -37,6 +37,19 @@
                             </div>
                             <!-- /.card-body -->
                         </div>
+                        <div class="card col-12">
+                            <div class="card-header">
+                                <h3 class="card-title">Via Bank</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body row">
+                                <x-kanal-card />
+                                <x-kanal-card />
+                                <x-kanal-card />
+                                <x-kanal-card />
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
