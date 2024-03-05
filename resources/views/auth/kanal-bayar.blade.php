@@ -24,59 +24,24 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-kanal-card />
-                        <x-kanal-card />
-                        <x-kanal-card />
-                        <x-kanal-card />
-                        <x-kanal-card />
+                        <div class="card col-12">
+                            <div class="card-header">
+                                <h3 class="card-title">Via Bank</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body row">
+                                <x-kanal-card />
+                                <x-kanal-card />
+                                <x-kanal-card />
+                                <x-kanal-card />
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
                     <!-- /.row (main row) -->
                 </div><!-- /.container-fluid -->
-            </section>
-            <section class="content">
-                <div class="container-fluid">
-                    <div class="row">
-                        <!-- Left col -->
-                        <section class="col-12">
-                            <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Kanal Bayar</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
-                                        <thead>
-                                            <tr>
-                                                <th>ID Pelanggan</th>
-                                                <th>ID Tagihan</th>
-                                                <th>Tanggal Bayar</th>
-                                                <th>Tagihan (- PPN)</th>
-                                                <th>Pembayaran Via</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($data as $kb)
-                                                <tr>
-                                                    <td>{{ $kb->idPelanggan }}</td>
-                                                    <td>{{ $kb->idTagihan }}</td>
-                                                    <td>{{ $kb->tanggalBayar }}</td>
-                                                    <td>Rp. {{ $kb->rpTagihanMinusPPN }}</td>
-                                                    <td>{{ $kb->pembayaranVia }}</td>
-                                                </tr>
-                                            @endforeach
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                            <!-- /.card -->
-                        </section>
-                        <!-- /.Left col -->
-                    </div>
-                </div>
             </section>
             <!-- /.content -->
         </div>
