@@ -41,8 +41,10 @@
                                 </div>
                             </div>
                         </form>
-                        <p>Filtering results from <strong>{{ $startDate }}</strong> to
-                            <strong>{{ $endDate }}</strong></p>
+                        <div class="col-md-12">
+                            <p>Filtering results from <strong>{{ $startDate }}</strong> to
+                                <strong>{{ $endDate }}</strong></p>
+                        </div>
                         <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Bank</h3>
