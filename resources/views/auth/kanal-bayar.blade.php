@@ -32,6 +32,7 @@
                             route="{{ route('passive-customer') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             route="{{ route('pelanggan-deaktivasi') }}" />
+                        <x-kanal-card />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
