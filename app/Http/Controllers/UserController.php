@@ -73,7 +73,7 @@ class UserController extends Controller
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total','total_pd', 'user', 'total_kanal'));
+            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -191,7 +191,8 @@ class UserController extends Controller
             'SULAWESI & INDONESIA TIMUR',
             'SUMATERA BAGIAN SELATAN',
             'SUMATERA BAGIAN TENGAH',
-            'SUMATERA BAGIAN UTARA'];
+            'SUMATERA BAGIAN UTARA'
+        ];
 
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
@@ -199,10 +200,34 @@ class UserController extends Controller
         $user = User::select('name')->first();
         $data = PelangganDeaktivasi::paginate(100);
 
+        $rekap_bnt = $this->countRekap($sbu[0]);
         $rekap_jkb = $this->countRekap($sbu[1]);
+        $rekap_jbb = $this->countRekap($sbu[2]);
+        $rekap_jbtg = $this->countRekap($sbu[3]);
+        $rekap_jbt = $this->countRekap($sbu[4]);
+        $rekap_kal = $this->countRekap($sbu[5]);
+        $rekap_sit = $this->countRekap($sbu[6]);
+        $rekap_sbs = $this->countRekap($sbu[7]);
+        $rekap_sbtg = $this->countRekap($sbu[8]);
+        $rekap_sbt = $this->countRekap($sbu[9]);
 
         if (Auth::check()) {
-            return view('auth.pelanggan-deaktivasi', compact('total_kanal', 'user', 'total_pd', 'data', 'rekap_jkb'));
+            return view('auth.pelanggan-deaktivasi', compact(
+                'total_kanal',
+                'user',
+                'total_pd',
+                'data',
+                'rekap_jkb',
+                'rekap_bnt',
+                'rekap_jbb',
+                'rekap_jbtg',
+                'rekap_jbt',
+                'rekap_kal',
+                'rekap_sit',
+                'rekap_sbs',
+                'rekap_sbtg',
+                'rekap_sbt',
+            ));
         }
 
         return redirect()->route('login')->withErrors([

@@ -44,12 +44,16 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card name="JKB" bill="{{ intval($rekap_jkb) }}" />
-                                <x-kanal-card name="JKB" />
-                                <x-kanal-card name="JKB" />
-                                <x-kanal-card name="JKB" />
-                                <x-kanal-card name="JKB" />
-                                <x-kanal-card name="JKB" />
+                                <x-p-d-card name="JKB" count="{{ intval($rekap_jkb) }}" />
+                                <x-p-d-card name="BNT" count="{{ intval($rekap_bnt) }}" />
+                                <x-p-d-card name="JBB" count="{{ intval($rekap_jbb) }}" />
+                                <x-p-d-card name="JBTG" count="{{ intval($rekap_jbtg) }}" />
+                                <x-p-d-card name="JBT" count="{{ intval($rekap_jbt) }}" />
+                                <x-p-d-card name="KAL" count="{{ intval($rekap_kal) }}" />
+                                <x-p-d-card name="SIT" count="{{ intval($rekap_sit) }}" />
+                                <x-p-d-card name="SBS" count="{{ intval($rekap_sbs) }}" />
+                                <x-p-d-card name="SBTG" count="{{ intval($rekap_sbtg) }}" />
+                                <x-p-d-card name="SBT" count="{{ intval($rekap_sbt) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>
@@ -73,6 +77,7 @@
                                                 <th>Nama Layanan Produk</th>
                                                 <th>Tipe Billing</th>
                                                 <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
                                                 <th>Alamat Billing</th>
                                                 <th>Alamat Terminating</th>
                                                 <th>Tanggal Aktivasi</th>
@@ -93,6 +98,7 @@
                                                     <td>{{ $pd->namaLayananProduk }}</td>
                                                     <td>{{ $pd->tipeBilling }}</td>
                                                     <td>{{ $pd->nomorVA }}</td>
+                                                    <td>{{ $pd->namaSBU }}</td>
                                                     <td>{{ $pd->billingAlamat }}</td>
                                                     <td>{{ $pd->terminatingAlamat }}</td>
                                                     <td>{{ $pd->tanggalAktivasi }}</td>
