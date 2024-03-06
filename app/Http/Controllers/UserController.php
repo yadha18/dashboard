@@ -176,7 +176,7 @@ class UserController extends Controller
 
     private function PDTable($sbu)
     {
-        return PelangganDeaktivasi::where('namaSBU', $sbu);
+        return PelangganDeaktivasi::where('namaSBU', $sbu)->get();
     }
 
     public function pelanggandeaktivasi()
