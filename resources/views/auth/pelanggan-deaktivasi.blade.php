@@ -44,16 +44,16 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-p-d-card name="JKB" count="{{ intval($rekap_jkb) }}" />
-                                <x-p-d-card name="BNT" count="{{ intval($rekap_bnt) }}" />
-                                <x-p-d-card name="JBB" count="{{ intval($rekap_jbb) }}" />
-                                <x-p-d-card name="JBTG" count="{{ intval($rekap_jbtg) }}" />
-                                <x-p-d-card name="JBT" count="{{ intval($rekap_jbt) }}" />
-                                <x-p-d-card name="KAL" count="{{ intval($rekap_kal) }}" />
-                                <x-p-d-card name="SIT" count="{{ intval($rekap_sit) }}" />
-                                <x-p-d-card name="SBS" count="{{ intval($rekap_sbs) }}" />
-                                <x-p-d-card name="SBTG" count="{{ intval($rekap_sbtg) }}" />
-                                <x-p-d-card name="SBT" count="{{ intval($rekap_sbt) }}" />
+                                <x-p-d-card name="JAKARTA & BANTEN (JKB)" count="{{ intval($rekap_jkb) }}" />
+                                <x-p-d-card name="BALI & NUSA TENGGARA (BNT)" count="{{ intval($rekap_bnt) }}" />
+                                <x-p-d-card name="JAWA BAGIAN BARAT (JBB)" count="{{ intval($rekap_jbb) }}" />
+                                <x-p-d-card name="JAWA BAGIAN TENGAH (JBTG)" count="{{ intval($rekap_jbtg) }}" />
+                                <x-p-d-card name="JAWA BAGIAN TIMUR (JBT)" count="{{ intval($rekap_jbt) }}" />
+                                <x-p-d-card name="KALIMANTAN (KAL)" count="{{ intval($rekap_kal) }}" />
+                                <x-p-d-card name="SULAWESI & INDONESIA TIMUR (SIT)" count="{{ intval($rekap_sit) }}" />
+                                <x-p-d-card name="SUMATERA BAGIAN SELATAN (SBS)" count="{{ intval($rekap_sbs) }}" />
+                                <x-p-d-card name="SUMATERA BAGIAN TENGAH (SBTG)" count="{{ intval($rekap_sbtg) }}" />
+                                <x-p-d-card name="SUMATERA BAGIAN UTARA (SBT)" count="{{ intval($rekap_sbt) }}" />
                             </div>
                             <!-- /.card-body -->
                         </div>
