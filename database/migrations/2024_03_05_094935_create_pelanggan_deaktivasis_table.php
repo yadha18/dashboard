@@ -18,8 +18,8 @@ return new class extends Migration
             $table->string('idLayanan');
             $table->string('idLayananProduk');
             $table->string('nama');
-            $table->string('namaLayanan');
-            $table->string('namaLayananProduk');
+            $table->string('namaLayanan')->nullable();
+            $table->string('namaLayananProduk')->nullable();
             $table->string('tipeBilling');
             $table->string('nomorVA');
             $table->string('namaSBU');
