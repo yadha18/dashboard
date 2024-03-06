@@ -97,6 +97,63 @@
                             <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi JAWA BAGIAN BARAT (JBB)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example2" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_jbb as $jbb)
+                                                <tr>
+                                                    <td>{{ $jbb->idPelanggan }}</td>
+                                                    <td>{{ $jbb->idPelangganProduk }}</td>
+                                                    <td>{{ $jbb->idLayanan }}</td>
+                                                    <td>{{ $jbb->idLayananProduk }}</td>
+                                                    <td>{{ $jbb->nama }}</td>
+                                                    <td>{{ $jbb->namaLayanan }}</td>
+                                                    <td>{{ $jbb->namaLayananProduk }}</td>
+                                                    <td>{{ $jbb->tipeBilling }}</td>
+                                                    <td>{{ $jbb->nomorVA }}</td>
+                                                    <td>{{ $jbb->namaSBU }}</td>
+                                                    <td>{{ $jbb->billingAlamat }}</td>
+                                                    <td>{{ $jbb->terminatingAlamat }}</td>
+                                                    <td>{{ $jbb->tanggalAktivasi }}</td>
+                                                    <td>{{ $jbb->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $jbb->tanggalStartBilling }}</td>
+                                                    <td>{{ $jbb->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
                                     <h3 class="card-title">Data Pelanggan Deaktivasi Bali & Nusa Tenggara (BNT)</h3>
                                 </div>
                                 <!-- /.card-header -->
