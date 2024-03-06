@@ -24,10 +24,8 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Revenue" icon="stats-bars" type="light" totalCount=35
-                            route="{{ route('revenue') }}" />
-                        <x-card title="Passive Customer" icon="person" type="light" totalCount="{{ intval($total) }}"
-                            route="{{ route('passive-customer') }}" />
+                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
+                            route="{{ route('kanal-bayar') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
@@ -40,6 +38,21 @@
                 <div class="container-fluid">
                     <div class="row">
                         <!-- Left col -->
+                        <div class="card col-12">
+                            <div class="card-header">
+                                <h3 class="card-title">Pelanggan Deaktivasi per SBU</h3>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body row">
+                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" />
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
                         <section class="col-12">
                             <!-- /.card -->
                             <div class="card">
