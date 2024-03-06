@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('namaLayananProduk');
             $table->string('tipeBilling');
             $table->string('nomorVA');
+            $table->string('namaSBU');
             $table->string('billingAlamat')->nullable();
             $table->string('terminatingAlamat')->nullable();
             $table->dateTime('tanggalAktivasi')->nullable();
