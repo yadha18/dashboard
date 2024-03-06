@@ -25,7 +25,7 @@
                     <!-- Small boxes (Stat box) -->
                     <div class="row col-12">
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            totalCount="{{ intval($total_bnt) }}" route="{{ route('pelanggan-deaktivasi') }}" />
+                            totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
