@@ -174,15 +174,35 @@ class UserController extends Controller
         return KanalBayar::where('pembayaranVia', $paymentMethod)->whereBetween('tanggalBayar', [$startDate, $endDate])->count();
     }
 
+    private function countRekap($sbu)
+    {
+        return PelangganDeaktivasi::where('namaSBU', $sbu)->count();
+    }
+
     public function pelanggandeaktivasi()
     {
+        $sbu = [
+            'BALI & NUSA TENGGARA',
+            'JAKARTA & BANTEN',
+            'JAWA BAGIAN BARAT',
+            'JAWA BAGIAN TENGAH',
+            'JAWA BAGIAN TIMUR',
+            'KALIMANTAN',
+            'SULAWESI & INDONESIA TIMUR',
+            'SUMATERA BAGIAN SELATAN',
+            'SUMATERA BAGIAN TENGAH',
+            'SUMATERA BAGIAN UTARA'];
+
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
+
         $user = User::select('name')->first();
         $data = PelangganDeaktivasi::paginate(100);
 
+        $rekap_jkb = $this->countRekap($sbu[1]);
+
         if (Auth::check()) {
-            return view('auth.pelanggan-deaktivasi', compact('total_kanal', 'user', 'total_pd', 'data'));
+            return view('auth.pelanggan-deaktivasi', compact('total_kanal', 'user', 'total_pd', 'data', 'rekap_jkb'));
         }
 
         return redirect()->route('login')->withErrors([

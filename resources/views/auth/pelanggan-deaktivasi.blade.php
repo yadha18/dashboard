@@ -44,7 +44,7 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body row">
-                                <x-kanal-card name="JKB" />
+                                <x-kanal-card name="JKB" bill="{{ intval($rekap_jkb) }}" />
                                 <x-kanal-card name="JKB" />
                                 <x-kanal-card name="JKB" />
                                 <x-kanal-card name="JKB" />
