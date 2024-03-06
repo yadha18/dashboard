@@ -23,7 +23,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <div class="row col-12">
+                    <div class="row">
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
@@ -101,7 +101,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example2" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>

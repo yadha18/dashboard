@@ -57,7 +57,7 @@
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <script>
         $(function() {
-            $("#example1").DataTable({
+            $("#example1, #example2, #example3, #example4").DataTable({
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
