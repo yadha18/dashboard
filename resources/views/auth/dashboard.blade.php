@@ -23,7 +23,7 @@
                         <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
                             route="{{ route('kanal-bayar') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            route="{{ route('pelanggan-deaktivasi') }}" />
+                            totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
