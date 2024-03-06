@@ -23,11 +23,9 @@
             <section class="content">
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
-                    <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
-                            route="{{ route('kanal-bayar') }}" />
+                    <div class="row col-12">
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
+                            totalCount="{{ intval($total_bnt) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
@@ -38,30 +36,11 @@
                 <div class="container-fluid">
                     <div class="row">
                         <!-- Left col -->
-                        <div class="card col-12">
-                            <div class="card-header">
-                                <h3 class="card-title">Pelanggan Deaktivasi per SBU</h3>
-                            </div>
-                            <!-- /.card-header -->
-                            <div class="card-body row">
-                                <x-p-d-card name="JAKARTA & BANTEN (JKB)" count="{{ intval($rekap_jkb) }}" />
-                                <x-p-d-card name="BALI & NUSA TENGGARA (BNT)" count="{{ intval($rekap_bnt) }}" />
-                                <x-p-d-card name="JAWA BAGIAN BARAT (JBB)" count="{{ intval($rekap_jbb) }}" />
-                                <x-p-d-card name="JAWA BAGIAN TENGAH (JBTG)" count="{{ intval($rekap_jbtg) }}" />
-                                <x-p-d-card name="JAWA BAGIAN TIMUR (JBT)" count="{{ intval($rekap_jbt) }}" />
-                                <x-p-d-card name="KALIMANTAN (KAL)" count="{{ intval($rekap_kal) }}" />
-                                <x-p-d-card name="SULAWESI & INDONESIA TIMUR (SIT)" count="{{ intval($rekap_sit) }}" />
-                                <x-p-d-card name="SUMATERA BAGIAN SELATAN (SBS)" count="{{ intval($rekap_sbs) }}" />
-                                <x-p-d-card name="SUMATERA BAGIAN TENGAH (SBTG)" count="{{ intval($rekap_sbtg) }}" />
-                                <x-p-d-card name="SUMATERA BAGIAN UTARA (SBT)" count="{{ intval($rekap_sbt) }}" />
-                            </div>
-                            <!-- /.card-body -->
-                        </div>
                         <section class="col-12">
                             <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Data Pelanggan Deaktivasi</h3>
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Jakarta & Banten (JKB)</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
@@ -87,24 +66,81 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data as $pd)
+                                            @foreach ($table_jkb as $jkb)
                                                 <tr>
-                                                    <td>{{ $pd->idPelanggan }}</td>
-                                                    <td>{{ $pd->idPelangganProduk }}</td>
-                                                    <td>{{ $pd->idLayanan }}</td>
-                                                    <td>{{ $pd->idLayananProduk }}</td>
-                                                    <td>{{ $pd->nama }}</td>
-                                                    <td>{{ $pd->namaLayanan }}</td>
-                                                    <td>{{ $pd->namaLayananProduk }}</td>
-                                                    <td>{{ $pd->tipeBilling }}</td>
-                                                    <td>{{ $pd->nomorVA }}</td>
-                                                    <td>{{ $pd->namaSBU }}</td>
-                                                    <td>{{ $pd->billingAlamat }}</td>
-                                                    <td>{{ $pd->terminatingAlamat }}</td>
-                                                    <td>{{ $pd->tanggalAktivasi }}</td>
-                                                    <td>{{ $pd->tanggalDeaktivasi }}</td>
-                                                    <td>{{ $pd->tanggalStartBilling }}</td>
-                                                    <td>{{ $pd->tanggalMutasi }}</td>
+                                                    <td>{{ $jkb->idPelanggan }}</td>
+                                                    <td>{{ $jkb->idPelangganProduk }}</td>
+                                                    <td>{{ $jkb->idLayanan }}</td>
+                                                    <td>{{ $jkb->idLayananProduk }}</td>
+                                                    <td>{{ $jkb->nama }}</td>
+                                                    <td>{{ $jkb->namaLayanan }}</td>
+                                                    <td>{{ $jkb->namaLayananProduk }}</td>
+                                                    <td>{{ $jkb->tipeBilling }}</td>
+                                                    <td>{{ $jkb->nomorVA }}</td>
+                                                    <td>{{ $jkb->namaSBU }}</td>
+                                                    <td>{{ $jkb->billingAlamat }}</td>
+                                                    <td>{{ $jkb->terminatingAlamat }}</td>
+                                                    <td>{{ $jkb->tanggalAktivasi }}</td>
+                                                    <td>{{ $jkb->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $jkb->tanggalStartBilling }}</td>
+                                                    <td>{{ $jkb->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Bali & Nusa Tenggara (BNT)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example1" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_bnt as $bnt)
+                                                <tr>
+                                                    <td>{{ $bnt->idPelanggan }}</td>
+                                                    <td>{{ $bnt->idPelangganProduk }}</td>
+                                                    <td>{{ $bnt->idLayanan }}</td>
+                                                    <td>{{ $bnt->idLayananProduk }}</td>
+                                                    <td>{{ $bnt->nama }}</td>
+                                                    <td>{{ $bnt->namaLayanan }}</td>
+                                                    <td>{{ $bnt->namaLayananProduk }}</td>
+                                                    <td>{{ $bnt->tipeBilling }}</td>
+                                                    <td>{{ $bnt->nomorVA }}</td>
+                                                    <td>{{ $bnt->namaSBU }}</td>
+                                                    <td>{{ $bnt->billingAlamat }}</td>
+                                                    <td>{{ $bnt->terminatingAlamat }}</td>
+                                                    <td>{{ $bnt->tanggalAktivasi }}</td>
+                                                    <td>{{ $bnt->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $bnt->tanggalStartBilling }}</td>
+                                                    <td>{{ $bnt->tanggalMutasi }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

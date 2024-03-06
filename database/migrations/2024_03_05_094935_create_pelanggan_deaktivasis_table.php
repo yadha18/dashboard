@@ -24,10 +24,10 @@ return new class extends Migration
             $table->string('nomorVA');
             $table->string('billingAlamat')->nullable();
             $table->string('terminatingAlamat')->nullable();
-            $table->dateTime('tanggalAktivasi');
+            $table->dateTime('tanggalAktivasi')->nullable();
             $table->dateTime('tanggalDeaktivasi')->nullable();
-            $table->dateTime('tanggalStartBilling');
-            $table->dateTime('tanggalMutasi');
+            $table->dateTime('tanggalStartBilling')->nullable();
+            $table->dateTime('tanggalMutasi')->nullable();
             $table->timestamps();
         });
     }

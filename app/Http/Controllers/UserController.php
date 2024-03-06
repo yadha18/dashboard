@@ -174,9 +174,9 @@ class UserController extends Controller
         return KanalBayar::where('pembayaranVia', $paymentMethod)->whereBetween('tanggalBayar', [$startDate, $endDate])->count();
     }
 
-    private function countRekap($sbu)
+    private function PDTable($sbu)
     {
-        return PelangganDeaktivasi::where('namaSBU', $sbu)->count();
+        return PelangganDeaktivasi::where('namaSBU', $sbu);
     }
 
     public function pelanggandeaktivasi()
@@ -194,22 +194,20 @@ class UserController extends Controller
             'SUMATERA BAGIAN UTARA'
         ];
 
-        $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
 
         $user = User::select('name')->first();
-        $data = PelangganDeaktivasi::paginate(100);
 
-        $rekap_bnt = $this->countRekap($sbu[0]);
-        $rekap_jkb = $this->countRekap($sbu[1]);
-        $rekap_jbb = $this->countRekap($sbu[2]);
-        $rekap_jbtg = $this->countRekap($sbu[3]);
-        $rekap_jbt = $this->countRekap($sbu[4]);
-        $rekap_kal = $this->countRekap($sbu[5]);
-        $rekap_sit = $this->countRekap($sbu[6]);
-        $rekap_sbs = $this->countRekap($sbu[7]);
-        $rekap_sbtg = $this->countRekap($sbu[8]);
-        $rekap_sbt = $this->countRekap($sbu[9]);
+        $table_bnt = $this->PDTable($sbu[0]);
+        $table_jkb = $this->PDTable($sbu[1]);
+        $table_jbb = $this->PDTable($sbu[2]);
+        $table_jbtg = $this->PDTable($sbu[3]);
+        $table_jbt = $this->PDTable($sbu[4]);
+        $table_kal = $this->PDTable($sbu[5]);
+        $table_sit = $this->PDTable($sbu[6]);
+        $table_sbs = $this->PDTable($sbu[7]);
+        $table_sbtg = $this->PDTable($sbu[8]);
+        $table_sbt = $this->PDTable($sbu[9]);
 
         if (Auth::check()) {
             return view('auth.pelanggan-deaktivasi', compact(
@@ -217,16 +215,16 @@ class UserController extends Controller
                 'user',
                 'total_pd',
                 'data',
-                'rekap_jkb',
-                'rekap_bnt',
-                'rekap_jbb',
-                'rekap_jbtg',
-                'rekap_jbt',
-                'rekap_kal',
-                'rekap_sit',
-                'rekap_sbs',
-                'rekap_sbtg',
-                'rekap_sbt',
+                'table_jkb',
+                'table_bnt',
+                'table_jbb',
+                'table_jbtg',
+                'table_jbt',
+                'table_kal',
+                'table_sit',
+                'table_sbs',
+                'table_sbtg',
+                'table_sbt',
             ));
         }
 
