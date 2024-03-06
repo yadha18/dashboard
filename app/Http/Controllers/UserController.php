@@ -67,12 +67,13 @@ class UserController extends Controller
 
     public function dashboard()
     {
+        $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total_pd', 'user', 'total_kanal'));
+            return view('auth.dashboard', compact('total','total_pd', 'user', 'total_kanal'));
         }
 
         return redirect()->route('login')->withErrors([
