@@ -211,10 +211,8 @@ class UserController extends Controller
 
         if (Auth::check()) {
             return view('auth.pelanggan-deaktivasi', compact(
-                'total_kanal',
                 'user',
                 'total_pd',
-                'data',
                 'table_jkb',
                 'table_bnt',
                 'table_jbb',
