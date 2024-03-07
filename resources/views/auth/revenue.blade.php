@@ -67,7 +67,7 @@
                                                     <td>{{$pp23->namaKP }}</td>
                                                     <td>{{$pp23->tahun }}</td>
                                                     <td>{{$pp23->bulan }}</td>
-                                                    <td>Rp. {{ str_replace(',', '.', number_format($$pp23->pendapatan)) }}</td>
+                                                    <td>Rp. {{ str_replace(',', '.', number_format($pp23->pendapatan)) }}</td>
                                                     <td>{{$pp23->typeBilling }}</td>
                                                     <td>{{$pp23->asal }}</td>
                                                 </tr>
