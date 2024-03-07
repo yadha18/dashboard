@@ -35,7 +35,6 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- Left col -->
                         <section class="col-12">
                             <!-- /.card -->
                             <div class="card">
@@ -158,7 +157,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-striped">
+                                    <table id="example3" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -207,7 +206,405 @@
                             </div>
                             <!-- /.card -->
                         </section>
-                        <!-- /.Left col -->
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Jawa Bagian Tengah (JBTG)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_jbtg as $jbtg)
+                                                <tr>
+                                                    <td>{{ $jbtg->idPelanggan }}</td>
+                                                    <td>{{ $jbtg->idPelangganProduk }}</td>
+                                                    <td>{{ $jbtg->idLayanan }}</td>
+                                                    <td>{{ $jbtg->idLayananProduk }}</td>
+                                                    <td>{{ $jbtg->nama }}</td>
+                                                    <td>{{ $jbtg->namaLayanan }}</td>
+                                                    <td>{{ $jbtg->namaLayananProduk }}</td>
+                                                    <td>{{ $jbtg->tipeBilling }}</td>
+                                                    <td>{{ $jbtg->nomorVA }}</td>
+                                                    <td>{{ $jbtg->namaSBU }}</td>
+                                                    <td>{{ $jbtg->billingAlamat }}</td>
+                                                    <td>{{ $jbtg->terminatingAlamat }}</td>
+                                                    <td>{{ $jbtg->tanggalAktivasi }}</td>
+                                                    <td>{{ $jbtg->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $jbtg->tanggalStartBilling }}</td>
+                                                    <td>{{ $jbtg->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Jawa Bagian Timur (JBT)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_jbt as $jbt)
+                                                <tr>
+                                                    <td>{{ $jbt->idPelanggan }}</td>
+                                                    <td>{{ $jbt->idPelangganProduk }}</td>
+                                                    <td>{{ $jbt->idLayanan }}</td>
+                                                    <td>{{ $jbt->idLayananProduk }}</td>
+                                                    <td>{{ $jbt->nama }}</td>
+                                                    <td>{{ $jbt->namaLayanan }}</td>
+                                                    <td>{{ $jbt->namaLayananProduk }}</td>
+                                                    <td>{{ $jbt->tipeBilling }}</td>
+                                                    <td>{{ $jbt->nomorVA }}</td>
+                                                    <td>{{ $jbt->namaSBU }}</td>
+                                                    <td>{{ $jbt->billingAlamat }}</td>
+                                                    <td>{{ $jbt->terminatingAlamat }}</td>
+                                                    <td>{{ $jbt->tanggalAktivasi }}</td>
+                                                    <td>{{ $jbt->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $jbt->tanggalStartBilling }}</td>
+                                                    <td>{{ $jbt->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Kalimantan (KAL)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_kal as $kal)
+                                                <tr>
+                                                    <td>{{ $kal->idPelanggan }}</td>
+                                                    <td>{{ $kal->idPelangganProduk }}</td>
+                                                    <td>{{ $kal->idLayanan }}</td>
+                                                    <td>{{ $kal->idLayananProduk }}</td>
+                                                    <td>{{ $kal->nama }}</td>
+                                                    <td>{{ $kal->namaLayanan }}</td>
+                                                    <td>{{ $kal->namaLayananProduk }}</td>
+                                                    <td>{{ $kal->tipeBilling }}</td>
+                                                    <td>{{ $kal->nomorVA }}</td>
+                                                    <td>{{ $kal->namaSBU }}</td>
+                                                    <td>{{ $kal->billingAlamat }}</td>
+                                                    <td>{{ $kal->terminatingAlamat }}</td>
+                                                    <td>{{ $kal->tanggalAktivasi }}</td>
+                                                    <td>{{ $kal->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $kal->tanggalStartBilling }}</td>
+                                                    <td>{{ $kal->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Sulawesi & Indonesia Timur (SIT)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_sit as $sit)
+                                                <tr>
+                                                    <td>{{ $sit->idPelanggan }}</td>
+                                                    <td>{{ $sit->idPelangganProduk }}</td>
+                                                    <td>{{ $sit->idLayanan }}</td>
+                                                    <td>{{ $sit->idLayananProduk }}</td>
+                                                    <td>{{ $sit->nama }}</td>
+                                                    <td>{{ $sit->namaLayanan }}</td>
+                                                    <td>{{ $sit->namaLayananProduk }}</td>
+                                                    <td>{{ $sit->tipeBilling }}</td>
+                                                    <td>{{ $sit->nomorVA }}</td>
+                                                    <td>{{ $sit->namaSBU }}</td>
+                                                    <td>{{ $sit->billingAlamat }}</td>
+                                                    <td>{{ $sit->terminatingAlamat }}</td>
+                                                    <td>{{ $sit->tanggalAktivasi }}</td>
+                                                    <td>{{ $sit->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $sit->tanggalStartBilling }}</td>
+                                                    <td>{{ $sit->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Sumatera Bagian Selatan (SBS)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_sbs as $sbs)
+                                                <tr>
+                                                    <td>{{ $sbs->idPelanggan }}</td>
+                                                    <td>{{ $sbs->idPelangganProduk }}</td>
+                                                    <td>{{ $sbs->idLayanan }}</td>
+                                                    <td>{{ $sbs->idLayananProduk }}</td>
+                                                    <td>{{ $sbs->nama }}</td>
+                                                    <td>{{ $sbs->namaLayanan }}</td>
+                                                    <td>{{ $sbs->namaLayananProduk }}</td>
+                                                    <td>{{ $sbs->tipeBilling }}</td>
+                                                    <td>{{ $sbs->nomorVA }}</td>
+                                                    <td>{{ $sbs->namaSBU }}</td>
+                                                    <td>{{ $sbs->billingAlamat }}</td>
+                                                    <td>{{ $sbs->terminatingAlamat }}</td>
+                                                    <td>{{ $sbs->tanggalAktivasi }}</td>
+                                                    <td>{{ $sbs->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $sbs->tanggalStartBilling }}</td>
+                                                    <td>{{ $sbs->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Sumatera Bagian Tengah (SBTG)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_sbtg as $sbtg)
+                                                <tr>
+                                                    <td>{{ $sbtg->idPelanggan }}</td>
+                                                    <td>{{ $sbtg->idPelangganProduk }}</td>
+                                                    <td>{{ $sbtg->idLayanan }}</td>
+                                                    <td>{{ $sbtg->idLayananProduk }}</td>
+                                                    <td>{{ $sbtg->nama }}</td>
+                                                    <td>{{ $sbtg->namaLayanan }}</td>
+                                                    <td>{{ $sbtg->namaLayananProduk }}</td>
+                                                    <td>{{ $sbtg->tipeBilling }}</td>
+                                                    <td>{{ $sbtg->nomorVA }}</td>
+                                                    <td>{{ $sbtg->namaSBU }}</td>
+                                                    <td>{{ $sbtg->billingAlamat }}</td>
+                                                    <td>{{ $sbtg->terminatingAlamat }}</td>
+                                                    <td>{{ $sbtg->tanggalAktivasi }}</td>
+                                                    <td>{{ $sbtg->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $sbtg->tanggalStartBilling }}</td>
+                                                    <td>{{ $sbtg->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
+                        <section class="col-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Pelanggan Deaktivasi Sumatera Bagian Utara (SBU)</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <table id="example4" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID Layanan</th>
+                                                <th>ID Layanan Produk</th>
+                                                <th>Nama</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Nomor VA</th>
+                                                <th>Nama SBU</th>
+                                                <th>Alamat Billing</th>
+                                                <th>Alamat Terminating</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Tanggal Deaktivasi</th>
+                                                <th>Tanggal Start Billing</th>
+                                                <th>Tanggal Mutasi</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($table_sbu as $sbu)
+                                                <tr>
+                                                    <td>{{ $sbu->idPelanggan }}</td>
+                                                    <td>{{ $sbu->idPelangganProduk }}</td>
+                                                    <td>{{ $sbu->idLayanan }}</td>
+                                                    <td>{{ $sbu->idLayananProduk }}</td>
+                                                    <td>{{ $sbu->nama }}</td>
+                                                    <td>{{ $sbu->namaLayanan }}</td>
+                                                    <td>{{ $sbu->namaLayananProduk }}</td>
+                                                    <td>{{ $sbu->tipeBilling }}</td>
+                                                    <td>{{ $sbu->nomorVA }}</td>
+                                                    <td>{{ $sbu->namaSBU }}</td>
+                                                    <td>{{ $sbu->billingAlamat }}</td>
+                                                    <td>{{ $sbu->terminatingAlamat }}</td>
+                                                    <td>{{ $sbu->tanggalAktivasi }}</td>
+                                                    <td>{{ $sbu->tanggalDeaktivasi }}</td>
+                                                    <td>{{ $sbu->tanggalStartBilling }}</td>
+                                                    <td>{{ $sbu->tanggalMutasi }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
                     </div>
                 </div>
             </section>

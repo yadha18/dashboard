@@ -207,7 +207,7 @@ class UserController extends Controller
         $table_sit = $this->PDTable($sbu[6]);
         $table_sbs = $this->PDTable($sbu[7]);
         $table_sbtg = $this->PDTable($sbu[8]);
-        $table_sbt = $this->PDTable($sbu[9]);
+        $table_sbu = $this->PDTable($sbu[9]);
 
         if (Auth::check()) {
             return view('auth.pelanggan-deaktivasi', compact(
@@ -222,7 +222,7 @@ class UserController extends Controller
                 'table_sit',
                 'table_sbs',
                 'table_sbtg',
-                'table_sbt',
+                'table_sbu',
             ));
         }
 
