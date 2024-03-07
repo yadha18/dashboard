@@ -24,10 +24,8 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            route="{{ route('pelanggan-deaktivasi') }}" />
-                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
-                            route="{{ route('kanal-bayar') }}" />
+                        <x-card title="Pelanggan Passive" icon="person" type="light" totalCount="{{ intval($total) }}"
+                            route="{{ route('passive-customer') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->

@@ -6,6 +6,7 @@ use App\Models\Baddebt;
 use App\Models\User;
 use App\Models\KanalBayar;
 use App\Models\PelangganDeaktivasi;
+use App\Models\Revenue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -84,12 +85,11 @@ class UserController extends Controller
     public function passivecustomer()
     {
         $data = Baddebt::paginate(100);
-        $total_kanal = KanalBayar::count();
-        $total_pd = PelangganDeaktivasi::count();
+        $total = Baddebt::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
-            return view('auth.passive-customer', compact('data', 'user', 'total_kanal', 'total_pd'));
+            return view('auth.passive-customer', compact('data', 'user', 'total'));
         }
 
         return redirect()->route('login')->withErrors([
@@ -103,13 +103,32 @@ class UserController extends Controller
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
 
+        $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
+        $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
+
+        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');;
+        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');;
+
         if (Auth::check()) {
-            return view('auth.revenue', compact('user', 'total_kanal', 'total_pd'));
+            return view('auth.revenue', compact(
+                'user',
+                'total_kanal',
+                'total_pd',
+                'postpaid_2023',
+                'postpaid_2024',
+                'prepaid_2023',
+                'prepaid_2024'
+            ));
         }
 
         return redirect()->route('login')->withErrors([
             'username' => 'silakan login terlebih dahulu'
         ])->withInput(['username']);
+    }
+
+    private function getRevenue($year, $type)
+    {
+        Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
     }
 
     public function kanalbayar(Request $request)

@@ -49,36 +49,29 @@
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>Nama</th>
-                                                <th>No. Telp</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
+                                                <th>Lembar Tagihan</th>
                                                 <th>Nama SBU</th>
                                                 <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
                                                 <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
+                                                <th>Bulan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Type Billing</th>
+                                                <th>Asal</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-
+                                            @foreach ($postpaid_2023 as $pp23)
+                                                <tr>
+                                                    <td>{{$pp23->lembarTagihan }}</td>
+                                                    <td>{{$pp23->namaSBU }}</td>
+                                                    <td>{{$pp23->namaKP }}</td>
+                                                    <td>{{$pp23->tahun }}</td>
+                                                    <td>{{$pp23->bulan }}</td>
+                                                    <td>Rp. {{$pp23->pendapatan }}</td>
+                                                    <td>{{$pp23->typeBilling }}</td>
+                                                    <td>{{$pp23->asal }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>
