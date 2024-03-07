@@ -128,7 +128,7 @@ class UserController extends Controller
 
     private function getRevenue($year, $type)
     {
-        Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+        return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
     }
 
     public function kanalbayar(Request $request)
