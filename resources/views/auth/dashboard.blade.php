@@ -24,6 +24,8 @@
                             route="{{ route('kanal-bayar') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
+                        <x-card title="Pelanggan Passive" icon="person" type="light" totalCount="{{ intval($total) }}"
+                            route="{{ route('passive-customer') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
