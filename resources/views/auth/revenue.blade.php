@@ -24,10 +24,10 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Revenue Postpaid 2023 (Rp.)" icon="card" type="light" totalCount="{{ intval($sum_postpaid_2023) }}"
-                            route="{{ route('kanal-bayar') }}" />
-                        <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
-                            totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
+                        <x-card title="Revenue Postpaid 2023" icon="card" type="light"
+                            totalCount="{{ intval($sum_postpaid_2023) }}" route="{{ route('kanal-bayar') }}" />
+                        <x-card title="Revenue Postpaid 2024" icon="pie-graph" type="light"
+                            totalCount="{{ intval($sum_postpaid_2024) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                     </div>
                     <!-- /.row -->
                     <!-- Main row -->
@@ -62,14 +62,15 @@
                                         <tbody>
                                             @foreach ($postpaid_2023 as $pp23)
                                                 <tr>
-                                                    <td>{{$pp23->lembarTagihan }}</td>
-                                                    <td>{{$pp23->namaSBU }}</td>
-                                                    <td>{{$pp23->namaKP }}</td>
-                                                    <td>{{$pp23->tahun }}</td>
-                                                    <td>{{$pp23->bulan }}</td>
-                                                    <td>Rp. {{ str_replace(',', '.', number_format($pp23->pendapatan)) }}</td>
-                                                    <td>{{$pp23->typeBilling }}</td>
-                                                    <td>{{$pp23->asal }}</td>
+                                                    <td>{{ $pp23->lembarTagihan }}</td>
+                                                    <td>{{ $pp23->namaSBU }}</td>
+                                                    <td>{{ $pp23->namaKP }}</td>
+                                                    <td>{{ $pp23->tahun }}</td>
+                                                    <td>{{ $pp23->bulan }}</td>
+                                                    <td>Rp. {{ str_replace(',', '.', number_format($pp23->pendapatan)) }}
+                                                    </td>
+                                                    <td>{{ $pp23->typeBilling }}</td>
+                                                    <td>{{ $pp23->asal }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
