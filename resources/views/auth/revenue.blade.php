@@ -24,7 +24,7 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
+                        <x-card title="Revenue Post Paid 2023" icon="card" type="light" totalCount="Rp. {{ intval($sum_postpaid_2023) }}"
                             route="{{ route('kanal-bayar') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />

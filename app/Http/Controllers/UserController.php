@@ -106,8 +106,11 @@ class UserController extends Controller
         $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
         $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
 
-        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');;
-        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');;
+        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
+        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
+
+        $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
+        $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
 
         if (Auth::check()) {
             return view('auth.revenue', compact(
@@ -117,7 +120,9 @@ class UserController extends Controller
                 'postpaid_2023',
                 'postpaid_2024',
                 'prepaid_2023',
-                'prepaid_2024'
+                'prepaid_2024',
+                'sum_postpaid_2023',
+                'sum_postpaid_2024'
             ));
         }
 
@@ -129,6 +134,10 @@ class UserController extends Controller
     private function getRevenue($year, $type)
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+    }
+    private function sumRevenue($year, $type)
+    {
+        return Revenue::where('tahun', $year)->where('typeBilling', $type)->sum('pendapatan');
     }
 
     public function kanalbayar(Request $request)
