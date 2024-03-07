@@ -87,13 +87,38 @@
                 var year = $(this).data('year');
                 var type = $(this).data('type');
 
-                // Clear previous search and draw the table
-                table.search('').columns().search('').draw();
+                $.ajax({
+                    url: '{{ route('getRevenueData') }}',
+                    type: 'GET',
+                    data: {
+                        year: year,
+                        type: type
+                    },
+                    success: function(data) {
+                        // Clear previous rows
+                        table.clear();
 
-                // Apply the filter
-                if (type !== 'all') {
-                    table.column(6).search(type).draw(); // Assuming the 'Type Billing' column is at index 6
-                }
+                        // Add new rows
+                        $.each(data, function(index, item) {
+                            var row = [
+                                item.lembarTagihan,
+                                item.namaSBU,
+                                item.namaKP,
+                                item.tahun,
+                                item.bulan,
+                                'Rp. ' + item.pendapatan.toFixed(2).replace(
+                                    /\d(?=(\d{3})+\.)/g, '$&,'),
+                                item.typeBilling,
+                                item.asal
+                            ];
+
+                            table.row.add(row);
+                        });
+
+                        // Draw the table
+                        table.draw();
+                    }
+                });
             });
         });
     </script>
