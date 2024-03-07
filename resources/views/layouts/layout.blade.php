@@ -78,6 +78,25 @@
             }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            var table = $('#table-revenue').DataTable();
+
+            // Button click event
+            $('.filter-button').on('click', function() {
+                var year = $(this).data('year');
+                var type = $(this).data('type');
+
+                // Clear previous search and draw the table
+                table.search('').columns().search('').draw();
+
+                // Apply the filter
+                if (type !== 'all') {
+                    table.column(6).search(type).draw(); // Assuming the 'Type Billing' column is at index 6
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
