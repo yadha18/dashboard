@@ -38,7 +38,7 @@
                         <p>Pelanggan Deaktivasi</p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <li class="nav-item menu-open">
                     <a href="#" class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>
