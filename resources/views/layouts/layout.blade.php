@@ -85,13 +85,9 @@
             var table = $('#table-revenue').DataTable({
                 "responsive": true,
                 "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", {
-                    extend: 'searchBuilder',
-
-                }],
-                searchBuilder: true,
-                searchPanes: true,
+                layout: {
+                    top1: 'searchBuilder'
+                }
             });
 
             $('.filter-button, .dropdown-item').on('click', function() {
