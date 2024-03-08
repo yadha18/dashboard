@@ -70,8 +70,8 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr id="loading-row" class="d-none">
-                                                <td colspan="8" class="text-center">Sedang mengambil data...</td>
+                                            <tr id="loading-spinner" class="d-none">
+                                                Loading...
                                             </tr>
                                         </tbody>
                                     </table>

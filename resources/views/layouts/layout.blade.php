@@ -97,7 +97,7 @@
                         type: type
                     },
                     beforeSend: function() {
-                        $('#loading-row').removeClass('d-none');
+                        $('#loading-spinner').removeClass('d-none');
                     },
                     success: function(data) {
                         table.clear();
@@ -124,7 +124,7 @@
                         table.draw();
                     },
                     complete: function() {
-                        $('#loading-row').addClass('d-none');
+                        $('#loading-spinner').addClass('d-none');
                     }
                 });
             });
