@@ -96,6 +96,9 @@
                         year: year,
                         type: type
                     },
+                    beforeSend: function() {
+                        $('#loading-spinner').removeClass('d-none');
+                    },
                     success: function(data) {
                         table.clear();
 
@@ -119,6 +122,9 @@
                         });
 
                         table.draw();
+                    },
+                    complete: function() {
+                        $('#loading-spinner').addClass('d-none');
                     }
                 });
             });

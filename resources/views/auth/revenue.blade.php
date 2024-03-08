@@ -56,6 +56,9 @@
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="prepaid">Prepaid 2024</button>
                                     </div>
+                                    <div id="loading-spinner" class="d-none">
+                                        Loading...
+                                    </div>
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
