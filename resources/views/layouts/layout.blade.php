@@ -90,7 +90,11 @@
                 var year = $(this).data('year');
                 var region = $(this).data('region');
 
-                $('#applied-filters').text('Tahun: ' + year + ', Type: ' + type);
+                var filterTag = '<span class="badge badge-primary filter-tag" data-year="' + year +
+                    '" data-type="' + type + '">' + year + ' - ' + type +
+                    ' <i class="fas fa-times-circle remove-filter"></i></span>';
+
+                $('#applied-filters').append(filterTag);
 
                 $.ajax({
                     url: '/get-revenue-data',

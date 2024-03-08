@@ -88,7 +88,7 @@
                                                 BANTEN</a>
                                         </div>
                                     </div>
-
+                                    <div id="applied-filters"></div>
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
