@@ -12,13 +12,27 @@ class RevenueController extends Controller
     {
         $year = $request->input('year');
         $type = $request->input('type');
+        $regional = $request->input('regional');
 
-        $revenueData = $this->getRevenue($year, $type);
+        $revenueData = $this->getRevenue($year, $type, $regional);
 
         return response()->json($revenueData);
     }
-    private function getRevenue($year, $type)
+
+    public function getRegional()
     {
-        return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+        $regional = Revenue::select('namaSBU')->distinct()->get();
+        return response()->json($regional);
+    }
+
+    private function getRevenue($year, $type, $regional)
+    {
+        $query = Revenue::where('tahun', $year)->where('typeBilling', $type);
+
+        if (!empty($regional)) {
+            $query->where('namaSBU', $regional);
+        }
+
+        return $query->get();
     }
 }

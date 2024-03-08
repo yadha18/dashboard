@@ -104,9 +104,28 @@
                     success: function(data) {
                         table.clear();
 
+                        var dropdownRegional = $('#dropdownRegional');
+                        var dropdownMenu = dropdownRegional.next('.dropdown-menu');
+
+                        $.each(data, function(index, item) {
+                            dropdownMenu.append(
+                                '<a class="dropdown-item regional-filter" data-regional="' +
+                                item.regional + '">' + item.regional + '</a>');
+                        });
+
+                        // Handle regional filter click event
+                        dropdownMenu.on('click', '.regional-filter', function() {
+                            var selectedRegional = $(this).data('regional');
+                            // Trigger the existing filter-button click event with the selected regional
+                            $('.filter-button[data-year="' + year + '"][data-type="' +
+                                    type + '"]').data('regional', selectedRegional)
+                                .trigger('click');
+                        });
+
                         $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
+
                             var row = [
                                 item.lembarTagihan,
                                 item.namaSBU,

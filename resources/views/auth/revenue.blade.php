@@ -62,6 +62,15 @@
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownRegional"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            Regional
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownRegional">
+                                            <!-- Regional options will be added dynamically using JavaScript -->
+                                        </div>
+                                    </div>
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
