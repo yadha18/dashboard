@@ -46,7 +46,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                    {{-- <div class="btn-group" role="group" aria-label="Filter Buttons">
                                         <button type="button" class="btn btn-primary filter-button mr-3" data-year="2023"
                                             data-type="prepaid">Prepaid 2023</button>
                                     </div>
@@ -61,6 +61,18 @@
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
+                                    </div> --}}
+                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                        <button class="btn btn-primary dropdown-toggle mx-3" type="button"
+                                            id="yearDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Filter Tahun
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="yearDropdown">
+                                            <a class="dropdown-item" href="#" data-year="all">All Tahun</a>
+                                            <a class="dropdown-item" href="#" data-year="2023">2023</a>
+                                            <a class="dropdown-item" href="#" data-year="2024">2024</a>
+                                        </div>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
                                         <button class="btn btn-primary dropdown-toggle mx-3" type="button"
