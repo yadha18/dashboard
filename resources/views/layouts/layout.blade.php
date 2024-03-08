@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-searchbuilder/css/searchBuilder.bootstrap4.min.css') }}">
+    <link href="https://cdn.datatables.net/v/dt/dt-2.0.2/b-3.0.1/sb-1.7.0/sp-2.3.0/datatables.min.css" rel="stylesheet">
     <style>
         table {
             white-space: nowrap;
@@ -33,6 +34,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @yield('content');
+    <script src="https://cdn.datatables.net/v/dt/dt-2.0.2/b-3.0.1/sb-1.7.0/sp-2.3.0/datatables.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script><!-- Include the external script file -->
     <script src="{{ asset('plugins/js/chart.js') }}"></script>
@@ -84,6 +86,12 @@
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", {
+                    extend: 'searchBuilder',
+
+                }],
+                searchBuilder: true,
+                searchPanes: true,
             });
 
             $('.filter-button, .dropdown-item').on('click', function() {
