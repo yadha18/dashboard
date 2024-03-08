@@ -124,11 +124,26 @@
                         });
 
                         tableFitur.draw();
+                        updateFooter(data);
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');
                     }
                 });
+
+                function updateFooter(data) {
+                    var totalLembarTagihan = 0;
+                    var totalPendapatan = 0;
+
+                    $.each(data, function(index, item) {
+                        totalLembarTagihan += parseFloat(item.lembarTagihan);
+                        totalPendapatan += parseFloat(item.pendapatan);
+                    });
+
+                    $('#footer-row th:eq(0)').text(totalLembarTagihan);
+                    $('#footer-row th:eq(5)').text('Rp. ' + totalPendapatan.toFixed(2).replace(
+                        /\d(?=(\d{3})+\.)/g, '$&,'));
+                }
             });
         });
     </script>

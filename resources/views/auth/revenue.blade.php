@@ -75,15 +75,15 @@
                                             </div>
                                         </tbody>
                                         <tfoot>
-                                            <tr>
-                                                <th>586700</th>
-                                                <th>JAKARTA & BANTEN</th>
-                                                <th>JAKARTA & BANTEN</th>
-                                                <th>2024</th>
-                                                <th>Maret</th>
-                                                <th>10,000,000,000</th>
-                                                <th>prepaid</th>
-                                                <th>Registrasi</th>
+                                            <tr id="footer-row">
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
+                                                <th></th>
                                             </tr>
                                         </tfoot>
                                     </table>
