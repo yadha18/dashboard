@@ -80,12 +80,11 @@
     </script>
     <script>
         $(document).ready(function() {
-            var table = $('#table-revenue').DataTable();
-            var tableFitur = $('#table-revenue').DataTable({
-                searchPanes: {
-                    layout: 'columns-1'
-                },
-                dom: 'Pfrtip'
+            var table = $('#table-revenue').DataTable({
+                "lengthChange": false,
+                "autoWidth": false,
+                searchPanes: true,
+                dom: 'Pfrtip',
             });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
@@ -102,7 +101,7 @@
                         $('#loading-spinner').removeClass('d-none');
                     },
                     success: function(data) {
-                        tableFitur.clear();
+                        table.clear();
 
                         $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
@@ -120,10 +119,10 @@
                                 item.asal
                             ];
 
-                            tableFitur.row.add(row);
+                            table.row.add(row);
                         });
 
-                        tableFitur.draw();
+                        table.draw();
                         updateFooter(data);
                     },
                     complete: function() {
