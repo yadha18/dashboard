@@ -89,7 +89,22 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable({
-                searchBuilder: true,
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", {
+                    extend: 'searchBuilder', // Tambahkan extend untuk searchBuilder
+                }],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
             });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
