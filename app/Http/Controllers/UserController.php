@@ -97,16 +97,6 @@ class UserController extends Controller
         ])->withInput(['username']);
     }
 
-    public function getRevenueData(Request $request)
-    {
-        $year = $request->input('year');
-        $type = $request->input('type');
-
-        $revenueData = $this->getRevenue($year, $type);
-
-        return response()->json($revenueData);
-    }
-
     public function revenue()
     {
         $total_kanal = KanalBayar::count();
