@@ -85,8 +85,9 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable({
-                searchPanes: true,
-                dom: 'Pfrtip',
+                "buttons": ["copy", "csv", "excel", "pdf", "print", {
+                    extend: 'searchBuilder',
+                }],
             });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
