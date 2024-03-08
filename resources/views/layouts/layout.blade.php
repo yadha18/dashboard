@@ -82,7 +82,10 @@
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable();
             var tableFitur = $('#table-revenue').DataTable({
-                "buttons": ["searchPanes"]
+                searchPanes: {
+                    layout: 'columns-1'
+                },
+                dom: 'Pfrtip'
             });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
