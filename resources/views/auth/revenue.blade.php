@@ -62,7 +62,7 @@
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div> --}}
-                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                    {{-- <div class="btn-group" role="group" aria-label="Filter Buttons">
                                         <button class="btn btn-primary dropdown-toggle mx-3" type="button"
                                             id="yearDropdown" data-toggle="dropdown" aria-haspopup="true"
                                             aria-expanded="false">
@@ -88,7 +88,7 @@
                                                 BANTEN</a>
                                         </div>
                                     </div>
-                                    <div id="applied-filters"></div>
+                                    <div id="applied-filters"></div> --}}
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
