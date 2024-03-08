@@ -92,7 +92,7 @@
                     extend: 'searchBuilder',
 
                 }],
-            });
+            }).buttons().container().appendTo('#table-revenue .col-md-6:eq(0)');;
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
