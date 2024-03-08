@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-searchbuilder/css/searchBuilder.bootstrap4.min.css') }}">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/searchpanes/2.5.2/css/searchPanes.dataTables.min.css">
     <style>
         table {
             white-space: nowrap;
@@ -33,6 +35,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @yield('content');
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/searchpanes/2.5.2/js/dataTables.searchPanes.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script><!-- Include the external script file -->
     <script src="{{ asset('plugins/js/chart.js') }}"></script>
@@ -81,8 +85,6 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable({
-                "lengthChange": false,
-                "autoWidth": false,
                 searchPanes: true,
                 dom: 'Pfrtip',
             });
