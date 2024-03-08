@@ -25,7 +25,8 @@
                 <li class="nav-item">
                     <a href="{{ route('kanal-bayar') }}"
                         class="nav-link {{ Route::currentRouteNamed('kanal-bayar') ? 'active' : '' }}">
-                        <i class="far {{ Route::currentRouteNamed('kanal-bayar') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                        <i
+                            class="far {{ Route::currentRouteNamed('kanal-bayar') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                         <p>Kanal Bayar</p>
                     </a>
                 </li>
@@ -38,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="#" class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>
                             Revenue
