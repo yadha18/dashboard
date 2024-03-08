@@ -98,6 +98,48 @@
                     }
                 },
             });
+
+            $.ajax({
+                url: '/get-revenue-data',
+                type: 'GET',
+                // Anda bisa menambahkan parameter jika diperlukan
+                // data: {
+                //     year: '2023',
+                //     type: 'prepaid'
+                // },
+                beforeSend: function() {
+                    $('#loading-spinner').removeClass('d-none');
+                },
+                success: function(data) {
+                    table.clear();
+
+                    $.each(data, function(index, item) {
+                        var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
+                            parseFloat(item.pendapatan);
+                        var row = [
+                            item.lembarTagihan,
+                            item.namaSBU,
+                            item.namaKP,
+                            item.tahun,
+                            item.bulan,
+                            'Rp. ' + (typeof pendapatan === 'number' ?
+                                pendapatan.toFixed(2).replace(
+                                    /\d(?=(\d{3})+\.)/g, '$&,') : ''),
+                            item.typeBilling,
+                            item.asal
+                        ];
+
+                        table.row.add(row);
+                    });
+
+                    table.draw();
+                    updateFooter(data);
+                },
+                complete: function() {
+                    $('#loading-spinner').addClass('d-none');
+                }
+            });
+
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
