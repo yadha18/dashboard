@@ -76,14 +76,14 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <th>Lembar Tagihan</th>
-                                                <th>SBU</th>
-                                                <th>KP</th>
-                                                <th>Tahun</th>
-                                                <th>Bulan</th>
-                                                <th>Total</th>
-                                                <th>Type Billing</th>
-                                                <th>Asal</th>
+                                                <th>586700</th>
+                                                <th>JAKARTA & BANTEN</th>
+                                                <th>JAKARTA & BANTEN</th>
+                                                <th>2024</th>
+                                                <th>Maret</th>
+                                                <th>10,000,000,000</th>
+                                                <th>prepaid</th>
+                                                <th>Registrasi</th>
                                             </tr>
                                         </tfoot>
                                     </table>
