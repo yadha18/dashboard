@@ -74,6 +74,18 @@
                                                 Loading...
                                             </div>
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Lembar Tagihan</th>
+                                                <th>SBU</th>
+                                                <th>KP</th>
+                                                <th>Tahun</th>
+                                                <th>Bulan</th>
+                                                <th>Total</th>
+                                                <th>Type Billing</th>
+                                                <th>Asal</th>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
