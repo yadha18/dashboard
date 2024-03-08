@@ -70,19 +70,7 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($postpaid_2023 as $pp23)
-                                                <tr>
-                                                    <td>{{ $pp23->lembarTagihan }}</td>
-                                                    <td>{{ $pp23->namaSBU }}</td>
-                                                    <td>{{ $pp23->namaKP }}</td>
-                                                    <td>{{ $pp23->tahun }}</td>
-                                                    <td>{{ $pp23->bulan }}</td>
-                                                    <td>Rp. {{ str_replace(',', '.', number_format($pp23->pendapatan)) }}
-                                                    </td>
-                                                    <td>{{ $pp23->typeBilling }}</td>
-                                                    <td>{{ $pp23->asal }}</td>
-                                                </tr>
-                                            @endforeach
+
                                         </tbody>
                                     </table>
                                 </div>
