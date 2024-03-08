@@ -80,35 +80,18 @@
     </script>
     <script>
         $(document).ready(function() {
-            var table = $('#table-revenue').DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", {
-                    extend: 'searchBuilder', // Tambahkan extend untuk searchBuilder
-                }],
-                "language": {
-                    searchBuilder: {
-                        data: 'Column',
-                        add: 'Add Condition',
-                        button: {
-                            0: '<i class="fas fa-filter"></i> Filters',
-                            _: '<i class="fas fa-filter"></i> Filters (%d)'
-                        }
-                    }
-                },
-            });
+            var table = $('#table-revenue').DataTable();
 
-            $('.filter-button').on('click', function() {
+            $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
-                var type = $(this).data('type');
+                var region = $(this).data('region');
 
                 $.ajax({
                     url: '/get-revenue-data',
                     type: 'GET',
                     data: {
                         year: year,
-                        type: type
+                        region: region
                     },
                     beforeSend: function() {
                         $('#loading-spinner').removeClass('d-none');

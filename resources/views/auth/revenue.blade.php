@@ -62,9 +62,21 @@
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
-                                    <div class="dataTables_searchBuilder">
-                                        <!-- Tempat SearchBuilder akan ditambahkan -->
+                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                        <button class="btn btn-primary dropdown-toggle mx-3" type="button"
+                                            id="regionDropdown" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            Filter Region
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="regionDropdown">
+                                            <a class="dropdown-item" href="#" data-region="all">All Region</a>
+                                            <a class="dropdown-item" href="#" data-region="BALI & NUSA TENGGARA">BALI
+                                                & NUSA TENGGARA</a>
+                                            <a class="dropdown-item" href="#" data-region="JAKARTA & BANTEN">JAKARTA &
+                                                BANTEN</a>
+                                        </div>
                                     </div>
+
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>

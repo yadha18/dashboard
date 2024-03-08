@@ -11,14 +11,14 @@ class RevenueController extends Controller
     public function getRevenueData(Request $request)
     {
         $year = $request->input('year');
-        $type = $request->input('type');
+        $region = $request->input('region');
 
-        $revenueData = $this->getRevenue($year, $type);
+        $revenueData = $this->getRevenue($year, $region);
 
         return response()->json($revenueData);
     }
-    private function getRevenue($year, $type)
+    private function getRevenue($year, $region)
     {
-        return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+        return Revenue::where('tahun', $year)->where('namaSBU', $region)->get();
     }
 }
