@@ -100,14 +100,17 @@
                         table.clear();
 
                         $.each(data, function(index, item) {
+                            var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
+                                parseFloat(item.pendapatan);
                             var row = [
                                 item.lembarTagihan,
                                 item.namaSBU,
                                 item.namaKP,
                                 item.tahun,
                                 item.bulan,
-                                'Rp. ' + item.pendapatan.toFixed(2).replace(
-                                    /\d(?=(\d{3})+\.)/g, '$&,'),
+                                'Rp. ' + (typeof pendapatan === 'number' ?
+                                    pendapatan.toFixed(2).replace(
+                                        /\d(?=(\d{3})+\.)/g, '$&,') : ''),
                                 item.typeBilling,
                                 item.asal
                             ];
