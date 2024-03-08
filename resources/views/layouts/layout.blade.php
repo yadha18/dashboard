@@ -80,7 +80,11 @@
     </script>
     <script>
         $(document).ready(function() {
-            var table = $('#table-revenue').DataTable();
+            var table = $('#table-revenue').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+            });
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
