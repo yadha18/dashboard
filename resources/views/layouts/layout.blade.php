@@ -90,13 +90,15 @@
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
+                var regional = $(this).data('regional');
 
                 $.ajax({
                     url: '/get-revenue-data',
                     type: 'GET',
                     data: {
                         year: year,
-                        type: type
+                        type: type,
+                        regional: regional,
                     },
                     beforeSend: function() {
                         $('#loading-spinner').removeClass('d-none');

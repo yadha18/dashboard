@@ -65,7 +65,7 @@
                                     <div class="dropdown">
                                         <button class="btn btn-primary dropdown-toggle" type="button" id="dropdownRegional"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Regional
+                                            Filter Nama SBU
                                         </button>
                                         <div class="dropdown-menu" aria-labelledby="dropdownRegional">
                                             <!-- Regional options will be added dynamically using JavaScript -->
