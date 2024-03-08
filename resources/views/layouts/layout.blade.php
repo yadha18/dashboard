@@ -103,10 +103,10 @@
                 url: '/get-revenue-data',
                 type: 'GET',
                 // Anda bisa menambahkan parameter jika diperlukan
-                // data: {
-                //     year: '2023',
-                //     type: 'prepaid'
-                // },
+                data: {
+                    year: '2023',
+                    type: 'prepaid'
+                },
                 beforeSend: function() {
                     $('#loading-spinner').removeClass('d-none');
                 },
