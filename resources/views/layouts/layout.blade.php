@@ -85,11 +85,13 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable({
-                layout: {
-                    topStart: {
-                        buttons: ['searchPanes']
-                    }
-                }
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", {
+                    extend: 'searchBuilder',
+
+                }],
             });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
