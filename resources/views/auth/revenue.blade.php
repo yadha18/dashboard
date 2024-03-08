@@ -47,19 +47,19 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
-                                        <button type="button" class="btn btn-primary filter-button mx-3" data-year="2023"
+                                        <button type="button" class="btn btn-primary filter-button mr-3" data-year="2023"
                                             data-type="prepaid">Prepaid 2023</button>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
-                                        <button type="button" class="btn btn-primary filter-button mx-3" data-year="2023"
+                                        <button type="button" class="btn btn-primary filter-button mr-3" data-year="2023"
                                             data-type="postpaid">Postpaid 2023</button>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
-                                        <button type="button" class="btn btn-primary filter-button mx-3" data-year="2024"
+                                        <button type="button" class="btn btn-primary filter-button mr-3" data-year="2024"
                                             data-type="prepaid">Prepaid 2024</button>
                                     </div>
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
-                                        <button type="button" class="btn btn-primary filter-button mx-3" data-year="2024"
+                                        <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
                                     <div class="dataTables_searchBuilder">
