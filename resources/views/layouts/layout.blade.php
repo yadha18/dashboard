@@ -85,27 +85,18 @@
             var table = $('#table-revenue').DataTable({
                 "responsive": true,
                 "lengthChange": false,
-                layout: {
-                    top1: 'searchBuilder'
-                }
             });
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
-                var region = $(this).data('region');
-
-                var filterTag = '<span class="badge badge-primary filter-tag" data-year="' + year +
-                    '" data-type="' + type + '">' + year + ' - ' + type +
-                    ' <i class="fas fa-times-circle remove-filter"></i></span>';
-
-                $('#applied-filters').append(filterTag);
+                var type = $(this).data('type');
 
                 $.ajax({
                     url: '/get-revenue-data',
                     type: 'GET',
                     data: {
                         year: year,
-                        region: region
+                        type: type
                     },
                     beforeSend: function() {
                         $('#loading-spinner').removeClass('d-none');
