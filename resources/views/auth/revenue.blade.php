@@ -70,9 +70,9 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr id="loading-spinner" class="d-none">
+                                            <div id="loading-spinner" class="d-none">
                                                 Loading...
-                                            </tr>
+                                            </div>
                                         </tbody>
                                     </table>
                                 </div>
