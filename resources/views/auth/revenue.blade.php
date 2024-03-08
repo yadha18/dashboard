@@ -62,6 +62,9 @@
                                         <button type="button" class="btn btn-primary filter-button mx-3" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
+                                    <div class="dataTables_searchBuilder">
+                                        <!-- Tempat SearchBuilder akan ditambahkan -->
+                                    </div>
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>

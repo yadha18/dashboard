@@ -26,6 +26,8 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-searchbuilder/css/searchBuilder.bootstrap4.min.css') }}">
     <link rel="stylesheet" type="text/css"
         href="https://cdn.datatables.net/searchpanes/2.5.2/css/searchPanes.dataTables.min.css">
+    <link rel="stylesheet" type="text/css"
+        href="https://cdn.datatables.net/searchbuilder/1.2.6/css/searchBuilder.dataTables.min.css">
     <style>
         table {
             white-space: nowrap;
@@ -35,6 +37,8 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @yield('content');
+    <script type="text/javascript" charset="utf8"
+        src="https://cdn.datatables.net/searchbuilder/1.2.6/js/dataTables.searchBuilder.min.js"></script>
     <script type="text/javascript" charset="utf8"
         src="https://cdn.datatables.net/searchpanes/2.5.2/js/dataTables.searchPanes.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
@@ -85,14 +89,8 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable({
-                "responsive": true,
-                "lengthChange": false,
-                "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", {
-                    extend: 'searchBuilder',
-
-                }],
-            }).buttons().container().appendTo('#table-revenue .col-md-6:eq(0)');;
+                searchBuilder: true,
+            });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
