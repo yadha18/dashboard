@@ -87,6 +87,85 @@
                 "lengthChange": false,
             });
 
+            function updateTable(selectedRegional) {
+                var year = $('.filter-button.active').data('year');
+                var type = $('.filter-button.active').data('type');
+
+                $.ajax({
+                    url: '/get-revenue-data',
+                    type: 'GET',
+                    data: {
+                        year: year,
+                        type: type,
+                        namaSBU: selectedRegional
+                    },
+                    beforeSend: function() {
+                        $('#loading-spinner').removeClass('d-none');
+                    },
+                    success: function(data) {
+                        table.clear();
+
+                        $.each(data, function(index, item) {
+                            var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
+                                parseFloat(item.pendapatan);
+                            var row = [
+                                item.lembarTagihan,
+                                item.namaSBU,
+                                item.namaKP,
+                                item.tahun,
+                                item.bulan,
+                                'Rp. ' + (typeof pendapatan === 'number' ?
+                                    pendapatan.toFixed(2).replace(
+                                        /\d(?=(\d{3})+\.)/g, '$&,') : ''),
+                                item.typeBilling,
+                                item.asal
+                            ];
+
+                            table.row.add(row);
+                        });
+
+                        table.draw();
+                        updateFooter(data);
+                    },
+                    complete: function() {
+                        $('#loading-spinner').addClass('d-none');
+                    }
+                });
+            }
+
+            $.ajax({
+                url: '/get-regional',
+                type: 'GET',
+                success: function(data) {
+                    var dropdownRegional = $('#dropdownRegional');
+                    var dropdownMenu = dropdownRegional.next('.dropdown-menu');
+
+                    // Clear existing dropdown items
+                    dropdownMenu.empty();
+
+                    // Add regional options to the dropdown
+                    $.each(data, function(index, item) {
+                        dropdownMenu.append(
+                            '<a class="dropdown-item regional-filter" data-regional="' +
+                            item.namaSBU + '">' + item.namaSBU + '</a>');
+                    });
+
+                    // Handle regional filter click event
+                    dropdownMenu.on('click', '.regional-filter', function() {
+                        // Ensure year and type are defined
+                        var year = $('.filter-button.active').data('year');
+                        var type = $('.filter-button.active').data('type');
+
+                        var selectedRegional = $(this).data('regional');
+
+                        // Trigger the existing filter-button click event with the selected regional
+                        $('.filter-button[data-year="' + year + '"][data-type="' +
+                                type + '"]').data('regional', selectedRegional)
+                            .trigger('click');
+                    });
+                }
+            });
+
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
@@ -131,39 +210,6 @@
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');
-                    }
-                });
-
-                $.ajax({
-                    url: '/get-regional',
-                    type: 'GET',
-                    success: function(data) {
-                        var dropdownRegional = $('#dropdownRegional');
-                        var dropdownMenu = dropdownRegional.next('.dropdown-menu');
-
-                        // Clear existing dropdown items
-                        dropdownMenu.empty();
-
-                        // Add regional options to the dropdown
-                        $.each(data, function(index, item) {
-                            dropdownMenu.append(
-                                '<a class="dropdown-item regional-filter" data-regional="' +
-                                item.namaSBU + '">' + item.namaSBU + '</a>');
-                        });
-
-                        // Handle regional filter click event
-                        dropdownMenu.on('click', '.regional-filter', function() {
-                            // Ensure year and type are defined
-                            var year = $('.filter-button.active').data('year');
-                            var type = $('.filter-button.active').data('type');
-
-                            var selectedRegional = $(this).data('regional');
-
-                            // Trigger the existing filter-button click event with the selected regional
-                            $('.filter-button[data-year="' + year + '"][data-type="' +
-                                    type + '"]').data('regional', selectedRegional)
-                                .trigger('click');
-                        });
                     }
                 });
 
