@@ -81,7 +81,9 @@
     <script>
         $(document).ready(function() {
             var table = $('#table-revenue').DataTable();
-
+            var tableFitur = $('#table-revenue').DataTable({
+                "buttons": ["searchPanes"]
+            });
             $('.filter-button').on('click', function() {
                 var year = $(this).data('year');
                 var type = $(this).data('type');
@@ -97,7 +99,7 @@
                         $('#loading-spinner').removeClass('d-none');
                     },
                     success: function(data) {
-                        table.clear();
+                        tableFitur.clear();
 
                         $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
@@ -115,10 +117,10 @@
                                 item.asal
                             ];
 
-                            table.row.add(row);
+                            tableFitur.row.add(row);
                         });
 
-                        table.draw();
+                        tableFitur.draw();
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');
