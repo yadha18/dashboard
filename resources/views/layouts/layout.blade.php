@@ -86,6 +86,8 @@
                 var year = $(this).data('year');
                 var region = $(this).data('region');
 
+                $('#applied-filters').text('Tahun: ' + year + ', Type: ' + type);
+
                 $.ajax({
                     url: '/get-revenue-data',
                     type: 'GET',
