@@ -146,12 +146,17 @@
                         $.each(data, function(index, item) {
                             dropdownMenu.append(
                                 '<a class="dropdown-item regional-filter" data-regional="' +
-                                item.regional + '">' + item.regional + '</a>');
+                                item.namaSBU + '">' + item.namaSBU + '</a>');
                         });
 
                         // Handle regional filter click event
                         dropdownMenu.on('click', '.regional-filter', function() {
+                            // Ensure year and type are defined
+                            var year = $('.filter-button.active').data('year');
+                            var type = $('.filter-button.active').data('type');
+
                             var selectedRegional = $(this).data('regional');
+
                             // Trigger the existing filter-button click event with the selected regional
                             $('.filter-button[data-year="' + year + '"][data-type="' +
                                     type + '"]').data('regional', selectedRegional)
