@@ -30,3 +30,4 @@ Route::controller(UserController::class)->group(function () {
 
 Route::get('/chart-data', 'App\Http\Controllers\ChartController@getChartData');
 Route::get('/get-revenue-data', 'App\Http\Controllers\RevenueController@getRevenueData');
+Route::get('/get-regional', 'App\Http\Controllers\RevenueController@getRegional');
