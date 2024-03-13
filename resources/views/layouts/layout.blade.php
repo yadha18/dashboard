@@ -237,7 +237,7 @@
                     var jumlah2022 = response.map(function(data) {
                         return data.jumlah['2022'];
                     });
-                    var jumlah2022 = response.map(function(data) {
+                    var jumlah2023 = response.map(function(data) {
                         return data.jumlah['2023'];
                     });
 
