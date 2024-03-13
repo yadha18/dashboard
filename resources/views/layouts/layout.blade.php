@@ -242,9 +242,8 @@
                         type: "bar",
                         data: {
                             labels: namaSBU,
-                            datasets: [
-                                {
-                                    label: '2021'
+                            datasets: [{
+                                    label: '2021',
                                     backgroundColor: "#007bff",
                                     borderColor: "#007bff",
                                     data: jumlah2021,
@@ -303,7 +302,7 @@
                     });
                 },
             });
-        })
+        });
     </script>
     <script>
         $(function() {
