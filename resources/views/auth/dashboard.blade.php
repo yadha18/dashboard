@@ -60,9 +60,11 @@
                                         <span class="mr-2">
                                             <i class="fas fa-square text-primary"></i> 2021
                                         </span>
+
                                         <span>
                                             <i class="fas fa-square text-success"></i> 2022
                                         </span>
+
                                         <span>
                                             <i class="fas fa-square text-danger"></i> 2023
                                         </span>

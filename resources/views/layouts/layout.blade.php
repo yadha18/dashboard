@@ -334,8 +334,6 @@
                 maintainAspectRatio: false,
                 responsive: true,
             }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
             new Chart(donutChartCanvas, {
                 type: 'doughnut',
                 data: donutData,
