@@ -48,8 +48,6 @@
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>ID CRM</th>
                                                 <th>ID PLN</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
@@ -70,8 +68,6 @@
                                             @foreach ($data as $baddebt)
                                                 <tr>
                                                     <td>{{ $baddebt->idPelanggan }}</td>
-                                                    <td>{{ $baddebt->idPelangganProduk }}</td>
-                                                    <td>{{ $baddebt->idCRM }}</td>
                                                     <td>{{ $baddebt->idPLN }}</td>
                                                     <td>{{ $baddebt->nama }}</td>
                                                     <td>{{ $baddebt->email }}</td>

@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('email');
             $table->string('alamat');
             $table->string('telepon');
-            $table->date('periodeIsolir');
+            $table->dateTime('periodeIsolir');
             $table->integer('telatHari');
             $table->dateTime('tanggalAktivasi');
             $table->string('namaLayananProduk');

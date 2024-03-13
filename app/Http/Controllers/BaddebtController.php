@@ -19,4 +19,41 @@ class BaddebtController extends Controller
             'username' => 'silakan login terlebih dahulu'
         ])->withInput(['username']);
     }
+
+    public function getCountBaddebts()
+    {
+        $sbu = [
+            'BALI & NUSA TENGGARA',
+            'JAKARTA & BANTEN',
+            'JAWA BAGIAN BARAT',
+            'JAWA BAGIAN TENGAH',
+            'JAWA BAGIAN TIMUR',
+            'KALIMANTAN',
+            'SULAWESI & INDONESIA TIMUR',
+            'SUMATERA BAGIAN SELATAN',
+            'SUMATERA BAGIAN TENGAH',
+            'SUMATERA BAGIAN UTARA'
+        ];
+
+        $result = [];
+
+        foreach ($sbu as $region) {
+            $count = $this->filterBaddebt($region, 2021);
+            $result[] = [
+                'namaSBU' => $region,
+                'jumlah' => $count
+            ];
+        }
+
+        return response()->json($result);
+    }
+
+    private function filterBaddebt($sbu, $year)
+    {
+        $data = Baddebt::whereYear('periodeIsolir', $year)
+            ->where('namaSBU', $sbu)
+            ->count();
+
+        return $data;
+    }
 }
