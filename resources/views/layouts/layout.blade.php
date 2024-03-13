@@ -162,7 +162,7 @@
                             sbuLabel.push(item.namaSBU),
                                 totalData.push(item.jumlah)
                         })
-                        var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
+                        var salesChartCanvas = $('#sales-chart').get(0).getContext('2d')
 
                         var salesChartData = {
                             labels: sbuLabel,
