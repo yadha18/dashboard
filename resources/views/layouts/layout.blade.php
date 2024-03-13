@@ -282,6 +282,7 @@
                 data: salesChartData,
                 options: salesChartOptions
             })
+            fetchData();
         })
     </script>
     <script>
