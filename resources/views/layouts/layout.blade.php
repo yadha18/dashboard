@@ -231,19 +231,31 @@
                         return data.namaSBU;
                     });
 
-                    var jumlah = response.map(function(data) {
-                        return data.jumlah;
+                    var jumlah2021 = response.map(function(data) {
+                        return data.jumlah['2021'];
+                    });
+                    var jumlah2022 = response.map(function(data) {
+                        return data.jumlah['2022'];
                     });
 
                     var salesChart = new Chart($salesChart, {
                         type: "bar",
                         data: {
                             labels: namaSBU,
-                            datasets: [{
-                                backgroundColor: "#007bff",
-                                borderColor: "#007bff",
-                                data: jumlah,
-                            }, ],
+                            datasets: [
+                                {
+                                    label: '2021'
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: jumlah2021,
+                                },
+                                {
+                                    label: '2022',
+                                    backgroundColor: "#28a745",
+                                    borderColor: "#28a745",
+                                    data: jumlah2022,
+                                },
+                            ],
                         },
                         options: {
                             maintainAspectRatio: false,
@@ -273,7 +285,7 @@
                                                     value /= 1000;
                                                     value += "k";
                                                 }
-                                                return "$" + value;
+                                                return value;
                                             },
                                         },
                                         ticksStyle

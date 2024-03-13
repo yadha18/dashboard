@@ -38,10 +38,14 @@ class BaddebtController extends Controller
         $result = [];
 
         foreach ($sbu as $region) {
-            $count = $this->filterBaddebt($region, 2021);
+            $count2021 = $this->filterBaddebt($region, 2021);
+            $count2022 = $this->filterBaddebt($region, 2022);
             $result[] = [
                 'namaSBU' => $region,
-                'jumlah' => $count
+                'jumlah' => [
+                    '2021' => $count2021,
+                    '2022' => $count2022
+                ]
             ];
         }
 
