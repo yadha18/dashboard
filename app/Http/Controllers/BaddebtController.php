@@ -40,11 +40,13 @@ class BaddebtController extends Controller
         foreach ($sbu as $region) {
             $count2021 = $this->filterBaddebt($region, 2021);
             $count2022 = $this->filterBaddebt($region, 2022);
+            $count2023 = $this->filterBaddebt($region, 2023);
             $result[] = [
                 'namaSBU' => $region,
                 'jumlah' => [
                     '2021' => $count2021,
-                    '2022' => $count2022
+                    '2022' => $count2022,
+                    '2023' => $count2023
                 ]
             ];
         }

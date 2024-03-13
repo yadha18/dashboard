@@ -237,6 +237,9 @@
                     var jumlah2022 = response.map(function(data) {
                         return data.jumlah['2022'];
                     });
+                    var jumlah2022 = response.map(function(data) {
+                        return data.jumlah['2023'];
+                    });
 
                     var salesChart = new Chart($salesChart, {
                         type: "bar",
@@ -250,9 +253,15 @@
                                 },
                                 {
                                     label: '2022',
-                                    backgroundColor: "#28a745",
-                                    borderColor: "#28a745",
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
                                     data: jumlah2022,
+                                },
+                                {
+                                    label: '2023',
+                                    backgroundColor: "#dc3545",
+                                    borderColor: "#dc3545",
+                                    data: jumlah2023,
                                 },
                             ],
                         },

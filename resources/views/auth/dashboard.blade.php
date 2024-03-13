@@ -45,7 +45,8 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <p class="d-flex flex-column">
-                                            <span class="text-bold text-lg">{{ str_replace(',', '.', number_format($total)) }}</span>
+                                            <span
+                                                class="text-bold text-lg">{{ str_replace(',', '.', number_format($total)) }}</span>
                                             <span>Passive Customer</span>
                                         </p>
                                     </div>
@@ -59,9 +60,11 @@
                                         <span class="mr-2">
                                             <i class="fas fa-square text-primary"></i> 2021
                                         </span>
-
                                         <span>
-                                            <i class="fas fa-square text-gray"></i> 2022
+                                            <i class="fas fa-square text-success"></i> 2022
+                                        </span>
+                                        <span>
+                                            <i class="fas fa-square text-danger"></i> 2023
                                         </span>
                                     </div>
                                 </div>
