@@ -49,30 +49,21 @@
                                             <tr>
                                                 <th>ID Pelanggan</th>
                                                 <th>ID Pelanggan Produk</th>
+                                                <th>ID CRM</th>
+                                                <th>ID PLN</th>
                                                 <th>Nama</th>
-                                                <th>No. Telp</th>
                                                 <th>Email</th>
                                                 <th>Alamat</th>
-                                                <th>Provinsi</th>
-                                                <th>Kabupaten</th>
-                                                <th>Kecamatan</th>
-                                                <th>Kelurahan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Olt ID</th>
-                                                <th>Splitter ID</th>
-                                                <th>Ont ID</th>
-                                                <th>Ont Serial Number</th>
+                                                <th>No. Telp</th>
+                                                <th>Type Billing</th>
                                                 <th>Tanggal Aktivasi</th>
-                                                <th>Durasi</th>
-                                                <th>Lama Durasi</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Status Winback</th>
-                                                <th>Status</th>
+                                                <th>Periode Isolir</th>
+                                                <th>Telat Hari</th>
+                                                <th>Nama Layanan Produk</th>
+                                                <th>Harga Produk</th>
+                                                <th>Kode Gerak</th>
+                                                <th>Status Aktif</th>
+                                                <th>Nama SBU</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -80,30 +71,21 @@
                                                 <tr>
                                                     <td>{{ $baddebt->idPelanggan }}</td>
                                                     <td>{{ $baddebt->idPelangganProduk }}</td>
+                                                    <td>{{ $baddebt->idCRM }}</td>
+                                                    <td>{{ $baddebt->idPLN }}</td>
                                                     <td>{{ $baddebt->nama }}</td>
-                                                    <td>{{ $baddebt->no_telp }}</td>
                                                     <td>{{ $baddebt->email }}</td>
                                                     <td>{{ $baddebt->alamat }}</td>
-                                                    <td>{{ $baddebt->provinsi }}</td>
-                                                    <td>{{ $baddebt->kabupaten }}</td>
-                                                    <td>{{ $baddebt->kecamatan }}</td>
-                                                    <td>{{ $baddebt->kelurahan }}</td>
-                                                    <td>{{ $baddebt->tipeBilling }}</td>
-                                                    <td>{{ $baddebt->namaLayanan }}</td>
-                                                    <td>{{ $baddebt->namaLayananProduk }}</td>
-                                                    <td>{{ $baddebt->namaSBU }}</td>
-                                                    <td>{{ $baddebt->namaKP }}</td>
-                                                    <td>{{ $baddebt->oltId }}</td>
-                                                    <td>{{ $baddebt->splitterId }}</td>
-                                                    <td>{{ $baddebt->ontId }}</td>
-                                                    <td>{{ $baddebt->ontSerialNumber }}</td>
+                                                    <td>{{ $baddebt->telepon }}</td>
+                                                    <td>{{ $baddebt->typebilling }}</td>
                                                     <td>{{ $baddebt->tanggalAktivasi }}</td>
-                                                    <td>{{ $baddebt->durasi }}</td>
-                                                    <td>{{ $baddebt->lama_durasi }}</td>
-                                                    <td>{{ $baddebt->month }}</td>
-                                                    <td>{{ $baddebt->year }}</td>
-                                                    <td>{{ $baddebt->status_winback }}</td>
-                                                    <td>{{ $baddebt->status }}</td>
+                                                    <td>{{ $baddebt->periodeIsolir }}</td>
+                                                    <td>{{ $baddebt->telatHari }}</td>
+                                                    <td>{{ $baddebt->namaLayananProduk }}</td>
+                                                    <td>{{ $baddebt->rp_produk }}</td>
+                                                    <td>{{ $baddebt->kodeGerak }}</td>
+                                                    <td>{{ $baddebt->statusAktif }}</td>
+                                                    <td>{{ $baddebt->namaSBU }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
