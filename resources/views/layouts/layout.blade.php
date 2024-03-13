@@ -150,12 +150,25 @@
     </script>
     <script>
         $(function() {
+            function fetchData() {
+                url: '/get-baddebt-2021',
+                method: 'GET',
+                success: function(data) {
+                    var sbuLabel = [];
+                    var totalData = [];
+
+                    data.forEach((item) => {
+                        sbuLabel.push(item.namaSBU),
+                            totalData.push(item.jumlah)
+                    })
+                }
+            }
             var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
 
             var salesChartData = {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+                labels: sbuLabel,
                 datasets: [{
-                        label: 'Digital Goods',
+                        label: '2021',
                         backgroundColor: 'rgba(60,141,188,0.9)',
                         borderColor: 'rgba(60,141,188,0.8)',
                         pointRadius: false,
@@ -163,7 +176,7 @@
                         pointStrokeColor: 'rgba(60,141,188,1)',
                         pointHighlightFill: '#fff',
                         pointHighlightStroke: 'rgba(60,141,188,1)',
-                        data: [28, 48, 40, 19, 86, 27, 90]
+                        data: totalData
                     },
                     {
                         label: 'Electronics',
