@@ -119,8 +119,9 @@
                                         <div class="col-sm-3 col-6">
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-success"><i
-                                                        class="fas fa-caret-up"></i> 17%</span>
-                                                <h5 class="description-header">Rp. {{ str_replace(',', '.', number_format($totalPendapatan)) }}</h5>
+                                                        class="fas fa-caret-up"></i> 0%</span>
+                                                <h5 class="description-header">Rp.
+                                                    {{ str_replace(',', '.', number_format($totalPendapatan)) }}</h5>
                                                 <span class="description-text">TOTAL REVENUE</span>
                                             </div>
                                             <!-- /.description-block -->

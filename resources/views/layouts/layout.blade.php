@@ -154,19 +154,18 @@
                 url: '/get-month-revenue',
                 method: 'GET',
                 success: function(data) {
-                    var dataValues = [];
 
                     var labels = data.map(function(item) {
                         return item.bulan;
                     });
 
-                    data.forEach(function(item) {
-                        // Hilangkan "Rp " dan tanda titik dari string
+                    var dataValues = data.map(function(item) {
                         var numericValue = parseFloat(item.total_pendapatan.replace('Rp ', '')
                             .replace(/\./g, '').replace(',', '.'));
-
-                        // Tambahkan nilai numerik ke dalam array
-                        dataValues.push(numericValue);
+                        return numericValue.toLocaleString('id-ID', {
+                            style: 'currency',
+                            currency: 'IDR'
+                        });
                     });
 
                     console.log(dataValues);
@@ -175,28 +174,16 @@
                     var salesChartData = {
                         labels: labels,
                         datasets: [{
-                                label: '2021',
-                                backgroundColor: 'rgba(60,141,188,0.9)',
-                                borderColor: 'rgba(60,141,188,0.8)',
-                                pointRadius: false,
-                                pointColor: '#3b8bba',
-                                pointStrokeColor: 'rgba(60,141,188,1)',
-                                pointHighlightFill: '#fff',
-                                pointHighlightStroke: 'rgba(60,141,188,1)',
-                                data: dataValues
-                            },
-                            {
-                                label: 'Electronics',
-                                backgroundColor: 'rgba(210, 214, 222, 1)',
-                                borderColor: 'rgba(210, 214, 222, 1)',
-                                pointRadius: false,
-                                pointColor: 'rgba(210, 214, 222, 1)',
-                                pointStrokeColor: '#c1c7d1',
-                                pointHighlightFill: '#fff',
-                                pointHighlightStroke: 'rgba(220,220,220,1)',
-                                data: [65, 59, 80, 81, 56, 55, 40]
-                            }
-                        ]
+                            label: 'Total Revenue',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            pointRadius: false,
+                            pointColor: '#3b8bba',
+                            pointStrokeColor: 'rgba(60,141,188,1)',
+                            pointHighlightFill: '#fff',
+                            pointHighlightStroke: 'rgba(60,141,188,1)',
+                            data: dataValues
+                        }]
                     }
 
                     var salesChartOptions = {
@@ -217,7 +204,7 @@
                                 },
                                 ticks: {
                                     callback: function(value, index, values) {
-                                        return 'Rp ' + value.toLocaleString('id-ID');
+                                        return value;
                                     }
                                 }
                             }]
