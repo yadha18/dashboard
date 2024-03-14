@@ -19,6 +19,18 @@ class RevenueController extends Controller
         return response()->json($revenueData);
     }
 
+    public function getMonthRevenue()
+    {
+        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as pendapatan')
+            ->whereYear('tahun', '>=', 2023)
+            ->whereYear('tahun', '<=', 2024)
+            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
+            ->groupBy('bulan')
+            ->get();
+
+        return response()->json($revenuesByMonth);
+    }
+
     public function getRegional()
     {
         $regional = Revenue::select('namaSBU')->distinct()->get();

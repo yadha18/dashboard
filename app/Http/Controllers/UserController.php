@@ -68,15 +68,13 @@ class UserController extends Controller
 
     public function dashboard()
     {
-        $bulan = ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'];
-
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
         $totalPendapatan = Revenue::whereYear('tahun', '>=', 2023)
             ->whereYear('tahun', '<=', 2024)
-            ->whereIn('bulan', $bulan)
+            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'])
             ->sum('pendapatan');
 
         if (Auth::check()) {
