@@ -21,7 +21,7 @@ class RevenueController extends Controller
 
     public function getMonthRevenue()
     {
-        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as pendapatan')->whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])->groupBy('bulan')->get();
+        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as pendapatan')->whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->groupBy('bulan')->get();
 
         return response()->json($revenuesByMonth);
     }
