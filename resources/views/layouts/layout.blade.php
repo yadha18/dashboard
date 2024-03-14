@@ -155,7 +155,11 @@
                 method: 'GET',
                 success: function(data) {
                     data.forEach(function(item) {
-                        item.total_pendapatan = parseFloat(item.total_pendapatan);
+                        item.total_pendapatan = parseFloat(item.total_pendapatan)
+                            .toLocaleString('id-ID', {
+                                style: 'currency',
+                                currency: 'IDR'
+                            });
                     });
 
                     var labels = data.map(function(item) {
@@ -209,6 +213,11 @@
                             yAxes: [{
                                 gridLines: {
                                     display: false
+                                },
+                                ticks: {
+                                    callback: function(value, index, values) {
+                                        return value;
+                                    }
                                 }
                             }]
                         }
