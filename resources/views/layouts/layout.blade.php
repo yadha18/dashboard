@@ -167,7 +167,8 @@
                     });
 
                     var dataValues = data.map(function(item) {
-                        return item.total_pendapatan;
+                        return parseFloat(item.replace('Rp ', '').replace(/\./g, '').replace(
+                            ',', '.'));
                     });
 
                     console.log(dataValues);
