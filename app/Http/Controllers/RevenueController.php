@@ -23,20 +23,20 @@ class RevenueController extends Controller
     {
         $revenues = Revenue::whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])->get();
 
-        $revenuesByMonth = [];
+        // $revenuesByMonth = [];
 
-        foreach ($revenues as $revenue) {
-            $bulan = $revenue->bulan;
-            $pendapatan = $revenue->pendapatan;
-        }
+        // foreach ($revenues as $revenue) {
+        //     $bulan = $revenue->bulan;
+        //     $pendapatan = $revenue->pendapatan;
+        // }
 
-        if (array_key_exists($bulan, $revenuesByMonth)) {
-            $revenuesByMonth[$bulan] += $pendapatan;
-        } else {
-            $revenuesByMonth[$bulan] = $pendapatan;
-        }
+        // if (array_key_exists($bulan, $revenuesByMonth)) {
+        //     $revenuesByMonth[$bulan] += $pendapatan;
+        // } else {
+        //     $revenuesByMonth[$bulan] = $pendapatan;
+        // }
 
-        return response()->json($revenuesByMonth);
+        return response()->json($revenues);
     }
 
     public function getRegional()
