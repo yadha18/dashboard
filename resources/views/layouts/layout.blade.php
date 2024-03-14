@@ -154,10 +154,23 @@
                 url: '/get-month-revenue',
                 method: 'GET',
                 success: function(data) {
-                    console.log(data)
+                    data.forEach(function(item) {
+                        item.total_pendapatan = parseFloat(item.total_pendapatan);
+                    });
+
+                    var labels = data.map(function(item) {
+                        return item.bulan;
+                    });
+
+                    var dataValues = data.map(function(item) {
+                        return item.total_pendapatan;
+                    });
+
+                    console.log(dataValues)
+
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
-                        labels: data.bulan,
+                        labels: labels,
                         datasets: [{
                                 label: '2021',
                                 backgroundColor: 'rgba(60,141,188,0.9)',
