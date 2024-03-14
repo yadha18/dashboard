@@ -154,7 +154,7 @@
                 url: '/get-month-revenue',
                 method: 'GET',
                 success: function(data) {
-                    console.log(data.total_pendapatan)
+                    console.log(data)
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
                         labels: data.bulan,
