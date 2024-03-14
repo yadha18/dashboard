@@ -230,7 +230,9 @@
                     var namaSBU = response.map(function(data) {
                         return data.namaSBU;
                     });
-
+                    var jumlah2020 = response.map(function(data) {
+                        return data.jumlah['2020'];
+                    });
                     var jumlah2021 = response.map(function(data) {
                         return data.jumlah['2021'];
                     });
@@ -246,6 +248,12 @@
                         data: {
                             labels: namaSBU,
                             datasets: [{
+                                    label: '2020',
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: jumlah2020,
+                                },
+                                {
                                     label: '2021',
                                     backgroundColor: "#007bff",
                                     borderColor: "#007bff",

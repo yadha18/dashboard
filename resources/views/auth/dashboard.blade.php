@@ -58,13 +58,14 @@
 
                                     <div class="d-flex flex-row justify-content-end">
                                         <span class="mr-2">
+                                            <i class="fas fa-square text-info"></i> 2020
+                                        </span>
+                                        <span class="mr-2">
                                             <i class="fas fa-square text-primary"></i> 2021
                                         </span>
-
                                         <span class="mr-2">
                                             <i class="fas fa-square text-success"></i> 2022
                                         </span>
-
                                         <span>
                                             <i class="fas fa-square text-danger"></i> 2023
                                         </span>
@@ -79,7 +80,7 @@
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChart"
-                                        style="min-height: 250px; height: 300px; max-height: 350px; max-width: 100%;"></canvas>
+                                        style="min-height: 250px; height: 310px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
