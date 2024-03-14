@@ -166,8 +166,6 @@
                         return item.total_pendapatan;
                     });
 
-                    console.log(dataValues)
-
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
                         labels: labels,
@@ -180,7 +178,7 @@
                                 pointStrokeColor: 'rgba(60,141,188,1)',
                                 pointHighlightFill: '#fff',
                                 pointHighlightStroke: 'rgba(60,141,188,1)',
-                                data: data.total_pendapatan
+                                data: dataValues
                             },
                             {
                                 label: 'Electronics',
