@@ -154,21 +154,19 @@
                 url: '/get-month-revenue',
                 method: 'GET',
                 success: function(data) {
-                    data.forEach(function(item) {
-                        item.total_pendapatan = parseFloat(item.total_pendapatan)
-                            .toLocaleString('id-ID', {
-                                style: 'currency',
-                                currency: 'IDR'
-                            });
-                    });
+                    var dataValues = [];
 
                     var labels = data.map(function(item) {
                         return item.bulan;
                     });
 
-                    var dataValues = data.map(function(item) {
-                        return parseFloat(item.replace('Rp ', '').replace(/\./g, '').replace(
-                            ',', '.'));
+                    data.forEach(function(item) {
+                        // Hilangkan "Rp " dan tanda titik dari string
+                        var numericValue = parseFloat(item.total_pendapatan.replace('Rp ', '')
+                            .replace(/\./g, '').replace(',', '.'));
+
+                        // Tambahkan nilai numerik ke dalam array
+                        dataValues.push(numericValue);
                     });
 
                     console.log(dataValues);
@@ -219,7 +217,7 @@
                                 },
                                 ticks: {
                                     callback: function(value, index, values) {
-                                        return value;
+                                        return 'Rp ' + value.toLocaleString('id-ID');
                                     }
                                 }
                             }]
