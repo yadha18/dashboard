@@ -72,10 +72,7 @@ class UserController extends Controller
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
-        $totalPendapatan = Revenue::whereYear('tahun', '>=', 2023)
-            ->whereYear('tahun', '<=', 2024)
-            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'])
-            ->sum('pendapatan');
+        $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'])->sum('pendapatan');
 
         if (Auth::check()) {
             return view('auth.dashboard', compact('total', 'total_pd', 'user', 'total_kanal', 'totalPendapatan'));
