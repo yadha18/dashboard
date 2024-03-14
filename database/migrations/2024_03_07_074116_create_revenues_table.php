@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('namaKP');
             $table->integer('tahun');
             $table->string('bulan');
-            $table->decimal('pendapatan');
+            $table->float('pendapatan');
             $table->string('typeBilling');
             $table->string('asal');
             $table->timestamps();
