@@ -140,8 +140,6 @@ class UserController extends Controller
         $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
             ->whereIn('tahun', ['2023', '2024'])
             ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
-            ->groupBy('bulan')
-            ->orderByRaw("FIELD(bulan, 'Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret')")
             ->get();
 
         return response()->json($revenuesByMonth);
