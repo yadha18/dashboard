@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('idCRM');
             $table->string('idPLN');
             $table->string('typebilling');
-            $table->string('nama');
+            $table->string('nama', 100);
             $table->string('email')->nullable();
             $table->string('alamat')->nullable();
             $table->string('telepon')->nullable();
