@@ -135,6 +135,13 @@ class UserController extends Controller
         ])->withInput(['username']);
     }
 
+    public function getRevenueByMonth()
+    {
+        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')->whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])->groupBy('bulan')->get();
+
+        return response()->json($revenuesByMonth);
+    }
+
     private function getRevenue($year, $type)
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
