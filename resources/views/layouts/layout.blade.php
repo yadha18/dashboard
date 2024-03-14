@@ -321,7 +321,7 @@
                 success: (data) => {
                     var donutChartCanvas = $('#donutChart').get(0).getContext('2d');
                     var donutData = {
-                        labels: ['e_wallet', 'modern_market', 'bank', 'e_commerce'],
+                        labels: ['E-Wallet', 'Modern Market', 'Bank', 'E-Commerce'],
                         datasets: [{
                             data: [data.e_wallet, data.modern_market, data.bank, data
                                 .e_commerce
