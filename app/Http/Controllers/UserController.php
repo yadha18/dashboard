@@ -137,9 +137,7 @@ class UserController extends Controller
 
     public function getRevenueByMonth()
     {
-        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')->whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])->groupBy('bulan')->get();
-
-        return response()->json($revenuesByMonth);
+        return Revenue::table('revenues')->selectRaw('bulan, sum(pendapatan) as total_pendapatan')->whereYear('tahun', '>=', 2023)->whereYear('tahun', '<=', 2024)->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])->groupBy('bulan')->get();
     }
 
     private function getRevenue($year, $type)
