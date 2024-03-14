@@ -141,8 +141,19 @@ class UserController extends Controller
             ->whereIn('tahun', ['2023', '2024'])
             ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
             ->groupBy('bulan')
-            ->orderByRaw("FIELD(bulan, 'Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret')")
-            ->get();
+            ->orderByRaw("
+        CASE bulan
+            WHEN 'Agustus' THEN 1
+            WHEN 'September' THEN 2
+            WHEN 'Oktober' THEN 3
+            WHEN 'November' THEN 4
+            WHEN 'Desember' THEN 5
+            WHEN 'Januari' THEN 6
+            WHEN 'Februari' THEN 7
+            WHEN 'Maret' THEN 8
+            ELSE 9
+        END
+        ")->get();
 
         return response()->json($revenuesByMonth);
     }
