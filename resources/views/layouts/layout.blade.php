@@ -350,9 +350,23 @@
                             backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef']
                         }]
                     };
+
+                    var labels = donutData.labels.map(function(label, index) {
+                        var value = donutData.datasets[0].data[index];
+                        var color = donutData.datasets[0].backgroundColor[index];
+                        return label + ': ' + value + ' (' + color + ')';
+                    });
+
                     var donutOptions = {
                         maintainAspectRatio: false,
-                        responsive: true
+                        responsive: true,
+                        tooltips: {
+                            callbacks: {
+                                label: function(tooltipItem, data) {
+                                    return labels[tooltipItem.index];
+                                }
+                            }
+                        }
                     };
                     new Chart(donutChartCanvas, {
                         type: 'doughnut',
