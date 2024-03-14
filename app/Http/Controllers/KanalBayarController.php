@@ -27,10 +27,10 @@ class KanalBayarController extends Controller
         $percentage_e_commerce = number_format(($sum_e_commerce / $total_sum) * 100, 1);
 
         $data = [
-            'e_wallet' => $percentage_e_wallet,
-            'modern_market' => $percentage_modern_market,
-            'bank' => $percentage_bank,
-            'e_commerce' => $percentage_e_commerce,
+            'E-Wallet' => $percentage_e_wallet,
+            'Modern Market' => $percentage_modern_market,
+            'Bank' => $percentage_bank,
+            'E-Commerce' => $percentage_e_commerce,
         ];
 
         $total_percentage = $percentage_e_wallet + $percentage_modern_market + $percentage_bank + $percentage_e_commerce;

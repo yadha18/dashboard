@@ -79,7 +79,7 @@
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChart"
-                                        style="min-height: 250px; height: 250px; max-height: 350px; max-width: 100%;"></canvas>
+                                        style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
