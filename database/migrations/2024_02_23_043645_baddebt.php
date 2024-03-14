@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('idPLN');
             $table->string('typebilling');
             $table->string('nama');
-            $table->string('email');
-            $table->string('alamat');
-            $table->string('telepon');
+            $table->string('email')->nullable();
+            $table->string('alamat')->nullable();
+            $table->string('telepon')->nullable();
             $table->dateTime('periodeIsolir');
             $table->integer('telatHari');
             $table->dateTime('tanggalAktivasi');
