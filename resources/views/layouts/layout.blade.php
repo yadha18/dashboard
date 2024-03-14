@@ -170,6 +170,8 @@
                         return item.total_pendapatan;
                     });
 
+                    console.log(dataValues);
+
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
                         labels: labels,
