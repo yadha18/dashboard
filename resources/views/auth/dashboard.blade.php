@@ -39,7 +39,7 @@
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Grafik Passive Customer All-Time</h3>
+                                        <h3 class="card-title">Passive Customer All-Time Chart</h3>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -61,7 +61,7 @@
                                             <i class="fas fa-square text-primary"></i> 2021
                                         </span>
 
-                                        <span>
+                                        <span class="mr-2">
                                             <i class="fas fa-square text-success"></i> 2022
                                         </span>
 
@@ -75,7 +75,7 @@
                         <div class="col-md-4">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Donut Chart</h3>
+                                    <h3 class="card-title">Payment Channel of All Time Percentage</h3>
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChart"
