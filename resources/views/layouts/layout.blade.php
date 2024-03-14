@@ -209,9 +209,6 @@
                         data: salesChartData,
                         options: salesChartOptions
                     })
-
-                    salesChart.data = salesChartData;
-                    salesChart.update();
                 },
                 error: function(xhr, status, error) {
                     console.error('Error fetching data:', error);
