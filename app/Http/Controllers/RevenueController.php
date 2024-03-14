@@ -21,22 +21,25 @@ class RevenueController extends Controller
 
     public function getMonthRevenue()
     {
-        $revenues = Revenue::whereYear('tahun', '>=', 2023)->get();
+        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
+            ->whereIn('tahun', ['2023', '2024'])
+            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
+            ->groupBy('bulan')
+            ->orderByRaw("
+        CASE bulan
+            WHEN 'Agustus' THEN 1
+            WHEN 'September' THEN 2
+            WHEN 'Oktober' THEN 3
+            WHEN 'November' THEN 4
+            WHEN 'Desember' THEN 5
+            WHEN 'Januari' THEN 6
+            WHEN 'Februari' THEN 7
+            WHEN 'Maret' THEN 8
+            ELSE 9
+        END
+        ")->get();
 
-        // $revenuesByMonth = [];
-
-        // foreach ($revenues as $revenue) {
-        //     $bulan = $revenue->bulan;
-        //     $pendapatan = $revenue->pendapatan;
-        // }
-
-        // if (array_key_exists($bulan, $revenuesByMonth)) {
-        //     $revenuesByMonth[$bulan] += $pendapatan;
-        // } else {
-        //     $revenuesByMonth[$bulan] = $pendapatan;
-        // }
-
-        return response()->json($revenues);
+        return response()->json($revenuesByMonth);
     }
 
     public function getRegional()
