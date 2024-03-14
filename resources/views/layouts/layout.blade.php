@@ -154,21 +154,18 @@
                 url: '/get-month-revenue',
                 method: 'GET',
                 success: function(data) {
+                    var dataValues = [];
 
                     var labels = data.map(function(item) {
                         return item.bulan;
                     });
 
-                    var dataValues = data.map(function(item) {
+                    data.forEach(function(item) {
                         var numericValue = parseFloat(item.total_pendapatan.replace('Rp ', '')
                             .replace(/\./g, '').replace(',', '.'));
-                        return numericValue.toLocaleString('id-ID', {
-                            style: 'currency',
-                            currency: 'IDR'
-                        });
-                    });
 
-                    console.log(dataValues);
+                        dataValues.push(numericValue);
+                    });
 
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
@@ -204,7 +201,7 @@
                                 },
                                 ticks: {
                                     callback: function(value, index, values) {
-                                        return value;
+                                        return 'Rp ' + value.toLocaleString('id-ID');
                                     }
                                 }
                             }]
