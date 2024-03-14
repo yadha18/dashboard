@@ -68,13 +68,19 @@ class UserController extends Controller
 
     public function dashboard()
     {
+        $bulan = ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'];
+
         $total = Baddebt::count();
         $total_kanal = KanalBayar::count();
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
+        $totalPendapatan = Revenue::whereYear('tahun', '>=', 2023)
+            ->whereYear('tahun', '<=', 2024)
+            ->whereIn('bulan', $bulan)
+            ->sum('pendapatan');
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'total_kanal'));
+            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'total_kanal', 'totalPendapatan'));
         }
 
         return redirect()->route('login')->withErrors([
