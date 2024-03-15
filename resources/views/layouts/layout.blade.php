@@ -151,10 +151,10 @@
     <script>
         $(function() {
             $.ajax({
-                url: '/get-month-revenue',
+                url: '/get-prepaid-revenue',
                 method: 'GET',
                 success: function(data) {
-                    var dataValues = [];
+                    var dataPrepaid = [];
 
                     var labels = data.map(function(item) {
                         return item.bulan;
@@ -164,14 +164,14 @@
                         var numericValue = parseFloat(item.total_pendapatan.replace('Rp ', '')
                             .replace(/\./g, '').replace(',', '.'));
 
-                        dataValues.push(numericValue);
+                        dataPrepaid.push(numericValue);
                     });
 
                     var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
                     var salesChartData = {
                         labels: labels,
                         datasets: [{
-                            label: 'Total Revenue',
+                            label: 'Prepaid',
                             backgroundColor: 'rgba(60,141,188,0.9)',
                             borderColor: 'rgba(60,141,188,0.8)',
                             pointRadius: false,
@@ -179,7 +179,7 @@
                             pointStrokeColor: 'rgba(60,141,188,1)',
                             pointHighlightFill: '#fff',
                             pointHighlightStroke: 'rgba(60,141,188,1)',
-                            data: dataValues
+                            data: dataPrepaid
                         }]
                     }
 
