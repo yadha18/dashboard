@@ -153,67 +153,104 @@
             $.ajax({
                 url: '/get-prepaid-revenue',
                 method: 'GET',
-                success: function(data) {
+                success: function(data1) {
                     var dataPrepaid = [];
 
-                    var labels = data.map(function(item) {
+                    var labels = data1.map(function(item) {
                         return item.bulan;
                     });
 
-                    data.forEach(function(item) {
+                    data1.forEach(function(item) {
                         var numericValue = parseFloat(item.total_pendapatan.replace('Rp ', '')
                             .replace(/\./g, '').replace(',', '.'));
 
                         dataPrepaid.push(numericValue);
                     });
 
-                    var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
-                    var salesChartData = {
-                        labels: labels,
-                        datasets: [{
-                            label: 'Prepaid',
-                            backgroundColor: 'rgba(60,141,188,0.9)',
-                            borderColor: 'rgba(60,141,188,0.8)',
-                            pointRadius: false,
-                            pointColor: '#3b8bba',
-                            pointStrokeColor: 'rgba(60,141,188,1)',
-                            pointHighlightFill: '#fff',
-                            pointHighlightStroke: 'rgba(60,141,188,1)',
-                            data: dataPrepaid
-                        }]
+                    var datasetPrepaid = {
+                        label: 'Prepaid',
+                        backgroundColor: 'rgba(60,141,188,0.9)',
+                        borderColor: 'rgba(60,141,188,0.8)',
+                        pointRadius: false,
+                        pointColor: '#3b8bba',
+                        pointStrokeColor: 'rgba(60,141,188,1)',
+                        pointHighlightFill: '#fff',
+                        pointHighlightStroke: 'rgba(60,141,188,1)',
+                        data: dataPrepaid
                     }
 
-                    var salesChartOptions = {
-                        maintainAspectRatio: false,
-                        responsive: true,
-                        legend: {
-                            display: false
-                        },
-                        scales: {
-                            xAxes: [{
-                                gridLines: {
-                                    display: false
-                                }
-                            }],
-                            yAxes: [{
-                                gridLines: {
+                    $.ajax({
+                        url: '/get-postpaid-revenue',
+                        method: 'GET',
+                        success: function(data2) {
+                            var dataPostpaid = [];
+                            var label2 = data2.map(item => {
+                                return item.bulan
+                            });
+
+                            data2.forEach((item) => {
+                                var numericValue = parseFloat(item.total_pendapatan
+                                    .replace('Rp ', '')
+                                    .replace(/\./g, '').replace(',', '.'));
+
+                                dataPostpaid.push(numericValue);
+                            })
+
+                            var datasetPostpaid = {
+                                label: 'Total Revenue 2',
+                                backgroundColor: 'rgba(255,99,132,0.9)',
+                                borderColor: 'rgba(255,99,132,0.8)',
+                                pointRadius: false,
+                                pointColor: '#ff6384',
+                                pointStrokeColor: 'rgba(255,99,132,1)',
+                                pointHighlightFill: '#fff',
+                                pointHighlightStroke: 'rgba(255,99,132,1)',
+                                data: dataPostpaid
+                            }
+
+                            var salesChartData = {
+                                labels: labels,
+                                datasets: [datasetPrepaid, datasetPostpaid]
+                            }
+
+                            var salesChartOptions = {
+                                maintainAspectRatio: false,
+                                responsive: true,
+                                legend: {
                                     display: false
                                 },
-                                ticks: {
-                                    callback: function(value, index, values) {
-                                        return 'Rp ' + value.toLocaleString('id-ID');
-                                    }
+                                scales: {
+                                    xAxes: [{
+                                        gridLines: {
+                                            display: false
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        gridLines: {
+                                            display: false
+                                        },
+                                        ticks: {
+                                            callback: function(value, index,
+                                                values) {
+                                                return 'Rp ' + value
+                                                    .toLocaleString(
+                                                        'id-ID');
+                                            }
+                                        }
+                                    }]
                                 }
-                            }]
-                        }
-                    }
+                            };
 
-                    // This will get the first returned node in the jQuery collection.
-                    // eslint-disable-next-line no-unused-vars
-                    var salesChart = new Chart(salesChartCanvas, {
-                        type: 'line',
-                        data: salesChartData,
-                        options: salesChartOptions
+                            var salesChartCanvas = $('#salesChart').get(0).getContext('2d')
+                            var salesChart = new Chart(salesChartCanvas, {
+                                type: 'line',
+                                data: salesChartData,
+                                options: salesChartOptions
+                            });
+                        },
+                        error: function(xhr2, status2, error2) {
+                            console.error('Error fetching second data:', error2);
+                        }
                     })
                 },
                 error: function(xhr, status, error) {
