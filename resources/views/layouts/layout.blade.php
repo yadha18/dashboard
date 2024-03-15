@@ -58,6 +58,32 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <script>
+        $(document).ready(function () {
+            $('#baddebt-table').DataTable({
+                processing: true,
+                serverSide: true,
+                ajax: "{{ route('baddebt.data') }}",
+                columns: [
+                    {data: 'idPelanggan', name: 'idPelanggan'},
+                    {data: 'idPLN', name: 'idPLN'},
+                    {data: 'nama', name: 'nama'},
+                    {data: 'email', name: 'email'},
+                    {data: 'alamat', name: 'alamat'},
+                    {data: 'telepon', name: 'telepon'},
+                    {data: 'typebilling', name: 'typebilling'},
+                    {data: 'tanggalAktivasi', name: 'tanggalAktivasi'},
+                    {data: 'periodeIsolir', name: 'periodeIsolir'},
+                    {data: 'telatHari', name: 'telatHari'},
+                    {data: 'namaLayananProduk', name: 'namaLayananProduk'},
+                    {data: 'rp_produk', name: 'rp_produk'},
+                    {data: 'kodeGerak', name: 'kodeGerak'},
+                    {data: 'statusAktif', name: 'statusAktif'},
+                    {data: 'namaSBU', name: 'namaSBU'}
+                ]
+            });
+        });
+    </script>
+    <script>
         $(function() {
             $("#example1, #example2, #example3, #example4").DataTable({
                 "responsive": true,

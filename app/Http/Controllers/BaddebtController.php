@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Baddebt;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Yajra\DataTables\DataTables;
 
 class BaddebtController extends Controller
 {
@@ -63,5 +64,28 @@ class BaddebtController extends Controller
             ->count();
 
         return $data;
+    }
+
+    public function getBaddebtData()
+    {
+        $data = Baddebt::select(
+            'idPelanggan',
+            'idPLN',
+            'nama',
+            'email',
+            'alamat',
+            'telepon',
+            'typebilling',
+            'tanggalAktivasi',
+            'periodeIsolir',
+            'telatHari',
+            'namaLayananProduk',
+            'rp_produk',
+            'kodeGerak',
+            'statusAktif',
+            'namaSBU'
+        );
+
+        return DataTables::of($data)->make(true);
     }
 }

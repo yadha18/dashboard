@@ -44,7 +44,7 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="baddebt-table" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -64,7 +64,7 @@
                                                 <th>Nama SBU</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
+                                        {{-- <tbody>
                                             @foreach ($data as $baddebt)
                                                 <tr>
                                                     <td>{{ $baddebt->idPelanggan }}</td>
@@ -84,7 +84,7 @@
                                                     <td>{{ $baddebt->namaSBU }}</td>
                                                 </tr>
                                             @endforeach
-                                        </tbody>
+                                        </tbody> --}}
                                     </table>
                                 </div>
                                 <!-- /.card-body -->
