@@ -35,7 +35,7 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <div class="col-lg-8">
+                        <div class="col-lg-7">
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
@@ -73,7 +73,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <div class="col-md-5">
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Payment Channel of All Time Percentage</h3>
@@ -118,7 +118,7 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-7">
                                             <div class="description-block border-right">
-                                                <span class="description-percentage text-warning"><i
+                                                <span class="description-percentage text-dark"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
                                                 <h5 class="description-header">Rp.
                                                     {{ str_replace(',', '.', number_format($totalPendapatan)) }}</h5>
