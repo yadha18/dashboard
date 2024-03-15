@@ -362,7 +362,7 @@
                         responsive: true,
                         legend: {
                             display: true,
-                            position: 'bottom',
+                            position: 'right',
                             labels: {
                                 generateLabels: function(chart) {
                                     var data = chart.data;
@@ -374,7 +374,7 @@
                                             var value = ds.data[i];
                                             var color = ds.backgroundColor[i];
                                             return {
-                                                text: label + ': ' + value,
+                                                text: label + ': ' + value + '%',
                                                 fillStyle: color,
                                                 hidden: isNaN(ds.data[i]) || meta.data[
                                                     i].hidden,
