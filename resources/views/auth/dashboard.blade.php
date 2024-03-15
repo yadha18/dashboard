@@ -20,8 +20,8 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Kanal Bayar" icon="card" type="light" totalCount="{{ intval($total_kanal) }}"
-                            route="{{ route('kanal-bayar') }}" />
+                        <x-card title="Revenue Bulan ini" icon="card" type="light" totalCount="{{ intval($pendapatan) }}"
+                            route="{{ route('revenue') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
                         <x-card title="Pelanggan Passive" icon="person" type="light" totalCount="{{ intval($total) }}"
@@ -39,7 +39,7 @@
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
-                                        <h3 class="card-title">Passive Customer All-Time Chart</h3>
+                                        <h3 class="card-title">Passive Customer (Post Paid) All-Time Chart</h3>
                                     </div>
                                 </div>
                                 <div class="card-body">
@@ -118,8 +118,8 @@
                                     <div class="row">
                                         <div class="col-sm-4 col-7">
                                             <div class="description-block border-right">
-                                                <span class="description-percentage text-success"><i
-                                                        class="fas fa-caret-up"></i> 0%</span>
+                                                <span class="description-percentage text-warning"><i
+                                                        class="fas fa-caret-left"></i> 0%</span>
                                                 <h5 class="description-header">Rp.
                                                     {{ str_replace(',', '.', number_format($totalPendapatan)) }}</h5>
                                                 <span class="description-text">TOTAL REVENUE</span>

@@ -354,16 +354,36 @@
                     var labels = donutData.labels.map(function(label, index) {
                         var value = donutData.datasets[0].data[index];
                         var color = donutData.datasets[0].backgroundColor[index];
-                        return label + ': ' + value + ' (' + color + ')';
+                        return label + ': ' + value;
                     });
 
                     var donutOptions = {
                         maintainAspectRatio: false,
-                        responsive: true,
-                        tooltips: {
-                            callbacks: {
-                                label: function(tooltipItem, data) {
-                                    return labels[tooltipItem.index];
+                        responsive: true
+                        legend: {
+                            display: true,
+                            position: bottom,
+                            labels: {
+                                generateLabels: function(chart) {
+                                    var data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            var meta = chart.getDatasetMeta(0);
+                                            var ds = data.datasets[0];
+                                            var arc = meta.data[i];
+                                            var value = ds.data[i];
+                                            var color = ds.backgroundColor[i];
+                                            return {
+                                                text: label + ': ' + value,
+                                                fillStyle: color,
+                                                hidden: isNaN(ds.data[i]) || meta.data[
+                                                    i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    } else {
+                                        return [];
+                                    }
                                 }
                             }
                         }
