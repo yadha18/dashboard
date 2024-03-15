@@ -80,7 +80,7 @@
                                 </div>
                                 <div class="card-body">
                                     <canvas id="donutChart"
-                                        style="min-height: 250px; height: 310px; max-height: 350px; max-width: 100%;"></canvas>
+                                        style="min-height: 250px; height: 315px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
@@ -101,12 +101,13 @@
                                     <div class="row">
                                         <div class="col-md-8">
                                             <p class="text-center">
-                                                <strong>Sales: 1 Aug, 2023 - 1 Feb, 2024</strong>
+                                                <strong>Sales: 1 Aug, 2023 - 29 Feb, 2024</strong>
                                             </p>
 
                                             <div class="chart">
                                                 <!-- Sales Chart Canvas -->
-                                                <canvas id="salesChart" height="180" style="height: 180px;"></canvas>
+                                                <canvas id="salesChart" height="180"
+                                                    style="height: 180px; max-width: 100%;"></canvas>
                                             </div>
                                             <!-- /.chart-responsive -->
                                         </div>
