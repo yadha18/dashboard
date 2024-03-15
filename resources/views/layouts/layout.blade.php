@@ -359,10 +359,10 @@
 
                     var donutOptions = {
                         maintainAspectRatio: false,
-                        responsive: true
+                        responsive: true,
                         legend: {
                             display: true,
-                            position: bottom,
+                            position: 'bottom',
                             labels: {
                                 generateLabels: function(chart) {
                                     var data = chart.data;
