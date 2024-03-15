@@ -24,6 +24,7 @@ class RevenueController extends Controller
         $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
             ->whereIn('tahun', ['2023', '2024'])
             ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
+            ->where('typeBilling', 'prepaid')
             ->groupBy('bulan')
             ->orderByRaw("
         CASE bulan
