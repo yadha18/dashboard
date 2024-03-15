@@ -35,4 +35,4 @@ Route::get('/get-prepaid-revenue', 'App\Http\Controllers\RevenueController@getPr
 Route::get('/get-postpaid-revenue', 'App\Http\Controllers\RevenueController@getPostpaidMonthRevenue');
 Route::get('/get-baddebt-2021', 'App\Http\Controllers\BaddebtController@getCountBaddebts');
 Route::get('/get-total-kanal', 'App\Http\Controllers\KanalBayarController@pembayaranViaCount');
-Route::get('baddebt/data', 'BaddebtController@getBaddebtData')->name('baddebt.data');
+Route::get('/baddebt/data', 'App\Http\Controllers\BaddebtController@getBaddebtData')->name('baddebt.data');
