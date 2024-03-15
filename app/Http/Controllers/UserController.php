@@ -75,7 +75,7 @@ class UserController extends Controller
         $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'])->sum('pendapatan');
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'total_kanal', 'totalPendapatan', 'pendapatan'));
+            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'totalPendapatan', 'pendapatan'));
         }
 
         return redirect()->route('login')->withErrors([
