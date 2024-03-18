@@ -117,7 +117,7 @@
                                 <!-- ./card-body -->
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-sm-4 col-7">
+                                        <div class="col-sm-3 col-6">
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-dark"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
@@ -128,22 +128,31 @@
                                             <!-- /.description-block -->
                                         </div>
                                         <!-- /.col -->
-                                        <div class="col-sm-4 col-7">
+                                        <div class="col-sm-3 col-6">
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-warning"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
                                                 <h5 class="description-header">$10,390.90</h5>
-                                                <span class="description-text">TOTAL COST</span>
+                                                <span class="description-text">REVENUE BASED ON DAILY</span>
                                             </div>
                                             <!-- /.description-block -->
                                         </div>
                                         <!-- /.col -->
-                                        <div class="col-sm-4 col-7">
+                                        <div class="col-sm-3 col-6">
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-success"><i
                                                         class="fas fa-caret-up"></i> 20%</span>
                                                 <h5 class="description-header">$24,813.53</h5>
-                                                <span class="description-text">TOTAL PROFIT</span>
+                                                <span class="description-text">REVENUE PER ACCOUNT EXECUTIVE</span>
+                                            </div>
+                                            <!-- /.description-block -->
+                                        </div>
+                                        <div class="col-sm-3 col-6">
+                                            <div class="description-block border-right">
+                                                <span class="description-percentage text-success"><i
+                                                        class="fas fa-caret-up"></i> 20%</span>
+                                                <h5 class="description-header">$24,813.53</h5>
+                                                <span class="description-text">REVENUE PER PRODUCT</span>
                                             </div>
                                             <!-- /.description-block -->
                                         </div>
