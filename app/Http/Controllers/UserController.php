@@ -85,7 +85,7 @@ class UserController extends Controller
 
     public function passivecustomer()
     {
-        $data = Baddebt::paginate(750);
+        $data = Baddebt::paginate(500);
         $total = Baddebt::count();
         $user = User::select('name')->first();
 
