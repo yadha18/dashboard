@@ -91,7 +91,25 @@ class UserController extends Controller
         // Memuat data dalam batch menggunakan metode chunk
         Baddebt::chunk(1000, function ($chunk) use (&$data, &$total) {
             foreach ($chunk as $item) {
-                $data[] = $item;
+                $data[] = [
+                    'idPelanggan' => $item->idPelanggan,
+                    'idPelangganProduk' => $item->idPelangganProduk,
+                    'idCRM' => $item->idCRM,
+                    'idPLN' => $item->idPLN,
+                    'typebilling' => $item->typebilling,
+                    'nama' => $item->nama,
+                    'email' => $item->email,
+                    'alamat' => $item->alamat,
+                    'telepon' => $item->telepon,
+                    'periodeIsolir' => $item->periodeIsolir,
+                    'telatHari' => $item->telatHari,
+                    'tanggalAktivasi' => $item->tanggalAktivasi,
+                    'namaLayananProduk' => $item->namaLayananProduk,
+                    'rp_produk' => $item->rp_produk,
+                    'kodeGerak' => $item->kodeGerak,
+                    'statusAktif' => $item->statusAktif,
+                    'namaSBU' => $item->namaSBU,
+                ];
             }
             $total += $chunk->count();
         });
