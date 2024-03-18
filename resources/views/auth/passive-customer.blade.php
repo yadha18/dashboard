@@ -81,7 +81,7 @@
                                                     <td>{{ $baddebt['rp_produk'] }}</td>
                                                     <td>{{ $baddebt['kodeGerak'] }}</td>
                                                     <td>{{ $baddebt['statusAktif'] }}</td>
-                                                    <td>{{ $baddebt['namaSBU'] }}</td>
+                                                    {{-- <td>{{ $baddebt['namaSBU'] }}</td> --}}
                                                 </tr>
                                             @endforeach
                                         </tbody>
