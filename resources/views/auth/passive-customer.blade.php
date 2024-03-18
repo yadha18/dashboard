@@ -67,21 +67,21 @@
                                         <tbody>
                                             @foreach ($data as $baddebt)
                                                 <tr>
-                                                    <td>{{ $baddebt->idPelanggan }}</td>
-                                                    <td>{{ $baddebt->idPLN }}</td>
-                                                    <td>{{ $baddebt->nama }}</td>
-                                                    <td>{{ $baddebt->email }}</td>
-                                                    <td>{{ $baddebt->alamat }}</td>
-                                                    <td>{{ $baddebt->telepon }}</td>
-                                                    <td>{{ $baddebt->typebilling }}</td>
-                                                    <td>{{ $baddebt->tanggalAktivasi }}</td>
-                                                    <td>{{ $baddebt->periodeIsolir }}</td>
-                                                    <td>{{ $baddebt->telatHari }}</td>
-                                                    <td>{{ $baddebt->namaLayananProduk }}</td>
-                                                    <td>{{ $baddebt->rp_produk }}</td>
-                                                    <td>{{ $baddebt->kodeGerak }}</td>
-                                                    <td>{{ $baddebt->statusAktif }}</td>
-                                                    <td>{{ $baddebt->namaSBU }}</td>
+                                                    <td>{{ $baddebt['idPelanggan'] }}</td>
+                                                    <td>{{ $baddebt['idPLN'] }}</td>
+                                                    <td>{{ $baddebt['nama'] }}</td>
+                                                    <td>{{ $baddebt['email'] }}</td>
+                                                    <td>{{ $baddebt['alamat'] }}</td>
+                                                    <td>{{ $baddebt['telepon'] }}</td>
+                                                    <td>{{ $baddebt['typebilling'] }}</td>
+                                                    <td>{{ $baddebt['tanggalAktivasi'] }}</td>
+                                                    <td>{{ $baddebt['periodeIsolir'] }}</td>
+                                                    <td>{{ $baddebt['telatHari'] }}</td>
+                                                    <td>{{ $baddebt['namaLayananProduk'] }}</td>
+                                                    <td>{{ $baddebt['rp_produk'] }}</td>
+                                                    <td>{{ $baddebt['kodeGerak'] }}</td>
+                                                    <td>{{ $baddebt['statusAktif'] }}</td>
+                                                    <td>{{ $baddebt['namaSBU'] }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
