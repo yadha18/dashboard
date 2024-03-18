@@ -89,13 +89,14 @@ class UserController extends Controller
         $total = 0;
 
         // Memuat data dalam batch menggunakan metode chunk
-        $data = Baddebt::select('idPelanggan', 'idPelangganProduk', 'idCRM', 'idPLN', 'typebilling', 'nama', 'email', 'alamat', 'telepon', 'periodeIsolir', 'telatHari', 'tanggalAktivasi', 'namaLayananProduk', 'rp_produk', 'kodeGerak', 'statusAktif', 'namaSBU')
-            ->chunk(1000)
-            ->map(function ($chunk) {
-                return $chunk->toArray();
+        Baddebt::select('idPelanggan', 'idPelangganProduk', 'idCRM', 'idPLN', 'typebilling', 'nama', 'email', 'alamat', 'telepon', 'periodeIsolir', 'telatHari', 'tanggalAktivasi', 'namaLayananProduk', 'rp_produk', 'kodeGerak', 'statusAktif')
+            ->chunk(500, function ($chunk) use (&$data, &$total) {
+                foreach ($chunk as $item) {
+                    $data[] = $item->toArray();
+                }
+                $total += $chunk->count();
             });
 
-        $total = Baddebt::count();
         $user = User::select('name')->first();
 
         if (Auth::check()) {
