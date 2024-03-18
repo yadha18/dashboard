@@ -24,15 +24,6 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-searchbuilder/css/searchBuilder.bootstrap4.min.css') }}">
-    <link href="https://cdn.datatables.net/v/dt/dt-2.0.2/b-3.0.1/sb-1.7.0/sp-2.3.0/datatables.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap5.min.css" rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap5.min.js"></script>
     <style>
         table {
             white-space: nowrap;
@@ -42,9 +33,6 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @yield('content');
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/v/dt/dt-2.0.2/b-3.0.1/sb-1.7.0/sp-2.3.0/datatables.min.js"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script><!-- Include the external script file -->
     <script src="{{ asset('plugins/js/chart.js') }}"></script>
@@ -68,28 +56,82 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <script type="text/javascript">
-        $(function () {
+        $(function() {
             $('#baddebt-table').DataTable({
+                responsive: true,
                 processing: true,
                 serverSide: true,
-                ajax: "{{ route('baddebt.data') }}",
-                columns: [
-                    {data: 'idPelanggan', name: 'idPelanggan'},
-                    {data: 'idPLN', name: 'idPLN'},
-                    {data: 'nama', name: 'nama'},
-                    {data: 'email', name: 'email'},
-                    {data: 'alamat', name: 'alamat'},
-                    {data: 'telepon', name: 'telepon'},
-                    {data: 'typebilling', name: 'typebilling'},
-                    {data: 'tanggalAktivasi', name: 'tanggalAktivasi'},
-                    {data: 'periodeIsolir', name: 'periodeIsolir'},
-                    {data: 'telatHari', name: 'telatHari'},
-                    {data: 'namaLayananProduk', name: 'namaLayananProduk'},
-                    {data: 'rp_produk', name: 'rp_produk'},
-                    {data: 'kodeGerak', name: 'kodeGerak'},
-                    {data: 'statusAktif', name: 'statusAktif'},
-                    {data: 'namaSBU', name: 'namaSBU'}
-                ]
+                ajax: {
+                    url: "{{ route('baddebt.data') }}",
+                    headers: {
+                        'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                    }
+                },
+                "buttons": ["copy", "csv", "excel", "pdf", "print"],
+                columns: [{
+                        data: 'idPelanggan',
+                        name: 'idPelanggan'
+                    },
+                    {
+                        data: 'idPLN',
+                        name: 'idPLN'
+                    },
+                    {
+                        data: 'nama',
+                        name: 'nama'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'alamat',
+                        name: 'alamat'
+                    },
+                    {
+                        data: 'telepon',
+                        name: 'telepon'
+                    },
+                    {
+                        data: 'typebilling',
+                        name: 'typebilling'
+                    },
+                    {
+                        data: 'tanggalAktivasi',
+                        name: 'tanggalAktivasi'
+                    },
+                    {
+                        data: 'periodeIsolir',
+                        name: 'periodeIsolir'
+                    },
+                    {
+                        data: 'telatHari',
+                        name: 'telatHari'
+                    },
+                    {
+                        data: 'namaLayananProduk',
+                        name: 'namaLayananProduk'
+                    },
+                    {
+                        data: 'rp_produk',
+                        name: 'rp_produk'
+                    },
+                    {
+                        data: 'kodeGerak',
+                        name: 'kodeGerak'
+                    },
+                    {
+                        data: 'statusAktif',
+                        name: 'statusAktif'
+                    },
+                    {
+                        data: 'namaSBU',
+                        name: 'namaSBU'
+                    }
+                ],
+                error: function(xhr, errorType, exception) {
+                    console.error('Error:', exception);
+                }
             });
         });
     </script>
