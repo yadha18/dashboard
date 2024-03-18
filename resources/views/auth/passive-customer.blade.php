@@ -68,7 +68,10 @@
                                             @foreach ($data as $baddebt)
                                                 <tr>
                                                     <td>{{ $baddebt->idPelanggan }}</td>
+                                                    <td>{{ $baddebt->idPelangganProduk }}</td>
+                                                    <td>{{ $baddebt->idCRM }}</td>
                                                     <td>{{ $baddebt->idPLN }}</td>
+                                                    <td>{{ $baddebt->typebilling }}</td>
                                                     <td>{{ $baddebt->nama }}</td>
                                                     <td>{{ $baddebt->email }}</td>
                                                     <td>{{ $baddebt->alamat }}</td>
