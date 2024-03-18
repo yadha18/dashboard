@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,11 +29,14 @@ Route::controller(UserController::class)->group(function () {
     Route::get('/dashboard/revenue', 'revenue')->name('revenue');
 });
 
-Route::get('/chart-data', 'App\Http\Controllers\ChartController@getChartData');
-Route::get('/get-revenue-data', 'App\Http\Controllers\RevenueController@getRevenueData');
-Route::get('/get-regional', 'App\Http\Controllers\RevenueController@getRegional');
-Route::get('/get-prepaid-revenue', 'App\Http\Controllers\RevenueController@getPrepaidMonthRevenue');
-Route::get('/get-postpaid-revenue', 'App\Http\Controllers\RevenueController@getPostpaidMonthRevenue');
+Route::controller(RevenueController::class)->group(function () {
+    Route::get('/dashboard/revenue/daily', 'dailyRevenue')->name('dailyRevenue');
+    Route::get('/get-revenue-data', 'getRevenueData');
+    Route::get('/get-regional', 'getRegional');
+    Route::get('/get-prepaid-revenue', 'getPrepaidMonthRevenue');
+    Route::get('/get-postpaid-revenue', 'getPostpaidMonthRevenue');
+
+});
 Route::get('/get-baddebt-2021', 'App\Http\Controllers\BaddebtController@getCountBaddebts');
 Route::get('/get-total-kanal', 'App\Http\Controllers\KanalBayarController@pembayaranViaCount');
 Route::get('/baddebt/data', 'App\Http\Controllers\BaddebtController@getBaddebtData')->name('baddebt.data');

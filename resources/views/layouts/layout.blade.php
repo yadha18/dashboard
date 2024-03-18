@@ -55,6 +55,73 @@
     <script src="{{ asset('plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
+    <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
+    <script>
+        $(function() {
+            var $visitorsChart = $("#visitors-chart");
+            var mode = 'index'; // Definisikan mode tooltips dan hover
+            var intersect = true; // Definisikan nilai intersect untuk tooltips dan hover
+
+            var visitorsChart = new Chart($visitorsChart, {
+                type: 'line',
+                data: {
+                    labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
+                    datasets: [{
+                            type: "line",
+                            data: [100, 120, 170, 167, 180, 177, 160],
+                            backgroundColor: "transparent",
+                            borderColor: "#007bff",
+                            pointBorderColor: "#007bff",
+                            pointBackgroundColor: "#007bff",
+                            fill: false,
+                        },
+                        {
+                            type: "line",
+                            data: [60, 80, 70, 67, 80, 77, 100],
+                            backgroundColor: "transparent", // Perbaiki typo 'tansparent' menjadi 'transparent'
+                            borderColor: "#ced4da",
+                            pointBorderColor: "#ced4da",
+                            pointBackgroundColor: "#ced4da",
+                            fill: false,
+                        },
+                    ],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: true,
+                                lineWidth: "4px",
+                                color: "rgba(0, 0, 0, .2)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                suggestedMax: 200,
+                            },
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                        }],
+                    },
+                },
+            });
+        });
+    </script>
     <script>
         $(function() {
             $("#example1, #example2, #example3, #example4").DataTable({
@@ -432,6 +499,37 @@
                 error: function(xhr, status, error) {
                     console.error(xhr.responseText);
                 }
+            })
+            var donutData = {
+                labels: [
+                    'Chrome 20%',
+                    'IE 20%',
+                    'FireFox 20%',
+                    'Safari 20%',
+                    'Opera 20%',
+                ],
+                datasets: [{
+                    data: [200, 200, 200, 200, 200],
+                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
+                }]
+            }
+
+            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+            var pieData = donutData;
+            var pieOptions = {
+                maintainAspectRatio: false,
+                responsive: true,
+                legend: {
+                    display: true,
+                    position: 'right',
+                }
+            }
+            //Create pie or douhnut chart
+            // You can switch between pie and douhnut using the method below.
+            new Chart(pieChartCanvas, {
+                type: 'pie',
+                data: pieData,
+                options: pieOptions
             })
         })
     </script>

@@ -62,8 +62,10 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../index2.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('dailyRevenue') }}"
+                                class="nav-link {{ Route::currentRouteNamed('dailyRevenue') ? 'active' : '' }}">
+                                <i
+                                    class="far {{ Route::currentRouteNamed('dailyRevenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                                 <p>Revenue Based on Daily</p>
                             </a>
                         </li>

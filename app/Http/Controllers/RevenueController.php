@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Revenue;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class RevenueController extends Controller
@@ -82,5 +83,12 @@ class RevenueController extends Controller
         }
 
         return $query->get();
+    }
+
+    public function dailyRevenue()
+    {
+        $user = User::select('name')->first();
+
+        return view('auth.revenue-daily', compact('user'));
     }
 }
