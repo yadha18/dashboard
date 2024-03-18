@@ -275,7 +275,7 @@
                             })
 
                             var datasetPostpaid = {
-                                label: 'Postpaid',
+                                label: 'Total Revenue 2',
                                 backgroundColor: 'rgba(255,99,132,0.9)',
                                 borderColor: 'rgba(255,99,132,0.8)',
                                 pointRadius: false,
