@@ -85,8 +85,17 @@ class UserController extends Controller
 
     public function passivecustomer()
     {
-        $data = Baddebt::paginate(100);
-        $total = Baddebt::count();
+        $data = [];
+        $total = 0;
+
+        // Memuat data dalam batch menggunakan metode chunk
+        Baddebt::chunk(1000, function ($chunk) use (&$data, &$total) {
+            foreach ($chunk as $item) {
+                $data[] = $item;
+            }
+            $total += $chunk->count();
+        });
+
         $user = User::select('name')->first();
 
         if (Auth::check()) {
