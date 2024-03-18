@@ -1,5 +1,5 @@
 @extends('layouts.layout')
-@section('title', 'Revenue per Daily')
+@section('title', 'Revenue based on Daily')
 @section('content')
     <div class="wrapper">
 
@@ -15,7 +15,7 @@
         <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if (Route::currentRouteNamed('dailyRevenue'))
-                <x-breadcrumb page="Daily Revenue" />
+                <x-breadcrumb page="Revenue based on Daily" />
             @else
                 <x-breadcrumb page="Dashboard" />
             @endif
@@ -27,7 +27,7 @@
                             <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Data Passive Customer</h3>
+                                    <h3 class="card-title">Revenue based on Daily</h3>
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
