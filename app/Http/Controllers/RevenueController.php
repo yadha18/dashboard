@@ -97,11 +97,11 @@ class RevenueController extends Controller
     {
         $user = User::select('name')->first();
 
-        $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
-        $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
+        // $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
+        // $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
 
-        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
-        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
+        // $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
+        // $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
 
         $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
         $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
@@ -109,10 +109,6 @@ class RevenueController extends Controller
         if (Auth::check()) {
             return view('auth.revenue', compact(
                 'user',
-                'postpaid_2023',
-                'postpaid_2024',
-                'prepaid_2023',
-                'prepaid_2024',
                 'sum_postpaid_2023',
                 'sum_postpaid_2024'
             ));
