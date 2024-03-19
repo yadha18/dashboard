@@ -101,7 +101,7 @@ class RevenueController extends Controller
         // $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
 
         // $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
-        // $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
+        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
 
         $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
         $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
@@ -119,9 +119,9 @@ class RevenueController extends Controller
         ])->withInput(['username']);
     }
 
-    private function getRevenue($year, $type)
+    private function getRevenue($year, $type, $page = 5)
     {
-        return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+        return Revenue::where('tahun', $year)->where('typeBilling', $type)->paginate($page);
     }
     private function sumRevenue($year, $type)
     {
