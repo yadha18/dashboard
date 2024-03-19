@@ -14,9 +14,8 @@ class RevenueController extends Controller
     {
         $year = $request->input('year');
         $type = $request->input('type');
-        $regional = $request->input('regional');
 
-        $revenueData = $this->getRevenueByRegion($year, $type, $regional);
+        $revenueData = $this->getRevenue($year, $type)->toArray();
 
         return response()->json($revenueData);
     }

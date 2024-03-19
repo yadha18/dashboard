@@ -70,7 +70,7 @@ class UserController extends Controller
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
         $pendapatan = Revenue::where('tahun', 2024)->where('bulan', 'Maret')->sum('pendapatan');
-        $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari'])->sum('pendapatan');
+        $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February'])->sum('pendapatan');
 
         if (Auth::check()) {
             return view('auth.dashboard', compact('total', 'total_pd', 'user', 'totalPendapatan', 'pendapatan'));
