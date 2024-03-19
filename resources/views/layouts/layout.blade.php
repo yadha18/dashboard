@@ -174,16 +174,18 @@
                                 parseFloat(item.pendapatan);
 
                             var row = [
-                                item.lembarTagihan,
-                                item.namaSBU,
-                                item.namaKP,
-                                item.tahun,
-                                item.bulan,
+                                item.idTagihan,
                                 'Rp. ' + (typeof pendapatan === 'number' ?
                                     pendapatan.toFixed(2).replace(
                                         /\d(?=(\d{3})+\.)/g, '$&,') : ''),
+                                item.tanggalBayar,
+                                item.bulan,
+                                item.tahun,
+                                item.namaLayanan,
+                                item.namaLayananProduk,
                                 item.typeBilling,
-                                item.asal
+                                item.namaKP,
+                                item.namaSBU,
                             ];
 
                             table.row.add(row);
@@ -202,7 +204,7 @@
                     var totalPendapatan = 0;
 
                     $.each(data, function(index, item) {
-                        totalLembarTagihan += parseFloat(item.lembarTagihan);
+                        totalLembarTagihan += parseFloat(item.idTagihan);
                         totalPendapatan += parseFloat(item.pendapatan);
                     });
 
