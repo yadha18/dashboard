@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\KanalBayar;
+use App\Models\PelangganDeaktivasi;
 use App\Models\Revenue;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RevenueController extends Controller
 {
@@ -15,7 +18,7 @@ class RevenueController extends Controller
         $type = $request->input('type');
         $regional = $request->input('regional');
 
-        $revenueData = $this->getRevenue($year, $type, $regional);
+        $revenueData = $this->getRevenueByRegion($year, $type, $regional);
 
         return response()->json($revenueData);
     }
@@ -74,7 +77,7 @@ class RevenueController extends Controller
         return response()->json($regional);
     }
 
-    private function getRevenue($year, $type, $regional)
+    private function getRevenueByRegion($year, $type, $regional)
     {
         $query = Revenue::where('tahun', $year)->where('typeBilling', $type);
 
@@ -90,5 +93,48 @@ class RevenueController extends Controller
         $user = User::select('name')->first();
 
         return view('auth.revenue-daily', compact('user'));
+    }
+
+    public function revenue()
+    {
+        $total_kanal = KanalBayar::count();
+        $total_pd = PelangganDeaktivasi::count();
+        $user = User::select('name')->first();
+
+        $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
+        $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
+
+        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
+        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
+
+        $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
+        $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
+
+        if (Auth::check()) {
+            return view('auth.revenue', compact(
+                'user',
+                'total_kanal',
+                'total_pd',
+                'postpaid_2023',
+                'postpaid_2024',
+                'prepaid_2023',
+                'prepaid_2024',
+                'sum_postpaid_2023',
+                'sum_postpaid_2024'
+            ));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
+    private function getRevenue($year, $type)
+    {
+        return Revenue::where('tahun', $year)->where('typeBilling', $type)->get();
+    }
+    private function sumRevenue($year, $type)
+    {
+        return Revenue::where('tahun', $year)->where('typeBilling', $type)->sum('pendapatan');
     }
 }

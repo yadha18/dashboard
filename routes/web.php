@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\BaddebtController;
+use App\Http\Controllers\KanalBayarController;
+use App\Http\Controllers\PelangganDeaktivasiController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -22,21 +25,29 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/', 'dashboard')->name('dashboard');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
-    Route::get('/dashboard/passive-customer', 'passivecustomer')->name('passive-customer');
-    Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
-    Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
     Route::post('/logout', 'logout')->name('logout');
-    Route::get('/dashboard/revenue', 'revenue')->name('revenue');
+});
+
+Route::controller(BaddebtController::class)->group(function () {
+    Route::get('/dashboard/passive-customer', 'passivecustomer')->name('passive-customer');
+    Route::get('/get-baddebt-2021', 'getCountBaddebts');
+    Route::get('/baddebt/data', 'getBaddebtData')->name('baddebt.data');
 });
 
 Route::controller(RevenueController::class)->group(function () {
+    Route::get('/dashboard/revenue', 'revenue')->name('revenue');
     Route::get('/dashboard/revenue/daily', 'dailyRevenue')->name('dailyRevenue');
     Route::get('/get-revenue-data', 'getRevenueData');
     Route::get('/get-regional', 'getRegional');
     Route::get('/get-prepaid-revenue', 'getPrepaidMonthRevenue');
     Route::get('/get-postpaid-revenue', 'getPostpaidMonthRevenue');
-
 });
-Route::get('/get-baddebt-2021', 'App\Http\Controllers\BaddebtController@getCountBaddebts');
-Route::get('/get-total-kanal', 'App\Http\Controllers\KanalBayarController@pembayaranViaCount');
-Route::get('/baddebt/data', 'App\Http\Controllers\BaddebtController@getBaddebtData')->name('baddebt.data');
+
+Route::controller(KanalBayarController::class)->group(function () {
+    Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
+    Route::get('/get-total-kanal', 'pembayaranViaCount');
+});
+
+Route::controller(PelangganDeaktivasiController::class)->group(function () {
+    Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
+});

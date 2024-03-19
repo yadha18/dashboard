@@ -3,12 +3,28 @@
 namespace App\Http\Controllers;
 
 use App\Models\Baddebt;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Yajra\DataTables\DataTables;
 
 class BaddebtController extends Controller
 {
+    public function passivecustomer()
+    {
+        $data = Baddebt::paginate(750);
+        $total = Baddebt::count();
+        $user = User::select('name')->first();
+
+        if (Auth::check()) {
+            return view('auth.passive-customer', compact('data', 'user', 'total'));
+        }
+
+        return redirect()->route('login')->withErrors([
+            'username' => 'silakan login terlebih dahulu'
+        ])->withInput(['username']);
+    }
+
     public function getData()
     {
         $data = Baddebt::all();
