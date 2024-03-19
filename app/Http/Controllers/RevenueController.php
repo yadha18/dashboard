@@ -97,10 +97,10 @@ class RevenueController extends Controller
     {
         $user = User::select('name')->first();
 
-        // $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
-        // $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
+        $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
+        $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
 
-        // $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
+        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
         $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
 
         $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
