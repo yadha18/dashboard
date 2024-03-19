@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->integer('idTagihan');
             $table->float('pendapatan');
-            $table->dateTime('tanggalBayar');
+            $table->dateTime('tanggalBayar')->nullable();
             $table->string('bulan');
             $table->integer('tahun');
-            $table->string('namaLayanan');
-            $table->string('namaLayananProduk');
+            $table->string('namaLayanan')->nullable();
+            $table->string('namaLayananProduk')->nullable();
             $table->string('typeBilling');
             $table->string('namaKP');
             $table->string('namaSBU');

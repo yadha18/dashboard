@@ -65,14 +65,16 @@
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Lembar Tagihan</th>
-                                                <th>Nama SBU</th>
-                                                <th>Nama KP</th>
-                                                <th>Tahun</th>
-                                                <th>Bulan</th>
+                                                <th>ID Tagihan</th>
                                                 <th>Pendapatan</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
                                                 <th>Type Billing</th>
-                                                <th>Asal</th>
+                                                <th>Nama KP</th>
+                                                <th>Nama SBU</th>
                                             </tr>
                                         </thead>
                                         <tbody>

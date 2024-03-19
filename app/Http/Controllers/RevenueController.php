@@ -3,8 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use App\Models\KanalBayar;
-use App\Models\PelangganDeaktivasi;
 use App\Models\Revenue;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -27,19 +25,19 @@ class RevenueController extends Controller
     {
         $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
             ->whereIn('tahun', ['2023', '2024'])
-            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
+            ->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'])
             ->where('typeBilling', 'prepaid')
             ->groupBy('bulan')
             ->orderByRaw("
         CASE bulan
-            WHEN 'Agustus' THEN 1
+            WHEN 'August' THEN 1
             WHEN 'September' THEN 2
-            WHEN 'Oktober' THEN 3
+            WHEN 'October' THEN 3
             WHEN 'November' THEN 4
-            WHEN 'Desember' THEN 5
-            WHEN 'Januari' THEN 6
-            WHEN 'Februari' THEN 7
-            WHEN 'Maret' THEN 8
+            WHEN 'December' THEN 5
+            WHEN 'January' THEN 6
+            WHEN 'February' THEN 7
+            WHEN 'March' THEN 8
             ELSE 9
         END
         ")->get();
@@ -51,19 +49,19 @@ class RevenueController extends Controller
     {
         $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
             ->whereIn('tahun', ['2023', '2024'])
-            ->whereIn('bulan', ['Agustus', 'September', 'Oktober', 'November', 'Desember', 'Januari', 'Februari', 'Maret'])
+            ->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'])
             ->where('typeBilling', 'postpaid')
             ->groupBy('bulan')
             ->orderByRaw("
         CASE bulan
-            WHEN 'Agustus' THEN 1
+            WHEN 'August' THEN 1
             WHEN 'September' THEN 2
-            WHEN 'Oktober' THEN 3
+            WHEN 'October' THEN 3
             WHEN 'November' THEN 4
-            WHEN 'Desember' THEN 5
-            WHEN 'Januari' THEN 6
-            WHEN 'Februari' THEN 7
-            WHEN 'Maret' THEN 8
+            WHEN 'December' THEN 5
+            WHEN 'January' THEN 6
+            WHEN 'February' THEN 7
+            WHEN 'March' THEN 8
             ELSE 9
         END
         ")->get();
@@ -97,8 +95,6 @@ class RevenueController extends Controller
 
     public function revenue()
     {
-        $total_kanal = KanalBayar::count();
-        $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
 
         $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
@@ -113,8 +109,6 @@ class RevenueController extends Controller
         if (Auth::check()) {
             return view('auth.revenue', compact(
                 'user',
-                'total_kanal',
-                'total_pd',
                 'postpaid_2023',
                 'postpaid_2024',
                 'prepaid_2023',
