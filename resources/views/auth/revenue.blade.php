@@ -97,6 +97,7 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+                                    <div id="loading-spinner" class="d-none">Loading...</div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
