@@ -169,7 +169,7 @@
                     success: function(data) {
                         table.clear();
 
-                        $.each(data, function(index, item) {
+                        $.each(data.data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
 
@@ -192,7 +192,7 @@
                         });
 
                         table.draw();
-                        updateFooter(data);
+                        updateFooter(data.data);
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');
