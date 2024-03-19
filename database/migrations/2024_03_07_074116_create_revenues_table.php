@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('revenues', function (Blueprint $table) {
             $table->id();
-            $table->integer('lembarTagihan');
-            $table->string('namaSBU');
-            $table->string('namaKP');
-            $table->integer('tahun');
-            $table->string('bulan');
+            $table->integer('idTagihan');
             $table->float('pendapatan');
+            $table->dateTime('tanggalBayar');
+            $table->string('bulan');
+            $table->integer('tahun');
+            $table->string('namaLayanan');
+            $table->string('namaLayananProduk');
             $table->string('typeBilling');
-            $table->string('asal');
+            $table->string('namaKP');
+            $table->string('namaSBU');
             $table->timestamps();
         });
     }
