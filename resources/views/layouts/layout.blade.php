@@ -209,7 +209,7 @@
                     });
 
                     $('#footer-row th:eq(0)').text(totalLembarTagihan);
-                    $('#footer-row th:eq(5)').text('Rp. ' + totalPendapatan.toFixed(2).replace(
+                    $('#footer-row th:eq(1)').text('Rp. ' + totalPendapatan.toFixed(2).replace(
                         /\d(?=(\d{3})+\.)/g, '$&,'));
                 }
             });

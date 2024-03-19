@@ -118,7 +118,7 @@ class RevenueController extends Controller
         ])->withInput(['username']);
     }
 
-    private function getRevenue($year, $type, $page = 15)
+    private function getRevenue($year, $type, $page = 100)
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->paginate($page);
     }
