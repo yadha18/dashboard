@@ -150,7 +150,12 @@
             var table = $('#table-revenue').DataTable({
                 "responsive": true,
                 "lengthChange": false,
-            });
+                "autoWidth": false,
+                "buttons": ["copy", "csv", "excel", "pdf", "print", {
+                    extend: 'searchBuilder',
+
+                }],
+            }).buttons().container().appendTo('#table_revenue_wrapper .col-md-6:eq(0)');;
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
