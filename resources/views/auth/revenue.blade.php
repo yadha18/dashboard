@@ -62,6 +62,7 @@
                                         <button type="button" class="btn btn-primary filter-button" data-year="2024"
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
+                                    <div id="dt-buttons" class="dt-buttons mt-3"></div>
                                     <table id="table-revenue" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>

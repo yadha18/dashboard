@@ -44,10 +44,13 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
+                                    <div id="dt-buttons" class="dt-buttons"></div>
                                     <table id="example1" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
+                                                <th>ID Pelanggan Produk</th>
+                                                <th>ID CRM</th>
                                                 <th>ID PLN</th>
                                                 <th>Nama</th>
                                                 <th>Email</th>
@@ -71,7 +74,6 @@
                                                     <td>{{ $baddebt->idPelangganProduk }}</td>
                                                     <td>{{ $baddebt->idCRM }}</td>
                                                     <td>{{ $baddebt->idPLN }}</td>
-                                                    <td>{{ $baddebt->typebilling }}</td>
                                                     <td>{{ $baddebt->nama }}</td>
                                                     <td>{{ $baddebt->email }}</td>
                                                     <td>{{ $baddebt->alamat }}</td>

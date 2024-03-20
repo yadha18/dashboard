@@ -123,15 +123,24 @@
         });
     </script>
     <script>
-        $(function() {
-            $("#example1, #example2, #example3, #example4").DataTable({
+        $(document).ready(function() {
+            $("#example1").DataTable({
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", {
-                    extend: 'searchBuilder',
-
-                }],
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
                 "language": {
                     searchBuilder: {
                         data: 'Column',
@@ -142,21 +151,330 @@
                         }
                     }
                 },
-            }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
-        });
-    </script>
-    <script>
-        $(document).ready(function() {
+            }).buttons().container().appendTo('#dt-buttons');
+
             var table = $('#table-revenue').DataTable({
                 "responsive": true,
                 "lengthChange": false,
                 "autoWidth": false,
-                "buttons": ["copy", "csv", "excel", "pdf", "print", {
-                    extend: 'searchBuilder',
-                }],
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
             });
 
-            table.buttons().container().appendTo('#table-revenue_wrapper .col-md-6:eq(0)');
+            table.buttons().container().appendTo('#dt-buttons');
+
+            var table2 = $('#table-jkb').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jkb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table3 = $('#table-jbb').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table4 = $('#table-bnt').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table5 = $('#table-jbtg').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table6 = $('#table-jbt').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table7 = $('#table-kal').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table8 = $('#table-sit').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table9 = $('#table-sbs').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table10 = $('#table-sbtg').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+            var table11 = $('#table-sbu').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-jbb' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
+
+            table2.buttons().container().appendTo('#dt-buttons-jkb');
+            table3.buttons().container().appendTo('#dt-buttons-jbb');
+            table4.buttons().container().appendTo('#dt-buttons-bnt');
+            table5.buttons().container().appendTo('#dt-buttons-jbtg');
+            table6.buttons().container().appendTo('#dt-buttons-jbt');
+            table7.buttons().container().appendTo('#dt-buttons-kal');
+            table8.buttons().container().appendTo('#dt-buttons-sit');
+            table9.buttons().container().appendTo('#dt-buttons-sbs');
+            table10.buttons().container().appendTo('#dt-buttons-sbtg');
+            table11.buttons().container().appendTo('#dt-buttons-sbu');
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
@@ -219,6 +537,8 @@
                         /\d(?=(\d{3})+\.)/g, '$&,'));
                 }
             });
+
+
         });
     </script>
     <script>

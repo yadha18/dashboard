@@ -43,7 +43,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-jkb" class="dt-buttons"></div>
+                                    <table id="table-jkb" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -100,7 +101,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example2" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-jbb" class="dt-buttons"></div>
+                                    <table id="table-jbb" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -157,7 +159,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example3" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-bnt" class="dt-buttons"></div>
+                                    <table id="table-bnt" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -214,7 +217,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-jbtg" class="dt-buttons"></div>
+                                    <table id="table-jbtg" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -271,7 +275,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-jbt" class="dt-buttons"></div>
+                                    <table id="table-jbt" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -328,7 +333,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-kal" class="dt-buttons"></div>
+                                    <table id="table-kal" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -385,7 +391,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-sit" class="dt-buttons"></div>
+                                    <table id="table-sit" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -442,7 +449,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-sbs" class="dt-buttons"></div>
+                                    <table id="table-sbs" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -499,7 +507,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-sbtg" class="dt-buttons"></div>
+                                    <table id="table-sbtg" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
@@ -556,7 +565,8 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example4" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-sbu" class="dt-buttons"></div>
+                                    <table id="table-sbu" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
