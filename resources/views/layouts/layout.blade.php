@@ -501,7 +501,7 @@
                     }).data().each(function(value) {
                         totalPendapatan += parseFloat(value);
                     });
-                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(totalPendapatan) + ',-');
+                    $('#jumlahPendapatan').text('Rp. ' + totalPendapatan + ',-');
 
                     // Hitung jumlah tagihan
                     var jumlahTagihan = api.rows({
