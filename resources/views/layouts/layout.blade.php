@@ -491,7 +491,41 @@
                         }
                     }
                 },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    // Hitung total pendapatan
+                    var totalPendapatan = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        totalPendapatan += parseFloat(value);
+                    });
+                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(totalPendapatan) + ',-');
+
+                    // Hitung jumlah tagihan
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan').text(jumlahTagihan);
+                }
             });
+
+            function formatRupiah(angka) {
+                var number_string = angka.toString().replace(/[^,\d]/g, ''),
+                    split = number_string.split(','),
+                    sisa = split[0].length % 3,
+                    rupiah = split[0].substr(0, sisa),
+                    ribuan = split[0].substr(sisa).match(/\d{3}/gi);
+
+                if (ribuan) {
+                    separator = sisa ? '.' : '';
+                    rupiah += separator + ribuan.join('.');
+                }
+
+                rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+                return rupiah;
+            }
 
             table2.buttons().container().appendTo('#dt-buttons-jkb');
             table3.buttons().container().appendTo('#dt-buttons-jbb');
@@ -504,6 +538,8 @@
             table10.buttons().container().appendTo('#dt-buttons-sbtg');
             table11.buttons().container().appendTo('#dt-buttons-sbu');
             tableDailyRevenue.buttons().container().appendTo('#dt-buttons-daily');
+
+
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');

@@ -61,12 +61,12 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="7"><b>Total</b></td>
-                                                <td>{{ $daily->sum('pendapatan') }}</td>
+                                                <td colspan="7"><b>Total Tagihan</b></td>
+                                                <td id="jumlahPendapatan">{{ 'Rp. ' . number_format($daily->sum('pendapatan'), 0, ',', '.') . ',-' }}</td>
                                             </tr>
                                             <tr>
                                                 <td colspan="7"><b>Jumlah Tagihan</b></td>
-                                                <td>{{ 'Rp. ' . number_format($daily->count(), 0, ',', '.') . ',-' }}</td>
+                                                <td id="jumlahTagihan">{{ $daily->count() }}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
