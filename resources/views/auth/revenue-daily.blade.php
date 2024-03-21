@@ -46,36 +46,6 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- <tr>
-                                                <td>12312312</td>
-                                                <td>Rp. 200000,-</td>
-                                                <td>postpaid</td>
-                                                <td>2024-02-01 15:04:24.647</td>
-                                                <td>January</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>10 MBPS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12312312</td>
-                                                <td>Rp. 200000,-</td>
-                                                <td>postpaid</td>
-                                                <td>2024-02-01 15:04:24.647</td>
-                                                <td>January</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>10 MBPS</td>
-                                            </tr>
-                                            <tr>
-                                                <td>12312312</td>
-                                                <td>Rp. 200000,-</td>
-                                                <td>postpaid</td>
-                                                <td>2024-02-01 15:04:24.647</td>
-                                                <td>January</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>10 MBPS</td>
-                                            </tr> --}}
                                             @foreach ($daily as $data)
                                                 <tr>
                                                     <td>{{ $data->idTagihan }}</td>

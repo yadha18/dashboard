@@ -56,12 +56,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../index.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Revenue Based on Rekon</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('dailyRevenue') }}"
                                 class="nav-link {{ Route::currentRouteNamed('dailyRevenue') ? 'active' : '' }}">
                                 <i
@@ -70,15 +64,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
-                                <p>Revenue per Account Executive (AE)</p>
+                            <a href="{{ route('productRevenue') }}" class="nav-link {{ Route::currentRouteNamed('productRevenue') ? 'active' : '' }}">
+                                <i class="far {{ Route::currentRouteNamed('productRevenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                                <p>Revenue Based on Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="../index3.html" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Revenue per Product</p>
+                                <p>Revenue per Account Executive (AE)</p>
                             </a>
                         </li>
                     </ul>

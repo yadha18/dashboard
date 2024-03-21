@@ -494,7 +494,6 @@
                 "footerCallback": function(row, data, start, end, display) {
                     var api = this.api();
 
-                    // Hitung total pendapatan
                     var pendapatanAwal = 0;
                     api.column(1, {
                         search: 'applied'
@@ -505,7 +504,98 @@
                     });
                     $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
 
-                    // Hitung jumlah tagihan
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan').text(jumlahTagihan);
+                }
+            });
+            var table5mbps = $('#table-5mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-5mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan').text(jumlahTagihan);
+                }
+            });
+            var table10mbps = $('#table-10mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-10mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
                     var jumlahTagihan = api.rows({
                         search: 'applied'
                     }).count();
@@ -540,6 +630,8 @@
             table10.buttons().container().appendTo('#dt-buttons-sbtg');
             table11.buttons().container().appendTo('#dt-buttons-sbu');
             tableDailyRevenue.buttons().container().appendTo('#dt-buttons-daily');
+            table5mbps.buttons().container().appendTo('#dt-buttons-5mbps');
+            table10mbps.buttons().container().appendTo('#dt-buttons-10mbps');
 
 
 

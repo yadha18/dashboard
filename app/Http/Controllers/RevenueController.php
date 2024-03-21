@@ -85,12 +85,30 @@ class RevenueController extends Controller
         return $query->get();
     }
 
+    private function getProductRevenue($product, $count)
+    {
+        return Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('namaLayananProduk', $product)->where('tahun', 2024)->take($count)->get();
+    }
+
     public function dailyRevenue()
     {
         $user = User::select('name')->first();
         $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
 
         return view('auth.revenue-daily', compact('user', 'daily'));
+    }
+
+    public function productRevenue()
+    {
+        $user = User::select('name')->first();
+        $mbps5 = $this->getProductRevenue('5 MBPS', 1000);
+        $mbps10 = $this->getProductRevenue('10 MBPS', 750);
+        $mbps20 = $this->getProductRevenue('20 MBPS', 500);
+        $mbps35 = $this->getProductRevenue('35 MBPS', 500);
+        $mbps50 = $this->getProductRevenue('50 MBPS', 500);
+        $mbps100 = $this->getProductRevenue('100 MBPS', 500);
+
+        return view('auth.revenue-product', compact('user', 'mbps5', 'mbps10', 'mbps20', 'mbps35', 'mbps50', 'mbps100'));
     }
 
     public function revenue()
