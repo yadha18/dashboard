@@ -548,12 +548,12 @@
                             pendapatanAwal += parseFloat(value);
                         }
                     });
-                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+                    $('#jumlahPendapatan5mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
 
                     var jumlahTagihan = api.rows({
                         search: 'applied'
                     }).count();
-                    $('#jumlahTagihan').text(jumlahTagihan);
+                    $('#jumlahTagihan5mbps').text(jumlahTagihan);
                 }
             });
             var table10mbps = $('#table-10mbps').DataTable({
@@ -594,12 +594,12 @@
                             pendapatanAwal += parseFloat(value);
                         }
                     });
-                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+                    $('#jumlahPendapatan10mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
 
                     var jumlahTagihan = api.rows({
                         search: 'applied'
                     }).count();
-                    $('#jumlahTagihan').text(jumlahTagihan);
+                    $('#jumlahTagihan10mbps').text(jumlahTagihan);
                 }
             });
 

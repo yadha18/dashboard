@@ -100,13 +100,13 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="7"><b>Total Tagihan</b></td>
-                                                <td id="jumlahPendapatan">
+                                                <td id="jumlahPendapatan5mbps">
                                                     {{ 'Rp. ' . number_format($mbps5->sum('pendapatan'), 0, ',', '.') . ',-' }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="7"><b>Jumlah Tagihan</b></td>
-                                                <td id="jumlahTagihan">{{ $mbps5->count() }}</td>
+                                                <td id="jumlahTagihan5mbps">{{ $mbps5->count() }}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
@@ -150,13 +150,13 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="7"><b>Total Tagihan</b></td>
-                                                <td id="jumlahPendapatan">
+                                                <td id="jumlahPendapatan10mbps">
                                                     {{ 'Rp. ' . number_format($mbps10->sum('pendapatan'), 0, ',', '.') . ',-' }}
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="7"><b>Jumlah Tagihan</b></td>
-                                                <td id="jumlahTagihan">{{ $mbps10->count() }}</td>
+                                                <td id="jumlahTagihan10mbps">{{ $mbps10->count() }}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
