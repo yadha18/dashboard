@@ -31,10 +31,11 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-daily" class="dt-buttons"></div>
+                                    <table id="table-daily" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>Jumlah Tagihan</th>
+                                                <th>ID Tagihan</th>
                                                 <th>Pendapatan</th>
                                                 <th>Tipe Billing</th>
                                                 <th>Tanggal Bayar</th>
@@ -45,37 +46,29 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>1.532</td>
-                                                <td>44.452.000</td>
-                                                <td>prepaid</td>
-                                                <td>2024-01-01 12:55:07.757</td>
-                                                <td>Januari</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>50 Mbps</td>
-                                            </tr>
-                                            <tr>
-                                                <td>15.320</td>
-                                                <td>444.452.000</td>
-                                                <td>postpaid</td>
-                                                <td>2024-01-01 12:55:07.757</td>
-                                                <td>Januari</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>20 Mbps</td>
-                                            </tr>
-                                            <tr>
-                                                <td>153</td>
-                                                <td>4.452.000</td>
-                                                <td>prepaid</td>
-                                                <td>2024-01-01 12:55:07.757</td>
-                                                <td>Januari</td>
-                                                <td>2024</td>
-                                                <td>ICONNET</td>
-                                                <td>10 Mbps</td>
-                                            </tr>
+                                            @foreach ($daily as $data)
+                                                <tr>
+                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->typeBilling }}</td>
+                                                    <td>{{ $data->tanggalBayar }}</td>
+                                                    <td>{{ $data->bulan }}</td>
+                                                    <td>{{ $data->tahun }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
+                                                    <td>{{ $data->namaLayananProduk }}</td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"><b>Total</b></td>
+                                                <td>{{ $daily->sum('pendapatan') }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
+                                                <td>{{ $daily->count() }}</td>
+                                            </tr>
+                                        </tfoot>
                                     </table>
                                 </div>
                                 <!-- /.card-body -->

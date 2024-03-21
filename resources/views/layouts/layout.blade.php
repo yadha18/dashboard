@@ -464,6 +464,34 @@
                     }
                 },
             });
+            var tableDailyRevenue = $('#table-daily').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-daily' // Menentukan kontainer SearchBuilder
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+            });
 
             table2.buttons().container().appendTo('#dt-buttons-jkb');
             table3.buttons().container().appendTo('#dt-buttons-jbb');
@@ -475,6 +503,7 @@
             table9.buttons().container().appendTo('#dt-buttons-sbs');
             table10.buttons().container().appendTo('#dt-buttons-sbtg');
             table11.buttons().container().appendTo('#dt-buttons-sbu');
+            tableDailyRevenue.buttons().container().appendTo('#dt-buttons-daily');
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
