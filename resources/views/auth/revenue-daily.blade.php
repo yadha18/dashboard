@@ -46,11 +46,40 @@
                                             </tr>
                                         </thead>
                                         <tbody>
+                                            {{-- <tr>
+                                                <td>12312312</td>
+                                                <td>Rp. 200000,-</td>
+                                                <td>postpaid</td>
+                                                <td>2024-02-01 15:04:24.647</td>
+                                                <td>January</td>
+                                                <td>2024</td>
+                                                <td>ICONNET</td>
+                                                <td>10 MBPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12312312</td>
+                                                <td>Rp. 200000,-</td>
+                                                <td>postpaid</td>
+                                                <td>2024-02-01 15:04:24.647</td>
+                                                <td>January</td>
+                                                <td>2024</td>
+                                                <td>ICONNET</td>
+                                                <td>10 MBPS</td>
+                                            </tr>
+                                            <tr>
+                                                <td>12312312</td>
+                                                <td>Rp. 200000,-</td>
+                                                <td>postpaid</td>
+                                                <td>2024-02-01 15:04:24.647</td>
+                                                <td>January</td>
+                                                <td>2024</td>
+                                                <td>ICONNET</td>
+                                                <td>10 MBPS</td>
+                                            </tr> --}}
                                             @foreach ($daily as $data)
                                                 <tr>
                                                     <td>{{ $data->idTagihan }}</td>
-                                                    <td>{{ 'Rp. ' . number_format($data->pendapatan, 0, ',', '.') . ',-' }}
-                                                    </td>
+                                                    <td>{{ $data->pendapatan }}</td>
                                                     <td>{{ $data->typeBilling }}</td>
                                                     <td>{{ $data->tanggalBayar }}</td>
                                                     <td>{{ $data->bulan }}</td>
@@ -63,7 +92,9 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="7"><b>Total Tagihan</b></td>
-                                                <td id="jumlahPendapatan"></td>
+                                                <td id="jumlahPendapatan">
+                                                    {{ 'Rp. ' . number_format($daily->sum('pendapatan'), 0, ',', '.') . ',-' }}
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="7"><b>Jumlah Tagihan</b></td>

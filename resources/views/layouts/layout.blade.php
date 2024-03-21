@@ -495,15 +495,15 @@
                     var api = this.api();
 
                     // Hitung total pendapatan
-                    var totalPendapatan = 0;
+                    var pendapatanAwal = 0;
                     api.column(1, {
                         search: 'applied'
                     }).data().each(function(value) {
                         if (!isNaN(parseFloat(value))) {
-                            totalPendapatan += parseFloat(value);
+                            pendapatanAwal += parseFloat(value);
                         }
                     });
-                    $('#jumlahPendapatan').text('Rp. ' + totalPendapatan + ',-');
+                    $('#jumlahPendapatan').text('Rp. ' + pendapatanAwal + ',-');
 
                     // Hitung jumlah tagihan
                     var jumlahTagihan = api.rows({
