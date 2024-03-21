@@ -499,7 +499,9 @@
                     api.column(1, {
                         search: 'applied'
                     }).data().each(function(value) {
-                        totalPendapatan += parseFloat(value);
+                        if (!isNaN(parseFloat(value))) {
+                            totalPendapatan += parseFloat(value);
+                        }
                     });
                     $('#jumlahPendapatan').text('Rp. ' + totalPendapatan + ',-');
 
