@@ -503,7 +503,7 @@
                             pendapatanAwal += parseFloat(value);
                         }
                     });
-                    $('#jumlahPendapatan').text('Rp. ' + pendapatanAwal + ',-');
+                    $('#jumlahPendapatan').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
 
                     // Hitung jumlah tagihan
                     var jumlahTagihan = api.rows({
