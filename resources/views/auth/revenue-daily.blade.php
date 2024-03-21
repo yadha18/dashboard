@@ -49,7 +49,7 @@
                                             @foreach ($daily as $data)
                                                 <tr>
                                                     <td>{{ $data->idTagihan }}</td>
-                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ number_format($data->pendapatan, 0, ',', '.') }}</td>
                                                     <td>{{ $data->typeBilling }}</td>
                                                     <td>{{ $data->tanggalBayar }}</td>
                                                     <td>{{ $data->bulan }}</td>
@@ -66,7 +66,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="7"><b>Jumlah Tagihan</b></td>
-                                                <td>{{ $daily->count() }}</td>
+                                                <td>{{ number_format($daily->count(), 0, ',', '.') }}</td>
                                             </tr>
                                         </tfoot>
                                     </table>
