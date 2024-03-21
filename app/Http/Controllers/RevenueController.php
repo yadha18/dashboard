@@ -88,7 +88,7 @@ class RevenueController extends Controller
     public function dailyRevenue()
     {
         $user = User::select('name')->first();
-        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(100)->get();
+        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
 
         return view('auth.revenue-daily', compact('user', 'daily'));
     }
