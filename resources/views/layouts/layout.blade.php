@@ -1187,8 +1187,12 @@
                             '100 MBPS'
                         ],
                         datasets: [{
-                            data: [data.data5mbps, data.data10mbps, data.data20mbps, data
-                                .data35mbps, data.data50mbps, data.data100mbps
+                            data: [data['data5mbps'],
+                                data['data10mbps'],
+                                data['data20mbps'],
+                                data['data35mbps'],
+                                data['data50mbps'],
+                                data['data100mbps']
                             ],
                             backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
                                 '#3c8dbc', '#d2d6de'
@@ -1205,13 +1209,14 @@
                             position: 'right',
                         }
                     }
-                    //Create pie or douhnut chart
-                    // You can switch between pie and douhnut using the method below.
                     new Chart(pieChartCanvas, {
                         type: 'pie',
                         data: pieData,
                         options: pieOptions
                     })
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
                 }
             })
         })
