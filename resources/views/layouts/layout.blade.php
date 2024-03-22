@@ -1187,12 +1187,13 @@
                             '100 MBPS'
                         ],
                         datasets: [{
-                            data: [data['data5mbps'],
-                                data['data10mbps'],
-                                data['data20mbps'],
-                                data['data35mbps'],
-                                data['data50mbps'],
-                                data['data100mbps']
+                            data: [
+                                parseFloat(data['5mbps']).toFixed(1),
+                                parseFloat(data['10mbps']).toFixed(1),
+                                parseFloat(data['20mbps']).toFixed(1),
+                                parseFloat(data['35mbps']).toFixed(1),
+                                parseFloat(data['50mbps']).toFixed(1),
+                                parseFloat(data['100mbps']).toFixed(1)
                             ],
                             backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
                                 '#3c8dbc', '#d2d6de'
