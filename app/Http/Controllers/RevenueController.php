@@ -137,7 +137,7 @@ class RevenueController extends Controller
             $data[$min_key] += 100 - $total_percentage;
         }
 
-        return response()->json($data);
+        return json_encode($data, JSON_PRETTY_PRINT);
     }
 
     public function productRevenue()
