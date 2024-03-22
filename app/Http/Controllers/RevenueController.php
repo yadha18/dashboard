@@ -125,10 +125,17 @@ class RevenueController extends Controller
             '100mbps' => $percentage_100mbps,
         ];
 
-        $total_percentage = $percentage_5mbps + $percentage_10mbps + $percentage_20mbps + $percentage_35mbps + $percentage_50mbps + $percentage_100mbps;
+        $total_percentage = array_sum($data);
 
-        $adjustment = 100 - $total_percentage;
-        $data['5mbps'] += $adjustment;
+        foreach ($data as $key => $percentage) {
+            $data[$key] = $percentage / $total_percentage * 100;
+        }
+
+        $total_percentage = array_sum($data);
+        if ($total_percentage != 100) {
+            $min_key = array_keys($data, min($data))[0];
+            $data[$min_key] += 100 - $total_percentage;
+        }
 
         return response()->json($data);
     }
