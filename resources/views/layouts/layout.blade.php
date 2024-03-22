@@ -882,8 +882,6 @@
                         /\d(?=(\d{3})+\.)/g, '$&,'));
                 }
             });
-
-
         });
     </script>
     <script>
@@ -935,7 +933,7 @@
                             })
 
                             var datasetPostpaid = {
-                                label: 'Total Revenue 2',
+                                label: 'Postpaid',
                                 backgroundColor: 'rgba(255,99,132,0.9)',
                                 borderColor: 'rgba(255,99,132,0.8)',
                                 pointRadius: false,
@@ -1175,14 +1173,15 @@
             })
             var donutData = {
                 labels: [
-                    'Chrome 20%',
-                    'IE 20%',
-                    'FireFox 20%',
-                    'Safari 20%',
-                    'Opera 20%',
+                    '5 MBPS',
+                    '10 MBPS',
+                    '20 MBPS',
+                    '35 MBPS',
+                    '50 MBPS',
+                    '100 MBPS'
                 ],
                 datasets: [{
-                    data: [200, 200, 200, 200, 200],
+                    data: [200, 200, 200, 200, 200, 200],
                     backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
                 }]
             }

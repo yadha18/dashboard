@@ -98,6 +98,41 @@ class RevenueController extends Controller
         return view('auth.revenue-daily', compact('user', 'daily'));
     }
 
+    public function getProductPercentageRevenue()
+    {
+        $sum_5mbps = $this->sumProduct('5 MBPS');
+        $sum_10mbps = $this->sumProduct('10 MBPS');
+        $sum_20mbps = $this->sumProduct('20 MBPS');
+        $sum_35mbps = $this->sumProduct('35 MBPS');
+        $sum_50mbps = $this->sumProduct('50 MBPS');
+        $sum_100mbps = $this->sumProduct('100 MBPS');
+
+        $total_mbps = $sum_5mbps + $sum_10mbps + $sum_20mbps + $sum_35mbps + $sum_50mbps + $sum_100mbps;
+
+        $percentage_5mbps = number_format(($sum_5mbps / $total_mbps) * 100, 1);
+        $percentage_10mbps = number_format(($sum_10mbps / $total_mbps) * 100, 1);
+        $percentage_20mbps = number_format(($sum_20mbps / $total_mbps) * 100, 1);
+        $percentage_35mbps = number_format(($sum_35mbps / $total_mbps) * 100, 1);
+        $percentage_50mbps = number_format(($sum_50mbps / $total_mbps) * 100, 1);
+        $percentage_100mbps = number_format(($sum_100mbps / $total_mbps) * 100, 1);
+
+        $data = [
+            '5mbps' => $percentage_5mbps,
+            '10mbps' => $percentage_10mbps,
+            '20mbps' => $percentage_20mbps,
+            '35mbps' => $percentage_35mbps,
+            '50mbps' => $percentage_50mbps,
+            '100mbps' => $percentage_100mbps,
+        ];
+
+        $total_percentage = $percentage_5mbps + $percentage_10mbps + $percentage_20mbps + $percentage_35mbps + $percentage_50mbps + $percentage_100mbps;
+
+        $adjustment = 100 - $total_percentage;
+        $data['5mbps'] += $adjustment;
+
+        return response()->json($data);
+    }
+
     public function productRevenue()
     {
         $user = User::select('name')->first();
@@ -141,8 +176,14 @@ class RevenueController extends Controller
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->paginate($page);
     }
+
     private function sumRevenue($year, $type)
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->sum('pendapatan');
+    }
+
+    private function sumProduct($layanan)
+    {
+        return Revenue::where('namaLayananProduk', $layanan)->where('tahun', 2024)->sum('pendapatan');
     }
 }
