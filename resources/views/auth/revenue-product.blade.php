@@ -163,6 +163,206 @@
                                 </div>
                             </div>
                         </section>
+                        <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Revenue 20 MBPS 2024</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="dt-buttons-20mbps" class="dt-buttons"></div>
+                                    <table id="table-20mbps" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Tagihan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($mbps20 as $data)
+                                                <tr>
+                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->typeBilling }}</td>
+                                                    <td>{{ $data->tanggalBayar }}</td>
+                                                    <td>{{ $data->bulan }}</td>
+                                                    <td>{{ $data->tahun }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
+                                                    <td>{{ $data->namaLayananProduk }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"><b>Total Tagihan</b></td>
+                                                <td id="jumlahPendapatan20mbps">
+                                                    {{ 'Rp. ' . number_format($mbps20->sum('pendapatan'), 0, ',', '.') . ',-' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
+                                                <td id="jumlahTagihan20mbps">{{ $mbps20->count() }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Revenue 35 MBPS 2024</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="dt-buttons-35mbps" class="dt-buttons"></div>
+                                    <table id="table-35mbps" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Tagihan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($mbps35 as $data)
+                                                <tr>
+                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->typeBilling }}</td>
+                                                    <td>{{ $data->tanggalBayar }}</td>
+                                                    <td>{{ $data->bulan }}</td>
+                                                    <td>{{ $data->tahun }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
+                                                    <td>{{ $data->namaLayananProduk }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"><b>Total Tagihan</b></td>
+                                                <td id="jumlahPendapatan35mbps">
+                                                    {{ 'Rp. ' . number_format($mbps35->sum('pendapatan'), 0, ',', '.') . ',-' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
+                                                <td id="jumlahTagihan35mbps">{{ $mbps35->count() }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Revenue 50 MBPS 2024</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="dt-buttons-50mbps" class="dt-buttons"></div>
+                                    <table id="table-50mbps" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Tagihan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($mbps50 as $data)
+                                                <tr>
+                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->typeBilling }}</td>
+                                                    <td>{{ $data->tanggalBayar }}</td>
+                                                    <td>{{ $data->bulan }}</td>
+                                                    <td>{{ $data->tahun }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
+                                                    <td>{{ $data->namaLayananProduk }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"><b>Total Tagihan</b></td>
+                                                <td id="jumlahPendapatan50mbps">
+                                                    {{ 'Rp. ' . number_format($mbps50->sum('pendapatan'), 0, ',', '.') . ',-' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
+                                                <td id="jumlahTagihan50mbps">{{ $mbps50->count() }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Revenue 100 MBPS 2024</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div id="dt-buttons-100mbps" class="dt-buttons"></div>
+                                    <table id="table-100mbps" class="table table-bordered table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>ID Tagihan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Tipe Billing</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Layanan Produk</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($mbps100 as $data)
+                                                <tr>
+                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->typeBilling }}</td>
+                                                    <td>{{ $data->tanggalBayar }}</td>
+                                                    <td>{{ $data->bulan }}</td>
+                                                    <td>{{ $data->tahun }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
+                                                    <td>{{ $data->namaLayananProduk }}</td>
+                                                </tr>
+                                            @endforeach
+                                        </tbody>
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="7"><b>Total Tagihan</b></td>
+                                                <td id="jumlahPendapatan100mbps">
+                                                    {{ 'Rp. ' . number_format($mbps100->sum('pendapatan'), 0, ',', '.') . ',-' }}
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
+                                                <td id="jumlahTagihan100mbps">{{ $mbps100->count() }}</td>
+                                            </tr>
+                                        </tfoot>
+                                    </table>
+                                </div>
+                            </div>
+                        </section>
                     </div>
                 </div>
             </section>

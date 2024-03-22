@@ -602,6 +602,190 @@
                     $('#jumlahTagihan10mbps').text(jumlahTagihan);
                 }
             });
+            var table20mbps = $('#table-20mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-20mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan20mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan20mbps').text(jumlahTagihan);
+                }
+            });
+            var table35mbps = $('#table-35mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-35mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan35mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan35mbps').text(jumlahTagihan);
+                }
+            });
+            var table50mbps = $('#table-50mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-50mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan50mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan50mbps').text(jumlahTagihan);
+                }
+            });
+            var table100mbps = $('#table-100mbps').DataTable({
+                "responsive": true,
+                "lengthChange": false,
+                "autoWidth": false,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-100mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatan100mbps').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#jumlahTagihan100mbps').text(jumlahTagihan);
+                }
+            });
 
             function formatRupiah(angka) {
                 var number_string = angka.toString().replace(/[^,\d]/g, ''),
@@ -632,8 +816,10 @@
             tableDailyRevenue.buttons().container().appendTo('#dt-buttons-daily');
             table5mbps.buttons().container().appendTo('#dt-buttons-5mbps');
             table10mbps.buttons().container().appendTo('#dt-buttons-10mbps');
-
-
+            table20mbps.buttons().container().appendTo('#dt-buttons-20mbps');
+            table35mbps.buttons().container().appendTo('#dt-buttons-35mbps');
+            table50mbps.buttons().container().appendTo('#dt-buttons-50mbps');
+            table100mbps.buttons().container().appendTo('#dt-buttons-100mbps');
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
