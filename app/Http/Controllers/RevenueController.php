@@ -109,12 +109,12 @@ class RevenueController extends Controller
 
         $total_mbps = $sum_5mbps + $sum_10mbps + $sum_20mbps + $sum_35mbps + $sum_50mbps + $sum_100mbps;
 
-        $percentage_5mbps = number_format(($sum_5mbps / $total_mbps) * 100, 1);
-        $percentage_10mbps = number_format(($sum_10mbps / $total_mbps) * 100, 1);
-        $percentage_20mbps = number_format(($sum_20mbps / $total_mbps) * 100, 1);
-        $percentage_35mbps = number_format(($sum_35mbps / $total_mbps) * 100, 1);
-        $percentage_50mbps = number_format(($sum_50mbps / $total_mbps) * 100, 1);
-        $percentage_100mbps = number_format(($sum_100mbps / $total_mbps) * 100, 1);
+        $percentage_5mbps = round(($sum_5mbps / $total_mbps) * 100, 1);
+        $percentage_10mbps = round(($sum_10mbps / $total_mbps) * 100, 1);
+        $percentage_20mbps = round(($sum_20mbps / $total_mbps) * 100, 1);
+        $percentage_35mbps = round(($sum_35mbps / $total_mbps) * 100, 1);
+        $percentage_50mbps = round(($sum_50mbps / $total_mbps) * 100, 1);
+        $percentage_100mbps = round(($sum_100mbps / $total_mbps) * 100, 1);
 
         $data = [
             '5mbps' => $percentage_5mbps,
