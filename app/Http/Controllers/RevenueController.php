@@ -117,12 +117,12 @@ class RevenueController extends Controller
         $percentage_100mbps = round(($sum_100mbps / $total_mbps) * 100, 1);
 
         $data = [
-            '5mbps' => $percentage_5mbps,
-            '10mbps' => $percentage_10mbps,
-            '20mbps' => $percentage_20mbps,
-            '35mbps' => $percentage_35mbps,
-            '50mbps' => $percentage_50mbps,
-            '100mbps' => $percentage_100mbps,
+            'data5mbps' => $percentage_5mbps,
+            'data10mbps' => $percentage_10mbps,
+            'data20mbps' => $percentage_20mbps,
+            'data35mbps' => $percentage_35mbps,
+            'data50mbps' => $percentage_50mbps,
+            'data100mbps' => $percentage_100mbps,
         ];
 
         $total_percentage = array_sum($data);
@@ -137,7 +137,7 @@ class RevenueController extends Controller
             $data[$min_key] += 100 - $total_percentage;
         }
 
-        return json_encode($data, JSON_PRETTY_PRINT);
+        return response()->json($data);
     }
 
     public function productRevenue()

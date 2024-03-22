@@ -1171,37 +1171,48 @@
                     console.error(xhr.responseText);
                 }
             })
-            var donutData = {
-                labels: [
-                    '5 MBPS',
-                    '10 MBPS',
-                    '20 MBPS',
-                    '35 MBPS',
-                    '50 MBPS',
-                    '100 MBPS'
-                ],
-                datasets: [{
-                    data: [200, 200, 200, 200, 200, 200],
-                    backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de'],
-                }]
-            }
 
-            var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
-            var pieData = donutData;
-            var pieOptions = {
-                maintainAspectRatio: false,
-                responsive: true,
-                legend: {
-                    display: true,
-                    position: 'right',
+            $.ajax({
+                url: '/get-product-revenue',
+                method: 'GET',
+                success: (data) => {
+                    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+                    var donutData = {
+                        labels: [
+                            '5 MBPS',
+                            '10 MBPS',
+                            '20 MBPS',
+                            '35 MBPS',
+                            '50 MBPS',
+                            '100 MBPS'
+                        ],
+                        datasets: [{
+                            data: [data.data5mbps, data.data10mbps, data.data20mbps, data
+                                .data35mbps, data.data50mbps, data.data100mbps
+                            ],
+                            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
+                                '#3c8dbc', '#d2d6de'
+                            ],
+                        }]
+                    }
+
+                    var pieData = donutData;
+                    var pieOptions = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            position: 'right',
+                        }
+                    }
+                    //Create pie or douhnut chart
+                    // You can switch between pie and douhnut using the method below.
+                    new Chart(pieChartCanvas, {
+                        type: 'pie',
+                        data: pieData,
+                        options: pieOptions
+                    })
                 }
-            }
-            //Create pie or douhnut chart
-            // You can switch between pie and douhnut using the method below.
-            new Chart(pieChartCanvas, {
-                type: 'pie',
-                data: pieData,
-                options: pieOptions
             })
         })
     </script>
