@@ -1188,12 +1188,12 @@
                         ],
                         datasets: [{
                             data: [
-                                parseFloat(data['5mbps']).toFixed(1),
-                                parseFloat(data['10mbps']).toFixed(1),
-                                parseFloat(data['20mbps']).toFixed(1),
-                                parseFloat(data['35mbps']).toFixed(1),
-                                parseFloat(data['50mbps']).toFixed(1),
-                                parseFloat(data['100mbps']).toFixed(1)
+                                data['data5mbps'],
+                                data['data10mbps'],
+                                data['data20mbps'],
+                                data['data35mbps'],
+                                data['data50mbps'],
+                                data['data100mbps']
                             ],
                             backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
                                 '#3c8dbc', '#d2d6de'
@@ -1208,6 +1208,30 @@
                         legend: {
                             display: true,
                             position: 'right',
+                            labels: {
+                                generateLabels: function(chart) {
+                                    var data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            var meta = chart.getDatasetMeta(0);
+                                            var ds = data.datasets[0];
+                                            var arc = meta.data[i];
+                                            var value = ds.data[i];
+                                            var percent = parseFloat((value / ds.data
+                                                .reduce((a, b) => a + b, 0) *
+                                                100)).toFixed(1);
+                                            return {
+                                                text: label + ' (' + percent + '%)',
+                                                fillStyle: ds.backgroundColor[i],
+                                                hidden: isNaN(ds.data[i]) || meta.data[
+                                                    i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
                         }
                     }
                     new Chart(pieChartCanvas, {
