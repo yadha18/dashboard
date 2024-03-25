@@ -58,11 +58,12 @@
     <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
     <script>
         $(function() {
-            var $visitorsChart = $("#visitors-chart");
-            var mode = 'index'; // Definisikan mode tooltips dan hover
-            var intersect = true; // Definisikan nilai intersect untuk tooltips dan hover
+            var $dailyLineChart = $("#dailyline-chart");
+            var $productLineChart = $("#productline-chart");
+            var mode = 'index';
+            var intersect = true;
 
-            var visitorsChart = new Chart($visitorsChart, {
+            var dailyLineChart = new Chart($dailyLineChart, {
                 type: 'line',
                 data: {
                     labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
@@ -78,7 +79,66 @@
                         {
                             type: "line",
                             data: [60, 80, 70, 67, 80, 77, 100],
-                            backgroundColor: "transparent", // Perbaiki typo 'tansparent' menjadi 'transparent'
+                            backgroundColor: "transparent",
+                            borderColor: "#ced4da",
+                            pointBorderColor: "#ced4da",
+                            pointBackgroundColor: "#ced4da",
+                            fill: false,
+                        },
+                    ],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: true,
+                                lineWidth: "4px",
+                                color: "rgba(0, 0, 0, .2)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                suggestedMax: 200,
+                            },
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            var productLineChart = new Chart($productLineChart, {
+                type: 'line',
+                data: {
+                    labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
+                    datasets: [{
+                            type: "line",
+                            data: [100, 120, 170, 167, 180, 177, 160],
+                            backgroundColor: "transparent",
+                            borderColor: "#007bff",
+                            pointBorderColor: "#007bff",
+                            pointBackgroundColor: "#007bff",
+                            fill: false,
+                        },
+                        {
+                            type: "line",
+                            data: [60, 80, 70, 67, 80, 77, 100],
+                            backgroundColor: "transparent",
                             borderColor: "#ced4da",
                             pointBorderColor: "#ced4da",
                             pointBackgroundColor: "#ced4da",
@@ -1176,7 +1236,7 @@
                 url: '/get-product-revenue',
                 method: 'GET',
                 success: (data) => {
-                    var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
+                    var productPieChartCanvas = $('#productPieChart').get(0).getContext('2d')
                     var donutData = {
                         labels: [
                             '5 MBPS',
@@ -1234,7 +1294,80 @@
                             }
                         }
                     }
-                    new Chart(pieChartCanvas, {
+                    new Chart(productPieChartCanvas, {
+                        type: 'pie',
+                        data: pieData,
+                        options: pieOptions
+                    })
+                },
+                error: function(xhr, status, error) {
+                    console.error(xhr.responseText);
+                }
+            })
+
+            $.ajax({
+                url: '/get-revenue',
+                method: 'GET',
+                success: (data) => {
+                    var dailyPieChartCanvas = $('#dailyPieChart').get(0).getContext('2d')
+                    var donutData = {
+                        labels: [
+                            '5 MBPS',
+                            '10 MBPS',
+                            '20 MBPS',
+                            '35 MBPS',
+                            '50 MBPS',
+                            '100 MBPS'
+                        ],
+                        datasets: [{
+                            data: [
+                                data['data5mbps'],
+                                data['data10mbps'],
+                                data['data20mbps'],
+                                data['data35mbps'],
+                                data['data50mbps'],
+                                data['data100mbps']
+                            ],
+                            backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef',
+                                '#3c8dbc', '#d2d6de'
+                            ],
+                        }]
+                    }
+
+                    var pieData = donutData;
+                    var pieOptions = {
+                        maintainAspectRatio: false,
+                        responsive: true,
+                        legend: {
+                            display: true,
+                            position: 'right',
+                            labels: {
+                                generateLabels: function(chart) {
+                                    var data = chart.data;
+                                    if (data.labels.length && data.datasets.length) {
+                                        return data.labels.map(function(label, i) {
+                                            var meta = chart.getDatasetMeta(0);
+                                            var ds = data.datasets[0];
+                                            var arc = meta.data[i];
+                                            var value = ds.data[i];
+                                            var percent = parseFloat((value / ds.data
+                                                .reduce((a, b) => a + b, 0) *
+                                                100)).toFixed(1);
+                                            return {
+                                                text: label + ' (' + percent + '%)',
+                                                fillStyle: ds.backgroundColor[i],
+                                                hidden: isNaN(ds.data[i]) || meta.data[
+                                                    i].hidden,
+                                                index: i
+                                            };
+                                        });
+                                    }
+                                    return [];
+                                }
+                            }
+                        }
+                    }
+                    new Chart(dailyPieChartCanvas, {
                         type: 'pie',
                         data: pieData,
                         options: pieOptions

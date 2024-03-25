@@ -20,10 +20,10 @@
                         <div class="col-md-5">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Revenue per Product Percentage</h3>
+                                    <h3 class="card-title">Revenue per Product 2024 Percentage</h3>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="pieChart"
+                                    <canvas id="productPieChart"
                                         style="min-height: 250px; height: 315px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                             </div>
@@ -48,7 +48,7 @@
                                     </div>
 
                                     <div class="position-relative mb-4">
-                                        <canvas id="visitors-chart" height="200"></canvas>
+                                        <canvas id="productline-chart" height="200"></canvas>
                                     </div>
 
                                     <div class="d-flex flex-row justify-content-end">

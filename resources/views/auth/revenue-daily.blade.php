@@ -83,7 +83,7 @@
                                     <h3 class="card-title">Payment Channel of Daily Revenue Percentage</h3>
                                 </div>
                                 <div class="card-body">
-                                    <canvas id="pieChart"
+                                    <canvas id="dailyPieChart"
                                         style="min-height: 250px; height: 315px; max-height: 350px; max-width: 100%;"></canvas>
                                 </div>
                                 <!-- /.card-body -->
@@ -112,7 +112,7 @@
                                     <!-- /.d-flex -->
 
                                     <div class="position-relative mb-4">
-                                        <canvas id="visitors-chart" height="200"></canvas>
+                                        <canvas id="dailyline-chart" height="200"></canvas>
                                     </div>
 
                                     <div class="d-flex flex-row justify-content-end">
