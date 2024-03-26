@@ -143,6 +143,7 @@
                         "August", "September", "October", "November", "December"
                     ];
 
+                    var color = ["#007bff", "#dc3545", "#28a745", "#ff5722", "#6610f2", ]
                     var datasets = [];
                     for (var productName in groupedData) {
                         var productData = groupedData[productName];
@@ -155,11 +156,12 @@
                             label: productName,
                             data: dataArray,
                             backgroundColor: "transparent",
-                            borderColor: getRandomColor(),
-                            pointBorderColor: getRandomColor(),
-                            pointBackgroundColor: getRandomColor(),
+                            borderColor: color[colorIndex],
+                            pointBorderColor: color[colorIndex],
+                            pointBackgroundColor: color[colorIndex],
                             fill: false,
                         });
+                        colorIndex = (colorIndex + 1) % colors.length;
                     }
                     var productLineChart = new Chart($productLineChart, {
                         type: 'line',
