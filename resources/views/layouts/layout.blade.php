@@ -122,101 +122,99 @@
                 },
             });
 
-            var productLineChart = new Chart($productLineChart, {
-                type: 'line',
-                data: {
-                    labels: ["August", "September", "October", "November", "December", "January", "February"],
-                    datasets: [{
-                            type: "line",
-                            data: [100, 120, 170, 167, 180, 177, 160],
-                            backgroundColor: "transparent",
-                            borderColor: "#007bff",
-                            pointBorderColor: "#007bff",
-                            pointBackgroundColor: "#007bff",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [60, 80, 70, 67, 80, 77, 100],
-                            backgroundColor: "transparent",
-                            borderColor: "#ced4da",
-                            pointBorderColor: "#ced4da",
-                            pointBackgroundColor: "#ced4da",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [50, 65, 75, 72, 85, 82, 95],
-                            backgroundColor: "transparent",
-                            borderColor: "#28a745", // Warna hijau
-                            pointBorderColor: "#28a745",
-                            pointBackgroundColor: "#28a745",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [40, 70, 60, 55, 75, 72, 90],
-                            backgroundColor: "transparent",
-                            borderColor: "#dc3545", // Warna merah
-                            pointBorderColor: "#dc3545",
-                            pointBackgroundColor: "#dc3545",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [60, 80, 70, 67, 80, 77, 100],
-                            backgroundColor: "transparent",
-                            borderColor: "#ff5722", // Warna oranye
-                            pointBorderColor: "#ff5722",
-                            pointBackgroundColor: "#ff5722",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [30, 15, 40, 10, 50, 80, 55],
-                            backgroundColor: "transparent",
-                            borderColor: "#6610f2", // Warna ungu
-                            pointBorderColor: "#6610f2",
-                            pointBackgroundColor: "#6610f2",
-                            fill: false,
+            $.ajax({
+                url: '/get-product-chart',
+                method: 'GET',
+                success: (data) => {
+                    var groupedData = {};
+                    data.forEach(function(item) {
+                        if (!groupedData[item.namaLayananProduk]) {
+                            groupedData[item.namaLayananProduk] = {};
                         }
+                        if (!groupedData[item.namaLayananProduk][item.bulan]) {
+                            groupedData[item.namaLayananProduk][item.bulan] = parseFloat(item
+                                .pendapatan);
+                        } else {
+                            groupedData[item.namaLayananProduk][item.bulan] += parseFloat(item
+                                .pendapatan);
+                        }
+                    });
+                    var labels = ["January", "February", "March", "April", "May", "June", "July",
+                        "August", "September", "October", "November", "December"
+                    ];
 
-                    ],
-                },
-                options: {
-                    maintainAspectRatio: false,
-                    tooltips: {
-                        mode: mode,
-                        intersect: intersect,
-                    },
-                    hover: {
-                        mode: mode,
-                        intersect: intersect,
-                    },
-                    legend: {
-                        display: false,
-                    },
-                    scales: {
-                        yAxes: [{
-                            gridLines: {
-                                display: true,
-                                lineWidth: "4px",
-                                color: "rgba(0, 0, 0, .2)",
-                                zeroLineColor: "transparent",
+                    var datasets = [];
+                    for (var productName in groupedData) {
+                        var productData = groupedData[productName];
+                        var dataArray = [];
+                        labels.forEach(function(month) {
+                            dataArray.push(productData[month] ||
+                                0);
+                        });
+                        datasets.push({
+                            label: productName,
+                            data: dataArray,
+                            backgroundColor: "transparent",
+                            borderColor: getRandomColor(),
+                            pointBorderColor: getRandomColor(),
+                            pointBackgroundColor: getRandomColor(),
+                            fill: false,
+                        });
+                    }
+                    var productLineChart = new Chart($productLineChart, {
+                        type: 'line',
+                        data: {
+                            labels: labels,
+                            datasets: datasets,
+                        },
+                        options: {
+                            maintainAspectRatio: false,
+                            tooltips: {
+                                mode: mode,
+                                intersect: intersect,
                             },
-                            ticks: {
-                                beginAtZero: true,
-                                suggestedMax: 200,
+                            hover: {
+                                mode: mode,
+                                intersect: intersect,
                             },
-                        }],
-                        xAxes: [{
-                            gridLines: {
+                            legend: {
                                 display: false,
                             },
-                        }],
-                    },
+                            scales: {
+                                yAxes: [{
+                                    gridLines: {
+                                        display: true,
+                                        lineWidth: "4px",
+                                        color: "rgba(0, 0, 0, .2)",
+                                        zeroLineColor: "transparent",
+                                    },
+                                    ticks: {
+                                        beginAtZero: true,
+                                        suggestedMax: 200,
+                                    },
+                                }],
+                                xAxes: [{
+                                    gridLines: {
+                                        display: false,
+                                    },
+                                }],
+                            },
+                        },
+                    });
                 },
-            });
+                error: function(jqXHR, textStatus, errorThrown) {
+                    console.log('Error:', textStatus, errorThrown);
+                }
+            })
+
+            function getRandomColor() {
+                var letters = '0123456789ABCDEF';
+                var color = '#';
+                for (var i = 0; i < 6; i++) {
+                    color += letters[Math.floor(Math.random() * 16)];
+                }
+                return color;
+            }
         });
     </script>
     <script>
