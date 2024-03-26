@@ -142,7 +142,7 @@ class RevenueController extends Controller
 
     public function productRevenueChart()
     {
-        $data = Revenue::selectRaw('SUM(pendapatan) AS pendapatan, bulan, tahun, namaLayananProduk')->whereIn('namaLayananProduk', ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'])->groupBy('bulan', 'tahun', 'namaLayananProduk')->get();
+        $data = Revenue::selectRaw('SUM(pendapatan) AS pendapatan, bulan, tahun, namaLayananProduk')->whereIn('namaLayananProduk', ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'])->groupBy('bulan', 'tahun', 'namaLayananProduk')->orderBy('namaLayananProduk')->orderBy('tahun')->orderBy('bulan')->get();
 
         return response()->json($data);
     }
