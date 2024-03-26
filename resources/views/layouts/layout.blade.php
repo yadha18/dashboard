@@ -163,7 +163,7 @@
                             pointBackgroundColor: color[colorIndex],
                             fill: false,
                         });
-                        colorIndex = (colorIndex + 1) % colors.length;
+                        colorIndex = (colorIndex + 1) % color.length;
                     }
                     var productLineChart = new Chart($productLineChart, {
                         type: 'line',
