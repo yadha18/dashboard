@@ -125,7 +125,7 @@
             var productLineChart = new Chart($productLineChart, {
                 type: 'line',
                 data: {
-                    labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
+                    labels: ["August", "September", "October", "November", "December", "January", "February"],
                     datasets: [{
                             type: "line",
                             data: [100, 120, 170, 167, 180, 177, 160],
@@ -144,6 +144,43 @@
                             pointBackgroundColor: "#ced4da",
                             fill: false,
                         },
+                        {
+                            type: "line",
+                            data: [50, 65, 75, 72, 85, 82, 95],
+                            backgroundColor: "transparent",
+                            borderColor: "#28a745", // Warna hijau
+                            pointBorderColor: "#28a745",
+                            pointBackgroundColor: "#28a745",
+                            fill: false,
+                        },
+                        {
+                            type: "line",
+                            data: [40, 70, 60, 55, 75, 72, 90],
+                            backgroundColor: "transparent",
+                            borderColor: "#dc3545", // Warna merah
+                            pointBorderColor: "#dc3545",
+                            pointBackgroundColor: "#dc3545",
+                            fill: false,
+                        },
+                        {
+                            type: "line",
+                            data: [60, 80, 70, 67, 80, 77, 100],
+                            backgroundColor: "transparent",
+                            borderColor: "#ff5722", // Warna oranye
+                            pointBorderColor: "#ff5722",
+                            pointBackgroundColor: "#ff5722",
+                            fill: false,
+                        },
+                        {
+                            type: "line",
+                            data: [30, 15, 40, 10, 50, 80, 55],
+                            backgroundColor: "transparent",
+                            borderColor: "#6610f2", // Warna ungu
+                            pointBorderColor: "#6610f2",
+                            pointBackgroundColor: "#6610f2",
+                            fill: false,
+                        }
+
                     ],
                 },
                 options: {

@@ -140,6 +140,17 @@ class RevenueController extends Controller
         return response()->json($data);
     }
 
+    public function productRevenueChart()
+    {
+        $data = Revenue::selectRaw('SUM(pendapatan) AS pendapatan, bulan, tahun, namaLayananProduk')
+            ->whereIn('namaLayananProduk', ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'])
+            ->groupBy('bulan', 'tahun', 'namaLayananProduk')
+            ->orderByRaw('FIELD(bulan, "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember")')
+            ->get();
+
+        return response()->json($data);
+    }
+
     public function productRevenue()
     {
         $user = User::select('name')->first();
