@@ -142,9 +142,7 @@
                     var labels = ["January", "February", "March", "April", "May", "June", "July",
                         "August", "September", "October", "November", "December"
                     ];
-                    var color = ["#007bff", "#dc3545", "#28a745", "#ff5722", "#6610f2", "#ffc107",
-                        "#17a2b8", "#e83e8c", "#20c997", "#6c757d"
-                    ];
+                    var color = ["#6610f2", "#adb5bd", "#198754", "#0dcaf0", "#dc3545", "#ffc107"];
                     var colorIndex = 0;
                     var datasets = [];
                     for (var productName in groupedData) {

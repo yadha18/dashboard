@@ -156,8 +156,9 @@ class RevenueController extends Controller
         $mbps35 = $this->getProductRevenue('35 MBPS', 500);
         $mbps50 = $this->getProductRevenue('50 MBPS', 500);
         $mbps100 = $this->getProductRevenue('100 MBPS', 500);
+        $total_revenue = Revenue::all()->sum('pendapatan');
 
-        return view('auth.revenue-product', compact('user', 'mbps5', 'mbps10', 'mbps20', 'mbps35', 'mbps50', 'mbps100'));
+        return view('auth.revenue-product', compact('user', 'mbps5', 'mbps10', 'mbps20', 'mbps35', 'mbps50', 'mbps100', 'total_revenue'));
     }
 
     public function revenue()
