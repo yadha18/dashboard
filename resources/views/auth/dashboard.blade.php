@@ -132,7 +132,8 @@
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-warning"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
-                                                <h5 class="description-header">$10,390.90</h5>
+                                                <h5 class="description-header">Rp.
+                                                    {{ str_replace(',', '.', number_format($pendapatan_feb)) }},-</h5>
                                                 <span class="description-text">REVENUE BASED ON DAILY</span>
                                             </div>
                                             <!-- /.description-block -->

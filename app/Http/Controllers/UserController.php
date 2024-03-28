@@ -69,16 +69,22 @@ class UserController extends Controller
         $total = Baddebt::count();
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
-        $pendapatan = Revenue::where('tahun', 2024)->where('bulan', 'Maret')->sum('pendapatan');
+        $pendapatan_feb = $this->pendapatanByMonth(2024, 'Februari');
+        $pendapatan = $this->pendapatanByMonth(2024, 'Maret');
         $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February'])->sum('pendapatan');
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'totalPendapatan', 'pendapatan'));
+            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'totalPendapatan', 'pendapatan', 'pendapatan_feb'));
         }
 
         return redirect()->route('login')->withErrors([
             'username' => 'silakan login terlebih dahulu'
         ])->withInput(['username']);
+    }
+
+    private function pendapatanByMonth($year, $month)
+    {
+        return Revenue::where('tahun', $year)->where('bulan', $month)->sum('pendapatan');
     }
 
     public function logout(Request $request)
