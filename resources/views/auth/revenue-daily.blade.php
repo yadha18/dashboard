@@ -23,6 +23,37 @@
                 <div class="container-fluid">
                     <div class="row">
                         <!-- Left col -->
+                        <section class="col-md-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Daily Revenue</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <p class="d-flex flex-column">
+                                            <span class="text-bold text-lg">Rp.
+                                                {{ str_replace(',', '.', number_format($sum_daily)) }},-</span>
+                                            <span>Total Daily Revenue</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+
+                                    <div class="position-relative mb-4">
+                                        <canvas id="dailyline-chart" height="200"></canvas>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end">
+                                        <span class="mr-2">
+                                            <i class="fas fa-square text-primary"></i> This Week
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
                         <section class="col-12">
                             <!-- /.card -->
                             <div class="card">
@@ -75,50 +106,6 @@
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
-                        </section>
-                        <div class="col-md-5">
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Payment Channel of Daily Revenue Percentage</h3>
-                                </div>
-                                <div class="card-body">
-                                    <canvas id="dailyPieChart"
-                                        style="min-height: 250px; height: 315px; max-height: 350px; max-width: 100%;"></canvas>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-                        </div>
-                        <section class="col-md-7">
-                            <!-- /.card -->
-                            <div class="card">
-                                <div class="card-header">
-                                    <h3 class="card-title">Data Daily Revenue</h3>
-                                </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    <div class="d-flex">
-                                        <p class="d-flex flex-column">
-                                            <span class="text-bold text-lg">Rp.
-                                                {{ str_replace(',', '.', number_format($sum_daily)) }},-</span>
-                                            <span>Total Daily Revenue</span>
-                                        </p>
-                                    </div>
-                                    <!-- /.d-flex -->
-
-                                    <div class="position-relative mb-4">
-                                        <canvas id="dailyline-chart" height="200"></canvas>
-                                    </div>
-
-                                    <div class="d-flex flex-row justify-content-end">
-                                        <span class="mr-2">
-                                            <i class="fas fa-square text-primary"></i> This Week
-                                        </span>
-                                    </div>
-                                </div>
-                                <!-- /.card-body -->
-                            </div>
-
                             <!-- /.card -->
                         </section>
                         <!-- /.Left col -->
