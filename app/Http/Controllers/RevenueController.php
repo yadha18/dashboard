@@ -7,6 +7,7 @@ use App\Models\Revenue;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class RevenueController extends Controller
 {
@@ -66,6 +67,13 @@ class RevenueController extends Controller
         ")->get();
 
         return response()->json($revenuesByMonth);
+    }
+
+    public function getDailyRevenue()
+    {
+        $dailyRevenueQuery = Revenue::selectRaw(DB::raw("DATE_FORMAT(tanggalBayar, '%Y-%m-%d') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->groupBy(DB::raw("DATE_FORMAT(tanggalBayar, '%Y-%m-%d')"))->get();
+
+        return response()->json($dailyRevenueQuery);
     }
 
     public function getRegional()

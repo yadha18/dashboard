@@ -44,6 +44,7 @@ Route::controller(RevenueController::class)->group(function () {
     Route::get('/get-postpaid-revenue', 'getPostpaidMonthRevenue');
     Route::get('/get-product-revenue', 'getProductPercentageRevenue');
     Route::get('/get-product-chart', 'productRevenueChart');
+    Route::get('/get-daily-revenue', 'getDailyRevenue');
 });
 
 Route::controller(KanalBayarController::class)->group(function () {

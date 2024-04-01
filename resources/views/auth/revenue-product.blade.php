@@ -47,10 +47,10 @@
 
                                     <div class="d-flex flex-row justify-content-end">
                                         <span class="mr-2">
-                                            <i class="fas fa-square text-indigo"></i> 5 MBPS
+                                            <i class="fas fa-square text-danger"></i> 5 MBPS
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-square text-gray"></i> 10 MBPS
+                                            <i class="fas fa-square text-indigo"></i> 10 MBPS
                                         </span>
                                         <span class="mr-2">
                                             <i class="fas fa-square text-success"></i> 20 MBPS
@@ -59,10 +59,10 @@
                                             <i class="fas fa-square text-info"></i> 35 MBPS
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-square text-danger"></i> 50 MBPS
+                                            <i class="fas fa-square text-warning"></i> 50 MBPS
                                         </span>
                                         <span class="mr-2">
-                                            <i class="fas fa-square text-warning"></i> 100 MBPS
+                                            <i class="fas fa-square text-gray"></i> 100 MBPS
                                         </span>
                                     </div>
                                 </div>
