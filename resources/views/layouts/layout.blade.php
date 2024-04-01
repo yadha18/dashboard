@@ -63,6 +63,22 @@
             var mode = 'index';
             var intersect = true;
 
+            $.ajax({
+                url: '/get-daily-revenue',
+                method: 'GET',
+                success: (data) => {
+                    data.sort((a, b) => new Date(a.tanggalBayar) - new Date(b.tanggalBayar));
+
+                    const labels = data.map(entry => entry.tanggalBayar);
+                    const pendapatan = data.map(entry => entry.pendapatanHarian);
+
+                    dailyLineChart.data.labels = labels;
+                    dailyLineChart.data.datasets[0].data = pendapatan;
+
+                    dailyLineChart.update();
+                }
+            })
+
             var dailyLineChart = new Chart($dailyLineChart, {
                 type: 'line',
                 data: {
@@ -74,15 +90,6 @@
                             borderColor: "#007bff",
                             pointBorderColor: "#007bff",
                             pointBackgroundColor: "#007bff",
-                            fill: false,
-                        },
-                        {
-                            type: "line",
-                            data: [60, 80, 70, 67, 80, 77, 100],
-                            backgroundColor: "transparent",
-                            borderColor: "#ced4da",
-                            pointBorderColor: "#ced4da",
-                            pointBackgroundColor: "#ced4da",
                             fill: false,
                         },
                     ],
