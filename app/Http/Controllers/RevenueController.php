@@ -71,7 +71,7 @@ class RevenueController extends Controller
 
     public function getDailyRevenue()
     {
-        $dailyRevenueQuery = Revenue::selectRaw(DB::raw("DATE_FORMAT(tanggalBayar, '%Y-%m-%d') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->groupBy(DB::raw("DATE_FORMAT(tanggalBayar, '%Y-%m-%d')"))->get();
+        $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
 
         return response()->json($dailyRevenueQuery);
     }
