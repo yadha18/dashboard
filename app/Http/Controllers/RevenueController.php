@@ -102,8 +102,9 @@ class RevenueController extends Controller
     {
         $user = User::select('name')->first();
         $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
+        $sum_daily = Revenue::whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->sum('pendapatan');
 
-        return view('auth.revenue-daily', compact('user', 'daily'));
+        return view('auth.revenue-daily', compact('user', 'daily', 'sum_daily'));
     }
 
     public function getProductPercentageRevenue()

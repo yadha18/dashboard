@@ -99,14 +99,9 @@
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <p class="d-flex flex-column">
-                                            <span class="text-bold text-lg">820</span>
-                                            <span>Visitors Over Time</span>
-                                        </p>
-                                        <p class="ml-auto d-flex flex-column text-right">
-                                            <span class="text-success">
-                                                <i class="fas fa-arrow-up"></i> 12.5%
-                                            </span>
-                                            <span class="text-muted">Since last week</span>
+                                            <span class="text-bold text-lg">Rp.
+                                                {{ str_replace(',', '.', number_format($sum_daily)) }},-</span>
+                                            <span>Total Daily Revenue</span>
                                         </p>
                                     </div>
                                     <!-- /.d-flex -->
@@ -118,10 +113,6 @@
                                     <div class="d-flex flex-row justify-content-end">
                                         <span class="mr-2">
                                             <i class="fas fa-square text-primary"></i> This Week
-                                        </span>
-
-                                        <span>
-                                            <i class="fas fa-square text-gray"></i> Last Week
                                         </span>
                                     </div>
                                 </div>
