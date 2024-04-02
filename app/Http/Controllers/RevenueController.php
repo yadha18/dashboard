@@ -107,6 +107,13 @@ class RevenueController extends Controller
         return view('auth.revenue-daily', compact('user', 'daily', 'sum_daily'));
     }
 
+    public function revenueAccountExecutive()
+    {
+        $user = User::select('name')->first();
+
+        return view('auth.revenue-ae', compact('user'));
+    }
+
     public function getProductPercentageRevenue()
     {
         $sum_5mbps = $this->sumProduct('5 MBPS');

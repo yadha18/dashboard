@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li class="nav-item menu-open">
-                    <a href="#" class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
+                    <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-line"></i>
                         <p>
                             Revenue
@@ -64,14 +64,18 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('productRevenue') }}" class="nav-link {{ Route::currentRouteNamed('productRevenue') ? 'active' : '' }}">
-                                <i class="far {{ Route::currentRouteNamed('productRevenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                            <a href="{{ route('productRevenue') }}"
+                                class="nav-link {{ Route::currentRouteNamed('productRevenue') ? 'active' : '' }}">
+                                <i
+                                    class="far {{ Route::currentRouteNamed('productRevenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                                 <p>Revenue Based on Product</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="../index3.html" class="nav-link">
-                                <i class="far fa-circle nav-icon"></i>
+                            <a href="{{ route('revenueAccountExecutive') }}"
+                                class="nav-link {{ Route::currentRouteNamed('revenueAccountExecutive') ? 'active' : '' }}">
+                                <i
+                                    class="far {{ Route::currentRouteNamed('revenueAccountExecutive') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
                                 <p>Revenue per Account Executive (AE)</p>
                             </a>
                         </li>
