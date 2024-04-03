@@ -19,8 +19,8 @@
                     <div class="row">
                         <x-card title="Revenue Pre Paid 2023" type="light" totalCount="{{ intval($sum_prepaid_2023) }}" />
                         <x-card title="Revenue Post Paid 2023" type="light"
-                            totalCount="{{ intval($sum_postpaid_2024) }}" />
-                        <x-card title="Revenue Pre Paid 2024" type="light" totalCount="{{ intval($sum_prepaid_2023) }}" />
+                            totalCount="{{ intval($sum_postpaid_2023) }}" />
+                        <x-card title="Revenue Pre Paid 2024" type="light" totalCount="{{ intval($sum_prepaid_2024) }}" />
                         <x-card title="Revenue Post Paid 2024" type="light"
                             totalCount="{{ intval($sum_postpaid_2024) }}" />
                     </div>
