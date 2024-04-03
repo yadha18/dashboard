@@ -73,8 +73,8 @@ class RevenueController extends Controller
     public function getDailyRevenue()
     {
         $currentDate = Carbon::now();
-        $startDate = $currentDate->subDays(10)->format('Y-m-d');
-        $endDate = $currentDate->subDays(4)->format('Y-m-d');
+        $startDate = $currentDate->copy()->subDays(10);
+        $endDate = $currentDate->copy()->subDays(4);
 
         $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', [$startDate, $endDate])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
 
