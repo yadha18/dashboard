@@ -62,44 +62,38 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    <div id="dt-buttons-daily" class="dt-buttons"></div>
-                                    <table id="table-daily" class="table table-bordered table-striped">
+                                    <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
+                                    <table id="table-accountExecutive" class="table table-bordered table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID Tagihan</th>
+                                                <th>ID Pengguna Mobile</th>
+                                                <th>Nama</th>
+                                                <th>Jabatan</th>
+                                                <th>Nama Produk</th>
                                                 <th>Pendapatan</th>
-                                                <th>Tipe Billing</th>
-                                                <th>Tanggal Bayar</th>
-                                                <th>Bulan</th>
-                                                <th>Tahun</th>
-                                                <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            {{-- @foreach ($daily as $data)
+                                            @foreach ($data_ae as $data)
                                                 <tr>
-                                                    <td>{{ $data->idTagihan }}</td>
+                                                    <td>{{ $data->idPenggunaMobile }}</td>
+                                                    <td>{{ $data->nama }}</td>
+                                                    <td>{{ $data->jabatan }}</td>
+                                                    <td>{{ $data->namaProduk }}</td>
                                                     <td>{{ $data->pendapatan }}</td>
-                                                    <td>{{ $data->typeBilling }}</td>
-                                                    <td>{{ $data->tanggalBayar }}</td>
-                                                    <td>{{ $data->bulan }}</td>
-                                                    <td>{{ $data->tahun }}</td>
-                                                    <td>{{ $data->namaLayanan }}</td>
-                                                    <td>{{ $data->namaLayananProduk }}</td>
                                                 </tr>
-                                            @endforeach --}}
+                                            @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="7"><b>Total Tagihan</b></td>
-                                                <td id="jumlahPendapatan">
+                                                <td colspan="7"><b>Total Pendapatan</b></td>
+                                                <td id="jumlahPendapatanAE">
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="7"><b>Jumlah Tagihan</b></td>
-                                                <td id="jumlahTagihan"></td>
+                                                <td colspan="7"><b>Jumlah Account Executive</b></td>
+                                                <td id="jumlahAccountExecutive"></td>
                                             </tr>
                                         </tfoot>
                                     </table>

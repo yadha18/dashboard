@@ -38,7 +38,6 @@ Route::controller(RevenueController::class)->group(function () {
     Route::get('/dashboard/revenue', 'revenue')->name('revenue');
     Route::get('/dashboard/revenue/daily', 'dailyRevenue')->name('dailyRevenue');
     Route::get('/dashboard/revenue/product', 'productRevenue')->name('productRevenue');
-    Route::get('/dashboard/revenue/account-executive', 'revenueAccountExecutive')->name('revenueAccountExecutive');
     Route::get('/get-revenue-data', 'getRevenueData');
     Route::get('/get-regional', 'getRegional');
     Route::get('/get-prepaid-revenue', 'getPrepaidMonthRevenue');
@@ -56,3 +55,5 @@ Route::controller(KanalBayarController::class)->group(function () {
 Route::controller(PelangganDeaktivasiController::class)->group(function () {
     Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
 });
+
+Route::get('/dashboard/revenue/account-executive', 'App\Http\Controllers\RevenueAccountExecutiveController@revenueAccountExecutive')->name('revenueAccountExecutive');
