@@ -1021,7 +1021,7 @@
                                 item.namaLayanan,
                                 item.namaLayananProduk,
                                 item.typeBilling,
-                                item.namaKP,
+                                // item.namaKP,
                                 item.namaSBU,
                             ];
 

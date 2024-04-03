@@ -61,9 +61,9 @@
                                                 <th>Bulan</th>
                                                 <th>Tahun</th>
                                                 <th>Nama Layanan</th>
-                                                <th>Nama Layanan Produk</th>
+                                                <th>Nama Produk</th>
                                                 <th>Type Billing</th>
-                                                <th>Nama KP</th>
+                                                {{-- <th>Nama KP</th> --}}
                                                 <th>Nama SBU</th>
                                             </tr>
                                         </thead>
@@ -74,13 +74,13 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="9"><b>Total Pendapatan</b></td>
+                                                <td colspan="8"><b>Total Pendapatan</b></td>
                                                 <td id="jumlahPendapatanRevenue">
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="9"><b>Jumlah Tagihan</b></td>
+                                                <td colspan="8"><b>Jumlah Tagihan</b></td>
                                                 <td id="totalTagihanRevenue"></td>
                                             </tr>
                                         </tfoot>
