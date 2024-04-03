@@ -921,7 +921,7 @@
                     var api = this.api();
 
                     var pendapatanAwal = 0;
-                    api.column(1, {
+                    api.column(4, {
                         search: 'applied'
                     }).data().each(function(value) {
                         if (!isNaN(parseFloat(value))) {
