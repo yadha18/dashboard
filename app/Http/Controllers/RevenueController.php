@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Models\Revenue;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -71,7 +72,11 @@ class RevenueController extends Controller
 
     public function getDailyRevenue()
     {
-        $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
+        $currentDate = Carbon::now();
+        $startDate = $currentDate->copy()->subDays(7);
+        $endDate = $currentDate->copy()->subDays(2);
+
+        $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', [$startDate, $endDate])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
 
         return response()->json($dailyRevenueQuery);
     }
@@ -102,7 +107,7 @@ class RevenueController extends Controller
     {
         $user = User::select('name')->first();
         $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
-        $sum_daily = Revenue::whereBetween('tanggalBayar', ['2024-03-25', '2024-03-31'])->sum('pendapatan');
+        $sum_daily = Revenue::whereBetween('tanggalBayar', ['2024-03-25', '2024-04-31'])->sum('pendapatan');
 
         return view('auth.revenue-daily', compact('user', 'daily', 'sum_daily'));
     }
