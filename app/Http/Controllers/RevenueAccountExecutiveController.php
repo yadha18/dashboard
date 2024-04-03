@@ -12,7 +12,7 @@ class RevenueAccountExecutiveController extends Controller
     public function revenueAccountExecutive()
     {
         $user = User::select('name')->first();
-        $data_ae = RevenueAccountExecutive::paginate(500);
+        $data_ae = RevenueAccountExecutive::paginate(1000);
 
         return view('auth.revenue-ae', compact('user', 'data_ae'));
     }

@@ -3,16 +3,11 @@
 @section('content')
     <div class="wrapper">
 
-        <!-- Preloader -->
         <x-preloader />
 
-        <!-- Navbar -->
         <x-navbar />
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
         <x-sidebar username="{{ $user->name }}" />
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if (Route::currentRouteNamed('revenueAccountExecutive'))
                 <x-breadcrumb page="Revenue per Account Executive" />
@@ -22,14 +17,11 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- Left col -->
                         <section class="col-md-12">
-                            <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Data Revenue</h3>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="d-flex">
                                         <p class="d-flex flex-column">
@@ -38,8 +30,6 @@
                                             <span>Total Revenue</span>
                                         </p>
                                     </div>
-                                    <!-- /.d-flex -->
-
                                     <div class="position-relative mb-4">
                                         <canvas id="dailyline-chart" height="200"></canvas>
                                     </div>
@@ -50,17 +40,13 @@
                                         </span>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </section>
                         <section class="col-12">
-                            <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Revenue per Account Executive</h3>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
                                     <table id="table-accountExecutive" class="table table-bordered table-striped">
@@ -98,17 +84,12 @@
                                         </tfoot>
                                     </table>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </section>
-                        <!-- /.Left col -->
                     </div>
                 </div>
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
         <footer class="main-footer">
             Billing Collection Team. All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
@@ -116,11 +97,7 @@
             </div>
         </footer>
 
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 @stop
