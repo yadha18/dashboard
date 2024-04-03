@@ -6,6 +6,7 @@ use App\Models\Baddebt;
 use App\Models\User;
 use App\Models\PelangganDeaktivasi;
 use App\Models\Revenue;
+use App\Models\RevenueAccountExecutive;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -71,10 +72,22 @@ class UserController extends Controller
         $user = User::select('name')->first();
         $pendapatan_feb = $this->pendapatanByMonth(2024, 'Februari');
         $pendapatan = $this->pendapatanByMonth(2024, 'Maret');
+        $pendapatan_ae = RevenueAccountExecutive::sum('pendapatan');
         $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February'])->sum('pendapatan');
 
         if (Auth::check()) {
-            return view('auth.dashboard', compact('total', 'total_pd', 'user', 'totalPendapatan', 'pendapatan', 'pendapatan_feb'));
+            return view(
+                'auth.dashboard',
+                compact(
+                    'total',
+                    'total_pd',
+                    'user',
+                    'totalPendapatan',
+                    'pendapatan',
+                    'pendapatan_feb',
+                    'pendapatan_ae'
+                )
+            );
         }
 
         return redirect()->route('login')->withErrors([

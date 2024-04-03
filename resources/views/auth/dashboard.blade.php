@@ -96,7 +96,6 @@
                                 <div class="card-header">
                                     <h5 class="card-title">Revenue Recap Report</h5>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -105,19 +104,15 @@
                                             </p>
 
                                             <div class="chart">
-                                                <!-- Sales Chart Canvas -->
                                                 <canvas id="salesChart" height="180"
                                                     style="height: 180px; max-width: 100%;"></canvas>
                                             </div>
-                                            <!-- /.chart-responsive -->
                                         </div>
                                     </div>
-                                    <!-- /.row -->
                                 </div>
-                                <!-- ./card-body -->
                                 <div class="card-footer">
                                     <div class="row">
-                                        <div class="col-sm-3 col-6">
+                                        <div class="col-sm-4 col-7">
                                             <div class="description-block border-right">
                                                 <span class="description-percentage text-dark"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
@@ -125,51 +120,33 @@
                                                     {{ str_replace(',', '.', number_format($totalPendapatan)) }}</h5>
                                                 <span class="description-text">TOTAL REVENUE</span>
                                             </div>
-                                            <!-- /.description-block -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-3 col-6">
+                                        <div class="col-sm-4 col-7">
                                             <div class="description-block border-right">
-                                                <span class="description-percentage text-warning"><i
+                                                <span class="description-percentage text-dark"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
                                                 <h5 class="description-header">Rp.
                                                     {{ str_replace(',', '.', number_format($pendapatan_feb)) }},-</h5>
                                                 <span class="description-text">REVENUE BASED ON DAILY</span>
                                             </div>
-                                            <!-- /.description-block -->
                                         </div>
-                                        <!-- /.col -->
-                                        <div class="col-sm-3 col-6">
+                                        <div class="col-sm-4 col-7">
                                             <div class="description-block border-right">
-                                                <span class="description-percentage text-success"><i
-                                                        class="fas fa-caret-up"></i> 20%</span>
-                                                <h5 class="description-header">$24,813.53</h5>
+                                                <span class="description-percentage text-dark"><i
+                                                        class="fas fa-caret-left"></i> 0%</span>
+                                                <h5 class="description-header">Rp.
+                                                    {{ str_replace(',', '.', number_format($pendapatan_ae)) }},-</h5>
                                                 <span class="description-text">REVENUE PER ACCOUNT EXECUTIVE</span>
                                             </div>
-                                            <!-- /.description-block -->
-                                        </div>
-                                        <div class="col-sm-3 col-6">
-                                            <div class="description-block border-right">
-                                                <span class="description-percentage text-success"><i
-                                                        class="fas fa-caret-up"></i> 20%</span>
-                                                <h5 class="description-header">$24,813.53</h5>
-                                                <span class="description-text">REVENUE PER PRODUCT</span>
-                                            </div>
-                                            <!-- /.description-block -->
                                         </div>
                                     </div>
-                                    <!-- /.row -->
                                 </div>
-                                <!-- /.card-footer -->
                             </div>
-                            <!-- /.card -->
                         </div>
                     </div>
                 </div>
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
         <footer class="main-footer">
             Billing Collection Team. All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
@@ -177,11 +154,7 @@
             </div>
         </footer>
 
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 @stop
