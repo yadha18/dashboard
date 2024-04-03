@@ -3,48 +3,37 @@
 @section('content')
     <div class="wrapper">
 
-        <!-- Preloader -->
         <x-preloader />
 
-        <!-- Navbar -->
         <x-navbar />
-        <!-- /.navbar -->
-        <!-- Main Sidebar Container -->
         <x-sidebar username="{{ $user->name }}" />
 
-        <!-- Content Wrapper. Contains page content -->
         <div class="content-wrapper">
             @if (Route::currentRouteNamed('revenue'))
                 <x-breadcrumb page="All Revenue" />
             @else
                 <x-breadcrumb page="Dashboard" />
             @endif
-            <!-- Main content -->
             <section class="content">
                 <div class="container-fluid">
-                    <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Revenue Postpaid 2023" icon="card" type="light"
-                            totalCount="{{ intval($sum_postpaid_2023) }}" route="{{ route('kanal-bayar') }}" />
-                        <x-card title="Revenue Postpaid 2024" icon="pie-graph" type="light"
-                            totalCount="{{ intval($sum_postpaid_2024) }}" route="{{ route('pelanggan-deaktivasi') }}" />
+                        <x-card title="Revenue Pre Paid 2023" type="light" totalCount="{{ intval($sum_prepaid_2023) }}" />
+                        <x-card title="Revenue Post Paid 2023" type="light"
+                            totalCount="{{ intval($sum_postpaid_2024) }}" />
+                        <x-card title="Revenue Pre Paid 2024" type="light" totalCount="{{ intval($sum_prepaid_2023) }}" />
+                        <x-card title="Revenue Post Paid 2024" type="light"
+                            totalCount="{{ intval($sum_postpaid_2024) }}" />
                     </div>
-                    <!-- /.row -->
-                    <!-- Main row -->
-                    <!-- /.row (main row) -->
-                </div><!-- /.container-fluid -->
+                </div>
             </section>
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <!-- Left col -->
                         <section class="col-12">
-                            <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Data Revenue</h3>
                                 </div>
-                                <!-- /.card-header -->
                                 <div class="card-body">
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
                                         <button type="button" class="btn btn-primary filter-button mr-3" data-year="2023"
@@ -100,17 +89,12 @@
                                     </table>
                                     <div id="loading-spinner" class="d-none">Loading...</div>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </section>
-                        <!-- /.Left col -->
                     </div>
                 </div>
             </section>
-            <!-- /.content -->
         </div>
-        <!-- /.content-wrapper -->
         <footer class="main-footer">
             Billing Collection Team. All rights reserved.
             <div class="float-right d-none d-sm-inline-block">
@@ -118,11 +102,7 @@
             </div>
         </footer>
 
-        <!-- Control Sidebar -->
         <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
         </aside>
-        <!-- /.control-sidebar -->
     </div>
-    <!-- ./wrapper -->
 @stop

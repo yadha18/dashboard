@@ -176,17 +176,20 @@ class RevenueController extends Controller
 
         $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
         $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
-
         $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
         $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
 
+        $sum_prepaid_2023 = $this->sumRevenue(2023, 'prepaid');
         $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
+        $sum_prepaid_2024 = $this->sumRevenue(2024, 'prepaid');
         $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
 
         if (Auth::check()) {
             return view('auth.revenue', compact(
                 'user',
+                'sum_prepaid_2023',
                 'sum_postpaid_2023',
+                'sum_prepaid_2024',
                 'sum_postpaid_2024'
             ));
         }
