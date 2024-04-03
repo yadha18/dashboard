@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <!-- Small boxes (Stat box) -->
                     <div class="row">
-                        <x-card title="Revenue Bulan ini" icon="card" type="light" totalCount="{{ intval($pendapatan) }}"
+                        <x-card title="Revenue Bulan ini" icon="card" type="light" totalCount="{{ intval($pendapatan_daily) }}"
                             route="{{ route('revenue') }}" />
                         <x-card title="Pelanggan Deaktivasi" icon="pie-graph" type="light"
                             totalCount="{{ intval($total_pd) }}" route="{{ route('pelanggan-deaktivasi') }}" />
@@ -126,7 +126,7 @@
                                                 <span class="description-percentage text-dark"><i
                                                         class="fas fa-caret-left"></i> 0%</span>
                                                 <h5 class="description-header">Rp.
-                                                    {{ str_replace(',', '.', number_format($pendapatan_feb)) }},-</h5>
+                                                    {{ str_replace(',', '.', number_format($pendapatan_daily)) }},-</h5>
                                                 <span class="description-text">REVENUE BASED ON DAILY</span>
                                             </div>
                                         </div>

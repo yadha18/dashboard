@@ -71,7 +71,7 @@ class UserController extends Controller
         $total_pd = PelangganDeaktivasi::count();
         $user = User::select('name')->first();
         $pendapatan_feb = $this->pendapatanByMonth(2024, 'Februari');
-        $pendapatan = $this->pendapatanByMonth(2024, 'Maret');
+        $pendapatan_daily = Revenue::where('bulan', 'March')->where('tahun', '2024')->sum('pendapatan');
         $pendapatan_ae = RevenueAccountExecutive::sum('pendapatan');
         $totalPendapatan = Revenue::whereIn('tahun', ['2023', '2024'])->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February'])->sum('pendapatan');
 
@@ -83,7 +83,7 @@ class UserController extends Controller
                     'total_pd',
                     'user',
                     'totalPendapatan',
-                    'pendapatan',
+                    'pendapatan_daily',
                     'pendapatan_feb',
                     'pendapatan_ae'
                 )
