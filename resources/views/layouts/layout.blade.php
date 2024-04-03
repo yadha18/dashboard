@@ -1012,9 +1012,10 @@
 
                             var row = [
                                 item.idTagihan,
-                                'Rp. ' + (typeof pendapatan === 'number' ?
-                                    pendapatan.toFixed(2).replace(
-                                        /\d(?=(\d{3})+\.)/g, '$&,') : ''),
+                                item.pendapatan,
+                                // 'Rp. ' + (typeof pendapatan === 'number' ?
+                                //     pendapatan.toFixed(2).replace(
+                                //         /\d(?=(\d{3})+\.)/g, '$&,') : ''),
                                 item.tanggalBayar,
                                 item.bulan,
                                 item.tahun,
