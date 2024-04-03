@@ -84,15 +84,14 @@
                 data: {
                     labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
                     datasets: [{
-                            type: "line",
-                            data: [100, 120, 170, 167, 180, 177, 160],
-                            backgroundColor: "transparent",
-                            borderColor: "#007bff",
-                            pointBorderColor: "#007bff",
-                            pointBackgroundColor: "#007bff",
-                            fill: false,
-                        },
-                    ],
+                        type: "line",
+                        data: [100, 120, 170, 167, 180, 177, 160],
+                        backgroundColor: "transparent",
+                        borderColor: "#007bff",
+                        pointBorderColor: "#007bff",
+                        pointBackgroundColor: "#007bff",
+                        fill: false,
+                    }, ],
                 },
                 options: {
                     maintainAspectRatio: false,
@@ -284,6 +283,24 @@
                         }
                     }
                 },
+                "footerCallback": function(row, data, start, end, display) {
+                    var api = this.api();
+
+                    var pendapatanAwal = 0;
+                    api.column(1, {
+                        search: 'applied'
+                    }).data().each(function(value) {
+                        if (!isNaN(parseFloat(value))) {
+                            pendapatanAwal += parseFloat(value);
+                        }
+                    });
+                    $('#jumlahPendapatanRevenue').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+
+                    var jumlahTagihan = api.rows({
+                        search: 'applied'
+                    }).count();
+                    $('#totalTagihanRevenue').text(jumlahTagihan);
+                }
             });
 
             table.buttons().container().appendTo('#dt-buttons');
@@ -1012,7 +1029,7 @@
                         });
 
                         table.draw();
-                        updateFooter(data.data);
+                        // updateFooter(data.data);
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');

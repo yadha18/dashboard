@@ -73,17 +73,15 @@
                                             </div>
                                         </tbody>
                                         <tfoot>
-                                            <tr id="footer-row">
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
-                                                <th></th>
+                                            <tr>
+                                                <td colspan="9"><b>Total Pendapatan</b></td>
+                                                <td id="jumlahPendapatanRevenue">
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td colspan="9"><b>Jumlah Tagihan</b></td>
+                                                <td id="totalTagihanRevenue"></td>
                                             </tr>
                                         </tfoot>
                                     </table>
