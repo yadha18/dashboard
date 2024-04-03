@@ -16,8 +16,8 @@ return new class extends Migration
             $table->string('idPenggunaMobile');
             $table->string('nama');
             $table->string('jabatan')->nullable();
-            $table->string('namaProduk');
-            $table->float('pendapatan');
+            $table->string('namaProduk')->nullable();
+            $table->float('pendapatan')->nullable();
             $table->timestamps();
         });
     }

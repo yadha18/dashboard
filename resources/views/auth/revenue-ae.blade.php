@@ -86,13 +86,13 @@
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="7"><b>Total Pendapatan</b></td>
+                                                <td colspan="4"><b>Total Pendapatan</b></td>
                                                 <td id="jumlahPendapatanAE">
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="7"><b>Jumlah Account Executive</b></td>
+                                                <td colspan="4"><b>Jumlah Account Executive</b></td>
                                                 <td id="jumlahAccountExecutive"></td>
                                             </tr>
                                         </tfoot>
