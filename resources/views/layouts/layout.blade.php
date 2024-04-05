@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="{{ asset('plugins/datatables-responsive/css/responsive.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-buttons/css/buttons.bootstrap4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/datatables-searchbuilder/css/searchBuilder.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('dist/css/ceknik.css') }}">
     <style>
         table {
             white-space: nowrap;
@@ -33,6 +34,7 @@
 
 <body class="hold-transition sidebar-mini layout-fixed">
     @yield('content');
+    <script src="{{ asset('dist/js/ceknik.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script><!-- Include the external script file -->
     <script src="{{ asset('plugins/js/chart.js') }}"></script>

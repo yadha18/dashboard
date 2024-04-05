@@ -25,6 +25,7 @@ Route::controller(UserController::class)->group(function () {
     Route::post('/authenticate', 'authenticate')->name('authenticate');
     Route::get('/', 'dashboard')->name('dashboard');
     Route::get('/dashboard', 'dashboard')->name('dashboard');
+    Route::get('/dashboard/ceknik', 'cekNIKpage')->name('cekNIKpage');
     Route::post('/logout', 'logout')->name('logout');
 });
 

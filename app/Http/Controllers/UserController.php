@@ -15,7 +15,7 @@ class UserController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('guest')->except(['logout', 'dashboard', 'passivecustomer', 'revenue', 'kanalbayar', 'pelanggandeaktivasi']);
+        $this->middleware('guest')->except(['logout', 'dashboard', 'passivecustomer', 'revenue', 'kanalbayar', 'pelanggandeaktivasi', 'cekNIKpage']);
     }
 
     public function login()
@@ -26,6 +26,12 @@ class UserController extends Controller
     public function register()
     {
         return view('auth.register');
+    }
+
+    public function cekNIKpage()
+    {
+        $user = User::select('name')->first();
+        return view('auth.cek-nik', compact('user'));
     }
 
     public function store(Request $request)
