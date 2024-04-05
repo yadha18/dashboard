@@ -38,6 +38,14 @@
                         <p>Pelanggan Deaktivasi</p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('cekNIKpage') }}"
+                        class="nav-link {{ Route::currentRouteNamed('cekNIKpage') ? 'active' : '' }}">
+                        <i
+                            class="far {{ Route::currentRouteNamed('cekNIKpage') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
+                        <p>Cek Nomor Induk Kependudukan (NIK)</p>
+                    </a>
+                </li>
                 <li class="nav-item menu-open">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-chart-line"></i>
