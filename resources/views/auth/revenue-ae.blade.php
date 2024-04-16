@@ -24,36 +24,44 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
-                                    <table id="table-accountExecutive" class="table table-bordered table-striped">
+                                    <table id="table-accountExecutive" class="table table-bordered table-striped nowrap">
                                         <thead>
                                             <tr>
-                                                <th>ID Pengguna Mobile</th>
-                                                <th>Nama</th>
-                                                <th>Jabatan</th>
+                                                <th>ID Permohonan</th>
+                                                <th>Sales Input</th>
+                                                <th>Upline Sales</th>
+                                                <th>Mitra Sales</th>
+                                                <th>Mitra Upline</th>
+                                                <th>Tanggal Aktivasi</th>
+                                                <th>Nama Layanan</th>
                                                 <th>Nama Produk</th>
-                                                <th>Pendapatan</th>
+                                                <th>Harga Produk</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($data_ae as $data)
                                                 <tr>
-                                                    <td>{{ $data->idPenggunaMobile }}</td>
-                                                    <td>{{ $data->nama }}</td>
-                                                    <td>{{ $data->jabatan }}</td>
+                                                    <td>{{ $data->idPermohonan }}</td>
+                                                    <td>{{ $data->salesInput }}</td>
+                                                    <td>{{ $data->uplineSales }}</td>
+                                                    <td>{{ $data->mitraSales }}</td>
+                                                    <td>{{ $data->mitraUpline }}</td>
+                                                    <td>{{ $data->tanggalAktivasi }}</td>
+                                                    <td>{{ $data->namaLayanan }}</td>
                                                     <td>{{ $data->namaProduk }}</td>
-                                                    <td>{{ $data->pendapatan }}</td>
+                                                    <td>{{ $data->rpProduk }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>
                                         <tfoot>
                                             <tr>
-                                                <td colspan="4"><b>Total Pendapatan</b></td>
+                                                <td colspan="8"><b>Total Pendapatan</b></td>
                                                 <td id="jumlahPendapatanAE">
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="4"><b>Jumlah Account Executive</b></td>
+                                                <td colspan="8"><b>Jumlah Account Executive</b></td>
                                                 <td id="jumlahAccountExecutive"></td>
                                             </tr>
                                         </tfoot>

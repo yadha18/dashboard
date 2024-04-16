@@ -13,11 +13,15 @@ return new class extends Migration
     {
         Schema::create('revenue_account_executives', function (Blueprint $table) {
             $table->id();
-            $table->string('idPenggunaMobile');
-            $table->string('nama');
-            $table->string('jabatan')->nullable();
+            $table->string('idPermohonan');
+            $table->string('salesInput');
+            $table->string('uplineSales')->nullable();
+            $table->string('mitraSales');
+            $table->string('mitraUpline')->nullable();
+            $table->dateTime('tanggalAktivasi')->nullable();
+            $table->string('namaLayanan')->nullable();
             $table->string('namaProduk')->nullable();
-            $table->float('pendapatan')->nullable();
+            $table->float('rpProduk')->nullable();
             $table->timestamps();
         });
     }
