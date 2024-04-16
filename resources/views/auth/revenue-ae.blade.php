@@ -24,7 +24,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
-                                    <table id="table-accountExecutive" class="table table-bordered table-striped nowrap">
+                                    <table id="table-accountExecutive" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Permohonan</th>
