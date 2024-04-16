@@ -110,7 +110,7 @@ class RevenueController extends Controller
         $endDate = $currentDate;
 
         $user = User::select('name')->first();
-        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
+        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'April')->where('tahun', 2024)->take(500)->get();
         $sum_daily = Revenue::whereBetween('tanggalBayar', [$startDate, $endDate])->sum('pendapatan');
 
         return view('auth.revenue-daily', compact('user', 'daily', 'sum_daily'));
