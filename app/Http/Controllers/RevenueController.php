@@ -74,7 +74,7 @@ class RevenueController extends Controller
     {
         $currentDate = Carbon::now();
         $startDate = $currentDate->copy()->subDays(7);
-        $endDate = $currentDate->copy()->subDays(2);
+        $endDate = $currentDate;
 
         $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', [$startDate, $endDate])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
 
@@ -107,7 +107,7 @@ class RevenueController extends Controller
     {
         $currentDate = Carbon::now();
         $startDate = $currentDate->copy()->subDays(7);
-        $endDate = $currentDate->copy()->subDays(2);
+        $endDate = $currentDate;
 
         $user = User::select('name')->first();
         $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'February')->where('tahun', 2024)->take(500)->get();
