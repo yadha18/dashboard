@@ -976,9 +976,10 @@
                 }
             });
             var tableAccountExecutive = $('#table-accountExecutive').DataTable({
-                "responsive": true,
+                "responsive": false,
                 "lengthChange": false,
                 "autoWidth": false,
+                "scrollX": true,
                 "buttons": [{
                         extend: 'collection',
                         text: 'Export',

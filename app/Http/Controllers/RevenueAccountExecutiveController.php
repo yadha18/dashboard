@@ -17,7 +17,7 @@ class RevenueAccountExecutiveController extends Controller
         $endDate = Carbon::now();
 
         $user = User::select('name')->first();
-        $data_ae = RevenueAccountExecutive::paginate(1000);
+        $data_ae = RevenueAccountExecutive::paginate(5000);
         $sum_ae = RevenueAccountExecutive::whereBetween('tanggalAktivasi', [$startDate, $endDate])->sum('rpProduk');
 
         return view('auth.revenue-ae', compact('user', 'data_ae', 'sum_ae'));
