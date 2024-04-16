@@ -61,6 +61,7 @@
     <script>
         $(function() {
             var $dailyLineChart = $("#dailyline-chart");
+            var $aeLineChart = $("#aeline-chart");
             var $productLineChart = $("#productline-chart");
             var mode = 'index';
             var intersect = true;

@@ -3,6 +3,7 @@
 use App\Http\Controllers\BaddebtController;
 use App\Http\Controllers\KanalBayarController;
 use App\Http\Controllers\PelangganDeaktivasiController;
+use App\Http\Controllers\RevenueAccountExecutiveController;
 use App\Http\Controllers\RevenueController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -57,4 +58,8 @@ Route::controller(PelangganDeaktivasiController::class)->group(function () {
     Route::get('/dashboard/pelanggan-deaktivasi', 'pelanggandeaktivasi')->name('pelanggan-deaktivasi');
 });
 
-Route::get('/dashboard/revenue/account-executive', 'App\Http\Controllers\RevenueAccountExecutiveController@revenueAccountExecutive')->name('revenueAccountExecutive');
+Route::controller(RevenueAccountExecutiveController::class)->group(function() {
+    Route::get('/dashboard/revenue/account-executive', 'revenueAccountExecutive')->name('revenueAccountExecutive');
+    Route::get('/get-ae-revenue', 'getAeRevenue');
+});
+

@@ -17,6 +17,37 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
+                        <section class="col-md-12">
+                            <!-- /.card -->
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Data Revenue per Account Executive</h3>
+                                </div>
+                                <!-- /.card-header -->
+                                <div class="card-body">
+                                    <div class="d-flex">
+                                        <p class="d-flex flex-column">
+                                            <span class="text-bold text-lg">Rp.
+                                                {{ str_replace(',', '.', number_format($sum_daily)) }},-</span>
+                                            <span>Total Revenue per Account Executive</span>
+                                        </p>
+                                    </div>
+                                    <!-- /.d-flex -->
+
+                                    <div class="position-relative mb-4">
+                                        <canvas id="aeline-chart" height="200"></canvas>
+                                    </div>
+
+                                    <div class="d-flex flex-row justify-content-end">
+                                        <span class="mr-2">
+                                            <i class="fas fa-square text-primary"></i> This Week
+                                        </span>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                            <!-- /.card -->
+                        </section>
                         <section class="col-12">
                             <div class="card">
                                 <div class="card-header">
