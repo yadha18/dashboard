@@ -28,7 +28,7 @@
                                     <div class="d-flex">
                                         <p class="d-flex flex-column">
                                             <span class="text-bold text-lg">Rp.
-                                                {{ str_replace(',', '.', number_format($sum_daily)) }},-</span>
+                                                {{ str_replace(',', '.', number_format($sum_ae)) }},-</span>
                                             <span>Total Revenue per Account Executive</span>
                                         </p>
                                     </div>

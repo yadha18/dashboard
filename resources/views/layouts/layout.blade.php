@@ -67,6 +67,71 @@
             var intersect = true;
 
             $.ajax({
+                url: '/get-ae-revenue',
+                method: 'GET',
+                success: (data) => {
+                    data.sort((a, b) => new Date(a.tanggalAktivasi) - new Date(b.tanggalAktivasi));
+
+                    const labels = data.map(entry => entry.tanggalAktivasi);
+                    const pendapatan = data.map(entry => entry.pendapatan);
+
+                    aeLineChart.data.labels = labels;
+                    aeLineChart.data.datasets[0].data = pendapatan;
+
+                    aeLineChart.update();
+                }
+            })
+
+            var aeLineChart = new Chart($aeLineChart, {
+                type: 'line',
+                data: {
+                    labels: ["18th", "20th", "22nd", "24th", "26th", "28th", "30th"],
+                    datasets: [{
+                        type: "line",
+                        data: [100, 120, 170, 167, 180, 177, 160],
+                        backgroundColor: "transparent",
+                        borderColor: "#007bff",
+                        pointBorderColor: "#007bff",
+                        pointBackgroundColor: "#007bff",
+                        fill: false,
+                    }, ],
+                },
+                options: {
+                    maintainAspectRatio: false,
+                    tooltips: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    hover: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    legend: {
+                        display: false,
+                    },
+                    scales: {
+                        yAxes: [{
+                            gridLines: {
+                                display: true,
+                                lineWidth: "4px",
+                                color: "rgba(0, 0, 0, .2)",
+                                zeroLineColor: "transparent",
+                            },
+                            ticks: {
+                                beginAtZero: true,
+                                suggestedMax: 200,
+                            },
+                        }],
+                        xAxes: [{
+                            gridLines: {
+                                display: false,
+                            },
+                        }],
+                    },
+                },
+            });
+
+            $.ajax({
                 url: '/get-daily-revenue',
                 method: 'GET',
                 success: (data) => {
