@@ -24,59 +24,21 @@ class RevenueController extends Controller
 
     public function getPrepaidMonthRevenue()
     {
-        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
-            ->whereIn('tahun', ['2023', '2024'])
-            ->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'])
-            ->where('typeBilling', 'prepaid')
-            ->groupBy('bulan')
-            ->orderByRaw("
-        CASE bulan
-            WHEN 'August' THEN 1
-            WHEN 'September' THEN 2
-            WHEN 'October' THEN 3
-            WHEN 'November' THEN 4
-            WHEN 'December' THEN 5
-            WHEN 'January' THEN 6
-            WHEN 'February' THEN 7
-            WHEN 'March' THEN 8
-            ELSE 9
-        END
-        ")->get();
+        $revenuesByMonth = $this->getMonthRevenue('prepaid');
 
         return response()->json($revenuesByMonth);
     }
 
     public function getPostpaidMonthRevenue()
     {
-        $revenuesByMonth = Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
-            ->whereIn('tahun', ['2023', '2024'])
-            ->whereIn('bulan', ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'])
-            ->where('typeBilling', 'postpaid')
-            ->groupBy('bulan')
-            ->orderByRaw("
-        CASE bulan
-            WHEN 'August' THEN 1
-            WHEN 'September' THEN 2
-            WHEN 'October' THEN 3
-            WHEN 'November' THEN 4
-            WHEN 'December' THEN 5
-            WHEN 'January' THEN 6
-            WHEN 'February' THEN 7
-            WHEN 'March' THEN 8
-            ELSE 9
-        END
-        ")->get();
+        $revenuesByMonth = $this->getMonthRevenue('postpaid');
 
         return response()->json($revenuesByMonth);
     }
 
     public function getDailyRevenue()
     {
-        $currentDate = Carbon::now();
-        $startDate = $currentDate->copy()->subDays(7);
-        $endDate = $currentDate;
-
-        $dailyRevenueQuery = Revenue::select(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar"))->selectRaw("SUM(pendapatan) AS pendapatanHarian")->whereBetween('tanggalBayar', [$startDate, $endDate])->groupBy(DB::raw("FORMAT(tanggalBayar, 'yyyy-MM-dd')"))->get();
+        $dailyRevenueQuery = $this->getDailyRevenueQuery();
 
         return response()->json($dailyRevenueQuery);
     }
@@ -87,30 +49,14 @@ class RevenueController extends Controller
         return response()->json($regional);
     }
 
-    private function getRevenueByRegion($year, $type, $regional)
-    {
-        $query = Revenue::where('tahun', $year)->where('typeBilling', $type);
-
-        if (!empty($regional)) {
-            $query->where('namaSBU', $regional);
-        }
-
-        return $query->get();
-    }
-
-    private function getProductRevenue($product, $count)
-    {
-        return Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('namaLayananProduk', $product)->where('tahun', 2024)->take($count)->get();
-    }
-
     public function dailyRevenue()
     {
-        $currentDate = Carbon::now();
-        $startDate = $currentDate->copy()->subDays(7);
-        $endDate = $currentDate;
-
         $user = User::select('name')->first();
-        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')->where('bulan', 'April')->where('tahun', 2024)->take(500)->get();
+        $startDate = Carbon::now()->subDays(7);
+        $endDate = Carbon::now();
+
+        $daily = Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')
+            ->where('bulan', 'April')->where('tahun', 2024)->take(500)->get();
         $sum_daily = Revenue::whereBetween('tanggalBayar', [$startDate, $endDate])->sum('pendapatan');
 
         return view('auth.revenue-daily', compact('user', 'daily', 'sum_daily'));
@@ -118,51 +64,22 @@ class RevenueController extends Controller
 
     public function getProductPercentageRevenue()
     {
-        $sum_5mbps = $this->sumProduct('5 MBPS');
-        $sum_10mbps = $this->sumProduct('10 MBPS');
-        $sum_20mbps = $this->sumProduct('20 MBPS');
-        $sum_35mbps = $this->sumProduct('35 MBPS');
-        $sum_50mbps = $this->sumProduct('50 MBPS');
-        $sum_100mbps = $this->sumProduct('100 MBPS');
+        $productSummaries = $this->calculateProductPercentageRevenue();
 
-        $total_mbps = $sum_5mbps + $sum_10mbps + $sum_20mbps + $sum_35mbps + $sum_50mbps + $sum_100mbps;
-
-        $percentage_5mbps = round(($sum_5mbps / $total_mbps) * 100, 1);
-        $percentage_10mbps = round(($sum_10mbps / $total_mbps) * 100, 1);
-        $percentage_20mbps = round(($sum_20mbps / $total_mbps) * 100, 1);
-        $percentage_35mbps = round(($sum_35mbps / $total_mbps) * 100, 1);
-        $percentage_50mbps = round(($sum_50mbps / $total_mbps) * 100, 1);
-        $percentage_100mbps = round(($sum_100mbps / $total_mbps) * 100, 1);
-
-        $data = [
-            'data5mbps' => $percentage_5mbps,
-            'data10mbps' => $percentage_10mbps,
-            'data20mbps' => $percentage_20mbps,
-            'data35mbps' => $percentage_35mbps,
-            'data50mbps' => $percentage_50mbps,
-            'data100mbps' => $percentage_100mbps,
-        ];
-
-        $total_percentage = array_sum($data);
-
-        foreach ($data as $key => $percentage) {
-            $data[$key] = $percentage / $total_percentage * 100;
-        }
-
-        $total_percentage = array_sum($data);
-        if ($total_percentage != 100) {
-            $min_key = array_keys($data, min($data))[0];
-            $data[$min_key] += 100 - $total_percentage;
-        }
-
-        return response()->json($data);
+        return response()->json($productSummaries);
     }
 
     public function productRevenueChart()
     {
-        $data = Revenue::selectRaw('SUM(pendapatan) AS pendapatan, bulan, tahun, namaLayananProduk')->whereIn('namaLayananProduk', ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'])->groupBy('bulan', 'tahun', 'namaLayananProduk')->orderBy('namaLayananProduk')->orderBy('tahun')->orderBy('bulan')->get();
+        $productRevenueData = Revenue::selectRaw('SUM(pendapatan) AS pendapatan, bulan, tahun, namaLayananProduk')
+            ->whereIn('namaLayananProduk', ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'])
+            ->groupBy('bulan', 'tahun', 'namaLayananProduk')
+            ->orderBy('namaLayananProduk')
+            ->orderBy('tahun')
+            ->orderBy('bulan')
+            ->get();
 
-        return response()->json($data);
+        return response()->json($productRevenueData);
     }
 
     public function productRevenue()
@@ -183,34 +100,74 @@ class RevenueController extends Controller
     {
         $user = User::select('name')->first();
 
-        $postpaid_2023 = $this->getRevenue(2023, 'postpaid');
-        $postpaid_2024 = $this->getRevenue(2024, 'postpaid');
-        $prepaid_2023 = $this->getRevenue(2023, 'prepaid');
-        $prepaid_2024 = $this->getRevenue(2024, 'prepaid');
-
-        $sum_prepaid_2023 = $this->sumRevenue(2023, 'prepaid');
-        $sum_postpaid_2023 = $this->sumRevenue(2023, 'postpaid');
-        $sum_prepaid_2024 = $this->sumRevenue(2024, 'prepaid');
-        $sum_postpaid_2024 = $this->sumRevenue(2024, 'postpaid');
-
-        if (Auth::check()) {
-            return view('auth.revenue', compact(
-                'user',
-                'sum_prepaid_2023',
-                'sum_postpaid_2023',
-                'sum_prepaid_2024',
-                'sum_postpaid_2024'
-            ));
+        $years = ['2023', '2024'];
+        $revenues = [];
+        foreach ($years as $year) {
+            $revenues[$year] = [
+                'prepaid' => $this->getRevenue($year, 'prepaid')->sum('pendapatan'),
+                'postpaid' => $this->getRevenue($year, 'postpaid')->sum('pendapatan'),
+            ];
         }
 
-        return redirect()->route('login')->withErrors([
-            'username' => 'silakan login terlebih dahulu'
-        ])->withInput(['username']);
+        return view('auth.revenue', compact('user', 'revenues'));
+    }
+
+    private function getMonthRevenue($type)
+    {
+        $months = ['August', 'September', 'October', 'November', 'December', 'January', 'February', 'March'];
+
+        return Revenue::selectRaw('bulan, sum(pendapatan) as total_pendapatan')
+            ->whereIn('tahun', ['2023', '2024'])
+            ->whereIn('bulan', $months)
+            ->where('typeBilling', $type)
+            ->groupBy('bulan')
+            ->orderByRaw("FIELD(bulan, '" . implode("', '", $months) . "')")
+            ->get();
+    }
+
+    private function getDailyRevenueQuery()
+    {
+        $startDate = Carbon::now()->subDays(7);
+        $endDate = Carbon::now();
+
+        return Revenue::selectRaw("FORMAT(tanggalBayar, 'yyyy-MM-dd') AS tanggalBayar")
+            ->selectRaw("SUM(pendapatan) AS pendapatanHarian")
+            ->whereBetween('tanggalBayar', [$startDate, $endDate])
+            ->groupByRaw("FORMAT(tanggalBayar, 'yyyy-MM-dd')")
+            ->get();
     }
 
     private function getRevenue($year, $type, $page = 1000)
     {
         return Revenue::where('tahun', $year)->where('typeBilling', $type)->paginate($page);
+    }
+
+    private function getProductRevenue($product, $count)
+    {
+        $startDate = Carbon::now()->subDays(7);
+        $endDate = Carbon::now();
+
+        return Revenue::select('idTagihan', 'pendapatan', 'typeBilling', 'tanggalBayar', 'bulan', 'tahun', 'namaLayanan', 'namaLayananProduk')
+            ->where('namaLayananProduk', $product)
+            ->whereBetween('tanggalBayar', [$startDate, $endDate])
+            ->take($count)
+            ->get();
+    }
+
+    private function calculateProductPercentageRevenue()
+    {
+        $products = ['5 MBPS', '10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'];
+        $productSummaries = [];
+
+        $totalRevenue = Revenue::where('tahun', 2024)->sum('pendapatan');
+
+        foreach ($products as $product) {
+            $productSummaries[$product] = Revenue::where('namaLayananProduk', $product)
+                ->where('tahun', 2024)
+                ->sum('pendapatan') / $totalRevenue * 100;
+        }
+
+        return $productSummaries;
     }
 
     private function sumRevenue($year, $type)
