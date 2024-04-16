@@ -45,7 +45,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div id="dt-buttons" class="dt-buttons"></div>
-                                    <table id="example1" class="table table-bordered table-striped">
+                                    <table id="example1" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>

@@ -27,15 +27,16 @@
                                     <table id="table-accountExecutive" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID Permohonan</th>
-                                                <th>Sales Input</th>
-                                                <th>Upline Sales</th>
-                                                <th>Mitra Sales</th>
-                                                <th>Mitra Upline</th>
-                                                <th>Tanggal Aktivasi</th>
+                                                <th>ID Tagihan</th>
+                                                <th>Pendapatan</th>
+                                                <th>Tanggal Bayar</th>
+                                                <th>Bulan</th>
+                                                <th>Tahun</th>
                                                 <th>Nama Layanan</th>
                                                 <th>Nama Produk</th>
-                                                <th>Harga Produk</th>
+                                                <th>Type Billing</th>
+                                                {{-- <th>Nama KP</th> --}}
+                                                <th>Nama SBU</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -56,13 +57,13 @@
                                         <tfoot>
                                             <tr>
                                                 <td colspan="8"><b>Total Pendapatan</b></td>
-                                                <td id="jumlahPendapatanAE">
+                                                <td id="totalAE">
 
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td colspan="8"><b>Jumlah Account Executive</b></td>
-                                                <td id="jumlahAccountExecutive"></td>
+                                                <td colspan="8"><b>Jumlah Tagihan</b></td>
+                                                <td id="totalAE"></td>
                                             </tr>
                                         </tfoot>
                                     </table>

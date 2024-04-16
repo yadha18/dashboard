@@ -75,7 +75,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-5mbps" class="dt-buttons"></div>
-                                    <table id="table-5mbps" class="table table-bordered table-striped">
+                                    <table id="table-5mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>
@@ -125,7 +125,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-10mbps" class="dt-buttons"></div>
-                                    <table id="table-10mbps" class="table table-bordered table-striped">
+                                    <table id="table-10mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>
@@ -175,7 +175,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-20mbps" class="dt-buttons"></div>
-                                    <table id="table-20mbps" class="table table-bordered table-striped">
+                                    <table id="table-20mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>
@@ -225,7 +225,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-35mbps" class="dt-buttons"></div>
-                                    <table id="table-35mbps" class="table table-bordered table-striped">
+                                    <table id="table-35mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>
@@ -275,7 +275,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-50mbps" class="dt-buttons"></div>
-                                    <table id="table-50mbps" class="table table-bordered table-striped">
+                                    <table id="table-50mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>
@@ -325,7 +325,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div id="dt-buttons-100mbps" class="dt-buttons"></div>
-                                    <table id="table-100mbps" class="table table-bordered table-striped">
+                                    <table id="table-100mbps" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>

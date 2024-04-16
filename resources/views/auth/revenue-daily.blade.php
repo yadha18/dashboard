@@ -63,7 +63,7 @@
                                 <!-- /.card-header -->
                                 <div class="card-body">
                                     <div id="dt-buttons-daily" class="dt-buttons"></div>
-                                    <table id="table-daily" class="table table-bordered table-striped">
+                                    <table id="table-daily" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>

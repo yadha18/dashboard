@@ -52,7 +52,7 @@
                                             data-type="postpaid">Postpaid 2024</button>
                                     </div>
                                     <div id="dt-buttons" class="dt-buttons mt-3"></div>
-                                    <table id="table-revenue" class="table table-bordered table-striped">
+                                    <table id="table-revenue" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>ID Tagihan</th>

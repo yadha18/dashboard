@@ -922,7 +922,7 @@
                         extend: 'searchBuilder',
                         text: 'Filters',
                         config: {
-                            container: '#searchbuilder-container-accountExecutive'
+                            container: '#searchbuilder-container-100mbps'
                         },
                     }
                 ],
@@ -940,19 +940,19 @@
                     var api = this.api();
 
                     var pendapatanAwal = 0;
-                    api.column(9, {
+                    api.column(8, {
                         search: 'applied'
                     }).data().each(function(value) {
                         if (!isNaN(parseFloat(value))) {
                             pendapatanAwal += parseFloat(value);
                         }
                     });
-                    $('#jumlahPendapatanAE').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
+                    $('#jumlahAE').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
 
                     var jumlahTagihan = api.rows({
                         search: 'applied'
                     }).count();
-                    $('#jumlahAccountExecutive').text(jumlahTagihan);
+                    $('#totalAE').text(jumlahTagihan);
                 }
             });
 
