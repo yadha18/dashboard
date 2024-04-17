@@ -1153,7 +1153,7 @@
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
                             var row = [
-                                item.salesInput,
+                                item.uplineSales,
                                 item.jumlahSales,
                                 item.namaProduk,
                                 pendapatan
