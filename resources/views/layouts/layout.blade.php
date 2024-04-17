@@ -1562,21 +1562,31 @@
                 success: (data) => {
                     var labels = [];
                     var dataValues = [];
+                    var dataPendapatan = [];
 
                     $.each(data, (index, item) => {
                         labels.push(item.downlineSales);
                         dataValues.push(item.jumlahSales);
+                        dataPendapatan.push(item.pendapatan);
                     })
 
                     var chartData = {
                         labels: labels,
                         datasets: [{
-                            label: 'Jumlah Sales',
-                            backgroundColor: 'rgba(60,141,188,0.9)',
-                            borderColor: 'rgba(60,141,188,0.8)',
-                            borderWidth: 1,
-                            data: dataValues
-                        }]
+                                label: 'Jumlah Sales',
+                                backgroundColor: 'rgba(60,141,188,0.9)',
+                                borderColor: 'rgba(60,141,188,0.8)',
+                                borderWidth: 1,
+                                data: dataValues
+                            },
+                            {
+                                label: 'Revenue (Rp.)',
+                                backgroundColor: 'rgba(210, 214, 222, 1)',
+                                borderColor: 'rgba(210, 214, 222, 1)',
+                                borderWidth: 1,
+                                data: dataPendapatan
+                            }
+                        ]
                     };
 
                     var barChartCanvas = $('#downlineBarChart').get(0).getContext('2d')
@@ -1606,21 +1616,31 @@
                 success: (data) => {
                     var labels = [];
                     var dataValues = [];
+                    var dataPendapatan = [];
 
                     $.each(data, (index, item) => {
                         labels.push(item.uplineSales);
                         dataValues.push(item.jumlahSales);
+                        dataPendapatan.push(item.pendapatan);
                     })
 
                     var chartData = {
                         labels: labels,
                         datasets: [{
-                            label: 'Jumlah Sales',
-                            backgroundColor: 'rgba(60,141,188,0.9)',
-                            borderColor: 'rgba(60,141,188,0.8)',
-                            borderWidth: 1,
-                            data: dataValues
-                        }]
+                                label: 'Jumlah Sales',
+                                backgroundColor: 'rgba(60,141,188,0.9)',
+                                borderColor: 'rgba(60,141,188,0.8)',
+                                borderWidth: 1,
+                                data: dataValues
+                            },
+                            {
+                                label: 'Revenue (Rp.)',
+                                backgroundColor: 'rgba(210, 214, 222, 1)',
+                                borderColor: 'rgba(210, 214, 222, 1)',
+                                borderWidth: 1,
+                                data: dataPendapatan
+                            },
+                        ]
                     };
 
                     var uplineBarChartCanvas = $('#uplineBarChart').get(0).getContext('2d');
