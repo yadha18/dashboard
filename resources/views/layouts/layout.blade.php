@@ -1002,24 +1002,6 @@
                             _: '<i class="fas fa-filter"></i> Filters (%d)'
                         }
                     }
-                },
-                "footerCallback": function(row, data, start, end, display) {
-                    var api = this.api();
-
-                    var pendapatanAwal = 0;
-                    api.column(8, {
-                        search: 'applied'
-                    }).data().each(function(value) {
-                        if (!isNaN(parseFloat(value))) {
-                            pendapatanAwal += parseFloat(value);
-                        }
-                    });
-                    $('#jumlahAE').text('Rp. ' + formatRupiah(pendapatanAwal) + ',-');
-
-                    var jumlahTagihan = api.rows({
-                        search: 'applied'
-                    }).count();
-                    $('#totalAE').text(jumlahTagihan);
                 }
             });
 
@@ -1134,22 +1116,21 @@
                         $('#loading-spinner').removeClass('d-none');
                     },
                     success: function(data) {
-                        $('#table-accountExecutive tbody').empty();
+                        tableAccountExecutive.clear();
 
                         $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
-                            var row = '<tr>' +
-                                '<td>' + item.downlineSales + '</td>' +
-                                '<td>' + item.jumlahSales + '</td>' +
-                                '<td>' + item.namaProduk + '</td>' +
-                                '<td>' + pendapatan + '</td>' +
-                                '</tr>';
-                            $('#table-accountExecutive tbody').append(
-                            row);
+                            var row = [
+                                item.salesInput,
+                                item.jumlahSales,
+                                item.namaProduk,
+                                pendapatan
+                            ];
+                            tableAccountExecutive.row.add(row);
                         });
 
-                        table.draw();
+                        tableAccountExecutive.draw();
                         // updateFooter(data.data);
                     },
                     complete: function() {

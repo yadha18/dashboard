@@ -67,7 +67,7 @@
                                     <h3 class="card-title">Revenue per Account Executive (Downline Sales)</h3>
                                 </div>
                                 <div class="card-body">
-                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                    <div class="btn-group mb-3" role="group" aria-label="Filter Buttons">
                                         <button type="button" class="btn btn-info filter-ae-button"
                                             data-bandwidth="10 MBPS">10 MBPS</button>
                                         <button type="button" class="btn btn-info filter-ae-button"
