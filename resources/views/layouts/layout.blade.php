@@ -975,7 +975,36 @@
                     $('#jumlahTagihan100mbps').text(jumlahTagihan);
                 }
             });
-            var tableAccountExecutive = $('#table-accountExecutive').DataTable({
+            var tableAccountExecutiveDownline = $('#table-accountExecutive-downline').DataTable({
+                "responsive": false,
+                "lengthChange": false,
+                "autoWidth": false,
+                "scrollX": true,
+                "buttons": [{
+                        extend: 'collection',
+                        text: 'Export',
+                        buttons: ['copy', 'csv', 'excel', 'pdf', 'print']
+                    },
+                    {
+                        extend: 'searchBuilder',
+                        text: 'Filters',
+                        config: {
+                            container: '#searchbuilder-container-100mbps'
+                        },
+                    }
+                ],
+                "language": {
+                    searchBuilder: {
+                        data: 'Column',
+                        add: 'Add Condition',
+                        button: {
+                            0: '<i class="fas fa-filter"></i> Filters',
+                            _: '<i class="fas fa-filter"></i> Filters (%d)'
+                        }
+                    }
+                }
+            });
+            var tableAccountExecutiveUpline = $('#table-accountExecutive-upline').DataTable({
                 "responsive": false,
                 "lengthChange": false,
                 "autoWidth": false,
@@ -1038,7 +1067,8 @@
             table35mbps.buttons().container().appendTo('#dt-buttons-35mbps');
             table50mbps.buttons().container().appendTo('#dt-buttons-50mbps');
             table100mbps.buttons().container().appendTo('#dt-buttons-100mbps');
-            tableAccountExecutive.buttons().container().appendTo('#dt-buttons-accountExecutive');
+            tableAccountExecutiveDownline.buttons().container().appendTo('#dt-buttons-accountExecutive-downline');
+            tableAccountExecutiveUpline.buttons().container().appendTo('#dt-buttons-accountExecutive-upline');
 
             $('.filter-button, .dropdown-item').on('click', function() {
                 var year = $(this).data('year');
@@ -1107,16 +1137,17 @@
                 var bandwidth = $(this).data('bandwidth');
 
                 $.ajax({
-                    url: '/get-ae-revenue-data',
+                    url: '/get-ae-revenue-data-downline',
                     type: 'GET',
                     data: {
                         bandwidth: bandwidth,
                     },
                     beforeSend: function() {
                         $('#loading-spinner').removeClass('d-none');
+                        $('#loading-spinner').addClass('text-center');
                     },
                     success: function(data) {
-                        tableAccountExecutive.clear();
+                        tableAccountExecutiveDownline.clear();
 
                         $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
@@ -1127,30 +1158,52 @@
                                 item.namaProduk,
                                 pendapatan
                             ];
-                            tableAccountExecutive.row.add(row);
+                            tableAccountExecutiveDownline.row.add(row);
                         });
 
-                        tableAccountExecutive.draw();
-                        // updateFooter(data.data);
+                        tableAccountExecutiveDownline.draw();
                     },
                     complete: function() {
                         $('#loading-spinner').addClass('d-none');
                     }
                 });
+            });
 
-                function updateFooter(data) {
-                    var totalLembarTagihan = 0;
-                    var totalPendapatan = 0;
+            $('.filter-ae-upline-button').on('click', function() {
+                var bandwidth = $(this).data('bandwidth');
+                var spinner = $('#loading-spinner-upline');
 
-                    $.each(data, function(index, item) {
-                        totalLembarTagihan += parseFloat(item.idTagihan);
-                        totalPendapatan += parseFloat(item.pendapatan);
-                    });
+                $.ajax({
+                    url: '/get-ae-revenue-data-upline',
+                    type: 'GET',
+                    data: {
+                        bandwidth: bandwidth,
+                    },
+                    beforeSend: function() {
+                        spinner.removeClass('d-none');
+                        spinner.addClass('text-center');
+                    },
+                    success: function(data) {
+                        tableAccountExecutiveUpline.clear();
 
-                    $('#footer-row th:eq(0)').text(totalLembarTagihan);
-                    $('#footer-row th:eq(1)').text('Rp. ' + totalPendapatan.toFixed(2).replace(
-                        /\d(?=(\d{3})+\.)/g, '$&,'));
-                }
+                        $.each(data, function(index, item) {
+                            var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
+                                parseFloat(item.pendapatan);
+                            var row = [
+                                item.salesInput,
+                                item.jumlahSales,
+                                item.namaProduk,
+                                pendapatan
+                            ];
+                            tableAccountExecutiveUpline.row.add(row);
+                        });
+
+                        tableAccountExecutiveUpline.draw();
+                    },
+                    complete: function() {
+                        spinner.addClass('d-none');
+                    }
+                });
             });
         });
     </script>

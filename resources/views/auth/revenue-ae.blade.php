@@ -83,8 +83,9 @@
                                             data-bandwidth="100 MBPS">100
                                             MBPS</button>
                                     </div>
-                                    <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
-                                    <table id="table-accountExecutive" class="table table-sm table-striped">
+                                    <div id="dt-buttons-accountExecutive-downline" class="dt-buttons"></div>
+                                    <div id="loading-spinner" class="d-none">Loading...</div>
+                                    <table id="table-accountExecutive-downline" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
                                                 <th>Downline Sales</th>
@@ -95,7 +96,44 @@
                                         </thead>
                                         <tbody></tbody>
                                     </table>
-                                    <div id="loading-spinner" class="d-none">Loading...</div>
+                                </div>
+                            </div>
+                        </section>
+                        <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title">Revenue per Account Executive (Upline Sales)</h3>
+                                </div>
+                                <div class="card-body">
+                                    <div class="btn-group mb-3" role="group" aria-label="Filter Buttons">
+                                        <button type="button" class="btn btn-info filter-ae-upline-button"
+                                            data-bandwidth="10 MBPS">10 MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-upline-button"
+                                            data-bandwidth="20 MBPS">20
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-upline-button"
+                                            data-bandwidth="35 MBPS">35
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-upline-button"
+                                            data-bandwidth="50 MBPS">50
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-upline-button"
+                                            data-bandwidth="100 MBPS">100
+                                            MBPS</button>
+                                    </div>
+                                    <div id="dt-buttons-accountExecutive-upline" class="dt-buttons"></div>
+                                    <div id="loading-spinner-upline" class="d-none">Loading...</div>
+                                    <table id="table-accountExecutive-upline" class="table table-sm table-striped">
+                                        <thead>
+                                            <tr>
+                                                <th>Upline Sales</th>
+                                                <th>Jumlah Sales</th>
+                                                <th>Nama Produk</th>
+                                                <th>Pendapatan</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody></tbody>
+                                    </table>
                                 </div>
                             </div>
                         </section>

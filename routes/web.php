@@ -63,6 +63,7 @@ Route::controller(RevenueAccountExecutiveController::class)->group(function() {
     Route::get('/get-ae-revenue', 'getAeRevenue');
     Route::get('/get-top-5-downline', 'getTop5DownlineSales');
     Route::get('/get-top-5-upline', 'getTop5UplineSales');
-    Route::get('/get-ae-revenue-data', 'getAERevenueData');
+    Route::get('/get-ae-revenue-data-downline', 'getAERevenueDataDownline');
+    Route::get('/get-ae-revenue-data-upline', 'getAERevenueDataUpline');
 });
 
