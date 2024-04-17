@@ -1128,7 +1128,7 @@
                     url: '/get-ae-revenue-data',
                     type: 'GET',
                     data: {
-                        bandwidth,
+                        bandwidth: bandwidth,
                     },
                     beforeSend: function() {
                         $('#loading-spinner').removeClass('d-none');
@@ -1136,7 +1136,7 @@
                     success: function(data) {
                         table.clear();
 
-                        $.each(data, function(index, item) {
+                        $.each(data, function(item, index) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
 

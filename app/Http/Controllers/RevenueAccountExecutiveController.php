@@ -19,8 +19,22 @@ class RevenueAccountExecutiveController extends Controller
         $user = User::select('name')->first();
         $data_ae = RevenueAccountExecutive::paginate(5000);
         $sum_ae = RevenueAccountExecutive::whereBetween('tanggalAktivasi', [$startDate, $endDate])->sum('rpProduk');
+        $ds_10mb = $this->getAERevenueBandwidth('10 MBPS');
+        $ds_20mb = $this->getAERevenueBandwidth('20 MBPS');
+        $ds_35mb = $this->getAERevenueBandwidth('35 MBPS');
+        $ds_50mb = $this->getAERevenueBandwidth('50 MBPS');
+        $ds_100mb = $this->getAERevenueBandwidth('100 MBPS');
 
-        return view('auth.revenue-ae', compact('user', 'data_ae', 'sum_ae'));
+        return view('auth.revenue-ae', compact(
+            'user',
+            'data_ae',
+            'sum_ae',
+            'ds_10mb',
+            'ds_20mb',
+            'ds_35mb',
+            'ds_50mb',
+            'ds_100mb'
+        ));
     }
 
     public function getAeRevenue()
