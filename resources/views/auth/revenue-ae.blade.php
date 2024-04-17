@@ -93,12 +93,9 @@
                                                 <th>Pendapatan</th>
                                             </tr>
                                         </thead>
-                                        <tbody>
-                                            <div id="loading-spinner" class="d-none">
-                                                Loading...
-                                            </div>
-                                        </tbody>
+                                        <tbody></tbody>
                                     </table>
+                                    <div id="loading-spinner" class="d-none">Loading...</div>
                                 </div>
                             </div>
                         </section>

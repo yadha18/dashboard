@@ -1134,23 +1134,19 @@
                         $('#loading-spinner').removeClass('d-none');
                     },
                     success: function(data) {
-                        table.clear();
+                        $('#table-accountExecutive tbody').empty();
 
-                        $.each(data, function(item, index) {
+                        $.each(data, function(index, item) {
                             var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
                                 parseFloat(item.pendapatan);
-
-                            var row = [
-                                item.downlineSales,
-                                item.jumlahSales,
-                                // 'Rp. ' + (typeof pendapatan === 'number' ?
-                                //     pendapatan.toFixed(2).replace(
-                                //         /\d(?=(\d{3})+\.)/g, '$&,') : ''),
-                                item.namaProduk,
-                                item.pendapatan,
-                            ];
-
-                            table.row.add(row);
+                            var row = '<tr>' +
+                                '<td>' + item.downlineSales + '</td>' +
+                                '<td>' + item.jumlahSales + '</td>' +
+                                '<td>' + item.namaProduk + '</td>' +
+                                '<td>' + pendapatan + '</td>' +
+                                '</tr>';
+                            $('#table-accountExecutive tbody').append(
+                            row);
                         });
 
                         table.draw();
