@@ -37,11 +37,9 @@
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
                         </section>
                         <section class="col-md-6">
-                            <!-- /.card -->
                             <div class="card">
                                 <div class="card-header">
                                     <h3 class="card-title">Top 5 Upline Sales 2022-2024</h3>
@@ -61,45 +59,44 @@
                                             style="min-height: 250px; height: 250px; max-height: 250px; max-width: 100%;"></canvas>
                                     </div>
                                 </div>
-                                <!-- /.card-body -->
                             </div>
-                            <!-- /.card -->
                         </section>
                         <section class="col-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Revenue per Account Executive</h3>
+                                    <h3 class="card-title">Revenue per Account Executive (Downline Sales)</h3>
                                 </div>
                                 <div class="card-body">
+                                    <div class="btn-group" role="group" aria-label="Filter Buttons">
+                                        <button type="button" class="btn btn-info filter-ae-button"
+                                            data-bandwidth="10 MBPS">10 MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-button"
+                                            data-bandwidth="20 MBPS">20
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-button"
+                                            data-bandwidth="35 MBPS">35
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-button"
+                                            data-bandwidth="50 MBPS">50
+                                            MBPS</button>
+                                        <button type="button" class="btn btn-info filter-ae-button"
+                                            data-bandwidth="100 MBPS">100
+                                            MBPS</button>
+                                    </div>
                                     <div id="dt-buttons-accountExecutive" class="dt-buttons"></div>
                                     <table id="table-accountExecutive" class="table table-sm table-striped">
                                         <thead>
                                             <tr>
-                                                <th>ID Permohonan</th>
-                                                <th>Sales Input</th>
-                                                <th>Upline Sales</th>
-                                                <th>Mitra Sales</th>
-                                                <th>Mitra Upline</th>
-                                                <th>Tanggal Aktivasi</th>
-                                                <th>Nama Layanan</th>
+                                                <th>Downline Sales</th>
+                                                <th>Jumlah Sales</th>
                                                 <th>Nama Produk</th>
                                                 <th>Pendapatan</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            @foreach ($data_ae as $data)
-                                                <tr>
-                                                    <td>{{ $data->idPermohonan }}</td>
-                                                    <td>{{ $data->salesInput }}</td>
-                                                    <td>{{ $data->uplineSales }}</td>
-                                                    <td>{{ $data->mitraSales }}</td>
-                                                    <td>{{ $data->mitraUpline }}</td>
-                                                    <td>{{ $data->tanggalAktivasi }}</td>
-                                                    <td>{{ $data->namaLayanan }}</td>
-                                                    <td>{{ $data->namaProduk }}</td>
-                                                    <td>{{ $data->rpProduk }}</td>
-                                                </tr>
-                                            @endforeach
+                                            <div id="loading-spinner" class="d-none">
+                                                Loading...
+                                            </div>
                                         </tbody>
                                     </table>
                                 </div>

@@ -1120,6 +1120,61 @@
                         /\d(?=(\d{3})+\.)/g, '$&,'));
                 }
             });
+
+            $('.filter-ae-button').on('click', function() {
+                var bandwidth = $(this).data('bandwidth');
+
+                $.ajax({
+                    url: '/get-ae-revenue-data',
+                    type: 'GET',
+                    data: {
+                        bandwidth,
+                    },
+                    beforeSend: function() {
+                        $('#loading-spinner').removeClass('d-none');
+                    },
+                    success: function(data) {
+                        table.clear();
+
+                        $.each(data, function(index, item) {
+                            var pendapatan = isNaN(item.pendapatan) ? item.pendapatan :
+                                parseFloat(item.pendapatan);
+
+                            var row = [
+                                item.downlineSales,
+                                item.jumlahSales,
+                                // 'Rp. ' + (typeof pendapatan === 'number' ?
+                                //     pendapatan.toFixed(2).replace(
+                                //         /\d(?=(\d{3})+\.)/g, '$&,') : ''),
+                                item.namaProduk,
+                                item.pendapatan,
+                            ];
+
+                            table.row.add(row);
+                        });
+
+                        table.draw();
+                        // updateFooter(data.data);
+                    },
+                    complete: function() {
+                        $('#loading-spinner').addClass('d-none');
+                    }
+                });
+
+                function updateFooter(data) {
+                    var totalLembarTagihan = 0;
+                    var totalPendapatan = 0;
+
+                    $.each(data, function(index, item) {
+                        totalLembarTagihan += parseFloat(item.idTagihan);
+                        totalPendapatan += parseFloat(item.pendapatan);
+                    });
+
+                    $('#footer-row th:eq(0)').text(totalLembarTagihan);
+                    $('#footer-row th:eq(1)').text('Rp. ' + totalPendapatan.toFixed(2).replace(
+                        /\d(?=(\d{3})+\.)/g, '$&,'));
+                }
+            });
         });
     </script>
     <script>

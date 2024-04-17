@@ -62,6 +62,26 @@ class RevenueAccountExecutiveController extends Controller
         return response()->json($upLineSales);
     }
 
+    public function getAERevenueData(Request $request)
+    {
+        $bandwidth = $request->input('bandwidth');
+
+        $revenueData = $this->getAERevenueBandwidth($bandwidth)->toArray();
+
+        return response()->json($revenueData);
+    }
+
+    private function getAERevenueBandwidth($bandwidth)
+    {
+        return RevenueAccountExecutive::select('salesInput', 'namaProduk', DB::raw('COUNT(salesInput) as jumlahSales'), DB::raw('SUM(rpProduk) as pendapatan'))
+            ->whereBetween('tanggalAktivasi', ['2022-01-01', Carbon::now()])
+            ->where('namaProduk', $bandwidth)
+            ->groupBy('salesInput', 'namaProduk')
+            ->orderByRaw('COUNT(salesInput) DESC')
+            ->take(500)
+            ->get();
+    }
+
     private function getAeRevenueQuery()
     {
         $startDate = Carbon::now()->subDays(7);
