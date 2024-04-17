@@ -27,6 +27,11 @@
                         Login
                     </div>
                     <div class="card-body">
+                        @if (session('error'))
+                            <div class="alert alert-danger" role="alert">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form method="post" action="{{ route('authenticate') }}">
                             @csrf
                             <div class="form-group">
@@ -37,7 +42,7 @@
                             <div class="form-group">
                                 <label for="password">Password</label>
                                 <input type="password" class="form-control" id="password" name="password"
-                                    placeholder="Enter your password" value="{{ old('password') }}" required>
+                                    placeholder="Enter your password" value="{{ old('password') }}" minlength="8" required>
                             </div>
                             <button type="submit" class="btn btn-primary">Login</button>
                         </form>

@@ -50,7 +50,7 @@ class UserController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('dashboard');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil!');
     }
 
     public function authenticate(Request $request)
@@ -65,10 +65,7 @@ class UserController extends Controller
 
             return redirect()->route('dashboard');
         }
-
-        return back()->withErrors([
-            'username' => 'username atau password salah'
-        ])->withInput(['username']);
+        return redirect()->back()->with('error', 'Email atau password salah.');
     }
 
     public function dashboard()

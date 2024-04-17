@@ -27,6 +27,11 @@
                         Register
                     </div>
                     <div class="card-body">
+                        @if (session('success'))
+                            <div class="alert alert-success" role="alert">
+                                {{ session('success') }}
+                            </div>
+                        @endif
                         <form method="post" action="{{ route('store') }}">
                             @csrf
                             <div class="form-group">
