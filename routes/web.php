@@ -61,5 +61,7 @@ Route::controller(PelangganDeaktivasiController::class)->group(function () {
 Route::controller(RevenueAccountExecutiveController::class)->group(function() {
     Route::get('/dashboard/revenue/account-executive', 'revenueAccountExecutive')->name('revenueAccountExecutive');
     Route::get('/get-ae-revenue', 'getAeRevenue');
+    Route::get('/get-top-5-downline', 'getTop5DownlineSales');
+    Route::get('/get-top-5-upline', 'getTop5UplineSales');
 });
 

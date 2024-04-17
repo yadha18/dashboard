@@ -30,6 +30,38 @@ class RevenueAccountExecutiveController extends Controller
         return response()->json($dailyRevenueQuery);
     }
 
+    public function getTop5DownlineSales()
+    {
+        $currentDate = Carbon::now();
+
+        $topSales = RevenueAccountExecutive::select('salesInput as downlineSales')
+            ->selectRaw('COUNT(salesInput) as jumlahSales')
+            ->selectRaw('SUM(rpProduk) as pendapatan')
+            ->whereBetween('tanggalAktivasi', ['2022-01-01', $currentDate])
+            ->groupBy('salesInput')
+            ->orderBy(DB::raw('COUNT(salesInput)'), 'desc')
+            ->limit(5)
+            ->get();
+
+        return response()->json($topSales);
+    }
+
+    public function getTop5UplineSales()
+    {
+        $currentDate = Carbon::now();
+
+        $upLineSales = RevenueAccountExecutive::select('uplineSales')
+            ->selectRaw('COUNT(uplineSales) as jumlahSales')
+            ->selectRaw('SUM(rpProduk) as pendapatan')
+            ->whereBetween('tanggalAktivasi', ['2022-01-01', $currentDate])
+            ->groupBy('uplineSales')
+            ->orderBy(DB::raw('COUNT(uplineSales)'), 'desc')
+            ->limit(5)
+            ->get();
+
+        return response()->json($upLineSales);
+    }
+
     private function getAeRevenueQuery()
     {
         $startDate = Carbon::now()->subDays(7);

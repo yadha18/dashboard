@@ -1555,6 +1555,95 @@
                     console.error(xhr.responseText);
                 }
             })
+
+            $.ajax({
+                url: '/get-top-5-downline',
+                method: 'GET',
+                success: (data) => {
+                    var labels = [];
+                    var dataValues = [];
+
+                    $.each(data, (index, item) => {
+                        labels.push(item.downlineSales);
+                        dataValues.push(item.jumlahSales);
+                    })
+
+                    var chartData = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Jumlah Sales',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            borderWidth: 1,
+                            data: dataValues
+                        }]
+                    };
+
+                    var barChartCanvas = $('#downlineBarChart').get(0).getContext('2d')
+
+                    var barChartOptions = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    };
+
+                    new Chart(barChartCanvas, {
+                        type: 'bar',
+                        data: chartData,
+                        options: barChartOptions
+                    })
+                }
+            })
+            $.ajax({
+                url: '/get-top-5-upline',
+                method: 'GET',
+                success: (data) => {
+                    var labels = [];
+                    var dataValues = [];
+
+                    $.each(data, (index, item) => {
+                        labels.push(item.uplineSales);
+                        dataValues.push(item.jumlahSales);
+                    })
+
+                    var chartData = {
+                        labels: labels,
+                        datasets: [{
+                            label: 'Jumlah Sales',
+                            backgroundColor: 'rgba(60,141,188,0.9)',
+                            borderColor: 'rgba(60,141,188,0.8)',
+                            borderWidth: 1,
+                            data: dataValues
+                        }]
+                    };
+
+                    var uplineBarChartCanvas = $('#uplineBarChart').get(0).getContext('2d');
+
+                    var barChartOptions = {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            yAxes: [{
+                                ticks: {
+                                    beginAtZero: true
+                                }
+                            }]
+                        }
+                    };
+
+                    new Chart(uplineBarChartCanvas, {
+                        type: 'bar',
+                        data: chartData,
+                        options: barChartOptions
+                    })
+                }
+            })
         })
     </script>
 </body>
