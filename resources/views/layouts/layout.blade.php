@@ -5,7 +5,6 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') || Billing Dashboard</title>
-
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
@@ -28,6 +27,104 @@
     <style>
         table {
             white-space: nowrap;
+        }
+
+        .dropbtn {
+            background-color: #f1f1f1;
+            color: #3d3d3d;
+            border-radius: 50px;
+            padding: 5px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0px 0px 10px 10px;
+            transition: all 0.3s;
+        }
+
+        .dropbtn:hover,
+        .dropbtn:focus {
+            background-color: #e1e1e1;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 180px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 5px;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .show {
+            display: block;
+        }
+
+        .dropbtn2 {
+            background-color: #f1f1f1;
+            color: #3d3d3d;
+            border-radius: 50px;
+            padding: 5px 20px;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0px 0px 10px 10px;
+            transition: all 0.3s;
+        }
+
+        .dropbtn2:hover,
+        .dropbtn2:focus {
+            background-color: #e1e1e1;
+        }
+
+        .dropdown2 {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content2 {
+            display: none;
+            position: absolute;
+            background-color: #f1f1f1;
+            min-width: 180px;
+            overflow: auto;
+            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            z-index: 1;
+            right: 5px;
+        }
+
+        .dropdown-content2 a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .dropdown2 a:hover {
+            background-color: #ddd;
+        }
+
+        .show2 {
+            display: block;
         }
     </style>
 </head>
@@ -58,6 +155,7 @@
     <script src="{{ asset('dist/js/adminlte.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2"></script>
     <script>
         $(function() {
             var $dailyLineChart = $("#dailyline-chart");
@@ -1428,6 +1526,429 @@
                         },
                     });
                 },
+            });
+        });
+    </script>
+    {{-- <script>
+        var ctx = document.getElementById('revenue-bar-chart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ],
+                datasets: [{
+                        label: 'Realisasi',
+                        backgroundColor: "#0dcaf0",
+                        borderColor: "#0dcaf0",
+                        data: [151, 299, 449, 599, 751, 904, 1059, 1215, 1371, 1531, 1692, 1860],
+                        datalabels: {
+                            color: '#FFCE56'
+                        }
+                    },
+                    {
+                        label: 'Target',
+                        backgroundColor: "#007bff",
+                        borderColor: "#007bff",
+                        data: [150, 300, 500, 600, 800, 950, 1100, 1250, 1400, 1600, 1700, 2000],
+                        datalabels: {
+                            color: '#FFCE56'
+                        }
+                    },
+                    {
+                        label: 'Selisih',
+                        backgroundColor: "#198754",
+                        borderColor: "#198754",
+                        data: [1, 1, 51, 1, 49, 46, 41, 35, 29, 69, 8, 140],
+                        datalabels: {
+                            color: '#FFCE56'
+                        }
+                    },
+                ],
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.0/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-datalabels/2.0.0/chartjs-plugin-datalabels.js">
+    </script>
+    <script>
+        $(function() {
+            "use strict";
+
+            var ticksStyle = {
+                fontColor: "#495057",
+                fontStyle: "bold",
+            };
+
+            var mode = "index";
+            var intersect = true;
+
+            Chart.register(ChartDataLabels);
+
+            var $revenueBarChart = $("#revenue-bar-chart")[0].getContext('2d');
+            var revenueBarChart = new Chart($revenueBarChart, {
+                type: "bar",
+                data: {
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                        'September', 'Oktober', 'November', 'Desember'
+                    ],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [151, 299, 449, 599, 751, 904, 1059, 1215, 1371, 1531, 1692, 1860],
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [150, 300, 500, 600, 800, 950, 1100, 1250, 1400, 1600, 1700, 2000],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [1, 1, 51, 1, 49, 46, 41, 35, 29, 69, 8, 140],
+                        }
+                    ],
+                },
+                options: {
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            formatter: Math.round,
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                    },
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    scales: {
+                        x: {
+                            ticks: ticksStyle
+                        },
+                        y: {
+                            ticks: ticksStyle,
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+
+            $('#revenue-nasional').click(function() {
+                var data_revenue_nasional = {
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                        'September', 'Oktober', 'November', 'Desember'
+                    ],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
+                                1900
+                            ],
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+                                2000
+                            ],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [25, 25, 25, 25, 25, 25, 25, 25, 50, 25, 50, 150],
+                        }
+                    ],
+                };
+
+                updateChart(revenueBarChart, data_revenue_nasional);
+            });
+
+            $('#updateData1').click(function() {
+                var data_hc_nasional = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
+                                1900
+                            ],
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+                                2000
+                            ],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 0, 50, 100],
+                        }
+                    ],
+                };
+                updateChart(revenueBarChart, data_hc_nasional);
+            });
+
+            $('#updateData2').click(function() {
+                var data_revenue_sbu = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600,
+                                1750
+                            ],
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1550, 1700,
+                                1850
+                            ],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
+                        }
+                    ],
+                };
+                updateChart(revenueBarChart, data_revenue_sbu);
+            });
+
+            function updateChart(chart, newData) {
+                chart.data = newData;
+                chart.update();
+            }
+        });
+    </script>
+
+    <script>
+        $(function() {
+            "use strict";
+
+            var ticksStyle = {
+                fontColor: "#495057",
+                fontStyle: "bold",
+            };
+
+            var mode = "index";
+            var intersect = true;
+            const realisasi = [151, 299, 449, 599, 751, 904, 1059, 1215, 1371, 1531, 1692, 1860];
+            const target = [150, 300, 500, 600, 800, 950, 1100, 1250, 1400, 1600, 1700, 2000];
+
+            var realisasiData = [
+                [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282], // Januari
+                [4500, 4200, 4800, 3100, 4400, 3200, 3000, 3200, 2800, 3400], // Februari
+                // Add data for other months here
+            ];
+
+            var targetData = [
+                [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838], // Januari
+                [1800, 1400, 1600, 2000, 2200, 2000, 1900, 1000, 1700, 900], // Februari
+                // Add data for other months here
+            ];
+
+            var $periodRevenueChart = $("#period-revenue-chart")[0].getContext('2d');
+
+            var periodRevenueChart = new Chart($periodRevenueChart, {
+                type: "bar",
+                data: {
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                        'September', 'Oktober', 'November', 'Desember'
+                    ],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: realisasi,
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: target,
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: target.map((value, index) => value - realisasi[index]),
+                        }
+                    ],
+                },
+                options: {
+                    plugins: {
+                        datalabels: {
+                            anchor: 'end',
+                            align: 'top',
+                            font: {
+                                weight: 'bold'
+                            }
+                        },
+                    },
+                    maintainAspectRatio: false,
+                    interaction: {
+                        mode: mode,
+                        intersect: intersect,
+                    },
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                },
+            });
+
+            $('#compare-revenue').click(function() {
+                var data_revenue_tahunan = {
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                        'September', 'Oktober', 'November', 'Desember'
+                    ],
+                    datasets: [{
+                            label: '2023',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
+                                1900
+                            ],
+                        },
+                        {
+                            label: '2024',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+                                2000
+                            ],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [25, 25, 25, 25, 25, 25, 25, 25, 50, 25, 50, 150],
+                        }
+                    ],
+                };
+                updateChart(periodRevenueChart, data_revenue_tahunan);
+            });
+
+            $('#monthlyRevenue').click(function() {
+                var data_monthly_revenue = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
+                                11.30
+                            ],
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
+                                11.15
+                            ],
+                        },
+                        {
+                            label: 'Selisih',
+                            backgroundColor: "#198754",
+                            borderColor: "#198754",
+                            data: [3, 4, 2, 3, 2.5, 6, 4, 2, 4.5, 2.75],
+                        }
+                    ],
+                };
+                updateChart(periodRevenueChart, data_monthly_revenue);
+            })
+
+            $('#compare-HC').click(function() {
+                var data_compare_HC = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+                    datasets: [{
+                            label: '2023',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282],
+                        },
+                        {
+                            label: '2024',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838],
+                        }
+                    ],
+                };
+                updateChart(periodRevenueChart, data_compare_HC);
+            });
+
+            $('#monthlyHC').click(function() {
+                var realisasi_monthly_HC = [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282];
+                var target_monthly_HC = [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838];
+                var data_monthly_HC = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+                    datasets: [{
+                            label: 'Realisasi',
+                            backgroundColor: "#0dcaf0",
+                            borderColor: "#0dcaf0",
+                            data: realisasi_monthly_HC,
+                        },
+                        {
+                            label: 'Target',
+                            backgroundColor: "#007bff",
+                            borderColor: "#007bff",
+                            data: target_monthly_HC,
+                        }
+                    ],
+                };
+                updateChart(periodRevenueChart, data_monthly_HC)
+            });
+
+            function updateChart(chart, newData) {
+                chart.data = newData;
+                chart.update();
+            }
+
+            function updateMonth(chart, month1, month2) {
+                chart.data.datasets[0].data = realisasiData[month1];
+                chart.data.datasets[1].data = targetData[month2];
+                chart.update();
+            }
+
+            $('#selectMonth1').change(function() {
+                var month1 = $(this).val();
+                var month2 = $('#selectMonth2').val();
+                updateMonth(periodRevenueChart, month1, month2);
+            });
+
+            $('#selectMonth2').change(function() {
+                var month2 = $(this).val();
+                var month1 = $('#selectMonth1').val();
+                updateMonth(periodRevenueChart, month1, month2);
             });
         });
     </script>

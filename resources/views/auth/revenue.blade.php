@@ -17,22 +17,170 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row">
-                        <x-card title="Revenue Pre Paid 2023" type="light" totalCount="{{ intval($sum_prepaid_2023) }}" />
-                        <x-card title="Revenue Post Paid 2023" type="light"
-                            totalCount="{{ intval($sum_postpaid_2023) }}" />
-                        <x-card title="Revenue Pre Paid 2024" type="light" totalCount="{{ intval($sum_prepaid_2024) }}" />
-                        <x-card title="Revenue Post Paid 2024" type="light"
-                            totalCount="{{ intval($sum_postpaid_2024) }}" />
+                        <x-card title="Total Revenue Nasional" type="light" totalCount=150633725971 />
+                        <x-card title="Revenue Registrasi" type="light" totalCount=50233152222 />
+                        <x-card title="Revenue Recurring" type="light" totalCount=100400152333 />
+                        <x-card title="Revenue Bulan ini" type="light" totalCount=14354251971 />
                     </div>
                 </div>
             </section>
             <section class="content">
                 <div class="container-fluid">
+                    <div class="row justify-content-end">
+                        <button id="revenue-nasional" class="mb-3 mr-3"
+                            style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
+                            Nasional</button>
+                        <button id="updateData1" class="mb-3 mr-3"
+                            style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
+                            Nasional</button>
+                        <button id="updateData2" class="mb-3 mr-2"
+                            style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
+                            per SBU</button>
+                    </div>
                     <div class="row">
-                        <section class="col-12">
+                        <section class="col-lg-9">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 id="chart-title" class="card-title"><b>Revenue Nasional</b></h3>
+                                        <span id="satuan-1" class="mr-2"><b>x Rp. 1.000.000.000</b></span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="position-relative mb-4">
+                                        <canvas id="revenue-bar-chart" height="350" width="400"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 class="card-title"><b>Informasi Tambahan</b></h3>
+                                    </div>
+                                </div>
+                                <div class="card-body d-flex align-items-center justify-content-center"
+                                    style="height: 440px">
+                                    <div class="d-flex flex-column">
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <b id="subTitleInfo">Total Revenue Nasional</b>
+                                                <p id="totalRevenue" class="text-gray-500 mt-2">Rp. 150.633.725.971,-</p>
+                                            </div>
+                                        </div>
+                                        <div class="card mb-3">
+                                            <div class="card-body">
+                                                <b id="subTitleInfo">Komposisi Revenue</b>
+                                                <p id="totalRevenue" class="text-gray-500 mt-2">7.08% Registration</p>
+                                                <p id="totalRevenue" class="text-gray-500 mt-2">92.92% Recurring</p>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <b id="subTitleInfo2">Lost Revenue Nasional</b>
+                                                <p id="lostRevenue" class="text-gray-500 mt-2">Rp. 45.633.725.971,-</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- /.card-body -->
+                            </div>
+                        </div>
+                        <section class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
-                                    <h3 class="card-title">Data Revenue</h3>
+                                    <strong>Pilih menu:</strong>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="w-25">
+                                            <h3 class="pl-2"><b>Revenue</b></h3>
+                                            <button id="compare-revenue" class="mr-3 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Perbandingan
+                                                Revenue 2023 & 2024</button>
+                                            <br>
+                                            <button id="monthlyRevenue" class="mr-3 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
+                                                Nasional per Bulan</button>
+                                            <br>
+                                            <button id="revenuePerDay" class="mr-3 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
+                                                Nasional per Hari</button>
+                                        </div>
+                                        <div
+                                            style="background-color: #d3d3d3; width: 3px; height:150px; margin-right: 35px; border-radius: 10px;">
+                                        </div>
+                                        <div class="w-25">
+                                            <h3 class="pl-2"><b>HC</b></h3>
+                                            <button id="compare-HC" class="mr-2 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Perbandingan
+                                                HC Nasional 2023 & 2024</button>
+                                            <br>
+                                            <button id="monthlyHC" class="mr-2 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
+                                                per Bulan</button>
+                                            <br>
+                                            <button id="HCPerDay" class="mr-3 mb-2"
+                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
+                                                per Hari</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-header border-0">
+                                    <div class="d-flex justify-content-between">
+                                        <h3 id="period-chart-title" class="card-title"><b>Perbandingan Revenue Nasional 2023
+                                                & 2024</b></h3>
+                                        <span id="satuan" class="mr-2"><b>x Rp. 1.000.000.000</b></span>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div class="form-group">
+                                        <label for="selectMonth1">Pilih Bulan di 2023:</label>
+                                        <select id="selectMonth1" class="form-control">
+                                            <option value="0">Januari</option>
+                                            <option value="1">Februari</option>
+                                            <option value="2">Maret</option>
+                                            <option value="3">April</option>
+                                            <option value="4">Mei</option>
+                                            <option value="5">Juni</option>
+                                            <option value="6">Juli</option>
+                                            <option value="7">Agustus</option>
+                                            <option value="8">September</option>
+                                            <option value="9">Oktober</option>
+                                            <option value="10">November</option>
+                                            <option value="11">Desember</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="selectMonth2">Pilih Bulan di 2024:</label>
+                                        <select id="selectMonth2" class="form-control">
+                                            <option value="0">Januari</option>
+                                            <option value="1">Februari</option>
+                                            <option value="2">Maret</option>
+                                            <option value="3">April</option>
+                                            <option value="4">Mei</option>
+                                            <option value="5">Juni</option>
+                                            <option value="6">Juli</option>
+                                            <option value="7">Agustus</option>
+                                            <option value="8">September</option>
+                                            <option value="9">Oktober</option>
+                                            <option value="10">November</option>
+                                            <option value="11">Desember</option>
+                                        </select>
+                                    </div>
+                                    <div class="position-relative mb-4">
+                                        <canvas id="period-revenue-chart" height="400"></canvas>
+                                    </div>
+                                </div>
+                            </div>
+                        </section>
+                        {{-- <section class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <h3 class="card-title"><b>Data Revenue</b></h3>
                                 </div>
                                 <div class="card-body">
                                     <div class="btn-group" role="group" aria-label="Filter Buttons">
@@ -57,7 +205,6 @@
                                                 <th>Nama Layanan</th>
                                                 <th>Nama Produk</th>
                                                 <th>Type Billing</th>
-                                                {{-- <th>Nama KP</th> --}}
                                                 <th>Nama SBU</th>
                                             </tr>
                                         </thead>
@@ -80,7 +227,7 @@
                                     <div id="loading-spinner" class="d-none">Loading...</div>
                                 </div>
                             </div>
-                        </section>
+                        </section> --}}
                     </div>
                 </div>
             </section>
@@ -95,4 +242,81 @@
         <aside class="control-sidebar control-sidebar-dark">
         </aside>
     </div>
+    <script>
+        var revenuePerDayButton = document.getElementById("revenuePerDay");
+        var HCPerDayButton = document.getElementById("HCPerDay");
+        var revenueNasButton = document.getElementById("revenue-nasional");
+        var hcButton = document.getElementById("updateData1");
+        var revenueSBUButton = document.getElementById("updateData2");
+        var compareRevenueButton = document.getElementById("compare-revenue");
+        var monthlyRevenueButton = document.getElementById("monthlyRevenue");
+        var compareHCButton = document.getElementById("compare-HC");
+        var monthlyHCButton = document.getElementById("monthlyHC");
+        var chartTitle = document.getElementById("chart-title");
+        var periodChartTitle = document.getElementById("period-chart-title");
+        var subTitleInfo = document.getElementById("subTitleInfo");
+        var subTitleInfo2 = document.getElementById("subTitleInfo2");
+        var valueSubInfo = document.getElementById("totalRevenue");
+        var valueSubInfo2 = document.getElementById("lostRevenue");
+
+        revenueNasButton.addEventListener("click", function() {
+            var newTotalRevenue = "Rp. 150.633.725.971,-";
+            var newLostRevenue = "Rp. 45.633.725.971,-";
+
+            chartTitle.innerHTML = "<b>Revenue Nasional</b>"
+            subTitleInfo.innerText = "Total Revenue Nasional"
+            subTitleInfo2.innerText = "Lost Revenue Nasional"
+            satuanRupiah1.style.display = 'block'
+            valueSubInfo.innerText = newTotalRevenue;
+            valueSubInfo2.innerText = newLostRevenue;
+        })
+
+        hcButton.addEventListener("click", function() {
+            var newTotalRevenue = "4.616 HC";
+            var newLostRevenue = "4.602 HC";
+
+            chartTitle.innerHTML = "<b>HC Nasional</b>"
+            subTitleInfo.innerText = "1st. SBT"
+            subTitleInfo2.innerText = "2nd. SBS"
+            satuanRupiah1.style.display = 'none'
+            valueSubInfo.innerText = newTotalRevenue;
+            valueSubInfo2.innerText = newLostRevenue;
+        });
+
+        revenueSBUButton.addEventListener("click", function() {
+            var newTotalRevenue = "Rp. 13.463.199.000,-";
+            var newLostRevenue = "Rp. 17.324.208.000,-";
+
+            chartTitle.innerHTML = "<b>Revenue per SBU</b>"
+            subTitleInfo.innerText = "1st. Sumatera Bagian Selatan"
+            subTitleInfo2.innerText = "2nd. Bali & Nusa Tenggara"
+            satuanRupiah1.style.display = 'block'
+            valueSubInfo.innerText = newTotalRevenue;
+            valueSubInfo2.innerText = newLostRevenue;
+        });
+
+        compareRevenueButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = '<b>Perbandingan Revenue Nasional 2023 & 2024</b>'
+        })
+
+        monthlyRevenueButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = '<b>Revenue Nasional bulan Januari 2024</b>'
+        })
+
+        compareHCButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = "<b>Perbandingan HC Nasional 2023 & 2024</b>"
+        })
+
+        monthlyHCButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = '<b>HC bulan Januari 2024</b>'
+        })
+
+        revenuePerDayButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = '<b>Revenue Hari Ini</b>'
+        })
+
+        HCPerDayButton.addEventListener("click", function() {
+            periodChartTitle.innerHTML = "<b>HC Hari ini</b>"
+        })
+    </script>
 @stop
