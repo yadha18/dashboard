@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\HC;
 use App\Models\Revenue;
 use App\Models\User;
 use Carbon\Carbon;
@@ -201,5 +202,58 @@ class RevenueController extends Controller
     private function sumProduct($layanan)
     {
         return Revenue::where('namaLayananProduk', $layanan)->where('tahun', 2024)->sum('pendapatan');
+    }
+
+    public function getNasionalRevenue(Request $request)
+    {
+        $year = (int)$request->input('year');
+
+        $revenueNasional = Revenue::select(DB::raw('SUM(pendapatan) as realisasi'), 'bulan', 'tahun')
+            ->where('tahun', $year)
+            ->groupBy('bulan', 'tahun')
+            ->get();
+
+        $result = $revenueNasional->map(function ($revenue) {
+            $target = rand(1000000, 3000000);
+
+            return [
+                'realisasi' => $revenue->realisasi,
+                'target' => $target,
+                'bulan' => $revenue->bulan,
+                'tahun' => $revenue->tahun
+            ];
+        });
+
+        return response()->json($result);
+    }
+
+    public function getNasionalHC()
+    {
+        $today = Carbon::now()->format('Y-m-d');
+        $results = HC::selectRaw('count(idPelanggan) as jumlahPelanggan, namaSBU')
+            ->whereBetween('tanggalAktivasi', ['2024-01-01', $today])
+            ->groupBy('namaSBU')
+            ->get();
+
+        return response()->json($results);
+    }
+
+    public function getSBURevenue()
+    {
+        $revenueSBU = Revenue::selectRaw('SUM(pendapatan) as realisasi, namaSBU')
+            ->groupBy('namaSBU')
+            ->get();
+
+        $result_sbu = $revenueSBU->map(function ($revenue_sbu) {
+            $target = rand(10000000, 15000000);
+
+            return [
+                'realisasi' => $revenue_sbu->realisasi,
+                'target' => $target,
+                'namaSBU' => $revenue_sbu->namaSBU
+            ];
+        });
+
+        return response()->json($result_sbu);
     }
 }

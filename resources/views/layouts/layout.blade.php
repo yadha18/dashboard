@@ -133,7 +133,7 @@
     @yield('content');
     <script src="{{ asset('dist/js/ceknik.js') }}"></script>
     <script src="{{ asset('plugins/jquery/jquery.min.js') }}"></script>
-    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script><!-- Include the external script file -->
+    <script src="{{ asset('plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="{{ asset('plugins/js/chart.js') }}"></script>
     <script src="{{ asset('plugins/chart.js/Chart.min.js') }}"></script>
     <script src="{{ asset('dist/js/pages/dashboard3.js') }}"></script>
@@ -1596,28 +1596,31 @@
             var revenueBarChart = new Chart($revenueBarChart, {
                 type: "bar",
                 data: {
-                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
-                        'September', 'Oktober', 'November', 'Desember'
+                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
+                        'Agustus', 'September', 'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: 'Realisasi',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
-                            data: [151, 299, 449, 599, 751, 904, 1059, 1215, 1371, 1531, 1692, 1860],
+                            data: [],
                         },
                         {
+                            barPercentage: 0.7,
                             label: 'Target',
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
-                            data: [150, 300, 500, 600, 800, 950, 1100, 1250, 1400, 1600, 1700, 2000],
+                            data: [],
                         },
                         {
+                            barPercentage: 0.5,
                             label: 'Selisih',
                             backgroundColor: "#198754",
                             borderColor: "#198754",
-                            data: [1, 1, 51, 1, 49, 46, 41, 35, 29, 69, 8, 140],
+                            data: [],
                         }
-                    ],
+                    ]
                 },
                 options: {
                     plugins: {
@@ -1636,112 +1639,188 @@
                         intersect: intersect,
                     },
                     scales: {
-                        x: {
-                            ticks: ticksStyle
-                        },
                         y: {
-                            ticks: ticksStyle,
                             beginAtZero: true
                         }
-                    }
+                    },
                 }
             });
 
             $('#revenue-nasional').click(function() {
-                var data_revenue_nasional = {
-                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
-                        'September', 'Oktober', 'November', 'Desember'
-                    ],
-                    datasets: [{
-                            label: 'Realisasi',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
-                                1900
-                            ],
-                        },
-                        {
-                            label: 'Target',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
-                                2000
-                            ],
-                        },
-                        {
-                            label: 'Selisih',
-                            backgroundColor: "#198754",
-                            borderColor: "#198754",
-                            data: [25, 25, 25, 25, 25, 25, 25, 25, 50, 25, 50, 150],
-                        }
-                    ],
-                };
+                var year = $(this).data('year');
+                $.ajax({
+                    url: '/get-revenue-nasional',
+                    method: 'GET',
+                    data: {
+                        year: year
+                    },
+                    success: function(data) {
+                        var labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
+                            'Juli', 'Agustus', 'September', 'Oktober', 'November',
+                            'Desember'
+                        ];
+                        var realisasi = new Array(labels.length).fill(0);
+                        var target = new Array(labels.length).fill(0);
+                        var selisih = new Array(labels.length).fill(0);
 
-                updateChart(revenueBarChart, data_revenue_nasional);
+                        data.forEach(function(item) {
+                            var bulanIndex = labels.indexOf(item.bulan);
+                            if (bulanIndex !== -1) {
+                                realisasi[bulanIndex] = parseInt(item.realisasi, 10) /
+                                    1000;
+                                target[bulanIndex] = parseInt(item.target, 10) / 1000;
+                                selisih[bulanIndex] = (parseInt(item.realisasi, 10) -
+                                    parseInt(item.target, 10)) / 1000;
+                            }
+                        });
+
+                        updateChart(revenueBarChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: 'Realisasi',
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: realisasi,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: 'Target',
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: target,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisih,
+                                }
+                            ]
+                        });
+                    },
+                    error: function(error) {
+                        console.error("Error fetching data:", error);
+                    }
+                });
             });
 
             $('#updateData1').click(function() {
-                var data_hc_nasional = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'],
-                    datasets: [{
-                            label: 'Realisasi',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
-                                1900
-                            ],
-                        },
-                        {
-                            label: 'Target',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
-                                2000
-                            ],
-                        },
-                        {
-                            label: 'Selisih',
-                            backgroundColor: "#198754",
-                            borderColor: "#198754",
-                            data: [50, 50, 50, 50, 50, 50, 50, 50, 50, 0, 50, 100],
+                $.ajax({
+                    url: '/get-nasional-hc',
+                    method: 'GET',
+                    success: function(data) {
+                        var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
+                            'SIT', 'BNT'
+                        ];
+                        var realisasi = new Array(labels.length).fill(0);
+                        var target = [250, 400, 550, 700, 850, 1000, 1150, 1100, 1100, 1100];
+                        var selisih = new Array(labels.length).fill(0);
+
+                        data.forEach(function(item) {
+                            var index = labels.indexOf(item.namaSBU);
+                            if (index !== -1) {
+                                realisasi[index] = item.jumlahPelanggan;
+                            }
+                        });
+
+                        for (var i = 0; i < realisasi.length; i++) {
+                            selisih[i] = realisasi[i] - target[i];
                         }
-                    ],
-                };
-                updateChart(revenueBarChart, data_hc_nasional);
+
+                        updateChart(revenueBarChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: 'Realisasi',
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: realisasi,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: 'Target',
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: target,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisih,
+                                }
+                            ]
+                        });
+                    },
+                    error: function(error) {
+                        console.error("Error fetching data:", error);
+                    }
+                });
             });
 
             $('#updateData2').click(function() {
-                var data_revenue_sbu = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'],
-                    datasets: [{
-                            label: 'Realisasi',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [100, 250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600,
-                                1750
+                $.ajax({
+                    url: '/get-revenue-sbu',
+                    method: 'GET',
+                    success: function(data) {
+                        var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
+                            'SIT', 'BNT'
+                        ];
+                        var realisasi = new Array(labels.length).fill(0);
+                        var target = new Array(labels.length).fill(0);
+                        var selisih = new Array(labels.length).fill(0);
+
+                        data.forEach(function(item) {
+                            var sbuIndex = labels.indexOf(item.namaSBU);
+                            if (sbuIndex !== -1) {
+                                realisasi[sbuIndex] = parseInt(item.realisasi, 10) /
+                                    1000;
+                                target[sbuIndex] = parseInt(item.target, 10) / 1000;
+                                selisih[sbuIndex] = (parseInt(item.realisasi, 10) -
+                                    parseInt(item.target, 10)) / 1000;
+                            }
+                        });
+
+                        updateChart(revenueBarChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: 'Realisasi',
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: realisasi,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: 'Target',
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: target,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisih,
+                                }
                             ],
-                        },
-                        {
-                            label: 'Target',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1550, 1700,
-                                1850
-                            ],
-                        },
-                        {
-                            label: 'Selisih',
-                            backgroundColor: "#198754",
-                            borderColor: "#198754",
-                            data: [100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100, 100],
-                        }
-                    ],
-                };
-                updateChart(revenueBarChart, data_revenue_sbu);
+                        })
+                    },
+                    error: function(error) {
+                        console.error("Error fetching data:", error);
+                    }
+                })
             });
 
-            function updateChart(chart, newData) {
-                chart.data = newData;
+            function updateChart(chart, data) {
+                chart.data.labels = data.labels;
+                chart.data.datasets.forEach((dataset, index) => {
+                    dataset.data = data.datasets[index].data;
+                });
                 chart.update();
             }
         });
@@ -1782,18 +1861,22 @@
                         'September', 'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: 'Realisasi',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
                             data: realisasi,
                         },
                         {
+                            barPercentage: 0.7,
                             label: 'Target',
+                            barPercentage: 0.7,
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
                             data: target,
                         },
                         {
+                            barPercentage: 0.5,
                             label: 'Selisih',
                             backgroundColor: "#198754",
                             borderColor: "#198754",
@@ -1830,6 +1913,7 @@
                         'September', 'Oktober', 'November', 'Desember'
                     ],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: '2023',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
@@ -1838,6 +1922,7 @@
                             ],
                         },
                         {
+                            barPercentage: 0.7,
                             label: '2024',
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
@@ -1846,6 +1931,7 @@
                             ],
                         },
                         {
+                            barPercentage: 0.5,
                             label: 'Selisih',
                             backgroundColor: "#198754",
                             borderColor: "#198754",
@@ -1860,6 +1946,7 @@
                 var data_monthly_revenue = {
                     labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: 'Realisasi',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
@@ -1868,6 +1955,7 @@
                             ],
                         },
                         {
+                            barPercentage: 0.7,
                             label: 'Target',
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
@@ -1876,6 +1964,7 @@
                             ],
                         },
                         {
+                            barPercentage: 0.5,
                             label: 'Selisih',
                             backgroundColor: "#198754",
                             borderColor: "#198754",
@@ -1890,12 +1979,14 @@
                 var data_compare_HC = {
                     labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: '2023',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
                             data: [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282],
                         },
                         {
+                            barPercentage: 0.7,
                             label: '2024',
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
@@ -1912,12 +2003,14 @@
                 var data_monthly_HC = {
                     labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
                     datasets: [{
+                            barPercentage: 0.7,
                             label: 'Realisasi',
                             backgroundColor: "#0dcaf0",
                             borderColor: "#0dcaf0",
                             data: realisasi_monthly_HC,
                         },
                         {
+                            barPercentage: 0.7,
                             label: 'Target',
                             backgroundColor: "#007bff",
                             borderColor: "#007bff",
@@ -1926,6 +2019,52 @@
                     ],
                 };
                 updateChart(periodRevenueChart, data_monthly_HC)
+            });
+
+            $('#HCPerDay').click(function() {
+                var data_hc_day = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+                    datasets: [{
+                        barPercentage: 0.7,
+                        label: 'Mei',
+                        backgroundColor: "#0dcaf0",
+                        borderColor: "#0dcaf0",
+                        data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838]
+                    }, {
+                        barPercentage: 0.7,
+                        label: 'Juni',
+                        backgroundColor: "#007bff",
+                        borderColor: "#007bff",
+                        data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+                            2000
+                        ]
+                    }],
+                }
+                updateChart(periodRevenueChart, data_hc_day);
+            });
+
+            $('#revenuePerDay').click(function() {
+                var data_revenue_day = {
+                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+                    datasets: [{
+                        barPercentage: 0.7,
+                        label: 'Mei',
+                        backgroundColor: "#0dcaf0",
+                        borderColor: "#0dcaf0",
+                        data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
+                            11.15
+                        ]
+                    }, {
+                        barPercentage: 0.7,
+                        label: 'Juni',
+                        backgroundColor: "#007bff",
+                        borderColor: "#007bff",
+                        data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
+                            11.30
+                        ]
+                    }],
+                }
+                updateChart(periodRevenueChart, data_revenue_day);
             });
 
             function updateChart(chart, newData) {

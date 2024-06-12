@@ -27,9 +27,16 @@
             <section class="content">
                 <div class="container-fluid">
                     <div class="row justify-content-end">
-                        <button id="revenue-nasional" class="mb-3 mr-3"
-                            style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
-                            Nasional</button>
+                        <div class="dropdown">
+                            <button class="dropdown-toggle mb-3 mr-3" style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;" type="button" id="dropdownMenuButton"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Revenue Nasional
+                            </button>
+                            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                <button class="dropdown-item" id="revenue-nasional-2023" data-year="2023">2023</button>
+                                <button class="dropdown-item" id="revenue-nasional-2024" data-year="2024">2024</button>
+                            </div>
+                        </div>
                         <button id="updateData1" class="mb-3 mr-3"
                             style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
                             Nasional</button>
@@ -38,7 +45,7 @@
                             per SBU</button>
                     </div>
                     <div class="row">
-                        <section class="col-lg-9">
+                        <section class="col-lg-12">
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
@@ -53,40 +60,39 @@
                                 </div>
                             </div>
                         </section>
-                        <div class="col-md-3">
+                        <section class="col-lg-12">
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
                                         <h3 class="card-title"><b>Informasi Tambahan</b></h3>
                                     </div>
                                 </div>
-                                <div class="card-body d-flex align-items-center justify-content-center"
-                                    style="height: 440px">
-                                    <div class="d-flex flex-column">
-                                        <div class="card mb-3">
-                                            <div class="card-body">
+                                <div class="card-body d-flex align-items-center justify-content-center">
+                                    <div class="d-flex flex-row">
+                                        <div class="card m-2">
+                                            <div class="card-body" style="background-color: #e1e1e1">
                                                 <b id="subTitleInfo">Total Revenue Nasional</b>
                                                 <p id="totalRevenue" class="text-gray-500 mt-2">Rp. 150.633.725.971,-</p>
                                             </div>
                                         </div>
-                                        <div class="card mb-3">
-                                            <div class="card-body">
+                                        <div class="card m-2">
+                                            <div class="card-body" style="background-color: #e1e1e1">
+                                                <b id="subTitleInfo2">Lost Revenue Nasional</b>
+                                                <p id="lostRevenue" class="text-gray-500 mt-2">Rp. 45.633.725.971,-</p>
+                                            </div>
+                                        </div>
+                                        <div class="card m-2">
+                                            <div class="card-body" style="background-color: #e1e1e1">
                                                 <b id="subTitleInfo">Komposisi Revenue</b>
                                                 <p id="totalRevenue" class="text-gray-500 mt-2">7.08% Registration</p>
                                                 <p id="totalRevenue" class="text-gray-500 mt-2">92.92% Recurring</p>
-                                            </div>
-                                        </div>
-                                        <div class="card">
-                                            <div class="card-body">
-                                                <b id="subTitleInfo2">Lost Revenue Nasional</b>
-                                                <p id="lostRevenue" class="text-gray-500 mt-2">Rp. 45.633.725.971,-</p>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                                 <!-- /.card-body -->
                             </div>
-                        </div>
+                        </section>
                         <section class="col-lg-12">
                             <div class="card">
                                 <div class="card-header">
@@ -131,7 +137,8 @@
                             <div class="card">
                                 <div class="card-header border-0">
                                     <div class="d-flex justify-content-between">
-                                        <h3 id="period-chart-title" class="card-title"><b>Perbandingan Revenue Nasional 2023
+                                        <h3 id="period-chart-title" class="card-title"><b>Perbandingan Revenue Nasional
+                                                2023
                                                 & 2024</b></h3>
                                         <span id="satuan" class="mr-2"><b>x Rp. 1.000.000.000</b></span>
                                     </div>
@@ -258,6 +265,7 @@
         var subTitleInfo2 = document.getElementById("subTitleInfo2");
         var valueSubInfo = document.getElementById("totalRevenue");
         var valueSubInfo2 = document.getElementById("lostRevenue");
+        var satuanSubChart = document.getElementById("satuan");
 
         revenueNasButton.addEventListener("click", function() {
             var newTotalRevenue = "Rp. 150.633.725.971,-";
@@ -297,26 +305,32 @@
 
         compareRevenueButton.addEventListener("click", function() {
             periodChartTitle.innerHTML = '<b>Perbandingan Revenue Nasional 2023 & 2024</b>'
+            satuanSubChart.style.display = 'block';
         })
 
         monthlyRevenueButton.addEventListener("click", function() {
             periodChartTitle.innerHTML = '<b>Revenue Nasional bulan Januari 2024</b>'
+            satuanSubChart.style.display = 'block';
         })
 
         compareHCButton.addEventListener("click", function() {
             periodChartTitle.innerHTML = "<b>Perbandingan HC Nasional 2023 & 2024</b>"
+            satuanSubChart.style.display = 'none';
         })
 
         monthlyHCButton.addEventListener("click", function() {
             periodChartTitle.innerHTML = '<b>HC bulan Januari 2024</b>'
+            satuanSubChart.style.display = 'none';
         })
 
         revenuePerDayButton.addEventListener("click", function() {
-            periodChartTitle.innerHTML = '<b>Revenue Hari Ini</b>'
+            periodChartTitle.innerHTML = '<b>Revenue Hari Ini, 7 Juni 2024</b>'
+            satuanSubChart.style.display = 'block';
         })
 
         HCPerDayButton.addEventListener("click", function() {
-            periodChartTitle.innerHTML = "<b>HC Hari ini</b>"
+            periodChartTitle.innerHTML = "<b>HC Hari ini, 7 Juni 2024</b>"
+            satuanSubChart.style.display = 'none';
         })
     </script>
 @stop
