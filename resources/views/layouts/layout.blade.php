@@ -1646,7 +1646,7 @@
                 }
             });
 
-            $('#revenue-nasional').click(function() {
+            $('.revenue-dropdown').click(function() {
                 var year = $(this).data('year');
                 $.ajax({
                     url: '/get-revenue-nasional',

@@ -33,8 +33,8 @@
                                 Revenue Nasional
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <button class="dropdown-item" id="revenue-nasional-2023" data-year="2023">2023</button>
-                                <button class="dropdown-item" id="revenue-nasional-2024" data-year="2024">2024</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2023" data-year="2023">2023</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2024" data-year="2024">2024</button>
                             </div>
                         </div>
                         <button id="updateData1" class="mb-3 mr-3"
