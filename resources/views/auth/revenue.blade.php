@@ -28,13 +28,23 @@
                 <div class="container-fluid">
                     <div class="row justify-content-end">
                         <div class="dropdown">
-                            <button class="dropdown-toggle mb-3 mr-3" style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;" type="button" id="dropdownMenuButton"
-                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="dropdown-toggle mb-3 mr-3"
+                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true"
+                                aria-expanded="false">
                                 Revenue Nasional
                             </button>
                             <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2023" data-year="2023">2023</button>
-                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2024" data-year="2024">2024</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2020"
+                                    data-year="2020">2020</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2021"
+                                    data-year="2021">2021</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2022"
+                                    data-year="2022">2022</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2023"
+                                    data-year="2023">2023</button>
+                                <button class="dropdown-item revenue-dropdown" id="revenue-nasional-2024"
+                                    data-year="2024">2024</button>
                             </div>
                         </div>
                         <button id="updateData1" class="mb-3 mr-3"
@@ -102,9 +112,43 @@
                                     <div class="row justify-content-center align-items-center">
                                         <div class="w-25">
                                             <h3 class="pl-2"><b>Revenue</b></h3>
-                                            <button id="compare-revenue" class="mr-3 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Perbandingan
-                                                Revenue 2023 & 2024</button>
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle mb-2 mr-3"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Perbandingan Revenue Nasional
+                                                </button>
+                                                <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton"
+                                                    style="width: 400px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="tahunPertama">Tahun Pertama:</label>
+                                                            <select class="form-control" id="tahunPertama">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group ml-2">
+                                                            <label for="tahunKedua">Tahun Kedua:</label>
+                                                            <select class="form-control" id="tahunKedua">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-success mt-3 w-100"
+                                                        id="compareButton">Bandingkan</button>
+                                                </div>
+                                            </div>
                                             <br>
                                             <button id="monthlyRevenue" class="mr-3 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
@@ -119,9 +163,43 @@
                                         </div>
                                         <div class="w-25">
                                             <h3 class="pl-2"><b>HC</b></h3>
-                                            <button id="compare-HC" class="mr-2 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Perbandingan
-                                                HC Nasional 2023 & 2024</button>
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle mb-2 mr-3"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Perbandingan HC Nasional
+                                                </button>
+                                                <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton"
+                                                    style="width: 400px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="hcPertama">Tahun Pertama:</label>
+                                                            <select class="form-control" id="hcPertama">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group ml-2">
+                                                            <label for="hcKedua">Tahun Kedua:</label>
+                                                            <select class="form-control" id="hcKedua">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-success mt-3 w-100"
+                                                        id="compareHCButton">Bandingkan</button>
+                                                </div>
+                                            </div>
                                             <br>
                                             <button id="monthlyHC" class="mr-2 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
@@ -250,6 +328,11 @@
         </aside>
     </div>
     <script>
+        var revenueNasional2020 = document.getElementById("revenue-nasional-2020");
+        var revenueNasional2021 = document.getElementById("revenue-nasional-2021");
+        var revenueNasional2022 = document.getElementById("revenue-nasional-2022");
+        var revenueNasional2023 = document.getElementById("revenue-nasional-2023");
+        var revenueNasional2024 = document.getElementById("revenue-nasional-2024");
         var revenuePerDayButton = document.getElementById("revenuePerDay");
         var HCPerDayButton = document.getElementById("HCPerDay");
         var revenueNasButton = document.getElementById("revenue-nasional");
@@ -277,6 +360,11 @@
             satuanRupiah1.style.display = 'block'
             valueSubInfo.innerText = newTotalRevenue;
             valueSubInfo2.innerText = newLostRevenue;
+        })
+
+        revenueNasional2020.addEventListener("click", function() {
+            chartTitle.innerHTML += "2020";
+            alert('tombol diclick');
         })
 
         hcButton.addEventListener("click", function() {

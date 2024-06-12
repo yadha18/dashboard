@@ -1699,6 +1699,8 @@
                                 }
                             ]
                         });
+                        var revenueHtml = '<h3 class="card-title"><b>Revenue Nasional Tahun ' + year + '</b></h3>';
+                        $('#chart-title').html(revenueHtml);
                     },
                     error: function(error) {
                         console.error("Error fetching data:", error);
@@ -1851,6 +1853,38 @@
                 [1800, 1400, 1600, 2000, 2200, 2000, 1900, 1000, 1700, 900], // Februari
                 // Add data for other months here
             ];
+
+            $('.dropdown-menu').on('click', function(e) {
+                e.stopPropagation();
+            });
+
+            $('#compareButton').click(function() {
+                var tahunPertama = $('#tahunPertama').val();
+                var tahunKedua = $('#tahunKedua').val();
+
+                if (!tahunPertama || !tahunKedua) {
+                    alert('Mohon isi tahun pertama dan keduanya!');
+                    return;
+                }
+
+                if (tahunPertama > tahunKedua) {
+                    alert('Tahun kedua harus lebih besar dari tahun pertama!');
+                }
+            })
+
+            $('#compareHCButton').click(function() {
+                var hcPertama = $('#hcPertama').val();
+                var hcKedua = $('#hcKedua').val();
+
+                if (!hcPertama || !hcKedua) {
+                    alert('Mohon isi tahun pertama dan keduanya!');
+                    return;
+                }
+
+                if (hcPertama > hcKedua) {
+                    alert('Tahun kedua harus lebih besar dari tahun pertama!');
+                }
+            })
 
             var $periodRevenueChart = $("#period-revenue-chart")[0].getContext('2d');
 

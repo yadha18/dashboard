@@ -27,7 +27,7 @@ class revenueSeeder extends Seeder
                 'pendapatan' => rand(100000, 1000000),
                 'tanggalBayar' => $randomDate,
                 'bulan' => $months[rand(0, 11)],
-                'tahun' => 2023,
+                'tahun' => 2020,
                 'namaLayanan' => 'Layanan ' . chr(rand(65, 90)),
                 'namaLayananProduk' => 'Produk ' . chr(rand(65, 90)),
                 'typeBilling' => rand(0, 1) ? 'prepaid' : 'postpaid',
