@@ -32,7 +32,6 @@ Route::controller(UserController::class)->group(function () {
 
 Route::controller(BaddebtController::class)->group(function () {
     Route::get('/dashboard/passive-customer', 'passivecustomer')->name('passive-customer');
-    Route::get('/get-baddebt-2021', 'getCountBaddebts');
     Route::get('/baddebt/data', 'getBaddebtData')->name('baddebt.data');
 });
 
@@ -40,21 +39,10 @@ Route::controller(RevenueController::class)->group(function () {
     Route::get('/dashboard/revenue', 'revenue')->name('revenue');
     Route::get('/dashboard/revenue/daily', 'dailyRevenue')->name('dailyRevenue');
     Route::get('/dashboard/revenue/product', 'productRevenue')->name('productRevenue');
-    Route::get('/get-revenue-data', 'getRevenueData');
-    Route::get('/get-regional', 'getRegional');
-    Route::get('/get-prepaid-revenue', 'getPrepaidMonthRevenue');
-    Route::get('/get-postpaid-revenue', 'getPostpaidMonthRevenue');
-    Route::get('/get-product-revenue', 'getProductPercentageRevenue');
-    Route::get('/get-product-chart', 'productRevenueChart');
-    Route::get('/get-daily-revenue', 'getDailyRevenue');
-    Route::get('/get-revenue-nasional', 'getNasionalRevenue');
-    Route::get('/get-nasional-hc', 'getNasionalHC');
-    Route::get('/get-revenue-sbu', 'getSBURevenue');
 });
 
 Route::controller(KanalBayarController::class)->group(function () {
     Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
-    Route::get('/get-total-kanal', 'pembayaranViaCount');
 });
 
 Route::controller(PelangganDeaktivasiController::class)->group(function () {
@@ -63,9 +51,4 @@ Route::controller(PelangganDeaktivasiController::class)->group(function () {
 
 Route::controller(RevenueAccountExecutiveController::class)->group(function () {
     Route::get('/dashboard/revenue/account-executive', 'revenueAccountExecutive')->name('revenueAccountExecutive');
-    Route::get('/get-ae-revenue', 'getAeRevenue');
-    Route::get('/get-top-5-downline', 'getTop5DownlineSales');
-    Route::get('/get-top-5-upline', 'getTop5UplineSales');
-    Route::get('/get-ae-revenue-data-downline', 'getAERevenueDataDownline');
-    Route::get('/get-ae-revenue-data-upline', 'getAERevenueDataUpline');
 });

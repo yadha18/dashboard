@@ -1273,7 +1273,7 @@
                 var spinner = $('#loading-spinner-upline');
 
                 $.ajax({
-                    url: '/get-ae-revenue-data-upline',
+                    url: '/api/get-ae-revenue-data-upline',
                     type: 'GET',
                     data: {
                         bandwidth: bandwidth,
@@ -1309,7 +1309,7 @@
     <script>
         $(function() {
             $.ajax({
-                url: '/get-prepaid-revenue',
+                url: '/api/get-prepaid-revenue',
                 method: 'GET',
                 success: function(data1) {
                     var dataPrepaid = [];
@@ -1338,7 +1338,7 @@
                     }
 
                     $.ajax({
-                        url: '/get-postpaid-revenue',
+                        url: '/api/get-postpaid-revenue',
                         method: 'GET',
                         success: function(data2) {
                             var dataPostpaid = [];
@@ -1432,7 +1432,7 @@
             var $salesChart = $("#sales-chart-fix");
 
             $.ajax({
-                url: "/get-baddebt-2021",
+                url: "/api/get-baddebt-2021",
                 method: "GET",
                 success: function(response) {
                     var namaSBU = response.map(function(data) {
@@ -1649,7 +1649,7 @@
             $('.revenue-dropdown').click(function() {
                 var year = $(this).data('year');
                 $.ajax({
-                    url: '/get-revenue-nasional',
+                    url: '/api/get-revenue-nasional',
                     method: 'GET',
                     data: {
                         year: year
@@ -1699,7 +1699,8 @@
                                 }
                             ]
                         });
-                        var revenueHtml = '<h3 class="card-title"><b>Revenue Nasional Tahun ' + year + '</b></h3>';
+                        var revenueHtml = '<h3 class="card-title"><b>Revenue Nasional Tahun ' +
+                            year + '</b></h3>';
                         $('#chart-title').html(revenueHtml);
                     },
                     error: function(error) {
@@ -1710,7 +1711,7 @@
 
             $('#updateData1').click(function() {
                 $.ajax({
-                    url: '/get-nasional-hc',
+                    url: '/api/get-nasional-hc',
                     method: 'GET',
                     success: function(data) {
                         var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
@@ -1765,7 +1766,7 @@
 
             $('#updateData2').click(function() {
                 $.ajax({
-                    url: '/get-revenue-sbu',
+                    url: '/api/get-revenue-sbu',
                     method: 'GET',
                     success: function(data) {
                         var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
@@ -1870,6 +1871,62 @@
                 if (tahunPertama > tahunKedua) {
                     alert('Tahun kedua harus lebih besar dari tahun pertama!');
                 }
+
+                $.ajax({
+                    url: '/api/get-compare-revenue',
+                    method: 'GET',
+                    data: {
+                        tahunPertama: tahunPertama,
+                        tahunKedua: tahunKedua
+                    },
+                    success: function(response) {
+                        var labels = response.labels;
+                        var data1 = response.data1;
+                        var data2 = response.data2;
+
+                        data1 = data1.map(function(value) {
+                            return value / 1000; // Convert to thousands
+                        });
+                        data2 = data2.map(function(value) {
+                            return value / 1000; // Convert to thousands
+                        });
+
+                        var selisihData = data1.map(function(value, index) {
+                            return (data2[index] - value) / 1000;
+                        });
+
+                        selisihData = parseInt(selisihData, 10) / 1000;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${tahunPertama}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data1,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${tahunKedua}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisihData,
+                                }
+                            ]
+                        });
+                    },
+                    error: function(error) {
+                        console.error("Error fetching data:", error);
+                    }
+                })
             })
 
             $('#compareHCButton').click(function() {
@@ -1884,6 +1941,53 @@
                 if (hcPertama > hcKedua) {
                     alert('Tahun kedua harus lebih besar dari tahun pertama!');
                 }
+
+                $.ajax({
+                    url: '/api/get-compare-hc',
+                    method: 'GET',
+                    data: {
+                        hcPertama: hcPertama,
+                        hcKedua: hcKedua
+                    },
+                    success: function(response) {
+                        var labels = response.labels;
+                        var data1 = response.data_HC_1;
+                        var data2 = response.data_HC_2;
+
+                        var selisihData = data1.map((value, index) => {
+                            return data2[index] - value;
+                        });
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${hcPertama}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data1,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${hcKedua}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisihData,
+                                }
+                            ]
+                        })
+                    },
+                    error: (error) => {
+                        console.error("Error fetching data:", error);
+                    }
+                })
             })
 
             var $periodRevenueChart = $("#period-revenue-chart")[0].getContext('2d');
@@ -2105,24 +2209,6 @@
                 chart.data = newData;
                 chart.update();
             }
-
-            function updateMonth(chart, month1, month2) {
-                chart.data.datasets[0].data = realisasiData[month1];
-                chart.data.datasets[1].data = targetData[month2];
-                chart.update();
-            }
-
-            $('#selectMonth1').change(function() {
-                var month1 = $(this).val();
-                var month2 = $('#selectMonth2').val();
-                updateMonth(periodRevenueChart, month1, month2);
-            });
-
-            $('#selectMonth2').change(function() {
-                var month2 = $(this).val();
-                var month1 = $('#selectMonth1').val();
-                updateMonth(periodRevenueChart, month1, month2);
-            });
         });
     </script>
     <script>

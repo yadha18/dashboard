@@ -256,4 +256,104 @@ class RevenueController extends Controller
 
         return response()->json($result_sbu);
     }
+
+    public function compareRevenueData(Request $request)
+    {
+        $tahunPertama = $request->input('tahunPertama');
+        $tahunKedua = $request->input('tahunKedua');
+
+        if (!$tahunPertama || !$tahunKedua) {
+            return response()->json([
+                'error' => 'Tahun pertama dan tahun kedua harus diisi!'
+            ], 400);
+        }
+
+        $dataPertama = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
+            ->where('tahun', $tahunPertama)
+            ->groupBy('bulan')
+            ->get();
+
+        $dataKedua = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
+            ->where('tahun', $tahunKedua)
+            ->groupBy('bulan')
+            ->get();
+
+        $labels = $this->generateMonthLabels();
+        $data1 = $this->formatData($dataPertama);
+        $data2 = $this->formatData($dataKedua);
+
+        return response()->json([
+            'labels' => $labels,
+            'data1' => $data1,
+            'data2' => $data2,
+        ]);
+    }
+
+    public function compareHCData(Request $request)
+    {
+        $hcPertama = $request->input('hcPertama');
+        $hcKedua = $request->input('hcKedua');
+
+        if (!$hcPertama || !$hcKedua) {
+            return response()->json(['error' => 'Tahun pertama dan tahun kedua wajib diisi!'], 400);
+        }
+
+        $dataHCPertama = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereYear('tanggalAktivasi', $hcPertama)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataHCKedua = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereYear('tanggalAktivasi', $hcKedua)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_HC_1 = $this->formatDataHC($dataHCPertama);
+        $data_HC_2 = $this->formatDataHC($dataHCKedua);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_HC_1' => $data_HC_1,
+            'data_HC_2' => $data_HC_2
+        ]);
+    }
+
+    private function generateMonthLabels()
+    {
+        return ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+    }
+
+    private function generateSBULabels()
+    {
+        return ["SBU", "SBTG", "SBS", "JKB", "JBB", "JBTG", "JBT", "KAL", "SIT", "BNT"];
+    }
+
+    private function formatData($data)
+    {
+        $monthlyData = array_fill(0, 12, 0);
+
+        foreach ($data as $item) {
+            $monthIndex = array_search($item->bulan, $this->generateMonthLabels());
+            if ($monthIndex !== false) {
+                $monthlyData[$monthIndex] = $item->pendapatan;
+            }
+        }
+
+        return $monthlyData;
+    }
+
+    private function formatDataHC($data)
+    {
+        $sbuData = array_fill(0, 10, 0);
+
+        foreach ($data as $item) {
+            $sbuIndex = array_search($item->namaSBU, $this->generateSBULabels());
+            if ($sbuIndex !== false) {
+                $sbuData[$sbuIndex] = $item->jumlahHC;
+            }
+        }
+
+        return $sbuData;
+    }
 }

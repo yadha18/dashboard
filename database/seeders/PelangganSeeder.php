@@ -14,12 +14,12 @@ class PelangganSeeder extends Seeder
      */
     public function run(): void
     {
-        $startDate = Carbon::createFromFormat('Y-m-d', '2024-01-01');
-        $endDate = Carbon::now();
+        $startDate = Carbon::createFromFormat('Y-m-d', '2020-01-01');
+        $endDate = Carbon::createFromFormat('Y-m-d', '2023-12-31');
         $daysDifference = $startDate->diffInDays($endDate);
         $namaSBUs = ['SBU', 'SBTG', 'SBS', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT', 'JKB'];
 
-        for ($i = 1; $i <= 10000; $i++) {
+        for ($i = 1; $i <= 50000; $i++) {
             $randomDate = $startDate->copy()->addDays(rand(0, $daysDifference))->format('Y-m-d H:i:s');
             DB::table('h_c_s')->insert([
                 'idPelanggan' => 'A' . sprintf('%03d', $i),

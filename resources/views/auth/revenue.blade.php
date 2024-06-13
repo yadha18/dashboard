@@ -222,40 +222,6 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="form-group">
-                                        <label for="selectMonth1">Pilih Bulan di 2023:</label>
-                                        <select id="selectMonth1" class="form-control">
-                                            <option value="0">Januari</option>
-                                            <option value="1">Februari</option>
-                                            <option value="2">Maret</option>
-                                            <option value="3">April</option>
-                                            <option value="4">Mei</option>
-                                            <option value="5">Juni</option>
-                                            <option value="6">Juli</option>
-                                            <option value="7">Agustus</option>
-                                            <option value="8">September</option>
-                                            <option value="9">Oktober</option>
-                                            <option value="10">November</option>
-                                            <option value="11">Desember</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="selectMonth2">Pilih Bulan di 2024:</label>
-                                        <select id="selectMonth2" class="form-control">
-                                            <option value="0">Januari</option>
-                                            <option value="1">Februari</option>
-                                            <option value="2">Maret</option>
-                                            <option value="3">April</option>
-                                            <option value="4">Mei</option>
-                                            <option value="5">Juni</option>
-                                            <option value="6">Juli</option>
-                                            <option value="7">Agustus</option>
-                                            <option value="8">September</option>
-                                            <option value="9">Oktober</option>
-                                            <option value="10">November</option>
-                                            <option value="11">Desember</option>
-                                        </select>
-                                    </div>
                                     <div class="position-relative mb-4">
                                         <canvas id="period-revenue-chart" height="400"></canvas>
                                     </div>
