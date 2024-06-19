@@ -65,6 +65,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="position-relative mb-4">
+                                        <div id="loadingIndicator" class="text-center"
+                                            style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10;">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <p>Loading...</p>
+                                        </div>
                                         <canvas id="revenue-bar-chart" height="350" width="400"></canvas>
                                     </div>
                                 </div>
@@ -146,17 +153,88 @@
                                                         </div>
                                                     </div>
                                                     <button class="btn btn-success mt-3 w-100"
-                                                        id="compareButton">Bandingkan</button>
+                                                        id="compareButton">Apply</button>
                                                 </div>
                                             </div>
                                             <br>
-                                            <button id="monthlyRevenue" class="mr-3 mb-2"
+                                            <div class="dropdown">
+                                                <button id="monthlyRevenue" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan Revenue per Bulan
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="startDatePertama">Tanggal Mulai Pertama</label>
+                                                            <input type="date" id="startDatePertama"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDatePertama">Tanggal Akhir Pertama</label>
+                                                            <input type="date" id="endDatePertama"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="startDateKedua">Tanggal Mulai Kedua</label>
+                                                            <input type="date" id="startDateKedua"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDateKedua">Tanggal Akhir Kedua</label>
+                                                            <input type="date" id="endDateKedua"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="compareMonthRevenueButton" class="btn btn-success mt-3 w-100">Apply</button>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button id="revenuePerDay" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan Revenue per Hari
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="startDateDay">Tanggal Mulai</label>
+                                                            <input type="date" id="startDateDay"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDateDay">Tanggal Akhir</label>
+                                                            <input type="date" id="endDateDay"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-success mt-3 w-100"
+                                                        onclick="compareDates()">Apply</button>
+                                                </div>
+                                            </div>
+                                            {{-- <button id="monthlyRevenue" class="mr-3 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
                                                 Nasional per Bulan</button>
                                             <br>
-                                            <button id="revenuePerDay" class="mr-3 mb-2"
+                                            <label for="monthRevenue">Revenue Nasional per Bulan</label>
+                                            <input type="date" id="monthRevenue" /> --}}
+                                            <br>
+                                            {{-- <button id="revenuePerDay" class="mr-3 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
-                                                Nasional per Hari</button>
+                                                Nasional per Hari</button> --}}
                                         </div>
                                         <div
                                             style="background-color: #d3d3d3; width: 3px; height:150px; margin-right: 35px; border-radius: 10px;">
@@ -197,17 +275,86 @@
                                                         </div>
                                                     </div>
                                                     <button class="btn btn-success mt-3 w-100"
-                                                        id="compareHCButton">Bandingkan</button>
+                                                        id="compareHCButton">Apply</button>
                                                 </div>
                                             </div>
                                             <br>
-                                            <button id="monthlyHC" class="mr-2 mb-2"
+                                            <div class="dropdown">
+                                                <button id="monthlyHC" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan HC per Bulan
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="hcStartDatePertama">Tanggal Mulai Pertama</label>
+                                                            <input type="date" id="hcStartDatePertama"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="hcEndDatePertama">Tanggal Akhir Pertama</label>
+                                                            <input type="date" id="hcEndDatePertama"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="hcStartDateKedua">Tanggal Mulai Kedua</label>
+                                                            <input type="date" id="hcStartDateKedua"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-grou0p">
+                                                            <label for="hcEndDateKedua">Tanggal Akhir Kedua</label>
+                                                            <input type="date" id="hcEndDateKedua"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="compareMonthRevenueButton" class="btn btn-success mt-3 w-100"
+                                                        onclick="compareDates()">Apply</button>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button id="HCPerDay" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan HC per Hari
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="hcStartDateDay">Tanggal Mulai</label>
+                                                            <input type="date" id="hcStartDateDay"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="hcEndDateDay">Tanggal Akhir</label>
+                                                            <input type="date" id="hcEndDateDay"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" class="btn btn-success mt-3 w-100"
+                                                        onclick="compareDates()">Apply</button>
+                                                </div>
+                                            </div>
+                                            {{-- <button id="monthlyHC" class="mr-2 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
                                                 per Bulan</button>
-                                            <br>
-                                            <button id="HCPerDay" class="mr-3 mb-2"
+                                            <br> --}}
+                                            {{-- <button id="HCPerDay" class="mr-3 mb-2"
                                                 style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
-                                                per Hari</button>
+                                                per Hari</button> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -223,6 +370,13 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="position-relative mb-4">
+                                        <div id="periodeLoadingIndicator" class="text-center"
+                                            style="display:none; position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); z-index:10;">
+                                            <div class="spinner-border" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <p>Loading...</p>
+                                        </div>
                                         <canvas id="period-revenue-chart" height="400"></canvas>
                                     </div>
                                 </div>

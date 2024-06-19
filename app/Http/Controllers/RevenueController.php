@@ -319,6 +319,36 @@ class RevenueController extends Controller
         ]);
     }
 
+    public function compareHCMonthData(Request $request)
+    {
+        $tanggalHCAwal_1 = $request->input('startDatePertama');
+        $tanggalHCAwal_2 = $request->input('startDateKedua');
+        $tanggalHCAkhir_1 = $request->input('endDatePertama');
+        $tanggalHCAkhir_2 = $request->input('endDateKedua');
+
+        $bulanHCPertama = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereBetween('tanggalAktivasi', [$tanggalHCAwal_1, $tanggalHCAkhir_1])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $bulanHCKedua = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereBetween('tanggalAktivasi', [$tanggalHCAwal_2, $tanggalHCAkhir_2])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_month_hc_1 = $this->formatDataHC($bulanHCPertama);
+        $data_month_hc_2 = $this->formatDataHC($bulanHCKedua);
+
+        return response()->json([
+            'data' => [
+                'labels' => $labels,
+                'bulan_pertama' => $data_month_hc_1,
+                'bulan_kedua' => $data_month_hc_2
+            ]
+        ]);
+    }
+
     private function generateMonthLabels()
     {
         return ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];

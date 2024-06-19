@@ -21,7 +21,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::controller(RevenueController::class)->group(function () {
-    Route::get('/get-revenue-data', 'getRevenueData');
+    // Route::get('/get-revenue-data', 'getRevenueData');
     Route::get('/get-regional', 'getRegional');
     Route::get('/get-prepaid-revenue', 'getPrepaidMonthRevenue');
     Route::get('/get-postpaid-revenue', 'getPostpaidMonthRevenue');
@@ -33,6 +33,7 @@ Route::controller(RevenueController::class)->group(function () {
     Route::get('/get-revenue-sbu', 'getSBURevenue');
     Route::get('/get-compare-revenue', 'compareRevenueData');
     Route::get('/get-compare-hc', 'compareHCData');
+    Route::get('/get-compare-month-hc', 'compareHCMonthData');
 });
 
 Route::controller(RevenueAccountExecutiveController::class)->group(function () {

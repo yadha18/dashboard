@@ -1589,6 +1589,7 @@
 
             var mode = "index";
             var intersect = true;
+            var loadingIndicator = $('#loadingIndicator');
 
             Chart.register(ChartDataLabels);
 
@@ -1648,6 +1649,7 @@
 
             $('.revenue-dropdown').click(function() {
                 var year = $(this).data('year');
+                loadingIndicator.show();
                 $.ajax({
                     url: '/api/get-revenue-nasional',
                     method: 'GET',
@@ -1655,6 +1657,7 @@
                         year: year
                     },
                     success: function(data) {
+                        loadingIndicator.hide();
                         var labels = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni',
                             'Juli', 'Agustus', 'September', 'Oktober', 'November',
                             'Desember'
@@ -1702,18 +1705,22 @@
                         var revenueHtml = '<h3 class="card-title"><b>Revenue Nasional Tahun ' +
                             year + '</b></h3>';
                         $('#chart-title').html(revenueHtml);
+                        $('#satuan-1').show();
                     },
                     error: function(error) {
+                        loadingIndicator.hide();
                         console.error("Error fetching data:", error);
                     }
                 });
             });
 
             $('#updateData1').click(function() {
+                loadingIndicator.show();
                 $.ajax({
                     url: '/api/get-nasional-hc',
                     method: 'GET',
                     success: function(data) {
+                        loadingIndicator.hide();
                         var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
                             'SIT', 'BNT'
                         ];
@@ -1757,18 +1764,24 @@
                                 }
                             ]
                         });
+                        var hcTitle = '<h3 class="card-title"><b>HC Nasional</b></h3>';
+                        $('#chart-title').html(hcTitle);
+                        $('#satuan-1').hide();
                     },
                     error: function(error) {
+                        loadingIndicator.hide();
                         console.error("Error fetching data:", error);
                     }
                 });
             });
 
             $('#updateData2').click(function() {
+                loadingIndicator.show();
                 $.ajax({
                     url: '/api/get-revenue-sbu',
                     method: 'GET',
                     success: function(data) {
+                        loadingIndicator.hide();
                         var labels = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL',
                             'SIT', 'BNT'
                         ];
@@ -1812,8 +1825,13 @@
                                 }
                             ],
                         })
+                        var revenue_SBU_title =
+                            '<h3 class="card-title"><b>Revenue per SBU</b></h3>';
+                        $('#chart-title').html(revenue_SBU_title);
+                        $('#satuan-1').show();
                     },
                     error: function(error) {
+                        loadingIndicator.hide();
                         console.error("Error fetching data:", error);
                     }
                 })
@@ -1838,6 +1856,7 @@
                 fontStyle: "bold",
             };
 
+            var periodeLoadingIndicator = $('#periodeLoadingIndicator');
             var mode = "index";
             var intersect = true;
             const realisasi = [151, 299, 449, 599, 751, 904, 1059, 1215, 1371, 1531, 1692, 1860];
@@ -1865,13 +1884,22 @@
 
                 if (!tahunPertama || !tahunKedua) {
                     alert('Mohon isi tahun pertama dan keduanya!');
+                    periodeLoadingIndicator.hide();
                     return;
+                }
+
+                if (tahunPertama === tahunKedua) {
+                    alert('Tahun Pertama dan Kedua tidak boleh sama!');
+                    periodeLoadingIndicator.hide();
+                    return
                 }
 
                 if (tahunPertama > tahunKedua) {
                     alert('Tahun kedua harus lebih besar dari tahun pertama!');
+                    periodeLoadingIndicator.hide();
+                    return;
                 }
-
+                periodeLoadingIndicator.show();
                 $.ajax({
                     url: '/api/get-compare-revenue',
                     method: 'GET',
@@ -1880,6 +1908,7 @@
                         tahunKedua: tahunKedua
                     },
                     success: function(response) {
+                        periodeLoadingIndicator.hide();
                         var labels = response.labels;
                         var data1 = response.data1;
                         var data2 = response.data2;
@@ -1924,6 +1953,7 @@
                         });
                     },
                     error: function(error) {
+                        periodeLoadingIndicator.hide();
                         console.error("Error fetching data:", error);
                     }
                 })
@@ -1941,7 +1971,7 @@
                 if (hcPertama > hcKedua) {
                     alert('Tahun kedua harus lebih besar dari tahun pertama!');
                 }
-
+                periodeLoadingIndicator.show();
                 $.ajax({
                     url: '/api/get-compare-hc',
                     method: 'GET',
@@ -1950,6 +1980,7 @@
                         hcKedua: hcKedua
                     },
                     success: function(response) {
+                        periodeLoadingIndicator.hide();
                         var labels = response.labels;
                         var data1 = response.data_HC_1;
                         var data2 = response.data_HC_2;
@@ -1985,6 +2016,7 @@
                         })
                     },
                     error: (error) => {
+                        periodeLoadingIndicator.hide();
                         console.error("Error fetching data:", error);
                     }
                 })
@@ -2044,6 +2076,29 @@
                     }
                 },
             });
+
+            $('#compareMonthRevenueButton').click(function() {
+                var startDatePertama = $('#startDatePertama').val();
+                var endDatePertama = $('#endDatePertama').val();
+                var startDateKedua = $('#startDateKedua').val();
+                var endDateKedua = $('#endDateKedua').val();
+
+                if (!startDatePertama || !startDateKedua || !endDatePertama || !endDateKedua) {
+                    alert('Mohon lengkapi tanggal periodenya');
+                    return;
+                }
+
+                if (startDatePertama > endDatePertama) {
+                    alert('Tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+
+                if (startDateKedua > endDateKedua) {
+                    alert('tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+                periodeLoadingIndicator.show();
+            })
 
             $('#compare-revenue').click(function() {
                 var data_revenue_tahunan = {
