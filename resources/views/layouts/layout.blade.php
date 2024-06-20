@@ -1951,6 +1951,9 @@
                                 }
                             ]
                         });
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional Tahun ' + tahunPertama + ' & ' + tahunKedua + '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
                     },
                     error: function(error) {
                         periodeLoadingIndicator.hide();
@@ -2077,14 +2080,67 @@
                 },
             });
 
+            $('#startDatePertama, #endDatePertama').change(function() {
+                var startDatePertama = $('#startDatePertama').val();
+                var endDatePertama = $('#endDatePertama').val();
+
+                if (startDatePertama && endDatePertama) {
+                    var startDate = new Date(startDatePertama);
+                    var endDate = new Date(endDatePertama);
+
+                    // Set dates for the following month
+                    var lastMonthStartDate = new Date(startDate.setMonth(startDate.getMonth() - 1));
+                    var lastMonthEndDate = new Date(endDate.setMonth(endDate.getMonth() - 1));
+
+                    // Handle cases where the month rollover causes date to jump (e.g., January 31 to March 3)
+                    if (lastMonthStartDate.getMonth() === startDate.getMonth() + 1) {
+                        lastMonthStartDate = new Date(lastMonthStartDate.getFullYear(), lastMonthStartDate
+                            .getMonth(), 0);
+                    }
+                    if (lastMonthEndDate.getMonth() === endDate.getMonth() + 1) {
+                        lastMonthEndDate = new Date(lastMonthEndDate.getFullYear(), lastMonthEndDate
+                            .getMonth(), 0);
+                    }
+
+                    // Format the dates to 'yyyy-mm-dd'
+                    var lastMonthStartDateStr = lastMonthStartDate.toISOString().slice(0, 10);
+                    var lastMonthEndDateStr = lastMonthEndDate.toISOString().slice(0, 10);
+
+                    // Set the values of the input fields
+                    $('#startDateKedua').val(lastMonthStartDateStr);
+                    $('#endDateKedua').val(lastMonthEndDateStr);
+                }
+            });
+
             $('#compareMonthRevenueButton').click(function() {
                 var startDatePertama = $('#startDatePertama').val();
                 var endDatePertama = $('#endDatePertama').val();
                 var startDateKedua = $('#startDateKedua').val();
                 var endDateKedua = $('#endDateKedua').val();
 
+                var tanggalAwalPertama = new Date(startDatePertama).getDate();
+                var tanggalAwalKedua = new Date(startDateKedua).getDate();
+
+                var tanggalAkhirPertama = new Date(endDatePertama).getDate();
+                var tanggalAkhirKedua = new Date(endDateKedua).getDate();
+
+                var bulan1 = new Date(startDatePertama).getMonth() + 1;
+                var bulan2 = new Date(startDateKedua).getMonth() + 1;
+
+                var tahun1 = new Date(startDatePertama).getFullYear();
+                var tahun2 = new Date(startDateKedua).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
                 if (!startDatePertama || !startDateKedua || !endDatePertama || !endDateKedua) {
                     alert('Mohon lengkapi tanggal periodenya');
+                    return;
+                }
+
+                if (bulan1 === bulan2) {
+                    alert('Bulan tidak bisa sama');
                     return;
                 }
 
@@ -2097,7 +2153,56 @@
                     alert('tanggal akhir harus lebih besar dari tanggal awal');
                     return;
                 }
+
+                let bulanToStr_1 = namaBulan[bulan1 - 1];
+                let bulanToStr_2 = namaBulan[bulan2 - 1];
+
                 periodeLoadingIndicator.show();
+                $.ajax({
+                    url: '/api/get-compare-month-revenue',
+                    method: 'GET',
+                    data: {
+                        startDatePertama: startDatePertama,
+                        startDateKedua: startDateKedua,
+                        endDatePertama: endDatePertama,
+                        endDateKedua: endDateKedua
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+                        var labels = response.labels;
+                        var data1 = response.data_month_rev_1;
+                        var data2 = response.data_month_rev_2;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_2}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_1}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional per '
+                                + tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 + ' ' + tahun2 + ' s.d. '
+                                + tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' + bulanToStr_1 + ' ' + tahun1
+                            '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                        console.error("Error fetching data:", error);
+                    }
+                })
             })
 
             $('#compare-revenue').click(function() {
@@ -2135,38 +2240,38 @@
                 updateChart(periodRevenueChart, data_revenue_tahunan);
             });
 
-            $('#monthlyRevenue').click(function() {
-                var data_monthly_revenue = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
-                    datasets: [{
-                            barPercentage: 0.7,
-                            label: 'Realisasi',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
-                                11.30
-                            ],
-                        },
-                        {
-                            barPercentage: 0.7,
-                            label: 'Target',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
-                                11.15
-                            ],
-                        },
-                        {
-                            barPercentage: 0.5,
-                            label: 'Selisih',
-                            backgroundColor: "#198754",
-                            borderColor: "#198754",
-                            data: [3, 4, 2, 3, 2.5, 6, 4, 2, 4.5, 2.75],
-                        }
-                    ],
-                };
-                updateChart(periodRevenueChart, data_monthly_revenue);
-            })
+            // $('#monthlyRevenue').click(function() {
+            //     var data_monthly_revenue = {
+            //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+            //         datasets: [{
+            //                 barPercentage: 0.7,
+            //                 label: 'Realisasi',
+            //                 backgroundColor: "#0dcaf0",
+            //                 borderColor: "#0dcaf0",
+            //                 data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
+            //                     11.30
+            //                 ],
+            //             },
+            //             {
+            //                 barPercentage: 0.7,
+            //                 label: 'Target',
+            //                 backgroundColor: "#007bff",
+            //                 borderColor: "#007bff",
+            //                 data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
+            //                     11.15
+            //                 ],
+            //             },
+            //             {
+            //                 barPercentage: 0.5,
+            //                 label: 'Selisih',
+            //                 backgroundColor: "#198754",
+            //                 borderColor: "#198754",
+            //                 data: [3, 4, 2, 3, 2.5, 6, 4, 2, 4.5, 2.75],
+            //             }
+            //         ],
+            //     };
+            //     updateChart(periodRevenueChart, data_monthly_revenue);
+            // })
 
             $('#compare-HC').click(function() {
                 var data_compare_HC = {

@@ -289,6 +289,42 @@ class RevenueController extends Controller
         ]);
     }
 
+    public function compareRevenueMonthData(Request $request)
+    {
+        $tanggalRevenueAwal_1 = $request->input('startDatePertama');
+        $tanggalRevenueAwal_2 = $request->input('startDateKedua');
+        $tanggalRevenueAkhir_1 = $request->input('endDatePertama');
+        $tanggalRevenueAkhir_2 = $request->input('endDateKedua');
+
+        if (!$tanggalRevenueAwal_1 || !$tanggalRevenueAkhir_1 || !$tanggalRevenueAwal_2 || !$tanggalRevenueAkhir_2) {
+            return response()->json(['error' => 'Periode wajib diisi!'], 400);
+        }
+
+        if ($tanggalRevenueAwal_1 > $tanggalRevenueAkhir_1 && $tanggalRevenueAwal_2 > $tanggalRevenueAkhir_2) {
+            return response()->json(['error' => 'periode akhir tidak boleh lebih besar dibanding periode awal'], 400);
+        }
+
+        $dataRevenuePertama = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereBetween('tanggalBayar', [$tanggalRevenueAwal_1, $tanggalRevenueAkhir_1])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataRevenueKedua = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereBetween('tanggalBayar', [$tanggalRevenueAwal_2, $tanggalRevenueAkhir_2])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_month_rev_1 = $this->formatDataRevenueByMonth($dataRevenuePertama);
+        $data_month_rev_2 = $this->formatDataRevenueByMonth($dataRevenueKedua);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_month_rev_1' => $data_month_rev_1,
+            'data_month_rev_2' => $data_month_rev_2
+        ]);
+    }
+
     public function compareHCData(Request $request)
     {
         $hcPertama = $request->input('hcPertama');
@@ -321,10 +357,10 @@ class RevenueController extends Controller
 
     public function compareHCMonthData(Request $request)
     {
-        $tanggalHCAwal_1 = $request->input('startDatePertama');
-        $tanggalHCAwal_2 = $request->input('startDateKedua');
-        $tanggalHCAkhir_1 = $request->input('endDatePertama');
-        $tanggalHCAkhir_2 = $request->input('endDateKedua');
+        $tanggalHCAwal_1 = $request->input('hcStartDatePertama');
+        $tanggalHCAwal_2 = $request->input('hcEndDatePertama');
+        $tanggalHCAkhir_1 = $request->input('hcStartDateKedua');
+        $tanggalHCAkhir_2 = $request->input('hcEndDateKedua');
 
         $bulanHCPertama = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
             ->whereBetween('tanggalAktivasi', [$tanggalHCAwal_1, $tanggalHCAkhir_1])
@@ -341,11 +377,28 @@ class RevenueController extends Controller
         $data_month_hc_2 = $this->formatDataHC($bulanHCKedua);
 
         return response()->json([
-            'data' => [
-                'labels' => $labels,
-                'bulan_pertama' => $data_month_hc_1,
-                'bulan_kedua' => $data_month_hc_2
-            ]
+            'labels' => $labels,
+            'bulan_pertama' => $data_month_hc_1,
+            'bulan_kedua' => $data_month_hc_2
+        ]);
+    }
+
+    public function compareHCDayData(Request $request)
+    {
+        $tanggalHCAwal = $request->input('hcStartDateDay');
+        $tanggalHCAkhir = $request->input('hcEndDateDay');
+
+        $dataHariHC = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereBetween('tanggalAktivasi', [$tanggalHCAwal, $tanggalHCAkhir])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_hc_day = $this->formatDataHC($dataHariHC);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_hc' => $data_hc_day
         ]);
     }
 
@@ -365,6 +418,20 @@ class RevenueController extends Controller
 
         foreach ($data as $item) {
             $monthIndex = array_search($item->bulan, $this->generateMonthLabels());
+            if ($monthIndex !== false) {
+                $monthlyData[$monthIndex] = $item->pendapatan;
+            }
+        }
+
+        return $monthlyData;
+    }
+
+    private function formatDataRevenueByMonth($data)
+    {
+        $monthlyData = array_fill(0, 10, 0);
+
+        foreach ($data as $item) {
+            $monthIndex = array_search($item->namaSBU, $this->generateSBULabels());
             if ($monthIndex !== false) {
                 $monthlyData[$monthIndex] = $item->pendapatan;
             }

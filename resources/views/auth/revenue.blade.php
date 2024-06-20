@@ -166,36 +166,43 @@
                                                 </button>
                                                 <div class="dropdown-menu p-3"
                                                     style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="form-group mr-2">
-                                                            <label for="startDatePertama">Tanggal Mulai Pertama</label>
-                                                            <input type="date" id="startDatePertama"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="endDatePertama">Tanggal Akhir Pertama</label>
-                                                            <input type="date" id="endDatePertama"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Pilih periode:</h6>
+                                                        <br />
+                                                        <div class="col justify-content-center">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="startDatePertama"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="endDatePertama"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <hr />
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <div class="form-group mr-2">
-                                                            <label for="startDateKedua">Tanggal Mulai Kedua</label>
-                                                            <input type="date" id="startDateKedua"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="endDateKedua">Tanggal Akhir Kedua</label>
-                                                            <input type="date" id="endDateKedua"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Periode sebelumnya:</h6>
+                                                        <br />
+                                                        <div class="col justify-content-center">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="startDateKedua"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="endDateKedua"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" id="compareMonthRevenueButton" class="btn btn-success mt-3 w-100">Apply</button>
+                                                    <button type="button" id="compareMonthRevenueButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
                                                 </div>
                                             </div>
                                             <div class="dropdown">
@@ -289,6 +296,7 @@
                                                 <div class="dropdown-menu p-3"
                                                     style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
                                                     <div class="d-flex justify-content-between align-items-center">
+                                                        <h3>Pilih periode:</h3>
                                                         <div class="form-group mr-2">
                                                             <label for="hcStartDatePertama">Tanggal Mulai Pertama</label>
                                                             <input type="date" id="hcStartDatePertama"
@@ -304,6 +312,7 @@
                                                     </div>
                                                     <hr />
                                                     <div class="d-flex justify-content-between align-items-center">
+                                                        <h3>Periode Sebelumnya</h3>
                                                         <div class="form-group mr-2">
                                                             <label for="hcStartDateKedua">Tanggal Mulai Kedua</label>
                                                             <input type="date" id="hcStartDateKedua"
@@ -317,7 +326,8 @@
                                                                 style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
                                                         </div>
                                                     </div>
-                                                    <button type="button" id="compareMonthRevenueButton" class="btn btn-success mt-3 w-100"
+                                                    <button type="button" id="compareMonthRevenueButton"
+                                                        class="btn btn-success mt-3 w-100"
                                                         onclick="compareDates()">Apply</button>
                                                 </div>
                                             </div>
