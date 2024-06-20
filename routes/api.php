@@ -33,6 +33,7 @@ Route::controller(RevenueController::class)->group(function () {
     Route::get('/get-revenue-sbu', 'getSBURevenue');
     Route::get('/get-compare-revenue', 'compareRevenueData');
     Route::get('/get-compare-month-revenue', 'compareRevenueMonthData');
+    Route::get('/get-compare-day-revenue', 'compareRevenueDayData');
     Route::get('/get-compare-hc', 'compareHCData');
     Route::get('/get-compare-month-hc', 'compareHCMonthData');
     Route::get('/get-compare-day-hc', 'compareHCDayData');

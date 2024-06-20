@@ -6,15 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') || Billing Dashboard</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet"
-        href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
@@ -2192,10 +2190,9 @@
                             ]
                         })
                         var periodChartTitle =
-                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional per '
-                                + tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 + ' ' + tahun2 + ' s.d. '
-                                + tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' + bulanToStr_1 + ' ' + tahun1
-                            '</b></h3>';
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional per ' +
+                            tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 + ' ' + tahun2 + ' s.d. ' +
+                            tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' + bulanToStr_1 + ' ' + tahun1 + '</b></h3>';
                         $('#period-chart-title').html(periodChartTitle);
                     },
                     error: (error) => {
@@ -2204,41 +2201,135 @@
                     }
                 })
             })
+            
+            // $('#revenuePerDay').click(function() {
+            //     var data_revenue_day = {
+            //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+            //         datasets: [{
+            //             barPercentage: 0.7,
+            //             label: 'Mei',
+            //             backgroundColor: "#0dcaf0",
+            //             borderColor: "#0dcaf0",
+            //             data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
+            //                 11.15
+            //             ]
+            //         }, {
+            //             barPercentage: 0.7,
+            //             label: 'Juni',
+            //             backgroundColor: "#007bff",
+            //             borderColor: "#007bff",
+            //             data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
+            //                 11.30
+            //             ]
+            //         }],
+            //     }
+            //     updateChart(periodRevenueChart, data_revenue_day);
+            // });
 
-            $('#compare-revenue').click(function() {
-                var data_revenue_tahunan = {
-                    labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
-                        'September', 'Oktober', 'November', 'Desember'
-                    ],
-                    datasets: [{
-                            barPercentage: 0.7,
-                            label: '2023',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
-                                1900
-                            ],
-                        },
-                        {
-                            barPercentage: 0.7,
-                            label: '2024',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
-                                2000
-                            ],
-                        },
-                        {
-                            barPercentage: 0.5,
-                            label: 'Selisih',
-                            backgroundColor: "#198754",
-                            borderColor: "#198754",
-                            data: [25, 25, 25, 25, 25, 25, 25, 25, 50, 25, 50, 150],
-                        }
-                    ],
-                };
-                updateChart(periodRevenueChart, data_revenue_tahunan);
+            $('#compareDayRevenueButton').click(function() {
+                var startDateDay = $('#startDateDay').val();
+                var endDateDay = $('#endDateDay').val();
+                
+                var tanggalAwal = new Date(startDateDay).getDate();
+                var tanggalAkhir = new Date(endDateDay).getDate();
+
+                var bulanAwal = new Date(startDateDay).getMonth() + 1;
+                var bulanAkhir = new Date(endDateDay).getMonth() + 1;
+
+                var tahunAwal = new Date(startDateDay).getFullYear();
+                var tahunAkhir = new Date(endDateDay).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
+                if (!startDateDay || !endDateDay) {
+                    alert('Periode wajib diisi!');
+                    return;
+                }
+
+                if (startDateDay < endDateDay) {
+                    alert('periode akhir tidak boleh lebih besar dibanding periode awal');
+                    return;
+                }
+
+                let bulanToString_1 = namaBulan[bulanAwal - 1];
+                let bulanToString_2 = namaBulan[bulanAkhir - 1];
+                
+                periodeLoadingIndicator.show();
+                $.ajax({
+                    url:'/api/get-compare-day-revenue',
+                    method: 'GET',
+                    data: {
+                        startDateDay: startDateDay,
+                        endDateDay: endDateDay
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+                        var labels = response.labels;
+                        var data_day_rev_1 = response.data_day_rev_1;
+                        var data_day_rev_2 = response.data_day_rev_2;
+
+                        updateChart(periodRevenueChart, {
+                        labels: labels,
+                        datasets: [{
+                                barPercentage: 0.7,
+                                label: `${tanggalAkhir} ${bulanToString_2} ${tahunAkhir}`,
+                                backgroundColor: "#0dcaf0",
+                                borderColor: "#0dcaf0",
+                                data: data_day_rev_2,
+                            },
+                            {
+                                barPercentage: 0.7,
+                                label: `${tanggalAwal} ${bulanToString_1} ${tahunAwal}`,
+                                backgroundColor: "#007bff",
+                                borderColor: "#007bff",
+                                data: data_day_rev_1,
+                            }
+                        ]
+                    })
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                        console.error("Error fetching data:", error);
+                    }
+                })
             });
+
+            // $('#compare-revenue').click(function() {
+            //     var data_revenue_tahunan = {
+            //         labels: ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+            //             'September', 'Oktober', 'November', 'Desember'
+            //         ],
+            //         datasets: [{
+            //                 barPercentage: 0.7,
+            //                 label: '2023',
+            //                 backgroundColor: "#0dcaf0",
+            //                 borderColor: "#0dcaf0",
+            //                 data: [200, 350, 500, 650, 800, 950, 1100, 1250, 1400, 1600, 1750,
+            //                     1900
+            //                 ],
+            //             },
+            //             {
+            //                 barPercentage: 0.7,
+            //                 label: '2024',
+            //                 backgroundColor: "#007bff",
+            //                 borderColor: "#007bff",
+            //                 data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+            //                     2000
+            //                 ],
+            //             },
+            //             {
+            //                 barPercentage: 0.5,
+            //                 label: 'Selisih',
+            //                 backgroundColor: "#198754",
+            //                 borderColor: "#198754",
+            //                 data: [25, 25, 25, 25, 25, 25, 25, 25, 50, 25, 50, 150],
+            //             }
+            //         ],
+            //     };
+            //     updateChart(periodRevenueChart, data_revenue_tahunan);
+            // });
 
             // $('#monthlyRevenue').click(function() {
             //     var data_monthly_revenue = {
@@ -2339,30 +2430,6 @@
                     }],
                 }
                 updateChart(periodRevenueChart, data_hc_day);
-            });
-
-            $('#revenuePerDay').click(function() {
-                var data_revenue_day = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
-                    datasets: [{
-                        barPercentage: 0.7,
-                        label: 'Mei',
-                        backgroundColor: "#0dcaf0",
-                        borderColor: "#0dcaf0",
-                        data: [15.03, 17.59, 16.93, 17.34, 14.66, 14.77, 18.71, 13.12, 12.45,
-                            11.15
-                        ]
-                    }, {
-                        barPercentage: 0.7,
-                        label: 'Juni',
-                        backgroundColor: "#007bff",
-                        borderColor: "#007bff",
-                        data: [14.94, 17.21, 17.32, 16.77, 14.60, 14.81, 17.79, 13.46, 12.42,
-                            11.30
-                        ]
-                    }],
-                }
-                updateChart(periodRevenueChart, data_revenue_day);
             });
 
             function updateChart(chart, newData) {

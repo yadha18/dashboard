@@ -228,8 +228,7 @@
                                                                 style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="btn btn-success mt-3 w-100"
-                                                        onclick="compareDates()">Apply</button>
+                                                    <button type="button" id="compareDayRevenueButton" class="btn btn-success mt-3 w-100">Apply</button>
                                                 </div>
                                             </div>
                                             {{-- <button id="monthlyRevenue" class="mr-3 mb-2"

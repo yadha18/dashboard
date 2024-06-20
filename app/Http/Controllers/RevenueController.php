@@ -325,6 +325,40 @@ class RevenueController extends Controller
         ]);
     }
 
+    public function compareRevenueDayData(Request $request)
+    {
+        $startDateDay = $request->input('startDateDay');
+        $endDateDay = $request->input('endDateDay');
+
+        if (!$startDateDay || !$endDateDay) {
+            return response()->json(['error' => 'Periode wajib diisi!'], 400);
+        }
+
+        if ($startDateDay < $endDateDay) {
+            return response()->json(['error' => 'periode akhir tidak boleh lebih besar dibanding periode awal'], 400);
+        }
+
+        $dataRevenueHarian_1 = Revenue::selectRaw('SUM(pendapatan) as pendapatan, namaSBU')
+            ->where('tanggalBayar', $startDateDay)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataRevenueHarian_2 = Revenue::selectRaw('SUM(pendapatan) as pendapatan, namaSBU')
+            ->where('tanggalBayar', $endDateDay)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_day_rev_1 = $this->formatDataRevenueByMonth($dataRevenueHarian_1);
+        $data_day_rev_2 = $this->formatDataRevenueByMonth($dataRevenueHarian_2);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_day_rev_1' => $data_day_rev_1,
+            'data_day_rev_2' => $data_day_rev_2
+        ]);
+    }
+
     public function compareHCData(Request $request)
     {
         $hcPertama = $request->input('hcPertama');
