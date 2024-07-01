@@ -257,6 +257,106 @@ class RevenueController extends Controller
         return response()->json($result_sbu);
     }
 
+    public function compareRevenueBillingTerbit(Request $request)
+    {
+        $tahunPertamaBillingTerbit = $request->input('tahunPertamaBillingTerbit');
+        $tahunKeduaBillingTerbit = $request->input('tahunKeduaBillingTerbit');
+
+        if (!$tahunPertamaBillingTerbit || !$tahunKeduaBillingTerbit) {
+            return response()->json([
+                'error' => 'Tahun pertama dan tahun kedua harus diisi!'
+            ], 400);
+        }
+
+        $dataPertamaRevenueBT = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
+            ->where('tahun', $tahunPertamaBillingTerbit)
+            ->whereNotNull('tanggalTagihan')
+            ->groupBy('bulan')
+            ->get();
+
+        $dataKeduaRevenueBT = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
+            ->where('tahun', $tahunKeduaBillingTerbit)
+            ->whereNotNull('tanggalTagihan')
+            ->groupBy('bulan')
+            ->get();
+
+        $labels = $this->generateMonthLabels();
+        $data1_BT = $this->formatData($dataPertamaRevenueBT);
+        $data2_BT = $this->formatData($dataKeduaRevenueBT);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_pertama' => $data1_BT,
+            'data_kedua' => $data2_BT
+        ]);
+    }
+
+    public function compareRevenueMonthBillingTerbit(Request $request)
+    {
+        $startDatePertama_BT = $request->input('startDatePertama_BT');
+        $endDatePertama_BT = $request->input('endDatePertama_BT');
+        $startDateKedua_BT = $request->input('startDateKedua_BT');
+        $endDateKedua_BT = $request->input('endDateKedua_BT');
+
+        if (!$startDatePertama_BT || !$endDatePertama_BT || !$startDateKedua_BT || !$endDateKedua_BT) {
+            return response()->json(['error' => 'Lengkapi tanggal periode'], 400);
+        }
+
+        $dataPertama_BT = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereBetween('tanggalTagihan', [$startDatePertama_BT, $endDatePertama_BT])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataKedua_BT = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereBetween('tanggalTagihan', [$startDateKedua_BT, $endDateKedua_BT])
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_BT_1 = $this->formatDataRevenueByMonth($dataPertama_BT);
+        $data_BT_2 = $this->formatDataRevenueByMonth($dataKedua_BT);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_BT_1' => $data_BT_1,
+            'data_BT_2' => $data_BT_2
+        ]);
+    }
+
+    public function compareRevenueDayBillingTerbit(Request $request)
+    {
+        $startDateDay_BT = $request->input('startDateDay_BT');
+        $endDateDay_BT = $request->input('endDateDay_BT');
+
+        if (!$startDateDay_BT || !$endDateDay_BT) {
+            return response()->json(['error' => 'Lengkapi tanggal periode'], 400);
+        }
+
+        if ($startDateDay_BT < $endDateDay_BT) {
+            return response()->json(['error' => 'Periode awal tidak boleh lebih kecil dibanding periode akhir']);
+        }
+
+        $dataDateDay_1 = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereDate('tanggalTagihan', $startDateDay_BT)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataDateDay_2 = Revenue::selectRaw('sum(pendapatan) as pendapatan, namaSBU')
+            ->whereDate('tanggalTagihan', $endDateDay_BT)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $labels = $this->generateSBULabels();
+        $data_1 = $this->formatDataRevenueByMonth($dataDateDay_1);
+        $data_2 = $this->formatDataRevenueByMonth($dataDateDay_2);
+
+        return response()->json([
+            'labels' => $labels,
+            'data_1' => $data_1,
+            'data_2' => $data_2
+        ]);
+    }
+
     public function compareRevenueData(Request $request)
     {
         $tahunPertama = $request->input('tahunPertama');
@@ -270,11 +370,13 @@ class RevenueController extends Controller
 
         $dataPertama = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
             ->where('tahun', $tahunPertama)
+            ->whereNotNull('tanggalBayar')
             ->groupBy('bulan')
             ->get();
 
         $dataKedua = Revenue::selectRaw('SUM(pendapatan) as pendapatan, bulan')
             ->where('tahun', $tahunKedua)
+            ->whereNotNull('tanggalBayar')
             ->groupBy('bulan')
             ->get();
 
@@ -339,12 +441,12 @@ class RevenueController extends Controller
         }
 
         $dataRevenueHarian_1 = Revenue::selectRaw('SUM(pendapatan) as pendapatan, namaSBU')
-            ->where('tanggalBayar', $startDateDay)
+            ->whereDate('tanggalBayar', $startDateDay)
             ->groupBy('namaSBU')
             ->get();
 
         $dataRevenueHarian_2 = Revenue::selectRaw('SUM(pendapatan) as pendapatan, namaSBU')
-            ->where('tanggalBayar', $endDateDay)
+            ->whereDate('tanggalBayar', $endDateDay)
             ->groupBy('namaSBU')
             ->get();
 
@@ -392,8 +494,8 @@ class RevenueController extends Controller
     public function compareHCMonthData(Request $request)
     {
         $tanggalHCAwal_1 = $request->input('hcStartDatePertama');
-        $tanggalHCAwal_2 = $request->input('hcEndDatePertama');
-        $tanggalHCAkhir_1 = $request->input('hcStartDateKedua');
+        $tanggalHCAwal_2 = $request->input('hcStartDateKedua');
+        $tanggalHCAkhir_1 = $request->input('hcEndDatePertama');
         $tanggalHCAkhir_2 = $request->input('hcEndDateKedua');
 
         $bulanHCPertama = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
@@ -422,17 +524,24 @@ class RevenueController extends Controller
         $tanggalHCAwal = $request->input('hcStartDateDay');
         $tanggalHCAkhir = $request->input('hcEndDateDay');
 
-        $dataHariHC = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
-            ->whereBetween('tanggalAktivasi', [$tanggalHCAwal, $tanggalHCAkhir])
+        $dataHariHC_1 = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereDate('tanggalAktivasi', $tanggalHCAwal)
+            ->groupBy('namaSBU')
+            ->get();
+
+        $dataHariHC_2 = HC::selectRaw('count(idPelanggan) as jumlahHC, namaSBU')
+            ->whereDate('tanggalAktivasi', $tanggalHCAkhir)
             ->groupBy('namaSBU')
             ->get();
 
         $labels = $this->generateSBULabels();
-        $data_hc_day = $this->formatDataHC($dataHariHC);
+        $data_hc_day_1 = $this->formatDataHC($dataHariHC_1);
+        $data_hc_day_2 = $this->formatDataHC($dataHariHC_2);
 
         return response()->json([
             'labels' => $labels,
-            'data_hc' => $data_hc_day
+            'data_hc_1' => $data_hc_day_1,
+            'data_hc_2' => $data_hc_day_2
         ]);
     }
 

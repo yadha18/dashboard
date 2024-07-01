@@ -20,14 +20,15 @@ class revenueSeeder extends Seeder
         $layananData = [];
         $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
 
-        for ($i = 0; $i < 300; $i++) {
+        for ($i = 0; $i < 500; $i++) {
             $randomDate = $startDate->copy()->addDays(rand(0, $daysDifference))->format('Y-m-d H:i:s');
             $layananData[] = [
                 'idTagihan' => 00 + $i + 1,
                 'pendapatan' => rand(100000, 1000000),
                 'tanggalBayar' => $randomDate,
+                'tanggalTagihan' => $randomDate,
                 'bulan' => $months[rand(0, 11)],
-                'tahun' => 2020,
+                'tahun' => 2024,
                 'namaLayanan' => 'Layanan ' . chr(rand(65, 90)),
                 'namaLayananProduk' => 'Produk ' . chr(rand(65, 90)),
                 'typeBilling' => rand(0, 1) ? 'prepaid' : 'postpaid',

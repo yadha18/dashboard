@@ -6,13 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield('title') || Billing Dashboard</title>
     <!-- Google Font: Source Sans Pro -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Tempusdominus Bootstrap 4 -->
-    <link rel="stylesheet" href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <!-- overlayScrollbars -->
@@ -1950,8 +1952,10 @@
                             ]
                         });
                         var periodChartTitle =
-                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional Tahun ' + tahunPertama + ' & ' + tahunKedua + '</b></h3>';
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional Tahun ' +
+                            tahunPertama + ' & ' + tahunKedua + '</b></h3>';
                         $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
                     },
                     error: function(error) {
                         periodeLoadingIndicator.hide();
@@ -2015,6 +2019,12 @@
                                 }
                             ]
                         })
+
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan HC Nasional tahun ' +
+                            hcPertama + ' & ' + hcKedua + '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').hide();
                     },
                     error: (error) => {
                         periodeLoadingIndicator.hide();
@@ -2077,6 +2087,211 @@
                     }
                 },
             });
+
+            $('#startDatePertama_BT, #endDatePertama_BT').change(function() {
+                var startDatePertama_BT = $('#startDatePertama_BT').val();
+                var endDatePertama_BT = $('#endDatePertama_BT').val();
+
+                if (startDatePertama_BT && endDatePertama_BT) {
+                    var startDate = new Date(startDatePertama_BT);
+                    var endDate = new Date(endDatePertama_BT);
+
+                    // Set dates for the following month
+                    var lastMonthStartDate = new Date(startDate.setMonth(startDate.getMonth() - 1));
+                    var lastMonthEndDate = new Date(endDate.setMonth(endDate.getMonth() - 1));
+
+                    // Handle cases where the month rollover causes date to jump (e.g., January 31 to March 3)
+                    if (lastMonthStartDate.getMonth() === startDate.getMonth() + 1) {
+                        lastMonthStartDate = new Date(lastMonthStartDate.getFullYear(), lastMonthStartDate
+                            .getMonth(), 0);
+                    }
+                    if (lastMonthEndDate.getMonth() === endDate.getMonth() + 1) {
+                        lastMonthEndDate = new Date(lastMonthEndDate.getFullYear(), lastMonthEndDate
+                            .getMonth(), 0);
+                    }
+
+                    // Format the dates to 'yyyy-mm-dd'
+                    var lastMonthStartDateStr = lastMonthStartDate.toISOString().slice(0, 10);
+                    var lastMonthEndDateStr = lastMonthEndDate.toISOString().slice(0, 10);
+
+                    // Set the values of the input fields
+                    $('#startDateKedua_BT').val(lastMonthStartDateStr);
+                    $('#endDateKedua_BT').val(lastMonthEndDateStr);
+                }
+            });
+
+            $('#compareMonthRevenueBillingTerbitButton').click(() => {
+                var startDatePertama_BT = $('#startDatePertama_BT').val();
+                var endDatePertama_BT = $('#endDatePertama_BT').val();
+                var startDateKedua_BT = $('#startDateKedua_BT').val();
+                var endDateKedua_BT = $('#endDateKedua_BT').val();
+
+                var tanggalAwalPertama = new Date(startDatePertama_BT).getDate();
+                var tanggalAwalKedua = new Date(startDateKedua_BT).getDate();
+
+                var tanggalAkhirPertama = new Date(endDatePertama_BT).getDate();
+                var tanggalAkhirKedua = new Date(endDateKedua_BT).getDate();
+
+                var bulan1 = new Date(startDatePertama_BT).getMonth() + 1;
+                var bulan2 = new Date(startDateKedua_BT).getMonth() + 1;
+
+                var tahun1 = new Date(startDatePertama_BT).getFullYear();
+                var tahun2 = new Date(startDateKedua_BT).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
+                if (!startDatePertama_BT || !endDatePertama_BT || !startDateKedua_BT || !endDateKedua_BT) {
+                    alert('Lengkapi tanggal periode');
+                    return;
+                }
+
+                if (bulan1 === bulan2) {
+                    alert('Bulan tidak bisa sama');
+                    return;
+                }
+
+                if (startDatePertama_BT > endDatePertama_BT) {
+                    alert('Tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+
+                if (startDateKedua_BT > endDateKedua_BT) {
+                    alert('tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+
+                let bulanToStr_1 = namaBulan[bulan1 - 1];
+                let bulanToStr_2 = namaBulan[bulan2 - 1];
+
+                periodeLoadingIndicator.show();
+                $.ajax({
+                    url: '/api/get-compare-month-revenue-bt',
+                    method: 'GET',
+                    data: {
+                        startDatePertama_BT: startDatePertama_BT,
+                        endDatePertama_BT: endDatePertama_BT,
+                        startDateKedua_BT: startDateKedua_BT,
+                        endDateKedua_BT: endDateKedua_BT
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+                        var labels = response.labels;
+                        var data1 = response.data_BT_1;
+                        var data2 = response.data_BT_2;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_2}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_1}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional (Billing Terbit) per ' +
+                            tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' +
+                            bulanToStr_2 +
+                            ' ' + tahun2 + ' s.d. ' +
+                            tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' +
+                            bulanToStr_1 + ' ' + tahun1 + '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                        console.error("Error fetching data:", error);
+                    }
+                })
+            })
+
+            $('#compareDayBillingTerbitRevenueButton').click(function() {
+                var startDateDay_BT = $('#startDateDay_BT').val();
+                var endDateDay_BT = $('#endDateDay_BT').val();
+
+                var tanggalAwal = new Date(startDateDay_BT).getDate();
+                var tanggalAkhir = new Date(endDateDay_BT).getDate();
+
+                var bulanAwal = new Date(startDateDay_BT).getMonth() + 1;
+                var bulanAkhir = new Date(endDateDay_BT).getMonth() + 1;
+
+                var tahunAwal = new Date(startDateDay_BT).getFullYear();
+                var tahunAkhir = new Date(endDateDay_BT).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
+                if (!startDateDay_BT || !endDateDay_BT) {
+                    alert('Tanggal wajib diisi!');
+                    return;
+                }
+
+                if (startDateDay_BT < endDateDay_BT) {
+                    alert('Tanggal kedua tidak boleh lebih besar dibanding tanggal pertama');
+                    return;
+                }
+
+                let bulanToString_1 = namaBulan[bulanAwal - 1];
+                let bulanToString_2 = namaBulan[bulanAkhir - 1];
+
+                periodeLoadingIndicator.show();
+                $.ajax({
+                    url: '/api/get-compare-day-revenue-bt',
+                    method: 'GET',
+                    data: {
+                        startDateDay_BT: startDateDay_BT,
+                        endDateDay_BT: endDateDay_BT
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+                        var labels = response.labels;
+                        var data1 = response.data_1;
+                        var data2 = response.data_2;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAkhir} ${bulanToString_2} ${tahunAkhir}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAwal} ${bulanToString_1} ${tahunAwal}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional ' +
+                            tanggalAkhir + ' ' + bulanToString_2 + ' ' + tahunAkhir + ' & ' +
+                            tanggalAwal + ' ' + bulanToString_1 + ' ' + tahunAwal +
+                            '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                        console.error("Error fetching data:", error);
+                    }
+                })
+            })
 
             $('#startDatePertama, #endDatePertama').change(function() {
                 var startDatePertama = $('#startDatePertama').val();
@@ -2190,10 +2405,13 @@
                             ]
                         })
                         var periodChartTitle =
-                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional per ' +
-                            tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 + ' ' + tahun2 + ' s.d. ' +
-                            tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' + bulanToStr_1 + ' ' + tahun1 + '</b></h3>';
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional (Tanggal Bayar) per ' +
+                            tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 +
+                            ' ' + tahun2 + ' s.d. ' +
+                            tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' +
+                            bulanToStr_1 + ' ' + tahun1 + '</b></h3>';
                         $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
                     },
                     error: (error) => {
                         periodeLoadingIndicator.hide();
@@ -2201,7 +2419,7 @@
                     }
                 })
             })
-            
+
             // $('#revenuePerDay').click(function() {
             //     var data_revenue_day = {
             //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
@@ -2229,7 +2447,7 @@
             $('#compareDayRevenueButton').click(function() {
                 var startDateDay = $('#startDateDay').val();
                 var endDateDay = $('#endDateDay').val();
-                
+
                 var tanggalAwal = new Date(startDateDay).getDate();
                 var tanggalAkhir = new Date(endDateDay).getDate();
 
@@ -2244,21 +2462,21 @@
                 ];
 
                 if (!startDateDay || !endDateDay) {
-                    alert('Periode wajib diisi!');
+                    alert('Tanggal wajib diisi!');
                     return;
                 }
 
                 if (startDateDay < endDateDay) {
-                    alert('periode akhir tidak boleh lebih besar dibanding periode awal');
+                    alert('Tanggal kedua tidak boleh lebih besar dibanding tanggal pertama');
                     return;
                 }
 
                 let bulanToString_1 = namaBulan[bulanAwal - 1];
                 let bulanToString_2 = namaBulan[bulanAkhir - 1];
-                
+
                 periodeLoadingIndicator.show();
                 $.ajax({
-                    url:'/api/get-compare-day-revenue',
+                    url: '/api/get-compare-day-revenue',
                     method: 'GET',
                     data: {
                         startDateDay: startDateDay,
@@ -2271,23 +2489,30 @@
                         var data_day_rev_2 = response.data_day_rev_2;
 
                         updateChart(periodRevenueChart, {
-                        labels: labels,
-                        datasets: [{
-                                barPercentage: 0.7,
-                                label: `${tanggalAkhir} ${bulanToString_2} ${tahunAkhir}`,
-                                backgroundColor: "#0dcaf0",
-                                borderColor: "#0dcaf0",
-                                data: data_day_rev_2,
-                            },
-                            {
-                                barPercentage: 0.7,
-                                label: `${tanggalAwal} ${bulanToString_1} ${tahunAwal}`,
-                                backgroundColor: "#007bff",
-                                borderColor: "#007bff",
-                                data: data_day_rev_1,
-                            }
-                        ]
-                    })
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAkhir} ${bulanToString_2} ${tahunAkhir}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data_day_rev_2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAwal} ${bulanToString_1} ${tahunAwal}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data_day_rev_1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional ' +
+                            tanggalAkhir + ' ' + bulanToString_2 + ' ' + tahunAkhir + ' & ' +
+                            tanggalAwal + ' ' + bulanToString_1 + ' ' + tahunAwal +
+                            '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
                     },
                     error: (error) => {
                         periodeLoadingIndicator.hide();
@@ -2295,6 +2520,213 @@
                     }
                 })
             });
+
+            $('#hcStartDatePertama, #hcEndDatePertama').change(function() {
+                var hcStartDatePertama = $('#hcStartDatePertama').val();
+                var hcEndDatePertama = $('#hcEndDatePertama').val();
+
+                if (hcStartDatePertama && hcEndDatePertama) {
+                    var startDate = new Date(hcStartDatePertama);
+                    var endDate = new Date(hcEndDatePertama);
+
+                    // Set dates for the following month
+                    var lastMonthStartDate = new Date(startDate.setMonth(startDate.getMonth() - 1));
+                    var lastMonthEndDate = new Date(endDate.setMonth(endDate.getMonth() - 1));
+
+                    // Handle cases where the month rollover causes date to jump (e.g., January 31 to March 3)
+                    if (lastMonthStartDate.getMonth() === startDate.getMonth() + 1) {
+                        lastMonthStartDate = new Date(lastMonthStartDate.getFullYear(), lastMonthStartDate
+                            .getMonth(), 0);
+                    }
+                    if (lastMonthEndDate.getMonth() === endDate.getMonth() + 1) {
+                        lastMonthEndDate = new Date(lastMonthEndDate.getFullYear(), lastMonthEndDate
+                            .getMonth(), 0);
+                    }
+
+                    // Format the dates to 'yyyy-mm-dd'
+                    var lastMonthStartDateStr = lastMonthStartDate.toISOString().slice(0, 10);
+                    var lastMonthEndDateStr = lastMonthEndDate.toISOString().slice(0, 10);
+
+                    // Set the values of the input fields
+                    $('#hcStartDateKedua').val(lastMonthStartDateStr);
+                    $('#hcEndDateKedua').val(lastMonthEndDateStr);
+                }
+            });
+
+            $('#compareMonthHCButton').click(function() {
+                var hcStartDatePertama = $('#hcStartDatePertama').val();
+                var hcEndDatePertama = $('#hcEndDatePertama').val();
+                var hcStartDateKedua = $('#hcStartDateKedua').val();
+                var hcEndDateKedua = $('#hcEndDateKedua').val();
+
+                var tanggalAwalPertama = new Date(hcStartDatePertama).getDate();
+                var tanggalAwalKedua = new Date(hcStartDateKedua).getDate();
+
+                var tanggalAkhirPertama = new Date(hcEndDatePertama).getDate();
+                var tanggalAkhirKedua = new Date(hcEndDateKedua).getDate();
+
+                var bulan_hc_pertama = new Date(hcStartDatePertama).getMonth() + 1;
+                var bulan_hc_kedua = new Date(hcStartDateKedua).getMonth() + 1;
+
+                var tahun_hc_pertama = new Date(hcStartDatePertama).getFullYear();
+                var tahun_hc_kedua = new Date(hcStartDateKedua).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
+                if (!hcStartDatePertama || !hcStartDateKedua || !hcEndDatePertama || !hcEndDateKedua) {
+                    alert('Mohon lengkapi tanggal periodenya');
+                    return;
+                }
+
+                if (bulan_hc_pertama === bulan_hc_kedua) {
+                    alert('Bulan tidak bisa sama');
+                    return;
+                }
+
+                if (hcStartDatePertama > hcEndDatePertama) {
+                    alert('Tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+
+                if (hcStartDateKedua > hcEndDateKedua) {
+                    alert('tanggal akhir harus lebih besar dari tanggal awal');
+                    return;
+                }
+
+                let bulanToStr_1 = namaBulan[bulan_hc_pertama - 1];
+                let bulanToStr_2 = namaBulan[bulan_hc_kedua - 1];
+
+                periodeLoadingIndicator.show();
+                $.ajax({
+                    url: '/api/get-compare-month-hc',
+                    method: 'GET',
+                    data: {
+                        hcStartDatePertama: hcStartDatePertama,
+                        hcEndDatePertama: hcEndDatePertama,
+                        hcStartDateKedua: hcStartDateKedua,
+                        hcEndDateKedua: hcEndDateKedua
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+
+                        var labels = response.labels
+                        var data_month_hc_1 = response.bulan_pertama
+                        var data_month_hc_2 = response.bulan_kedua
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_2}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data_month_hc_2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${bulanToStr_1}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data_month_hc_1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan HC Nasional per ' +
+                            tanggalAwalKedua + '-' + tanggalAkhirKedua + ' ' + bulanToStr_2 +
+                            ' ' + tahun_hc_kedua + ' s.d. ' +
+                            tanggalAwalPertama + '-' + tanggalAkhirPertama + ' ' +
+                            bulanToStr_1 + ' ' + tahun_hc_pertama + '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').hide();
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                    }
+                })
+            })
+
+            $('#compareDayHCButton').click(function() {
+                var hcStartDateDay = $('#hcStartDateDay').val();
+                var hcEndDateDay = $('#hcEndDateDay').val();
+
+                var tanggalAwal = new Date(hcStartDateDay).getDate();
+                var tanggalAkhir = new Date(hcEndDateDay).getDate();
+
+                var bulan_hc_awal = new Date(hcStartDateDay).getMonth() + 1;
+                var bulan_hc_akhir = new Date(hcEndDateDay).getMonth() + 1;
+
+                var tahun_hc_awal = new Date(hcStartDateDay).getFullYear();
+                var tahun_hc_akhir = new Date(hcEndDateDay).getFullYear();
+
+                var namaBulan = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli',
+                    'Agustus',
+                    'September', 'Oktober', 'November', 'Desember'
+                ];
+
+                if (!hcStartDateDay || !hcEndDateDay) {
+                    alert('Isi tanggal periode!')
+                    return;
+                }
+
+                if (hcStartDateDay < hcEndDateDay) {
+                    alert('Tanggal pertama tidak bisa lebih besar dari tanggal kedua');
+                    return;
+                }
+
+                var bulanToString_1 = namaBulan[bulan_hc_awal - 1];
+                var bulanToString_2 = namaBulan[bulan_hc_akhir - 1];
+
+                periodeLoadingIndicator.show();
+
+                $.ajax({
+                    url: '/api/get-compare-day-hc',
+                    method: 'GET',
+                    data: {
+                        hcStartDateDay: hcStartDateDay,
+                        hcEndDateDay: hcEndDateDay
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+
+                        var labels = response.labels;
+                        var data_hc_1 = response.data_hc_1;
+                        var data_hc_2 = response.data_hc_2;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAkhir} ${bulanToString_2} ${tahun_hc_akhir}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data_hc_2,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${tanggalAwal} ${bulanToString_1} ${tahun_hc_awal}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data_hc_1,
+                                }
+                            ]
+                        })
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan HC Nasional ' +
+                            tanggalAkhir + ' ' + bulanToString_2 + ' ' + tahun_hc_akhir +
+                            ' & ' + tanggalAwal + ' ' + bulanToString_1 + ' ' + tahun_hc_awal +
+                            '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').hide();
+                    },
+                    error: (error) => {
+                        periodeLoadingIndicator.hide();
+                        console.error('Error:', error);
+                    }
+                })
+            })
 
             // $('#compare-revenue').click(function() {
             //     var data_revenue_tahunan = {
@@ -2364,73 +2796,73 @@
             //     updateChart(periodRevenueChart, data_monthly_revenue);
             // })
 
-            $('#compare-HC').click(function() {
-                var data_compare_HC = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
-                    datasets: [{
-                            barPercentage: 0.7,
-                            label: '2023',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282],
-                        },
-                        {
-                            barPercentage: 0.7,
-                            label: '2024',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838],
-                        }
-                    ],
-                };
-                updateChart(periodRevenueChart, data_compare_HC);
-            });
+            // $('#compare-HC').click(function() {
+            //     var data_compare_HC = {
+            //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+            //         datasets: [{
+            //                 barPercentage: 0.7,
+            //                 label: '2023',
+            //                 backgroundColor: "#0dcaf0",
+            //                 borderColor: "#0dcaf0",
+            //                 data: [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282],
+            //             },
+            //             {
+            //                 barPercentage: 0.7,
+            //                 label: '2024',
+            //                 backgroundColor: "#007bff",
+            //                 borderColor: "#007bff",
+            //                 data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838],
+            //             }
+            //         ],
+            //     };
+            //     updateChart(periodRevenueChart, data_compare_HC);
+            // });
 
-            $('#monthlyHC').click(function() {
-                var realisasi_monthly_HC = [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282];
-                var target_monthly_HC = [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838];
-                var data_monthly_HC = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
-                    datasets: [{
-                            barPercentage: 0.7,
-                            label: 'Realisasi',
-                            backgroundColor: "#0dcaf0",
-                            borderColor: "#0dcaf0",
-                            data: realisasi_monthly_HC,
-                        },
-                        {
-                            barPercentage: 0.7,
-                            label: 'Target',
-                            backgroundColor: "#007bff",
-                            borderColor: "#007bff",
-                            data: target_monthly_HC,
-                        }
-                    ],
-                };
-                updateChart(periodRevenueChart, data_monthly_HC)
-            });
+            // $('#monthlyHC').click(function() {
+            //     var realisasi_monthly_HC = [3984, 4616, 4602, 3068, 4160, 3064, 2925, 3106, 2716, 3282];
+            //     var target_monthly_HC = [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838];
+            //     var data_monthly_HC = {
+            //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+            //         datasets: [{
+            //                 barPercentage: 0.7,
+            //                 label: 'Realisasi',
+            //                 backgroundColor: "#0dcaf0",
+            //                 borderColor: "#0dcaf0",
+            //                 data: realisasi_monthly_HC,
+            //             },
+            //             {
+            //                 barPercentage: 0.7,
+            //                 label: 'Target',
+            //                 backgroundColor: "#007bff",
+            //                 borderColor: "#007bff",
+            //                 data: target_monthly_HC,
+            //             }
+            //         ],
+            //     };
+            //     updateChart(periodRevenueChart, data_monthly_HC)
+            // });
 
-            $('#HCPerDay').click(function() {
-                var data_hc_day = {
-                    labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
-                    datasets: [{
-                        barPercentage: 0.7,
-                        label: 'Mei',
-                        backgroundColor: "#0dcaf0",
-                        borderColor: "#0dcaf0",
-                        data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838]
-                    }, {
-                        barPercentage: 0.7,
-                        label: 'Juni',
-                        backgroundColor: "#007bff",
-                        borderColor: "#007bff",
-                        data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
-                            2000
-                        ]
-                    }],
-                }
-                updateChart(periodRevenueChart, data_hc_day);
-            });
+            // $('#HCPerDay').click(function() {
+            //     var data_hc_day = {
+            //         labels: ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'BNT', 'KAL', 'SIT'],
+            //         datasets: [{
+            //             barPercentage: 0.7,
+            //             label: 'Mei',
+            //             backgroundColor: "#0dcaf0",
+            //             borderColor: "#0dcaf0",
+            //             data: [1688, 1256, 1417, 1845, 2010, 1849, 1843, 942, 1585, 838]
+            //         }, {
+            //             barPercentage: 0.7,
+            //             label: 'Juni',
+            //             backgroundColor: "#007bff",
+            //             borderColor: "#007bff",
+            //             data: [250, 400, 550, 700, 850, 1000, 1150, 1300, 1450, 1600, 1800,
+            //                 2000
+            //             ]
+            //         }],
+            //     }
+            //     updateChart(periodRevenueChart, data_hc_day);
+            // });
 
             function updateChart(chart, newData) {
                 chart.data = newData;

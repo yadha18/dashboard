@@ -117,8 +117,127 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="row justify-content-center align-items-center">
-                                        <div class="w-25">
-                                            <h3 class="pl-2"><b>Revenue</b></h3>
+                                        <div class="w-25 text-center">
+                                            <h4 class=""><b>Revenue - Billing Terbit</b></h4>
+                                            <div class="dropdown">
+                                                <button class="dropdown-toggle mb-2 mr-3"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                    Perbandingan Revenue Nasional
+                                                </button>
+                                                <div class="dropdown-menu p-3" aria-labelledby="dropdownMenuButton"
+                                                    style="width: 400px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="tahunPertamaBillingTerbit">Tahun Pertama:</label>
+                                                            <select class="form-control" id="tahunPertamaBillingTerbit">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="form-group ml-2">
+                                                            <label for="tahunKeduaBillingTerbit">Tahun Kedua:</label>
+                                                            <select class="form-control" id="tahunKeduaBillingTerbit">
+                                                                <option value="">Pilih Tahun</option>
+                                                                <option value="2020">2020</option>
+                                                                <option value="2021">2021</option>
+                                                                <option value="2022">2022</option>
+                                                                <option value="2023">2023</option>
+                                                                <option value="2024">2024</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <button class="btn btn-success mt-3 w-100"
+                                                        id="compareRevenueBillingTerbitButton">Apply</button>
+                                                </div>
+                                            </div>
+                                            <br>
+                                            <div class="dropdown">
+                                                <button id="monthlyRevenue" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan Revenue per Bulan
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Pilih periode:</h6>
+                                                        <br />
+                                                        <div class="col">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="startDatePertama_BT"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="endDatePertama_BT"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <hr />
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Periode sebelumnya:</h6>
+                                                        <br />
+                                                        <div class="col">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="startDateKedua_BT"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="endDateKedua_BT"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="compareMonthRevenueBillingTerbitButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
+                                                </div>
+                                            </div>
+                                            <div class="dropdown">
+                                                <button id="revenuePerDay" class="btn dropdown-toggle mr-3 mb-2"
+                                                    style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
+                                                    type="button" data-toggle="dropdown" aria-haspopup="true"
+                                                    aria-expanded="false">
+                                                    Perbandingan Revenue per Hari
+                                                </button>
+                                                <div class="dropdown-menu p-3"
+                                                    style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
+                                                    <div class="d-flex justify-content-between align-items-center">
+                                                        <div class="form-group mr-2">
+                                                            <label for="startDateDay_BT">Periode Pertama</label>
+                                                            <input type="date" id="startDateDay_BT"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                        <div class="form-group">
+                                                            <label for="endDateDay_BT">Periode Kedua</label>
+                                                            <input type="date" id="endDateDay_BT"
+                                                                class="form-control mt-2"
+                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                        </div>
+                                                    </div>
+                                                    <button type="button" id="compareDayBillingTerbitRevenueButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div
+                                            style="background-color: #d3d3d3; width: 3px; height:150px; margin:3px; border-radius: 10px;">
+                                        </div>
+                                        <div class="w-25 text-center">
+                                            <h4 class="mb-2"><b>Revenue - Tanggal Bayar</b></h4>
                                             <div class="dropdown">
                                                 <button class="dropdown-toggle mb-2 mr-3"
                                                     style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;"
@@ -169,7 +288,7 @@
                                                     <div class="d-flex justify-content-between align-items-center row">
                                                         <h6>Pilih periode:</h6>
                                                         <br />
-                                                        <div class="col justify-content-center">
+                                                        <div class="col">
                                                             <div class="form-group mr-2">
                                                                 <input type="date" id="startDatePertama"
                                                                     class="form-control mt-2"
@@ -186,7 +305,7 @@
                                                     <div class="d-flex justify-content-between align-items-center row">
                                                         <h6>Periode sebelumnya:</h6>
                                                         <br />
-                                                        <div class="col justify-content-center">
+                                                        <div class="col">
                                                             <div class="form-group mr-2">
                                                                 <input type="date" id="startDateKedua"
                                                                     class="form-control mt-2"
@@ -216,36 +335,27 @@
                                                     style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
                                                     <div class="d-flex justify-content-between align-items-center">
                                                         <div class="form-group mr-2">
-                                                            <label for="startDateDay">Tanggal Mulai</label>
+                                                            <label for="startDateDay">Periode Pertama</label>
                                                             <input type="date" id="startDateDay"
                                                                 class="form-control mt-2"
                                                                 style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
                                                         </div>
                                                         <div class="form-group">
-                                                            <label for="endDateDay">Tanggal Akhir</label>
+                                                            <label for="endDateDay">Periode Kedua</label>
                                                             <input type="date" id="endDateDay"
                                                                 class="form-control mt-2"
                                                                 style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
                                                         </div>
                                                     </div>
-                                                    <button type="button" id="compareDayRevenueButton" class="btn btn-success mt-3 w-100">Apply</button>
+                                                    <button type="button" id="compareDayRevenueButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
                                                 </div>
                                             </div>
-                                            {{-- <button id="monthlyRevenue" class="mr-3 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
-                                                Nasional per Bulan</button>
-                                            <br>
-                                            <label for="monthRevenue">Revenue Nasional per Bulan</label>
-                                            <input type="date" id="monthRevenue" /> --}}
-                                            <br>
-                                            {{-- <button id="revenuePerDay" class="mr-3 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">Revenue
-                                                Nasional per Hari</button> --}}
                                         </div>
                                         <div
-                                            style="background-color: #d3d3d3; width: 3px; height:150px; margin-right: 35px; border-radius: 10px;">
+                                            style="background-color: #d3d3d3; width: 3px; height:150px; margin:3px; border-radius: 10px;">
                                         </div>
-                                        <div class="w-25">
+                                        <div class="w-25 text-center">
                                             <h3 class="pl-2"><b>HC</b></h3>
                                             <div class="dropdown">
                                                 <button class="dropdown-toggle mb-2 mr-3"
@@ -294,40 +404,43 @@
                                                 </button>
                                                 <div class="dropdown-menu p-3"
                                                     style="min-width: 250px; border: 1px solid #3d3d3d; border-radius: 8px;">
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <h3>Pilih periode:</h3>
-                                                        <div class="form-group mr-2">
-                                                            <label for="hcStartDatePertama">Tanggal Mulai Pertama</label>
-                                                            <input type="date" id="hcStartDatePertama"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label for="hcEndDatePertama">Tanggal Akhir Pertama</label>
-                                                            <input type="date" id="hcEndDatePertama"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Pilih periode:</h6>
+                                                        <br />
+                                                        <div class="col">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="hcStartDatePertama"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="hcEndDatePertama"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;">
+                                                            </div>
                                                         </div>
                                                     </div>
                                                     <hr />
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <h3>Periode Sebelumnya</h3>
-                                                        <div class="form-group mr-2">
-                                                            <label for="hcStartDateKedua">Tanggal Mulai Kedua</label>
-                                                            <input type="date" id="hcStartDateKedua"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
-                                                        </div>
-                                                        <div class="form-grou0p">
-                                                            <label for="hcEndDateKedua">Tanggal Akhir Kedua</label>
-                                                            <input type="date" id="hcEndDateKedua"
-                                                                class="form-control mt-2"
-                                                                style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
+                                                    <div class="d-flex justify-content-between align-items-center row">
+                                                        <h6>Periode sebelumnya:</h6>
+                                                        <br />
+                                                        <div class="col">
+                                                            <div class="form-group mr-2">
+                                                                <input type="date" id="hcStartDateKedua"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
+                                                            <div class="form-group">
+                                                                <input type="date" id="hcEndDateKedua"
+                                                                    class="form-control mt-2"
+                                                                    style="border: 1px solid #3d3d3d; border-radius: 4px; width: 250px;"
+                                                                    readonly>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                    <button type="button" id="compareMonthRevenueButton"
-                                                        class="btn btn-success mt-3 w-100"
-                                                        onclick="compareDates()">Apply</button>
+                                                    <button type="button" id="compareMonthHCButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
                                                 </div>
                                             </div>
                                             <div class="dropdown">
@@ -353,17 +466,10 @@
                                                                 style="border: 1px solid #3d3d3d; border-radius: 4px; padding: 5px;">
                                                         </div>
                                                     </div>
-                                                    <button type="button" class="btn btn-success mt-3 w-100"
-                                                        onclick="compareDates()">Apply</button>
+                                                    <button type="button" id="compareDayHCButton"
+                                                        class="btn btn-success mt-3 w-100">Apply</button>
                                                 </div>
                                             </div>
-                                            {{-- <button id="monthlyHC" class="mr-2 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
-                                                per Bulan</button>
-                                            <br> --}}
-                                            {{-- <button id="HCPerDay" class="mr-3 mb-2"
-                                                style="background-color: #e1e1e1;color: #3d3d3d;border: 1px solid #3d3d3d;border-radius: 50px;padding: 5px 20px;font-size: 14px;cursor: pointer;">HC
-                                                per Hari</button> --}}
                                         </div>
                                     </div>
                                 </div>
