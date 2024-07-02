@@ -10,9 +10,27 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Yajra\DataTables\DataTables;
 
 class RevenueController extends Controller
 {
+    public function revenueTablePage()
+    {
+        $user = User::select('name')->first();
+
+        return view('auth.table-revenue', compact('user'));
+    }
+
+    public function getRevenueTable(Request $request)
+    {
+        if ($request->ajax()) {
+            $data = Revenue::latest()->get();
+            return DataTables::of($data)
+                ->addIndexColumn()
+                ->make(true);
+        }
+    }
+
     public function getRevenueData(Request $request)
     {
         $year = $request->input('year');

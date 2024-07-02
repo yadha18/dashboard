@@ -8,4 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Revenue extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'idTagihan',
+        'pendapatan',
+        'tanggalBayar',
+        'tanggalTagihan',
+        'namaLayananProduk',
+        'typeBilling',
+        'namaKP',
+        'namaSBU'
+    ];
 }

@@ -37,6 +37,8 @@ Route::controller(BaddebtController::class)->group(function () {
 
 Route::controller(RevenueController::class)->group(function () {
     Route::get('/dashboard/revenue', 'revenue')->name('revenue');
+    Route::get('/dashboard/revenue/table', 'revenueTablePage')->name('revenue.table');
+    Route::get('/dashboard/revenue/table/list', 'getRevenueTable')->name('revenue.list');
     Route::get('/dashboard/revenue/daily', 'dailyRevenue')->name('dailyRevenue');
     Route::get('/dashboard/revenue/product', 'productRevenue')->name('productRevenue');
 });

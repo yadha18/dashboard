@@ -2088,6 +2088,93 @@
                 },
             });
 
+            $('#compareRevenueBillingTerbitButton').click(function() {
+                var tahunPertamaBillingTerbit = $('#tahunPertamaBillingTerbit').val();
+                var tahunKeduaBillingTerbit = $('#tahunKeduaBillingTerbit').val();
+
+                if (!tahunPertamaBillingTerbit || !tahunKeduaBillingTerbit) {
+                    alert('Mohon isi tahun pertama dan keduanya!');
+                    periodeLoadingIndicator.hide();
+                    return;
+                }
+
+                if (tahunPertamaBillingTerbit === tahunKeduaBillingTerbit) {
+                    alert('Tahun pertama dan kedua tidak boleh sama.');
+                    periodeLoadingIndicator.hide();
+                    return;
+                }
+
+                if (tahunPertamaBillingTerbit > tahunKeduaBillingTerbit) {
+                    alert('Tahun kedua harus lebih besar dari tahun pertama!');
+                    periodeLoadingIndicator.hide();
+                    return;
+                }
+
+                periodeLoadingIndicator.show();
+                $.ajax({
+                    url: '/api/get-compare-revenue-bt',
+                    method: 'GET',
+                    data: {
+                        tahunPertamaBillingTerbit: tahunPertamaBillingTerbit,
+                        tahunKeduaBillingTerbit: tahunKeduaBillingTerbit
+                    },
+                    success: (response) => {
+                        periodeLoadingIndicator.hide();
+                        var labels = response.labels;
+                        var data1 = response.data_pertama;
+                        var data2 = response.data_kedua;
+
+                        data1 = data1.map(function(value) {
+                            return value / 1000; // Convert to thousands
+                        });
+                        data2 = data2.map(function(value) {
+                            return value / 1000; // Convert to thousands
+                        });
+
+                        var selisihData = data1.map(function(value, index) {
+                            return (data2[index] - value) / 1000;
+                        });
+
+                        selisihData = parseInt(selisihData, 10) / 1000;
+
+                        updateChart(periodRevenueChart, {
+                            labels: labels,
+                            datasets: [{
+                                    barPercentage: 0.7,
+                                    label: `${tahunPertamaBillingTerbit}`,
+                                    backgroundColor: "#0dcaf0",
+                                    borderColor: "#0dcaf0",
+                                    data: data1,
+                                },
+                                {
+                                    barPercentage: 0.7,
+                                    label: `${tahunKeduaBillingTerbit}`,
+                                    backgroundColor: "#007bff",
+                                    borderColor: "#007bff",
+                                    data: data2,
+                                },
+                                {
+                                    barPercentage: 0.5,
+                                    label: 'Selisih',
+                                    backgroundColor: "#198754",
+                                    borderColor: "#198754",
+                                    data: selisihData,
+                                }
+                            ]
+                        });
+                        var periodChartTitle =
+                            '<h3 class="card-title"><b>Perbandingan Revenue Nasional (Billing Terbit) Tahun ' +
+                            tahunPertamaBillingTerbit + ' & ' + tahunKeduaBillingTerbit +
+                            '</b></h3>';
+                        $('#period-chart-title').html(periodChartTitle);
+                        $('#satuan').show();
+                    },
+                    error: (error) => {
+
+                    }
+                })
+            })
+
             $('#startDatePertama_BT, #endDatePertama_BT').change(function() {
                 var startDatePertama_BT = $('#startDatePertama_BT').val();
                 var endDatePertama_BT = $('#endDatePertama_BT').val();

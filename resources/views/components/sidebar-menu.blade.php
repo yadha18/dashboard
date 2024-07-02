@@ -55,13 +55,29 @@
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="{{ route('revenue') }}"
-                                class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
+                        <li class="nav-item menu-open">
+                            <a class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
                                 <i
                                     class="far {{ Route::currentRouteNamed('revenue') ? 'fa-dot-circle' : 'fa-circle' }} nav-icon"></i>
-                                <p>All Revenue</p>
+                                <p>
+                                    All Revenue
+                                    <i class="right fas fa-angle-left"></i>
+                                </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="{{ route('revenue') }}"
+                                        class="nav-link {{ Route::currentRouteNamed('revenue') ? 'active' : '' }}">
+                                        <p>Data Visualization</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="{{ route('revenue.table') }}"
+                                        class="nav-link {{ Route::currentRouteNamed('revenue.table') ? 'active' : '' }}">
+                                        <p>Data Table</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                         <li class="nav-item">
                             <a href="{{ route('dailyRevenue') }}"
