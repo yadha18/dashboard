@@ -12,7 +12,7 @@ class BaddebtController extends Controller
 {
     public function passivecustomer()
     {
-        $data = Baddebt::paginate(750);
+        $data = Baddebt::all();
         $total = Baddebt::count();
         $user = User::select('name')->first();
 
@@ -92,11 +92,12 @@ class BaddebtController extends Controller
             'tahunBulanAktivasi',
             'tanggalTagihan',
             'tahunBulanTagihan',
-            'tanggalIsolir',
+            'tglIsolir',
+            'telatHari',
             'prepaid',
             'namaSBU',
             'namaKP',
-            'salesInput',
+            'salesinput',
             'totalTiket',
             'Promo'
         );

@@ -56,6 +56,7 @@
                                                 <th>Tanggal Tagihan</th>
                                                 <th>Tahun Bulan Tagihan</th>
                                                 <th>Tanggal Isolir</th>
+                                                <th>Telat Hari</th>
                                                 <th>Prepaid</th>
                                                 <th>Nama SBU</th>
                                                 <th>Nama KP</th>
@@ -68,22 +69,20 @@
                                             @foreach ($data as $baddebt)
                                                 <tr>
                                                     <td>{{ $baddebt->idPelanggan }}</td>
-                                                    <td>{{ $baddebt->idPelangganProduk }}</td>
-                                                    <td>{{ $baddebt->idCRM }}</td>
-                                                    <td>{{ $baddebt->idPLN }}</td>
-                                                    <td>{{ $baddebt->nama }}</td>
-                                                    <td>{{ $baddebt->email }}</td>
-                                                    <td>{{ $baddebt->alamat }}</td>
-                                                    <td>{{ $baddebt->telepon }}</td>
-                                                    <td>{{ $baddebt->typebilling }}</td>
-                                                    <td>{{ $baddebt->tanggalAktivasi }}</td>
-                                                    <td>{{ $baddebt->periodeIsolir }}</td>
-                                                    <td>{{ $baddebt->telatHari }}</td>
+                                                    <td>{{ $baddebt->namaLayanan }}</td>
                                                     <td>{{ $baddebt->namaLayananProduk }}</td>
-                                                    <td>{{ $baddebt->rp_produk }}</td>
-                                                    <td>{{ $baddebt->kodeGerak }}</td>
-                                                    <td>{{ $baddebt->statusAktif }}</td>
+                                                    <td>{{ $baddebt->tanggalAktivasi }}</td>
+                                                    <td>{{ $baddebt->tahunBulanAktivasi }}</td>
+                                                    <td>{{ $baddebt->tanggalTagihan }}</td>
+                                                    <td>{{ $baddebt->tahunBulanTagihan }}</td>
+                                                    <td>{{ $baddebt->tglIsolir }}</td>
+                                                    <td>{{ $baddebt->telatHari }}</td>
+                                                    <td>{{ $baddebt->prepaid }}</td>
                                                     <td>{{ $baddebt->namaSBU }}</td>
+                                                    <td>{{ $baddebt->namaKP }}</td>
+                                                    <td>{{ $baddebt->salesinput }}</td>
+                                                    <td>{{ $baddebt->totalTiket }}</td>
+                                                    <td>{{ $baddebt->Promo }}</td>
                                                 </tr>
                                             @endforeach
                                         </tbody>

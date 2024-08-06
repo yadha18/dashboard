@@ -20,6 +20,8 @@ class revenueSeeder extends Seeder
         $layananData = [];
         $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
         $years = [2020, 2021, 2022, 2023, 2024];
+        $product = ['10 MBPS', '20 MBPS', '35 MBPS', '50 MBPS', '100 MBPS'];
+        $sbu = ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'];
 
         for ($i = 0; $i < 500; $i++) {
             $randomDate = $startDate->copy()->addDays(rand(0, $daysDifference))->format('Y-m-d H:i:s');
@@ -30,11 +32,11 @@ class revenueSeeder extends Seeder
                 'tanggalTagihan' => $randomDate,
                 'bulan' => $months[rand(0, 11)],
                 'tahun' => $years[rand(0, 4)],
-                'namaLayanan' => 'Layanan ' . chr(rand(65, 90)),
-                'namaLayananProduk' => 'Produk ' . chr(rand(65, 90)),
+                'namaLayanan' => 'ICONNET',
+                'namaLayananProduk' => $product[rand(0,4)],
                 'typeBilling' => rand(0, 1) ? 'prepaid' : 'postpaid',
                 'namaKP' => 'KP ' . chr(rand(65, 90)),
-                'namaSBU' => ['SBU', 'SBTG', 'SBS', 'JKB', 'JBB', 'JBTG', 'JBT', 'KAL', 'SIT', 'BNT'][rand(0, 9)],
+                'namaSBU' => $sbu[rand(0, 9)],
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ];
