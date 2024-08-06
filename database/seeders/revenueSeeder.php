@@ -19,6 +19,7 @@ class revenueSeeder extends Seeder
         $daysDifference = $startDate->diffInDays($endDate);
         $layananData = [];
         $months = ['Januari', 'Februari', 'Maret', 'April', 'Mei', 'Juni', 'Juli', 'Agustus', 'September', 'Oktober', 'November', 'Desember'];
+        $years = [2020, 2021, 2022, 2023, 2024];
 
         for ($i = 0; $i < 500; $i++) {
             $randomDate = $startDate->copy()->addDays(rand(0, $daysDifference))->format('Y-m-d H:i:s');
@@ -28,7 +29,7 @@ class revenueSeeder extends Seeder
                 'tanggalBayar' => $randomDate,
                 'tanggalTagihan' => $randomDate,
                 'bulan' => $months[rand(0, 11)],
-                'tahun' => 2024,
+                'tahun' => $years[rand(0, 4)],
                 'namaLayanan' => 'Layanan ' . chr(rand(65, 90)),
                 'namaLayananProduk' => 'Produk ' . chr(rand(65, 90)),
                 'typeBilling' => rand(0, 1) ? 'prepaid' : 'postpaid',

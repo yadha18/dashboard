@@ -14,22 +14,20 @@ return new class extends Migration
         Schema::create('baddebts', function (Blueprint $table) {
             $table->id();
             $table->string('idPelanggan');
-            $table->string('idPelangganProduk');
-            $table->string('idCRM');
-            $table->string('idPLN');
-            $table->string('typebilling');
-            $table->string('nama', 255)->nullable();
-            $table->string('email')->nullable();
-            $table->string('alamat')->nullable();
-            $table->string('telepon')->nullable();
-            $table->dateTime('periodeIsolir');
-            $table->integer('telatHari');
-            $table->dateTime('tanggalAktivasi');
+            $table->string('namaLayanan');
             $table->string('namaLayananProduk');
-            $table->float('rp_produk');
-            $table->string('kodeGerak');
-            $table->string('statusAktif');
+            $table->string('tanggalAktivasi');
+            $table->string('tahunBulanAktivasi');
+            $table->string('tanggalTagihan');
+            $table->string('tahunBulanTagihan');
+            $table->string('tanggalIsolir');
+            $table->integer('telatHari');
+            $table->integer('prepaid');
             $table->string('namaSBU');
+            $table->string('namaKP');
+            $table->string('salesInput');
+            $table->integer('totalTiket');
+            $table->string('Promo');
             $table->timestamps();
         });
     }

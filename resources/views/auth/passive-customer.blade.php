@@ -49,22 +49,19 @@
                                         <thead>
                                             <tr>
                                                 <th>ID Pelanggan</th>
-                                                <th>ID Pelanggan Produk</th>
-                                                <th>ID CRM</th>
-                                                <th>ID PLN</th>
-                                                <th>Nama</th>
-                                                <th>Email</th>
-                                                <th>Alamat</th>
-                                                <th>No. Telp</th>
-                                                <th>Type Billing</th>
+                                                <th>Nama Layanan</th>
+                                                <th>Nama Produk</th>
                                                 <th>Tanggal Aktivasi</th>
-                                                <th>Periode Isolir</th>
-                                                <th>Telat Hari</th>
-                                                <th>Nama Layanan Produk</th>
-                                                <th>Harga Produk</th>
-                                                <th>Kode Gerak</th>
-                                                <th>Status Aktif</th>
+                                                <th>Tahun Bulan Aktivasi</th>
+                                                <th>Tanggal Tagihan</th>
+                                                <th>Tahun Bulan Tagihan</th>
+                                                <th>Tanggal Isolir</th>
+                                                <th>Prepaid</th>
                                                 <th>Nama SBU</th>
+                                                <th>Nama KP</th>
+                                                <th>Sales Input</th>
+                                                <th>Total Tiket</th>
+                                                <th>Promo</th>
                                             </tr>
                                         </thead>
                                         <tbody>

@@ -16,6 +16,7 @@ return new class extends Migration
             $table->integer('idTagihan');
             $table->float('pendapatan');
             $table->dateTime('tanggalBayar')->nullable();
+            $table->dateTime('tanggalTagihan')->nullable();
             $table->string('bulan');
             $table->integer('tahun');
             $table->string('namaLayanan')->nullable();

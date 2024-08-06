@@ -86,20 +86,19 @@ class BaddebtController extends Controller
     {
         $data = Baddebt::select(
             'idPelanggan',
-            'idPLN',
-            'nama',
-            'email',
-            'alamat',
-            'telepon',
-            'typebilling',
-            'tanggalAktivasi',
-            'periodeIsolir',
-            'telatHari',
+            'namaLayanan',
             'namaLayananProduk',
-            'rp_produk',
-            'kodeGerak',
-            'statusAktif',
-            'namaSBU'
+            'tanggalAktivasi',
+            'tahunBulanAktivasi',
+            'tanggalTagihan',
+            'tahunBulanTagihan',
+            'tanggalIsolir',
+            'prepaid',
+            'namaSBU',
+            'namaKP',
+            'salesInput',
+            'totalTiket',
+            'Promo'
         );
 
         return DataTables::of($data)->make(true);
