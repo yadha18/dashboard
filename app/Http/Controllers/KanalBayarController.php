@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\KanalBayarExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use App\Models\KanalBayar;
 use App\Models\User;
@@ -71,6 +73,13 @@ class KanalBayarController extends Controller
         return KanalBayar::where('pembayaranVia', $paymentMethod)->whereBetween('tanggalBayar', [$startDate, $endDate])->count();
     }
 
+    public function export(Request $request)
+    {
+        $startDate = $request->input('start_date');
+        $endDate = $request->input('end_date');
+
+        return Excel::download(new KanalBayarExport($startDate, $endDate), 'kanal-bayar.xlsx');
+    }
 
     public function pembayaranViaCount()
     {

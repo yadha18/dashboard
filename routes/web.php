@@ -45,6 +45,8 @@ Route::controller(RevenueController::class)->group(function () {
 
 Route::controller(KanalBayarController::class)->group(function () {
     Route::get('/dashboard/kanal-bayar', 'kanalbayar')->name('kanal-bayar');
+    Route::get('/kanal-bayar/export', 'export')->name('kanal-bayar.export');
+
 });
 
 Route::controller(PelangganDeaktivasiController::class)->group(function () {

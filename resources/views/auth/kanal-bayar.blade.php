@@ -45,6 +45,11 @@
                             <p>Filtering results from <strong>{{ $startDate }}</strong> to
                                 <strong>{{ $endDate }}</strong></p>
                         </div>
+                        <form action="{{ route('kanal-bayar.export') }}" method="get" class="mb-3">
+                            <input type="hidden" name="start_date" value="{{ request('start_date') }}">
+                            <input type="hidden" name="end_date" value="{{ request('end_date') }}">
+                            <button type="submit" class="btn btn-primary btn-block">Download Excel</button>
+                        </form>
                         <div class="card col-12">
                             <div class="card-header">
                                 <h3 class="card-title">Via Bank</h3>
